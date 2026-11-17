@@ -15,7 +15,15 @@ Co., or slightly above.
 - Brand foundations (PR on `brand-foundations-2026-11-17`): wordmark and mark
   SVGs in `assets/logo/`, brand book edition 1 in `brand-book/index.html`
   (published privately at https://claude.ai/artifact/SUywwYqP1KskvkSx4AqhVo),
-  decisions in `docs/design/brand-foundations.md`. Awaiting founder feedback.
+  decisions in `docs/design/brand-foundations.md`. Approved by founder.
+- Packaging (same branch / PR 1): `docs/product/products.json` is the single
+  source for the line; `scripts/build_packaging.py` renders
+  `assets/packaging/*.svg` (9 packs + `lineup.svg`),
+  `docs/product/product-line.md`, and the generated block between
+  `<!-- BEGIN:packaging -->` / `<!-- END:packaging -->` in the brand book
+  (line-up, product pages, front + back label). Brand book is now edition 2.
+  To change a product, edit the JSON and re-run the script; never hand-edit
+  the generated block.
 
 **Agreed direction.**
 - Look: modern botanical. Soft matte packs tinted by hero ingredient; rounded
@@ -80,3 +88,21 @@ details) are placeholders. Devanagari lockup is live type for now and needs
 outlining before print.
 **Next:** Founder feedback on foundations, then packaging line-up (9 SVG
 renders + front/back labels) on this same branch if the PR is still open.
+
+### 2026-11-17 19:10 IST — Claude Code (Opus 5.5) · Shivank’s MacBook Air
+**Changed:** Added `docs/product/products.json`, `scripts/build_packaging.py`,
+`assets/packaging/` (9 pack SVGs + `lineup.svg`), `docs/product/product-line.md`,
+and the generated packaging block in `brand-book/index.html` (line-up, product
+pages, flat front label, full back label for Daily Lotion). Republished the
+brand book as edition 2.
+**Decided:** Packs are generated from one JSON file so names, sizes and claims
+stay consistent across renders, brand book and docs. Pack formats: 200 ml
+pump (lotion), clear 100 ml bottle showing the oil, 100 g jar, 50 g
+stand-on-cap tubes (rash cream, sunscreen), 25 g tin (balm), sifter shaker
+(powder), 300 ml foam pump (bottle wash), 72-wipe soft pack with rigid lid.
+Footnotes: `*` = clinical testing, `**` = % naturally derived (ISO 16128).
+Sunscreen is labelled 6+ months, and massage oil carries a nut-allergy warning.
+Formulas (INCI) are indicative only. Back label covers Legal Metrology and
+Cosmetics Rules 2020 fields as placeholders. Only Daily Lotion has a full
+back label; the others follow the same template.
+**Next:** Founder review of packaging, then AI photo renders (step 3).
