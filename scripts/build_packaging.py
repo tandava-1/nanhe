@@ -1153,7 +1153,7 @@ def fragment():
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow">Little friends</span>
-      <h2>Nine Indian baby animals, one on every pack</h2>
+      <h2>{len({v[0] for v in CHARACTERS.values()})} Indian baby animals, one on every pack</h2>
       <p class="lede">Each product has a character, and each character is there for a reason. They sit where the ingredient drawing would be, on the wipes lid, and on top of the category arches. Their Hindi pet names give parents and children a way to ask for "the Haathi one".</p>
     </div>
     <div class="fgrid">{friend_cards}</div>
