@@ -621,7 +621,7 @@ GROUPS = [("moisturise", ["rich-cream", "daily-lotion", "massage-oil"]),
 
 def lineup(p):
     x, parts, arches = 0.0, [], []
-    for gi, (cat, slugs) in enumerate(GROUPS):
+    for cat, slugs in GROUPS:
         g0 = x
         for si, slug in enumerate(slugs):
             pk = render(BY_SLUG[slug], p)
