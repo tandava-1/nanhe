@@ -391,7 +391,8 @@ def label_wide(pr, p):
         text(6, 36, pr["eyebrow"].upper(), 4.3, weight=700, fill=deep, ls=".5"),
         text(6, 53, name, 15, DISPLAY, 500, style=SOFT),
         text(6, 65, pr["hindi"], 8, DEVA, 600, fill="#55695C"),
-        (f'<use href="#{p}ch-{pr["slug"]}" x="106" y="20" width="52" height="52"/>' if STYLE["chars"] else
+        # wipes carry their character on the lid, so the label keeps the ingredient drawing
+        (f'<use href="#{p}ch-{pr["slug"]}" x="106" y="20" width="52" height="52"/>' if STYLE["chars"] and pr["pack"] != "wipes" else
          f'<use href="#{p}ic-{pr["icon"]}" x="114" y="27" width="38" height="38" style="color:{deep}"/>'),
         f'<path d="M6 73.5H154" stroke="{MOSS}" stroke-opacity=".18" stroke-width=".5"/>',
         text(6, 83, footer_left(pr).upper(), 4.3, weight=700, ls=".4"),

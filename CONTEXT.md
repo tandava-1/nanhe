@@ -28,6 +28,12 @@ Co., or slightly above.
   characters on labels, wipes lid and line-up arches. `STYLE` in the script
   defaults to it. Brand book is edition 3. Exploration page kept at
   `docs/design/explorations/baby-directions.html`.
+- Photography: 8 AI concept renders in `assets/renders/` (Figma file
+  https://www.figma.com/design/tLnDO6jOWOoKlgg7wpCIbg). Three product shots
+  have the real label composited by `scripts/composite_renders.py`. Prompts
+  in `docs/design/render-prompts.md`. Brand book is edition 4 with a
+  photography section; `brand-book/renders` is a symlink to
+  `../assets/renders` so the page works locally and when published.
 
 **Agreed direction.**
 - Look: modern botanical. Soft matte packs tinted by hero ingredient; rounded
@@ -138,3 +144,19 @@ brand book (character sheet and drawing rules) and recorded the characters in
 stays available in the script but is unused.
 **Next:** AI photo renders (step 3), then final brand book assembly and
 mockups.
+
+### 2026-11-17 20:55 IST — Claude Code (Opus 5.5) · Shivank’s MacBook Air
+**Changed:** Generated 8 AI renders in a new Figma file "Nanhe — Photo
+Renders" (founder approved the Figma AI credit spend), saved as JPEG in
+`assets/renders/`. Added `scripts/composite_renders.py`, which overlays the
+real labels on the lotion, rash cream and wipes shots. Added a photography
+section to the brand book (edition 4), `docs/design/render-prompts.md`, and a
+`brand-book/renders` symlink. Wipes label now keeps the water-drop drawing
+because Susu is on the lid.
+**Decided:** Packs were generated with blank labels and the real labels
+composited on top, because AI garbles text. No baby faces in any photography,
+only hands, backs and feet. All photos are labelled as AI concepts, and a
+real shoot is needed before launch.
+**Next:** Founder review of edition 4. Open items: illustrator to redraw the
+characters, outline the Devanagari lockup, real lab data for the claims,
+trademark check for "Nanhe", real photo shoot, and merging PR 1.
