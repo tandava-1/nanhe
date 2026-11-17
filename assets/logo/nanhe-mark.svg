@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="400" height="400" role="img" aria-label="Nanhe mark">
+  <title>Nanhe mark — the seedling n</title>
+  <!-- A rounded n with a new leaf growing from the crown of its arch. Same stroke logic as the wordmark. -->
+  <g fill="none" stroke="#1F3A2B" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M30 41V83M30 61a20 20 0 0 1 40 0V83"/>
+  </g>
+  <path d="M50 36Q74 34 70 10Q46 12 50 36Z" fill="#5E8E4E"/>
+</svg>

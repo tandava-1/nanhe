@@ -1,0 +1,104 @@
+{
+  "_note": "Single source for the product line. scripts/build_packaging.py renders packs, the brand book product pages and docs/product/product-line.md from this file. Formulas and percentages are indicative placeholders until the formulator and lab confirm them.",
+  "categories": {
+    "moisturise": {"name": "Moisturise", "base": "#F6BE9A", "wash": "#FCE9DC", "deep": "#B4592C"},
+    "care": {"name": "Care & Protect", "base": "#BFD6B0", "wash": "#E7F0E0", "deep": "#43703C"},
+    "hygiene": {"name": "Everyday Hygiene", "base": "#BFDCEC", "wash": "#E4F0F7", "deep": "#2F6689"}
+  },
+  "products": [
+    {
+      "slug": "daily-lotion", "category": "moisturise", "pack": "pump",
+      "name": ["Daily Lotion"], "hindi": "रोज़ाना लोशन",
+      "eyebrow": "Moisturise · 0+ months", "age": "0+ months",
+      "line": "Oat and shea butter, for skin that stays soft till bedtime.",
+      "hero": ["Colloidal oat", "Shea butter", "Coconut oil"], "icon": "oat",
+      "size": "200 ml", "natural": 97,
+      "use": "Smooth onto clean skin after the bath and whenever skin feels dry.",
+      "inci": "Aqua, Avena Sativa (Oat) Kernel Flour, Butyrospermum Parkii (Shea) Butter, Glycerin, Caprylic/Capric Triglyceride, Cetearyl Alcohol, Glyceryl Stearate, Cocos Nucifera (Coconut) Oil, Sodium Stearoyl Glutamate, Xanthan Gum, Tocopherol, Sodium Benzoate, Potassium Sorbate, Citric Acid."
+    },
+    {
+      "slug": "massage-oil", "category": "moisturise", "pack": "oil",
+      "name": ["Massage Oil"], "hindi": "मालिश तेल",
+      "eyebrow": "Moisturise · 0+ months", "age": "0+ months",
+      "line": "Cold-pressed coconut and almond oil for the daily maalish.",
+      "hero": ["Cold-pressed coconut", "Sweet almond", "Ashwagandha"], "icon": "coconut",
+      "size": "100 ml", "natural": 99,
+      "use": "Warm a few drops between your palms. Massage in long, gentle strokes before the bath.",
+      "inci": "Cocos Nucifera (Coconut) Oil, Prunus Amygdalus Dulcis (Sweet Almond) Oil, Sesamum Indicum (Sesame) Seed Oil, Withania Somnifera (Ashwagandha) Root Extract, Tocopherol.",
+      "caution": "Contains almond oil. Do not use if your baby has a nut allergy."
+    },
+    {
+      "slug": "rich-cream", "category": "moisturise", "pack": "jar",
+      "name": ["Rich Cream"], "hindi": "पोषक क्रीम",
+      "eyebrow": "Moisturise · 0+ months", "age": "0+ months",
+      "line": "Shea, oat and ceramides for dry patches and winter cheeks.",
+      "hero": ["Shea butter", "Ceramides", "Colloidal oat"], "icon": "shea",
+      "size": "100 g", "natural": 95,
+      "use": "Apply a little to dry patches, cheeks and elbows, two or three times a day.",
+      "inci": "Aqua, Butyrospermum Parkii (Shea) Butter, Glycerin, Cetearyl Alcohol, Avena Sativa (Oat) Kernel Flour, Ceramide NP, Ceramide AP, Ceramide EOP, Phytosphingosine, Cholesterol, Squalane, Sodium Lauroyl Lactylate, Carbomer, Xanthan Gum, Sodium Benzoate, Potassium Sorbate."
+    },
+    {
+      "slug": "diaper-rash-cream", "category": "care", "pack": "tube",
+      "name": ["Diaper Rash", "Cream"], "hindi": "डायपर रैश क्रीम",
+      "eyebrow": "Care & Protect · 0+ months", "age": "0+ months",
+      "line": "Zinc oxide and calendula form a breathable barrier at every change.",
+      "hero": ["Zinc oxide 15%", "Calendula", "Beeswax"], "icon": "calendula",
+      "size": "50 g", "natural": 96,
+      "use": "Clean and dry the nappy area. Apply a thin layer at every change.",
+      "inci": "Zinc Oxide (15%), Ricinus Communis (Castor) Seed Oil, Cera Alba (Beeswax), Calendula Officinalis Flower Extract, Butyrospermum Parkii (Shea) Butter, Lanolin, Tocopherol."
+    },
+    {
+      "slug": "all-purpose-balm", "category": "care", "pack": "tin",
+      "name": ["All-Purpose", "Balm"], "hindi": "हर काम का बाम",
+      "eyebrow": "Care & Protect · 0+ months", "age": "0+ months",
+      "line": "Ghee, beeswax and kokum butter for chapped cheeks, lips, knees and cuticles.",
+      "hero": ["Cow ghee", "Beeswax", "Kokum butter"], "icon": "honeycomb",
+      "size": "25 g", "natural": 100,
+      "use": "Warm a little on your fingertip and press onto rough or chapped skin.",
+      "inci": "Ghee (Clarified Butter), Cera Alba (Beeswax), Garcinia Indica (Kokum) Seed Butter, Calendula Officinalis Flower Extract, Tocopherol."
+    },
+    {
+      "slug": "mineral-sunscreen", "category": "care", "pack": "tube",
+      "name": ["Mineral", "Sunscreen"], "hindi": "मिनरल सनस्क्रीन",
+      "eyebrow": "Care & Protect · 6+ months", "age": "6+ months",
+      "line": "Zinc oxide sits on the skin and reflects the sun. Broad spectrum.",
+      "hero": ["Zinc oxide (non-nano)", "Sunflower oil", "Aloe"], "icon": "sun",
+      "size": "50 g", "natural": 96, "footer": "SPF 50 · PA+++",
+      "use": "For babies 6 months and older. Apply generously 15 minutes before going out. Reapply every 2 hours and after water play.",
+      "inci": "Aqua, Zinc Oxide (non-nano, 20%), Caprylic/Capric Triglyceride, Helianthus Annuus (Sunflower) Seed Oil, Polyglyceryl-4 Isostearate, Glycerin, Aloe Barbadensis Leaf Juice, Magnesium Sulfate, Tocopherol, Sodium Benzoate.",
+      "caution": "Keep babies under 6 months out of direct sun instead of using sunscreen."
+    },
+    {
+      "slug": "talc-free-powder", "category": "hygiene", "pack": "shaker",
+      "name": ["Talc-Free", "Powder"], "hindi": "टैल्क-फ्री पाउडर",
+      "eyebrow": "Hygiene · 0+ months", "age": "0+ months",
+      "line": "Corn starch and neem keep skin folds dry, with no talc.",
+      "hero": ["Corn starch", "Neem leaf", "Arrowroot"], "icon": "neem",
+      "size": "100 g", "natural": 99,
+      "use": "Shake into your palm, away from your baby's face, then pat onto skin folds.",
+      "inci": "Zea Mays (Corn) Starch, Maranta Arundinacea (Arrowroot) Root Powder, Azadirachta Indica (Neem) Leaf Powder, Kaolin, Tocopherol.",
+      "caution": "Keep away from the baby's face. Do not shake directly over the baby."
+    },
+    {
+      "slug": "bottle-wash", "category": "hygiene", "pack": "foam",
+      "name": ["Bottle Wash"], "hindi": "बोतल वॉश",
+      "eyebrow": "Hygiene · Bottles, teats, toys", "age": "For feeding gear",
+      "line": "Soapnut and plant enzymes lift milk residue and rinse clean.",
+      "hero": ["Soapnut (reetha)", "Plant enzymes", "Coconut surfactant"], "icon": "soapnut",
+      "size": "300 ml", "natural": 98,
+      "use": "Pump foam onto a brush or sponge. Scrub, then rinse well under running water.",
+      "inci": "Aqua, Sapindus Mukorossi (Soapnut) Fruit Extract, Decyl Glucoside, Coco-Glucoside, Glycerin, Protease, Amylase, Citric Acid, Sodium Benzoate."
+    },
+    {
+      "slug": "water-wipes", "category": "hygiene", "pack": "wipes",
+      "name": ["Water Wipes"], "hindi": "वॉटर वाइप्स",
+      "eyebrow": "Hygiene · 0+ months", "age": "0+ months",
+      "line": "99% purified water on a plant-fibre cloth. Gentle enough for newborn faces.",
+      "hero": ["99% purified water", "Aloe", "Plant-based fibre"], "icon": "drop",
+      "size": "72 wipes", "natural": 99,
+      "use": "Peel back the lid and pull one wipe. Close the lid firmly to keep the rest moist.",
+      "inci": "Aqua (99%), Aloe Barbadensis Leaf Juice, Citric Acid, Sodium Benzoate.",
+      "caution": "Do not flush."
+    }
+  ]
+}

@@ -1,0 +1,917 @@
+<title>Nanhe Brand Book</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Figtree:wght@400;500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..700,0..100,0..1&display=swap">
+<style>
+/* Layout: a packaging spec sheet. Wide pastel bands per section, specimen tiles inside,
+   generous milk-white ground the way the bottles themselves are milk-white.
+   Single light theme by choice: this page shows printed brand colours, which must not invert. */
+:root{
+  color-scheme: light;
+  --milk:#FBF7F0;      /* page + pack body */
+  --paper:#F2ECE1;     /* secondary surface */
+  --moss:#1F3A2B;      /* ink */
+  --moss-2:#55695C;    /* secondary text */
+  --line:rgba(31,58,43,.14);
+  --leaf:#5E8E4E;      /* logo leaf */
+  --leaf-lt:#BFD6B0;
+  --apricot:#F6BE9A; --apricot-dp:#B4592C; --apricot-wash:#FCE9DC;
+  --sage:#BFD6B0;    --sage-dp:#43703C;    --sage-wash:#E7F0E0;
+  --sky:#BFDCEC;     --sky-dp:#2F6689;     --sky-wash:#E4F0F7;
+  --marigold:#EFA43A; --marigold-wash:#FCEBCF;
+  --alert:#B3412E;
+
+  --f-display:"Fraunces", "Iowan Old Style", Georgia, serif;
+  --f-body:"Figtree", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-deva:"Baloo 2", "Kohinoor Devanagari", "Noto Sans Devanagari", sans-serif;
+
+  --s-1:.8125rem; --s0:1rem; --s1:1.25rem; --s2:1.625rem; --s3:2.25rem; --s4:3.25rem; --s5:clamp(3.5rem, 9vw, 6.5rem);
+  --r:22px;
+  --wrap:1140px;
+}
+*{box-sizing:border-box}
+body{background:var(--milk);color:var(--moss);font-family:var(--f-body);font-size:var(--s0);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+h1,h2,h3{font-family:var(--f-display);font-variation-settings:"SOFT" 100, "WONK" 0;font-weight:500;line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:var(--s4)}
+h3{font-size:var(--s2)}
+p{margin:0}
+.eyebrow{font-size:var(--s-1);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--moss-2)}
+.lede{font-size:var(--s1);color:var(--moss-2);max-width:60ch}
+.deva{font-family:var(--f-deva)}
+section{padding-block:clamp(56px, 9vw, 112px)}
+.sec-head{display:grid;gap:14px;margin-bottom:44px;max-width:760px}
+.band-paper{background:var(--paper)}
+.band-moss{background:var(--moss);color:var(--milk)}
+.band-moss .eyebrow,.band-moss .lede{color:#C9D6CC}
+svg{display:block}
+.wm{color:var(--moss);--leafc:var(--leaf)}
+
+/* ---------- cover ---------- */
+.cover{position:relative;overflow:hidden;padding-block:clamp(48px,8vw,96px) clamp(56px,9vw,104px)}
+.blobs{position:absolute;inset:0;pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.75}
+.b1{width:44vw;height:44vw;max-width:560px;max-height:560px;background:var(--apricot);right:-8%;top:-18%}
+.b2{width:34vw;height:34vw;max-width:440px;max-height:440px;background:var(--sage);right:22%;bottom:-30%}
+.b3{width:30vw;height:30vw;max-width:380px;max-height:380px;background:var(--sky);right:-6%;bottom:-12%}
+.cover .wrap{position:relative;display:grid;gap:28px}
+.cover-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.edition{font-size:var(--s-1);color:var(--moss-2);font-variant-numeric:tabular-nums}
+.cover-mark{width:min(640px, 100%);margin-top:clamp(24px,6vw,64px)}
+.cover-deva{font-family:var(--f-deva);font-weight:600;font-size:clamp(1.75rem,4vw,2.75rem);line-height:1;color:var(--moss)}
+.cover-deva small{font-family:var(--f-body);font-weight:500;font-size:var(--s0);color:var(--moss-2);margin-left:12px}
+.tagline{font-family:var(--f-display);font-variation-settings:"SOFT" 100, "WONK" 1;font-size:clamp(1.75rem,4.2vw,3rem);line-height:1.1;font-weight:400;max-width:18ch;margin-top:12px}
+.tagline em{font-style:italic;color:var(--leaf)}
+.cover-foot{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(251,247,240,.75);border:1px solid var(--line);font-size:var(--s-1);font-weight:600;backdrop-filter:blur(6px)}
+.dot{width:10px;height:10px;border-radius:50%}
+
+@media (prefers-reduced-motion:no-preference){
+  .grow{transform-box:fill-box;transform-origin:0% 100%;animation:grow 1.4s cubic-bezier(.2,.9,.2,1.2) .25s both}
+  @keyframes grow{from{transform:scale(.15) rotate(-25deg)}to{transform:none}}
+}
+
+/* ---------- story ---------- */
+.story{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,6vw,80px);align-items:start}
+.story-body{display:grid;gap:18px;font-size:var(--s1);line-height:1.6}
+.story-body p:first-child{font-family:var(--f-display);font-variation-settings:"SOFT" 100;font-size:var(--s2);line-height:1.3}
+.pillars{display:grid;gap:14px}
+.pillar{display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:start;padding:20px;border-radius:var(--r);background:var(--milk)}
+.pillar .ic{width:52px;height:52px;border-radius:16px;display:grid;place-items:center}
+.pillar h3{font-size:var(--s1);margin-bottom:4px}
+.pillar p{color:var(--moss-2);font-size:.95rem}
+
+/* ---------- logo ---------- */
+.logo-hero{display:grid;place-items:center;background:var(--milk);border:1px solid var(--line);border-radius:var(--r);padding:clamp(40px,8vw,96px) 24px}
+.clear{position:relative;padding:clamp(18px,4vw,40px);outline:1.5px dashed rgba(180,89,44,.55);outline-offset:0;width:min(520px,100%)}
+.clear-note{position:absolute;top:-12px;left:12px;background:var(--milk);padding:0 8px;font-size:12px;font-weight:600;color:var(--apricot-dp);letter-spacing:.04em}
+.logo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:16px}
+.ltile{border-radius:var(--r);aspect-ratio:4/3;display:grid;place-items:center;padding:24px;position:relative;max-width:100%}
+.ltile svg{width:80%}
+.ltile .cap{position:absolute;left:14px;bottom:10px;font-size:12px;font-weight:600;letter-spacing:.04em;opacity:.8}
+.lockups{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:16px}
+.lock{border:1px solid var(--line);border-radius:var(--r);padding:28px;display:grid;gap:18px;align-content:space-between;background:var(--milk)}
+.lock .cap{font-size:var(--s-1);color:var(--moss-2)}
+.lock-stack{display:grid;gap:6px;justify-items:start}
+.lock-stack svg{width:200px;max-width:100%}
+.lock-deva{font-family:var(--f-deva);font-weight:600;font-size:2.4rem;line-height:1;color:var(--moss)}
+.appicons{display:flex;gap:12px;flex-wrap:wrap}
+.appicon{width:76px;height:76px;border-radius:22px;display:grid;place-items:center}
+.appicon svg{width:58px}
+.donts{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:16px}
+.dont{border-radius:var(--r);background:var(--milk);border:1px solid var(--line);padding:22px 18px 16px;display:grid;gap:14px}
+.dont .stage{height:80px;display:grid;place-items:center;overflow:hidden}
+.dont .stage svg{width:150px}
+.dont p{font-size:var(--s-1);color:var(--moss-2)}
+.dont p b{color:var(--alert);font-weight:700;margin-right:4px}
+
+/* ---------- colour ---------- */
+.base-swatches{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:16px}
+.sw{border-radius:var(--r);min-height:200px;padding:20px;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;border:1px solid var(--line)}
+.sw b{font-family:var(--f-display);font-variation-settings:"SOFT" 100;font-weight:500;font-size:var(--s1)}
+.sw span{font-size:var(--s-1);font-variant-numeric:tabular-nums;opacity:.78}
+.sw small{font-size:12px;opacity:.7;margin-top:6px}
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.cat{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:var(--milk);display:grid;grid-template-rows:auto 1fr}
+.cat-top{padding:22px 22px 18px;display:grid;gap:4px}
+.cat-top h3{font-size:var(--s2)}
+.cat-top p{font-size:.92rem}
+.cat-row{display:grid;grid-template-columns:1fr 1fr 1fr}
+.cat-row div{padding:14px;min-height:92px;display:flex;flex-direction:column;justify-content:flex-end;font-size:12px;font-variant-numeric:tabular-nums}
+.cat-row b{font-size:13px}
+.cat-use{padding:16px 22px 22px;font-size:.92rem;color:var(--moss-2);border-top:1px solid var(--line)}
+.ratio{margin-top:16px;display:flex;height:18px;border-radius:999px;overflow:hidden;border:1px solid var(--line)}
+.ratio-key{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px;font-size:var(--s-1);color:var(--moss-2)}
+
+/* ---------- type ---------- */
+.type-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:16px}
+.spec{border-radius:var(--r);background:var(--milk);border:1px solid var(--line);padding:28px;display:grid;gap:14px;align-content:start;min-width:0}
+.spec .big{font-size:clamp(3.5rem,8vw,6rem);line-height:1}
+.spec .meta{display:flex;justify-content:space-between;gap:12px;font-size:var(--s-1);color:var(--moss-2);flex-wrap:wrap}
+.spec .glyphs{font-size:var(--s1);color:var(--moss-2);word-break:break-word}
+.f-display{font-family:var(--f-display);font-variation-settings:"SOFT" 100, "WONK" 1}
+.f-body{font-family:var(--f-body)}
+.type-side{display:grid;gap:16px}
+.scale{margin-top:16px;border-radius:var(--r);background:var(--milk);border:1px solid var(--line);overflow:hidden}
+.scale-row{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:16px 24px;border-top:1px solid var(--line);align-items:baseline}
+.scale-row:first-child{border-top:0}
+.scale-row .k{font-size:12px;color:var(--moss-2);font-variant-numeric:tabular-nums}
+.scale-row .v{min-width:0;overflow-wrap:anywhere}
+
+/* ---------- label sample ---------- */
+.label-demo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(24px,5vw,56px);align-items:center;margin-top:16px}
+.label{background:var(--milk);border-radius:28px;padding:30px 28px 24px;display:grid;gap:10px;box-shadow:0 1px 0 var(--line),0 24px 60px -28px rgba(31,58,43,.35);max-width:380px;width:100%;justify-self:center;border-top:14px solid var(--apricot)}
+.label .wmx svg{width:118px}
+.label .cat-l{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--apricot-dp);margin-top:18px}
+.label .pname{font-family:var(--f-display);font-variation-settings:"SOFT" 100;font-weight:500;font-size:2.25rem;line-height:1}
+.label .pdeva{font-family:var(--f-deva);font-weight:600;font-size:1.15rem;color:var(--moss-2);line-height:1}
+.label .desc{font-size:.95rem;color:var(--moss-2);max-width:28ch}
+.label .foot{display:flex;justify-content:space-between;align-items:end;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;font-weight:600}
+.label .qty{font-family:var(--f-display);font-size:1.25rem;font-variant-numeric:tabular-nums}
+.anno{display:grid;gap:0;counter-reset:a}
+.anno li{list-style:none;display:grid;grid-template-columns:28px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+.anno li:first-child{border-top:0}
+.anno li::before{counter-increment:a;content:counter(a);width:24px;height:24px;border-radius:50%;background:var(--moss);color:var(--milk);font-size:12px;font-weight:700;display:grid;place-items:center}
+.anno b{display:block}
+.anno span{font-size:.92rem;color:var(--moss-2)}
+ol.anno{padding:0;margin:0}
+
+/* ---------- claims ---------- */
+.claims{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:16px}
+.seal-card{background:var(--marigold-wash);border-radius:var(--r);padding:32px;display:grid;place-items:center;gap:18px;text-align:center}
+.seal{width:min(250px,100%)}
+.seal-card p{font-size:var(--s-1);color:var(--moss-2);max-width:40ch}
+.icons{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.icon{background:var(--milk);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:grid;gap:10px;align-content:start}
+.icon svg{width:40px;height:40px;color:var(--moss)}
+.icon b{font-size:.98rem;line-height:1.25}
+.icon span{font-size:12px;color:var(--moss-2)}
+.freefrom{margin-top:16px;border-radius:var(--r);background:var(--moss);color:var(--milk);padding:22px 24px;display:flex;align-items:center;gap:14px 22px;flex-wrap:wrap}
+.freefrom .lbl{font-family:var(--f-display);font-variation-settings:"SOFT" 100;font-size:var(--s1)}
+.freefrom ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.freefrom li{padding:6px 12px;border-radius:999px;border:1px solid rgba(251,247,240,.28);font-size:var(--s-1);font-weight:500}
+.rule{margin-top:16px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.rule div{border-radius:var(--r);padding:20px 22px;border:1px solid var(--line);background:var(--milk);font-size:.95rem}
+.rule b{display:block;font-size:var(--s-1);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+
+/* ---------- voice ---------- */
+.voice{display:grid;gap:12px}
+.vrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.vrow > div{border-radius:18px;padding:18px 20px;font-size:1.02rem}
+.say{background:rgba(191,214,176,.18);border:1px solid rgba(191,214,176,.35)}
+.not{background:rgba(251,247,240,.04);border:1px solid rgba(251,247,240,.14);color:#AFC0B4;text-decoration:line-through;text-decoration-color:rgba(239,164,58,.7)}
+.vrow small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:6px;text-decoration:none;color:#C9D6CC}
+
+footer{padding-block:40px 56px;font-size:var(--s-1);color:var(--moss-2)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:24px}
+
+@media (max-width:900px){
+  .story,.type-grid,.claims,.label-demo{grid-template-columns:1fr}
+  .logo-grid,.donts{grid-template-columns:repeat(2,1fr)}
+  .lockups{grid-template-columns:1fr}
+  .base-swatches{grid-template-columns:1fr 1fr}
+  .cats{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .icons{grid-template-columns:1fr 1fr}
+  .vrow,.rule{grid-template-columns:1fr}
+  .scale-row{grid-template-columns:1fr;gap:4px}
+  .sw{min-height:140px}
+}
+:focus-visible{outline:2px solid var(--apricot-dp);outline-offset:3px}
+</style>
+
+<!-- Logo symbols, drawn once and reused -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="wordmark" viewBox="-6 -20 426 134">
+      <g fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7 40V100M7 68a28 28 0 0 1 56 0V100"/>
+        <circle cx="121" cy="70" r="30"/>
+        <path d="M151 40V100"/>
+        <path d="M181 40V100M181 68a28 28 0 0 1 56 0V100"/>
+        <path d="M267 14V100M267 68a28 28 0 0 1 56 0V100"/>
+        <path d="M351 70H411A30 30 0 1 0 402.2 91.2"/>
+      </g>
+      <path class="grow" d="M267 12Q295 16 297 -14Q269 -16 267 12Z" style="fill:var(--leafc, #5E8E4E)"/>
+    </symbol>
+    <symbol id="mark" viewBox="0 0 100 100">
+      <g fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M30 41V83M30 61a20 20 0 0 1 40 0V83"/>
+      </g>
+      <path d="M50 36Q74 34 70 10Q46 12 50 36Z" style="fill:var(--leafc, #5E8E4E)"/>
+    </symbol>
+    <symbol id="leaf" viewBox="0 0 24 24"><path d="M12 21C6 17 4.5 12 6 6.5 11 6 16 8 17.5 13 18.5 16.5 16 20 12 21Z M12 21C11.5 16 10 12 7.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<!-- ============ COVER ============ -->
+<header class="cover">
+  <div class="blobs" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+  <div class="wrap">
+    <div class="cover-top">
+      <span class="eyebrow">Brand book</span>
+      <span class="edition">Edition 4 · Foundations, packaging, little friends, photography · Nov 2026</span>
+    </div>
+    <svg class="cover-mark wm" viewBox="0 0 426 134" role="img" aria-label="nanhe"><use href="#wordmark"/></svg>
+    <div class="cover-deva">नन्हे <small>/ nun-hay / · little ones</small></div>
+    <p class="tagline">Made gentle. <em>Tested gentle.</em></p>
+    <div class="cover-foot">
+      <span class="chip"><span class="dot" style="background:var(--apricot)"></span>Moisturise</span>
+      <span class="chip"><span class="dot" style="background:var(--sage)"></span>Care &amp; Protect</span>
+      <span class="chip"><span class="dot" style="background:var(--sky)"></span>Everyday Hygiene</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ STORY ============ -->
+<section class="band-paper" id="story">
+  <div class="wrap story">
+    <div class="sec-head" style="margin:0">
+      <span class="eyebrow">The brand</span>
+      <h2>Care the way Indian homes have always done it, checked the way science does.</h2>
+      <div class="story-body" style="margin-top:12px">
+        <p>Nanhe (नन्हे) is how Hindi speakers talk about little ones. It is the word a grandmother uses at the first oil massage.</p>
+        <p>The products use the ingredients those homes already trust, like coconut, almond, oat, neem, ghee and calendula. Each formula is clinically tested on infant skin before it goes on sale. Every pack lists everything inside it, and says what percentage of it comes from nature.</p>
+      </div>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="ic" style="background:var(--sage)"><svg width="28" height="28" style="color:var(--moss)"><use href="#leaf"/></svg></div>
+        <div><h3>Natural first</h3><p>Plant oils, butters and extracts lead every formula. We publish the naturally derived percentage on each pack.</p></div>
+      </div>
+      <div class="pillar">
+        <div class="ic" style="background:var(--marigold-wash)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--moss)"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div>
+        <div><h3>Clinically tested</h3><p>Each formula is tested on infant skin under a dermatologist's supervision before launch. The study details are printed on the back.</p></div>
+      </div>
+      <div class="pillar">
+        <div class="ic" style="background:var(--sky)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--moss)"><path d="M4 5h16M4 10h16M4 15h10M4 20h7"/></svg></div>
+        <div><h3>Nothing hidden</h3><p>Full ingredient lists in plain words, with what each ingredient is there to do. We don't use vague claims like "chemical-free".</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOGO ============ -->
+<section id="logo">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Logo</span>
+      <h2>The sprouting h</h2>
+      <p class="lede">The wordmark is a single rounded line, as soft as the products. A new leaf grows from the h. That leaf is the brand's signature, and it always stays leaf green, or pale sage on dark backgrounds.</p>
+    </div>
+
+    <div class="logo-hero">
+      <div class="clear">
+        <span class="clear-note">CLEAR SPACE = HEIGHT OF THE n</span>
+        <svg class="wm" viewBox="0 0 426 134" role="img" aria-label="nanhe wordmark"><use href="#wordmark"/></svg>
+      </div>
+    </div>
+
+    <div class="logo-grid">
+      <div class="ltile" style="background:var(--milk);border:1px solid var(--line)"><svg class="wm" viewBox="0 0 426 134"><use href="#wordmark"/></svg><span class="cap">On milk</span></div>
+      <div class="ltile" style="background:var(--moss);color:var(--milk);--leafc:var(--leaf-lt)"><svg viewBox="0 0 426 134" style="color:var(--milk);--leafc:var(--leaf-lt)"><use href="#wordmark"/></svg><span class="cap" style="color:var(--milk)">On moss · reversed</span></div>
+      <div class="ltile" style="background:var(--apricot)"><svg class="wm" viewBox="0 0 426 134"><use href="#wordmark"/></svg><span class="cap">On apricot</span></div>
+      <div class="ltile" style="background:var(--sky)"><svg class="wm" viewBox="0 0 426 134"><use href="#wordmark"/></svg><span class="cap">On sky</span></div>
+    </div>
+
+    <div class="lockups">
+      <div class="lock">
+        <div class="lock-stack">
+          <svg class="wm" viewBox="0 0 426 134"><use href="#wordmark"/></svg>
+          <span class="lock-deva">नन्हे</span>
+        </div>
+        <span class="cap">Bilingual lockup. Use on the front of packs, in-store and in ads in India.</span>
+      </div>
+      <div class="lock">
+        <div class="appicons">
+          <div class="appicon" style="background:var(--milk);border:1px solid var(--line)"><svg class="wm" viewBox="0 0 100 100"><use href="#mark"/></svg></div>
+          <div class="appicon" style="background:var(--apricot)"><svg class="wm" viewBox="0 0 100 100"><use href="#mark"/></svg></div>
+          <div class="appicon" style="background:var(--moss)"><svg viewBox="0 0 100 100" style="color:var(--milk);--leafc:var(--leaf-lt)"><use href="#mark"/></svg></div>
+        </div>
+        <span class="cap">The mark: a seedling n, with a leaf growing from the top of its arch. Use it for the app icon, avatars, caps, seals and the wipes lid.</span>
+      </div>
+      <div class="lock">
+        <div style="display:flex;align-items:end;gap:18px;flex-wrap:wrap">
+          <svg class="wm" viewBox="0 0 426 134" style="width:140px"><use href="#wordmark"/></svg>
+          <svg class="wm" viewBox="0 0 426 134" style="width:64px"><use href="#wordmark"/></svg>
+          <svg class="wm" viewBox="0 0 100 100" style="width:20px"><use href="#mark"/></svg>
+        </div>
+        <span class="cap">Minimum sizes. The wordmark goes no smaller than 18 mm wide in print or 64 px on screen. The mark goes no smaller than 5 mm or 20 px.</span>
+      </div>
+    </div>
+
+    <div class="donts">
+      <div class="dont"><div class="stage"><svg class="wm" viewBox="0 0 426 134" style="transform:scaleX(1.45)"><use href="#wordmark"/></svg></div><p><b>✕</b>Don't stretch or squash it.</p></div>
+      <div class="dont"><div class="stage"><svg class="wm" viewBox="0 0 426 134" style="--leafc:#D9468F"><use href="#wordmark"/></svg></div><p><b>✕</b>Don't recolour the leaf, even to match a category.</p></div>
+      <div class="dont"><div class="stage"><svg class="wm" viewBox="0 0 426 134" style="filter:drop-shadow(4px 5px 0 #EFA43A)"><use href="#wordmark"/></svg></div><p><b>✕</b>No shadows, outlines or glossy effects.</p></div>
+      <div class="dont"><div class="stage" style="background:linear-gradient(120deg,#F6BE9A,#BFDCEC);border-radius:12px"><svg viewBox="0 0 426 134" style="color:#FBF7F0"><use href="#wordmark"/></svg></div><p><b>✕</b>Don't use the milk-white logo on light pastels. It disappears.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COLOUR ============ -->
+<section class="band-paper" id="colour">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Colour</span>
+      <h2>Milk-white packs, one colour per shelf</h2>
+      <p class="lede">Every bottle, tube and jar is matte milk-white. Each category has its own colour, used for the cap and the label band. A tired parent can find the cream in the dark by colour alone.</p>
+    </div>
+
+    <div class="base-swatches">
+      <div class="sw" style="background:var(--milk)"><b>Milk</b><span>#FBF7F0 · RGB 251 247 240</span><small>Pack body, page ground. About 70% of any layout.</small></div>
+      <div class="sw" style="background:var(--moss);color:var(--milk);border-color:transparent"><b>Moss</b><span>#1F3A2B · 31 58 43</span><small>All type and the logo</small></div>
+      <div class="sw" style="background:var(--leaf);color:var(--milk);border-color:transparent"><b>New leaf</b><span>#5E8E4E · 94 142 78</span><small>Logo leaf only</small></div>
+      <div class="sw" style="background:var(--marigold)"><b>Marigold</b><span>#EFA43A · 239 164 58</span><small>The clinical seal only</small></div>
+    </div>
+
+    <div class="cats">
+      <div class="cat">
+        <div class="cat-top" style="background:var(--apricot)"><span class="eyebrow" style="color:var(--moss)">Category</span><h3>Moisturise</h3><p>Lotion · Massage oil · Rich cream</p></div>
+        <div class="cat-row"><div style="background:var(--apricot-wash)"><b>Wash</b>#FCE9DC</div><div style="background:var(--apricot)"><b>Apricot</b>#F6BE9A</div><div style="background:var(--apricot-dp);color:var(--milk)"><b>Deep</b>#B4592C</div></div>
+        <div class="cat-use">Warm and comforting, the colour of skin after a massage. Deep apricot is for small category text on labels only.</div>
+      </div>
+      <div class="cat">
+        <div class="cat-top" style="background:var(--sage)"><span class="eyebrow" style="color:var(--moss)">Category</span><h3>Care &amp; Protect</h3><p>Diaper rash cream · Balm · Sunscreen</p></div>
+        <div class="cat-row"><div style="background:var(--sage-wash)"><b>Wash</b>#E7F0E0</div><div style="background:var(--sage)"><b>Neem sage</b>#BFD6B0</div><div style="background:var(--sage-dp);color:var(--milk)"><b>Deep</b>#43703C</div></div>
+        <div class="cat-use">Calm and soothing. The green of neem and calendula leaves, for the products that fix and protect.</div>
+      </div>
+      <div class="cat">
+        <div class="cat-top" style="background:var(--sky)"><span class="eyebrow" style="color:var(--moss)">Category</span><h3>Everyday Hygiene</h3><p>Water wipes · Powder · Bottle wash</p></div>
+        <div class="cat-row"><div style="background:var(--sky-wash)"><b>Wash</b>#E4F0F7</div><div style="background:var(--sky)"><b>Monsoon sky</b>#BFDCEC</div><div style="background:var(--sky-dp);color:var(--milk)"><b>Deep</b>#2F6689</div></div>
+        <div class="cat-use">Clean and airy, like water. For the things a parent uses ten times a day.</div>
+      </div>
+    </div>
+
+    <div class="ratio" role="img" aria-label="Colour proportions: milk 70%, category colour 18%, moss 10%, leaf and marigold 2%">
+      <span style="flex:70;background:var(--milk)"></span><span style="flex:18;background:var(--apricot)"></span><span style="flex:10;background:var(--moss)"></span><span style="flex:1;background:var(--leaf)"></span><span style="flex:1;background:var(--marigold)"></span>
+    </div>
+    <div class="ratio-key"><span>Milk 70%</span><span>Category colour 18%</span><span>Moss 10%</span><span>Leaf + marigold 2%</span></div>
+  </div>
+</section>
+
+<!-- ============ TYPE ============ -->
+<section id="type">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Typography</span>
+      <h2>A soft serif, a friendly sans, and Hindi set as carefully as English</h2>
+    </div>
+
+    <div class="type-grid">
+      <div class="spec">
+        <div class="meta"><span>Display · Fraunces, soft</span><span>Product names, headlines</span></div>
+        <div class="big f-display">Aa Gentle</div>
+        <div class="glyphs f-display">Daily Lotion · Rich Cream · Massage Oil · 0123456789</div>
+        <p style="font-size:.92rem;color:var(--moss-2)">Set with the "soft" axis at its maximum so the serifs round off like a bar of soap. Use weight 500 for product names and 400 italic for the tagline.</p>
+      </div>
+      <div class="type-side">
+        <div class="spec">
+          <div class="meta"><span>Text · Figtree</span><span>Labels, body, UI</span></div>
+          <div class="big f-body" style="font-size:clamp(2.75rem,6vw,4rem);font-weight:600">Aa 200 ml</div>
+          <p style="font-size:.92rem;color:var(--moss-2)">Open, round letters with clear numerals for doses, ages and quantities. Use 400 for text, 600 for emphasis and 700 for small capitals.</p>
+        </div>
+        <div class="spec">
+          <div class="meta"><span>Devanagari · Baloo 2</span><span>Hindi names, lockup</span></div>
+          <div class="big deva" style="font-size:clamp(2.75rem,6vw,4rem);font-weight:600">नन्हे लोशन</div>
+          <p style="font-size:.92rem;color:var(--moss-2)">Its rounded strokes match the wordmark. Hindi sits beside English at about 55% of its size, never squeezed in as a translation footnote.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="scale">
+      <div class="scale-row"><span class="k">Hero · 64 / Fraunces 500</span><span class="v f-display" style="font-size:clamp(2.25rem,5vw,4rem);line-height:1.05">Soft by bedtime</span></div>
+      <div class="scale-row"><span class="k">Product · 36 / Fraunces 500</span><span class="v f-display" style="font-size:2.25rem;line-height:1.1">Diaper Rash Cream</span></div>
+      <div class="scale-row"><span class="k">Lead · 20 / Figtree 400</span><span class="v" style="font-size:1.25rem">Zinc oxide and calendula form a breathable barrier.</span></div>
+      <div class="scale-row"><span class="k">Body · 16 / Figtree 400</span><span class="v">Apply a thin layer at every change. Safe from day one. Suitable for sensitive skin.</span></div>
+      <div class="scale-row"><span class="k">Label · 11 / Figtree 700 +16%</span><span class="v" style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase">Care &amp; Protect · 0+ months</span></div>
+    </div>
+
+    <div class="label-demo">
+      <div class="label" aria-label="Sample front label">
+        <div class="wmx"><svg class="wm" viewBox="0 0 426 134"><use href="#wordmark"/></svg></div>
+        <div class="cat-l">Moisturise · 0+ months</div>
+        <div class="pname">Daily Lotion</div>
+        <div class="pdeva">रोज़ाना लोशन</div>
+        <p class="desc">Oat and shea butter, for skin that stays soft till bedtime.</p>
+        <div class="foot"><span>97% naturally derived**</span><span class="qty">200 ml</span></div>
+      </div>
+      <ol class="anno">
+        <li><div><b>Wordmark, top left</b><span>It's always in the same place, so the whole line reads as one family on the shelf.</span></div></li>
+        <li><div><b>Category and age</b><span>In the category's deep colour, in small capitals. The age range is always printed.</span></div></li>
+        <li><div><b>Product name, in English and Hindi</b><span>Fraunces for the English name, Baloo 2 for the Hindi name below it.</span></div></li>
+        <li><div><b>One plain sentence</b><span>Says what's in it and what it does, in fewer than 12 words.</span></div></li>
+        <li><div><b>Proof line and quantity</b><span>The naturally derived percentage goes on the left, the net quantity on the right. Both are footnoted on the back.</span></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLAIMS ============ -->
+<section class="band-paper" id="claims">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Claims &amp; icons</span>
+      <h2>Every promise comes with its proof</h2>
+      <p class="lede">The seal and icons follow one rule: anything we claim on the front is backed up on the back. That means the study, the sample size, the percentage, or the list of what's left out.</p>
+    </div>
+
+    <div class="claims">
+      <div class="seal-card">
+        <svg class="seal" viewBox="0 0 200 200" role="img" aria-label="Clinically tested on infant skin seal">
+          <defs><path id="ring" d="M100 100m-74 0a74 74 0 1 1 148 0a74 74 0 1 1 -148 0"/></defs>
+          <circle cx="100" cy="100" r="96" fill="#EFA43A"/>
+          <circle cx="100" cy="100" r="88" fill="none" stroke="#1F3A2B" stroke-width="1.2" stroke-dasharray="2 4" opacity=".55"/>
+          <circle cx="100" cy="100" r="58" fill="#FBF7F0"/>
+          <text font-family="Figtree, sans-serif" font-weight="700" font-size="13.5" letter-spacing="3.1" fill="#1F3A2B"><textPath href="#ring" startOffset="0">CLINICALLY TESTED · ON INFANT SKIN* · CLINICALLY TESTED · ON INFANT SKIN* ·</textPath></text>
+          <g transform="translate(66 60) scale(.68)" style="color:#1F3A2B;--leafc:#5E8E4E"><use href="#mark" width="100" height="100"/></g>
+          <text x="100" y="140" text-anchor="middle" font-family="Figtree, sans-serif" font-weight="700" font-size="11" letter-spacing="1.5" fill="#1F3A2B">0–36 MONTHS</text>
+        </svg>
+        <p>*The back of every pack explains the claim, for example: "Tested under dermatological supervision on [n] infants aged [x–y] months, [lab name], [year]." The numbers come from our test reports, not from marketing.</p>
+      </div>
+      <div>
+        <div class="icons">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><b>Dermatologically tested</b><span>On the back: the study summary</span></div>
+          <div class="icon"><svg><use href="#leaf"/></svg><b>97% naturally derived</b><span>On the back: the ISO 16128 calculation</span></div>
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3.5 4.5 6 7.6 6 11a6 6 0 0 1-12 0c0-3.4 2.5-6.5 6-11z"/><path d="M9.5 15.5h5"/></svg><b>pH 5.5, skin-balanced</b><span>Measured on every batch</span></div>
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.2"/><circle cx="12" cy="7" r="2.6"/><circle cx="17" cy="12" r="2.6"/><circle cx="12" cy="17" r="2.6"/><circle cx="7" cy="12" r="2.6"/><path d="M4 20L20 4"/></svg><b>No added fragrance</b><span>Massage oil uses only the ingredients' own scent</span></div>
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><b>Hypoallergenic</b><span>Tested with repeated patch tests (HRIPT)</span></div>
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10l-1 4H8z"/><path d="M8 8c-1.5 1.5-2 3.5-2 6v4a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-4c0-2.5-.5-4.5-2-6"/><path d="M10 14h4"/></svg><b>Recyclable pack</b><span>Bottles made of PP 5 or HDPE 2, marked with the code</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="freefrom">
+      <span class="lbl">Made without</span>
+      <ul>
+        <li>Parabens</li><li>Sulphates (SLS/SLES)</li><li>Mineral oil</li><li>Synthetic fragrance</li><li>Talc</li><li>Phthalates</li><li>Artificial dyes</li>
+      </ul>
+    </div>
+
+    <div class="rule">
+      <div><b style="color:var(--sage-dp)">We say</b>The exact claim, a footnote, and the evidence on the back. For example: "97% naturally derived**" or "Clinically tested on infant skin*".</div>
+      <div><b style="color:var(--alert)">We never say</b>"Chemical-free", "100% safe", "Doctor recommended" without a named study, or any seal or certification we don't hold.</div>
+    </div>
+  </div>
+</section>
+
+<!-- BEGIN:packaging -->
+<!-- Generated by scripts/build_packaging.py from docs/product/products.json. Edit those, not this block. -->
+
+<style>
+.lineup-band{background:linear-gradient(180deg,var(--milk) 0%,var(--paper) 100%);overflow:hidden}
+.lineup-scroll{overflow-x:auto;margin-top:8px;padding-bottom:8px}
+.lineup-scroll svg{width:100%;min-width:760px;height:auto}
+.lineup-notes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.lineup-notes div{border-top:2px solid var(--c);padding-top:12px;font-size:.95rem;color:var(--moss-2)}
+.lineup-notes b{display:block;color:var(--moss);font-family:var(--f-display);font-variation-settings:"SOFT" 100;font-weight:500;font-size:var(--s1);margin-bottom:2px}
+.cat-block{margin-top:56px}
+.cat-block:first-of-type{margin-top:0}
+.cat-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.cat-head h3{font-size:var(--s3)}
+.cat-head .sw-dot{width:16px;height:16px;border-radius:50%;align-self:center}
+.cat-head p{color:var(--moss-2);flex:1 1 280px}
+.pgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.pcard{background:var(--milk);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:grid;grid-template-rows:auto 1fr}
+.pc-stage{aspect-ratio:1/1;display:grid;place-items:center;padding:18px;max-width:100%}
+.pc-stage svg{width:100%;height:100%;max-height:300px}
+.pc-body{padding:20px 22px 24px;display:grid;gap:8px;align-content:start}
+.pc-eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.pc-body h3{font-size:var(--s2)}
+.pc-deva{font-family:var(--f-deva);font-weight:600;color:var(--moss-2);line-height:1}
+.pc-line{font-size:1rem;margin-top:4px}
+.pc-chips{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:4px 0 0}
+.pc-chips li{background:var(--chip);border-radius:999px;padding:4px 10px;font-size:12px;font-weight:600}
+.pc-use{font-size:.9rem;color:var(--moss-2);margin-top:4px}
+.pc-use b{color:var(--moss)}
+.pc-caution{font-size:.85rem;color:var(--alert);font-weight:500}
+.label-pair{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:24px;align-items:start}
+.front-flat{background:var(--apricot-wash);border-radius:var(--r);padding:28px;display:grid;place-items:center;gap:12px}
+.front-flat svg{width:min(260px,100%);filter:drop-shadow(0 18px 30px rgba(31,58,43,.18))}
+.front-flat p{font-size:var(--s-1);color:var(--moss-2);text-align:center}
+.backlabel{background:var(--milk);border-radius:var(--r);border:1px solid var(--line);border-top:12px solid var(--cat);padding:26px 26px 22px;display:grid;gap:18px;font-size:.88rem;box-shadow:0 24px 60px -34px rgba(31,58,43,.4);min-width:0}
+.bl-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-family:var(--f-display);font-variation-settings:"SOFT" 100;font-size:var(--s1)}
+.bl-wm{width:92px;color:var(--moss)}
+.bl-head .deva{font-size:1rem;color:var(--moss-2)}
+.bl-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.bl-col{display:grid;gap:6px;align-content:start;min-width:0}
+.bl-col h4{margin:8px 0 0;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--deep)}
+.bl-col h4:first-child{margin-top:0}
+.bl-why{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.bl-why b{font-weight:700}
+.bl-inci{font-size:.8rem;line-height:1.5;color:var(--moss-2)}
+.bl-note{font-size:.75rem;color:var(--apricot-dp)}
+.bl-foot{font-size:.8rem;color:var(--moss-2)}
+.bl-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:0;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.bl-meta div{padding:10px 12px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.bl-meta div:nth-child(4n){border-right:0}
+.bl-meta div:nth-last-child(-n+4){border-bottom:0}
+.bl-meta dt{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--moss-2)}
+.bl-meta dd{margin:2px 0 0;font-weight:600;font-variant-numeric:tabular-nums}
+.bl-bottom{display:flex;gap:18px;justify-content:space-between;align-items:end;flex-wrap:wrap}
+.bl-who{display:grid;gap:4px;font-size:.8rem;color:var(--moss-2);flex:1 1 280px}
+.bl-who b{color:var(--moss)}
+.bl-marks{display:flex;align-items:end;gap:16px}
+.recycle{width:34px}
+.barcode{width:130px}
+.mandatory{margin-top:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.mandatory div{border-radius:var(--r);padding:18px 20px;background:var(--milk);border:1px solid var(--line);font-size:.92rem;color:var(--moss-2)}
+.mandatory b{display:block;color:var(--moss);margin-bottom:4px}
+@media (max-width:900px){
+  .pgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .label-pair,.bl-grid{grid-template-columns:1fr}
+  .lineup-notes,.mandatory{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .pgrid{grid-template-columns:1fr}
+  .bl-meta{grid-template-columns:1fr 1fr}
+  .bl-meta div:nth-child(4n){border-right:1px solid var(--line)}
+  .bl-meta div:nth-child(2n){border-right:0}
+  .bl-meta div:nth-last-child(-n+4){border-bottom:1px solid var(--line)}
+  .bl-meta div:nth-last-child(-n+2){border-bottom:0}
+}
+.fgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.friend{display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:center;background:var(--milk);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.friend .face{width:96px;height:96px;border-radius:50%;display:grid;place-items:center}
+.friend .face svg{width:80px;height:80px}
+.friend b{font-family:var(--f-display);font-variation-settings:"SOFT" 100;font-weight:500;font-size:1.35rem;display:block}
+.friend small{display:block;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--moss-2)}
+.friend p{font-size:.9rem;color:var(--moss-2);margin-top:4px}
+.frules{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.frules div{border-top:2px solid var(--moss);padding-top:12px;font-size:.95rem;color:var(--moss-2)}
+.frules b{display:block;color:var(--moss);margin-bottom:4px}
+.fnote{margin-top:18px;font-size:var(--s-1);color:var(--apricot-dp)}
+@media (max-width:900px){.fgrid{grid-template-columns:1fr 1fr}.frules{grid-template-columns:1fr}}
+@media (max-width:560px){.fgrid{grid-template-columns:1fr}}
+</style>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<linearGradient id="pk-shade" x1="0" x2="1" y1="0" y2="0">
+  <stop offset="0" stop-color="#000" stop-opacity=".2"/><stop offset=".1" stop-color="#000" stop-opacity=".06"/>
+  <stop offset=".27" stop-color="#fff" stop-opacity=".42"/><stop offset=".42" stop-color="#fff" stop-opacity=".05"/>
+  <stop offset=".7" stop-color="#000" stop-opacity="0"/><stop offset=".9" stop-color="#000" stop-opacity=".1"/>
+  <stop offset="1" stop-color="#000" stop-opacity=".24"/>
+</linearGradient>
+<linearGradient id="pk-top" x1="0" x2="0" y1="0" y2="1">
+  <stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/>
+  <stop offset="1" stop-color="#000" stop-opacity=".08"/>
+</linearGradient>
+<linearGradient id="pk-spec" x1="0" x2="0" y1="0" y2="1">
+  <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".12" stop-color="#fff" stop-opacity=".95"/>
+  <stop offset=".8" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="pk-oil" x1="0" x2="0" y1="0" y2="1">
+  <stop offset="0" stop-color="#F3CB72"/><stop offset="1" stop-color="#D9952C"/>
+</linearGradient>
+<radialGradient id="pk-ground"><stop offset="0" stop-color="#1F3A2B" stop-opacity=".32"/>
+  <stop offset=".55" stop-color="#1F3A2B" stop-opacity=".1"/><stop offset="1" stop-color="#1F3A2B" stop-opacity="0"/></radialGradient>
+<symbol id="pk-wm" viewBox="-6 -20 426 134">
+  <g fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7 40V100M7 68a28 28 0 0 1 56 0V100"/><circle cx="121" cy="70" r="30"/><path d="M151 40V100"/>
+    <path d="M181 40V100M181 68a28 28 0 0 1 56 0V100"/><path d="M267 14V100M267 68a28 28 0 0 1 56 0V100"/>
+    <path d="M351 70H411A30 30 0 1 0 402.2 91.2"/>
+  </g>
+  <path d="M267 12Q295 16 297 -14Q269 -16 267 12Z" fill="#5E8E4E"/></symbol>
+<symbol id="pk-mk" viewBox="0 0 100 100">
+  <g fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M30 41V83M30 61a20 20 0 0 1 40 0V83"/>
+  </g>
+  <path d="M50 36Q74 34 70 10Q46 12 50 36Z" fill="#5E8E4E"/></symbol>
+<symbol id="pk-ic-oat" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 46C24 34 23 20 25 4M24 15Q22.27 8.44 15.5 8Q17.23 14.56 24 15ZM24.6 18Q31.32 17.52 33 11Q26.28 11.48 24.6 18ZM24 22Q22.27 15.44 15.5 15Q17.23 21.56 24 22ZM24.6 25Q31.32 24.52 33 18Q26.28 18.48 24.6 25ZM24 29Q22.27 22.44 15.5 22Q17.23 28.56 24 29ZM24.6 32Q31.32 31.52 33 25Q26.28 25.48 24.6 32ZM24 36Q22.27 29.44 15.5 29Q17.23 35.56 24 36ZM24.6 39Q31.32 38.52 33 32Q26.28 32.48 24.6 39ZM25 9Q28.45 5.2 25.5 1Q22.05 4.8 25 9Z"/></g></symbol><symbol id="pk-ic-calendula" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="24" cy="12.5" rx="3.1" ry="7" transform="rotate(0.0 24 24)"/><ellipse cx="24" cy="12.5" rx="3.1" ry="7" transform="rotate(25.7 24 24)"/><ellipse cx="24" cy="12.5" rx="3.1" ry="7" transform="rotate(51.4 24 24)"/><ellipse cx="24" cy="12.5" rx="3.1" ry="7" transform="rotate(77.1 24 24)"/><ellipse cx="24" cy="12.5" rx="3.1" ry="7" transform="rotate(102.9 24 24)"/><ellipse cx="24" cy="12.5" rx="3.1" ry="7" transform="rotate(128.6 24 24)"/><ellipse cx="24" cy="12.5" rx="3.1" ry="7" transform="rotate(154.3 24 24)"/><ellipse cx="24" cy="12.5" rx="3.1" ry="7" transform="rotate(180.0 24 24)"/><ellipse cx="24" cy="12.5" rx="3.1" ry="7" transform="rotate(205.7 24 24)"/><ellipse cx="24" cy="12.5" rx="3.1" ry="7" transform="rotate(231.4 24 24)"/><ellipse cx="24" cy="12.5" rx="3.1" ry="7" transform="rotate(257.1 24 24)"/><ellipse cx="24" cy="12.5" rx="3.1" ry="7" transform="rotate(282.9 24 24)"/><ellipse cx="24" cy="12.5" rx="3.1" ry="7" transform="rotate(308.6 24 24)"/><ellipse cx="24" cy="12.5" rx="3.1" ry="7" transform="rotate(334.3 24 24)"/><circle cx="24" cy="24" r="5.2"/><circle cx="24" cy="24" r="2" fill="currentColor"/></g></symbol><symbol id="pk-ic-coconut" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="23" r="11"/><circle cx="15.5" cy="16" r="1" fill="currentColor"/><circle cx="19.5" cy="15" r="1" fill="currentColor"/><circle cx="17.5" cy="18.5" r="1" fill="currentColor"/><path d="M20 31H44A12 12 0 0 1 20 31Z"/><path d="M23.5 31A8.5 8.5 0 0 0 40.5 31"/><path d="M18 12Q25.7 10.5 28 3Q20.3 4.5 18 12Z"/></g></symbol><symbol id="pk-ic-shea" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5C37 13 39 32 24 43C9 32 11 13 24 5Z"/><path d="M24 11C21.5 21 21.5 30 24 38"/><path d="M29 15c2 5 2 11 0 17" opacity=".6"/></g></symbol><symbol id="pk-ic-honeycomb" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 23L17.07 27L10.14 23L10.14 15L17.07 11L24 15ZM37.86 23L30.93 27L24 23L24 15L30.93 11L37.86 15ZM30.93 35L24 39L17.07 35L17.07 27L24 23L30.93 27Z"/><path d="M24 31.5v5" opacity=".6"/><circle cx="24" cy="40" r="2.4" fill="currentColor"/></g></symbol><symbol id="pk-ic-sun" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="8.5"/><path d="M37 24L43 24"/><path d="M35.26 30.5L40.45 33.5"/><path d="M30.5 35.26L33.5 40.45"/><path d="M24 37L24 43"/><path d="M17.5 35.26L14.5 40.45"/><path d="M12.74 30.5L7.55 33.5"/><path d="M11 24L5 24"/><path d="M12.74 17.5L7.55 14.5"/><path d="M17.5 12.74L14.5 7.55"/><path d="M24 11L24 5"/><path d="M30.5 12.74L33.5 7.55"/><path d="M35.26 17.5L40.45 14.5"/></g></symbol><symbol id="pk-ic-neem" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 43L39 7M15 35.8Q18.88 40.18 24.47 38.49Q20.6 34.11 15 35.8ZM15 35.8Q15.65 29.99 10.65 26.97Q10 32.78 15 35.8ZM19.8 30.04Q23.68 34.42 29.27 32.73Q25.4 28.35 19.8 30.04ZM19.8 30.04Q20.45 24.23 15.45 21.21Q14.8 27.02 19.8 30.04ZM24.6 24.28Q28.48 28.66 34.07 26.97Q30.2 22.59 24.6 24.28ZM24.6 24.28Q25.25 18.47 20.25 15.45Q19.6 21.26 24.6 24.28ZM29.4 18.52Q33.28 22.9 38.87 21.21Q35 16.83 29.4 18.52ZM29.4 18.52Q30.05 12.71 25.05 9.69Q24.4 15.5 29.4 18.52ZM34.2 12.76Q38.08 17.14 43.67 15.45Q39.8 11.07 34.2 12.76ZM34.2 12.76Q34.85 6.95 29.85 3.93Q29.2 9.74 34.2 12.76ZM39 7Q43.07 5.83 43.48 1.62Q39.41 2.79 39 7Z"/></g></symbol><symbol id="pk-ic-drop" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5C31 15 36 22 36 30A12 12 0 0 1 12 30C12 22 17 15 24 5Z"/><path d="M18 30a6 6 0 0 0 5 6" opacity=".7"/></g></symbol><symbol id="pk-ic-soapnut" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4V12M24 12L18 20M24 12L30 20M24 12V17"/><circle cx="17" cy="28" r="8"/><circle cx="31" cy="28" r="8"/><circle cx="24" cy="23" r="7"/><path d="M14 26a4 4 0 0 1 3-3M28 26a4 4 0 0 1 3-3" opacity=".6"/></g></symbol><symbol id="pk-ch-daily-lotion" viewBox="0 0 60 60"><g stroke="#1F3A2B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="13" cy="29" rx="10.5" ry="13" fill="#F6BE9A"/><ellipse cx="47" cy="29" rx="10.5" ry="13" fill="#F6BE9A"/><ellipse cx="14" cy="30" rx="5.8" ry="8.5" fill="#FCE9DC" stroke="none"/><ellipse cx="46" cy="30" rx="5.8" ry="8.5" fill="#FCE9DC" stroke="none"/><ellipse cx="30" cy="27" rx="15" ry="14.5" fill="#F6BE9A"/><path d="M25 34C24.5 45 27 53 33.5 53C37.5 53 39 49.5 36.3 48.6C33.6 48 33.6 45 34.5 34Z" fill="#F6BE9A" stroke="none"/><path d="M25 34.5C24.5 45 27 53 33.5 53C37.5 53 39 49.5 36.3 48.6C33.6 48 33.6 45 34.5 34.5" fill="none"/><path d="M27 13.5q1.5 -3.5 3 0q1.5 -3.5 3 0" fill="none"/><circle cx="24.5" cy="25" r="1.9" fill="#1F3A2B" stroke="none"/><circle cx="25.1" cy="24.3" r=".6" fill="#fff" stroke="none"/><circle cx="35.5" cy="25" r="1.9" fill="#1F3A2B" stroke="none"/><circle cx="36.1" cy="24.3" r=".6" fill="#fff" stroke="none"/><ellipse cx="19" cy="31" rx="2.8" ry="1.7" fill="#F29C84" fill-opacity=".55" stroke="none"/><ellipse cx="41" cy="31" rx="2.8" ry="1.7" fill="#F29C84" fill-opacity=".55" stroke="none"/></g></symbol><symbol id="pk-ch-massage-oil" viewBox="0 0 60 60"><g stroke="#1F3A2B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M40 46C56 46 60 28 52 18C47 12 39 15 42 21C46 27 49 35 38 38Z" fill="#F6BE9A"/><ellipse cx="20.5" cy="20" rx="4.2" ry="5.4" transform="rotate(-20 20.5 20)" fill="#F6BE9A"/><ellipse cx="39.5" cy="20" rx="4.2" ry="5.4" transform="rotate(20 39.5 20)" fill="#F6BE9A"/><ellipse cx="30" cy="32" rx="14" ry="13" fill="#F6BE9A"/><ellipse cx="30" cy="37.5" rx="7.5" ry="4.8" fill="#FCE9DC" stroke="none"/><path d="M26.5 20.5V25M30 19.5V25.5M33.5 20.5V25" stroke="#fff" stroke-opacity=".9" stroke-width="1.8" fill="none"/><circle cx="30" cy="35.6" r="1.4" fill="#1F3A2B" stroke="none"/><path d="M28 38.2q2 1.8 4 0" fill="none"/><circle cx="24.5" cy="31" r="1.9" fill="#1F3A2B" stroke="none"/><circle cx="25.1" cy="30.3" r=".6" fill="#fff" stroke="none"/><circle cx="35.5" cy="31" r="1.9" fill="#1F3A2B" stroke="none"/><circle cx="36.1" cy="30.3" r=".6" fill="#fff" stroke="none"/><ellipse cx="20" cy="36" rx="2.8" ry="1.7" fill="#F29C84" fill-opacity=".55" stroke="none"/><ellipse cx="40" cy="36" rx="2.8" ry="1.7" fill="#F29C84" fill-opacity=".55" stroke="none"/></g></symbol><symbol id="pk-ch-rich-cream" viewBox="0 0 60 60"><g stroke="#1F3A2B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="17" cy="19" r="6.5" fill="#F6BE9A"/><circle cx="43" cy="19" r="6.5" fill="#F6BE9A"/><circle cx="17" cy="19" r="3.2" fill="#FCE9DC" stroke="none"/><circle cx="43" cy="19" r="3.2" fill="#FCE9DC" stroke="none"/><circle cx="30" cy="33" r="16" fill="#F6BE9A"/><ellipse cx="30" cy="39" rx="7.5" ry="5.8" fill="#FCE9DC"/><ellipse cx="30" cy="36.6" rx="2.6" ry="1.8" fill="#1F3A2B" stroke="none"/><path d="M27.8 40q2.2 1.8 4.4 0" fill="none"/><circle cx="23.5" cy="31" r="1.9" fill="#1F3A2B" stroke="none"/><circle cx="24.1" cy="30.3" r=".6" fill="#fff" stroke="none"/><circle cx="36.5" cy="31" r="1.9" fill="#1F3A2B" stroke="none"/><circle cx="37.1" cy="30.3" r=".6" fill="#fff" stroke="none"/><ellipse cx="18.5" cy="37" rx="2.8" ry="1.7" fill="#F29C84" fill-opacity=".55" stroke="none"/><ellipse cx="41.5" cy="37" rx="2.8" ry="1.7" fill="#F29C84" fill-opacity=".55" stroke="none"/></g></symbol><symbol id="pk-ch-diaper-rash-cream" viewBox="0 0 60 60"><g stroke="#1F3A2B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 43A23 21 0 0 1 53 43Z" fill="#BFD6B0"/><path d="M30 22.5V33M18.5 27.5L23 33H37L41.5 27.5M23 33L19 43M37 33L41 43" fill="none" stroke-opacity=".45"/><circle cx="30" cy="43" r="10" fill="#E7F0E0"/><circle cx="26.4" cy="41.5" r="1.6" fill="#1F3A2B" stroke="none"/><circle cx="27" cy="40.8" r=".6" fill="#fff" stroke="none"/><circle cx="33.6" cy="41.5" r="1.6" fill="#1F3A2B" stroke="none"/><circle cx="34.2" cy="40.8" r=".6" fill="#fff" stroke="none"/><ellipse cx="22.8" cy="45.5" rx="2.8" ry="1.7" fill="#F29C84" fill-opacity=".55" stroke="none"/><ellipse cx="37.2" cy="45.5" rx="2.8" ry="1.7" fill="#F29C84" fill-opacity=".55" stroke="none"/><path d="M28.3 46q1.7 1.8 3.4 0" fill="none"/></g></symbol><symbol id="pk-ch-all-purpose-balm" viewBox="0 0 60 60"><g stroke="#1F3A2B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15.71 44.25L9.08 42.8L13.59 37.72L8.12 33.7L14.31 30.9L10.95 25L17.74 24.96L17.07 18.2L23.29 20.93L25.43 14.48L30 19.5L34.57 14.48L36.71 20.93L42.93 18.2L42.26 24.96L49.05 25L45.69 30.9L51.88 33.7L46.41 37.72L50.92 42.8L44.29 44.25Z" fill="#BFD6B0"/><ellipse cx="30" cy="38" rx="12.5" ry="11" fill="#E7F0E0"/><circle cx="30" cy="40.5" r="2.2" fill="#1F3A2B" stroke="none"/><path d="M28.2 44q1.8 1.8 3.6 0" fill="none"/><circle cx="25.2" cy="35.5" r="1.9" fill="#1F3A2B" stroke="none"/><circle cx="25.8" cy="34.8" r=".6" fill="#fff" stroke="none"/><circle cx="34.8" cy="35.5" r="1.9" fill="#1F3A2B" stroke="none"/><circle cx="35.4" cy="34.8" r=".6" fill="#fff" stroke="none"/><ellipse cx="21.2" cy="41" rx="2.8" ry="1.7" fill="#F29C84" fill-opacity=".55" stroke="none"/><ellipse cx="38.8" cy="41" rx="2.8" ry="1.7" fill="#F29C84" fill-opacity=".55" stroke="none"/></g></symbol><symbol id="pk-ch-mineral-sunscreen" viewBox="0 0 60 60"><g stroke="#1F3A2B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M30 18L23.5 6.5" fill="none"/><circle cx="23.5" cy="6.5" r="2.7" fill="#BFD6B0"/><circle cx="23.5" cy="6.5" r="1" fill="#1F3A2B" stroke="none"/><path d="M30 18L30 4" fill="none"/><circle cx="30" cy="4" r="2.7" fill="#BFD6B0"/><circle cx="30" cy="4" r="1" fill="#1F3A2B" stroke="none"/><path d="M30 18L36.5 6.5" fill="none"/><circle cx="36.5" cy="6.5" r="2.7" fill="#BFD6B0"/><circle cx="36.5" cy="6.5" r="1" fill="#1F3A2B" stroke="none"/><circle cx="30" cy="32" r="15" fill="#BFD6B0"/><ellipse cx="24.2" cy="30.6" rx="4" ry="3.1" fill="#fff" stroke="none"/><ellipse cx="35.8" cy="30.6" rx="4" ry="3.1" fill="#fff" stroke="none"/><path d="M27 36.2H33L30 40.6Z" fill="#EFA43A"/><circle cx="24.2" cy="31" r="1.9" fill="#1F3A2B" stroke="none"/><circle cx="24.8" cy="30.3" r=".6" fill="#fff" stroke="none"/><circle cx="35.8" cy="31" r="1.9" fill="#1F3A2B" stroke="none"/><circle cx="36.4" cy="30.3" r=".6" fill="#fff" stroke="none"/><ellipse cx="19.5" cy="37" rx="2.8" ry="1.7" fill="#F29C84" fill-opacity=".55" stroke="none"/><ellipse cx="40.5" cy="37" rx="2.8" ry="1.7" fill="#F29C84" fill-opacity=".55" stroke="none"/></g></symbol><symbol id="pk-ch-talc-free-powder" viewBox="0 0 60 60"><g stroke="#1F3A2B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="23" cy="15" rx="4.8" ry="12" transform="rotate(-8 23 15)" fill="#BFDCEC"/><ellipse cx="37" cy="15" rx="4.8" ry="12" transform="rotate(8 37 15)" fill="#BFDCEC"/><ellipse cx="23" cy="16" rx="2.1" ry="8" transform="rotate(-8 23 16)" fill="#E4F0F7" stroke="none"/><ellipse cx="37" cy="16" rx="2.1" ry="8" transform="rotate(8 37 16)" fill="#E4F0F7" stroke="none"/><circle cx="30" cy="37" r="14" fill="#BFDCEC"/><path d="M28.6 40H31.4L30 41.6Z" fill="#1F3A2B" stroke-width="1.2"/><path d="M30 41.6V43M30 43q-1.6 1.3 -3 0M30 43q1.6 1.3 3 0" fill="none" stroke-width="1.3"/><circle cx="24.5" cy="35.5" r="1.9" fill="#1F3A2B" stroke="none"/><circle cx="25.1" cy="34.8" r=".6" fill="#fff" stroke="none"/><circle cx="35.5" cy="35.5" r="1.9" fill="#1F3A2B" stroke="none"/><circle cx="36.1" cy="34.8" r=".6" fill="#fff" stroke="none"/><ellipse cx="20" cy="40.5" rx="2.8" ry="1.7" fill="#F29C84" fill-opacity=".55" stroke="none"/><ellipse cx="40" cy="40.5" rx="2.8" ry="1.7" fill="#F29C84" fill-opacity=".55" stroke="none"/></g></symbol><symbol id="pk-ch-bottle-wash" viewBox="0 0 60 60"><g stroke="#1F3A2B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M29 18c-1.2 -4.5 2 -7 4.5 -5.8c-2.2 1 -2.4 3.2 -1.4 5.8" fill="#BFDCEC"/><circle cx="30" cy="32" r="15" fill="#BFDCEC"/><ellipse cx="30" cy="38.6" rx="6.8" ry="3.3" fill="#EFA43A"/><path d="M24 38.6H36" fill="none" stroke-opacity=".35"/><circle cx="24" cy="31" r="1.9" fill="#1F3A2B" stroke="none"/><circle cx="24.6" cy="30.3" r=".6" fill="#fff" stroke="none"/><circle cx="36" cy="31" r="1.9" fill="#1F3A2B" stroke="none"/><circle cx="36.6" cy="30.3" r=".6" fill="#fff" stroke="none"/><ellipse cx="19" cy="36" rx="2.8" ry="1.7" fill="#F29C84" fill-opacity=".55" stroke="none"/><ellipse cx="41" cy="36" rx="2.8" ry="1.7" fill="#F29C84" fill-opacity=".55" stroke="none"/></g></symbol><symbol id="pk-ch-water-wipes" viewBox="0 0 60 60"><g stroke="#1F3A2B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 41C5 37 3 33 4 30.5C7 33.5 10 35.5 13 37.5Z" fill="#BFDCEC"/><path d="M10 42.5C6 45.5 4.5 49 5 51C8 48.5 11 46.5 14 44.5Z" fill="#BFDCEC"/><path d="M26 24.5C27 19.5 31 16.5 35 16.5C33 19 32.5 22 33 25" fill="#BFDCEC"/><path d="M8 42C12 28 26 22 40 26C44 27.5 47 29.5 49 31L58 31.5C58.5 33.5 56 35 49 35C44 40 30 46 18 45C13 44.6 10 43.6 8 42Z" fill="#BFDCEC"/><path d="M14 41C24 42 36 40 46 35.5" fill="none" stroke="#fff" stroke-opacity=".7"/><circle cx="41.5" cy="30" r="1.8" fill="#1F3A2B" stroke="none"/><circle cx="42" cy="29.4" r=".55" fill="#fff" stroke="none"/><ellipse cx="42.5" cy="34" rx="2.6" ry="1.5" fill="#F29C84" fill-opacity=".55" stroke="none"/><circle cx="40" cy="10" r="1.6" fill="none"/><circle cx="46" cy="6" r="1.2" fill="none"/><circle cx="50" cy="12" r="1" fill="none"/></g></symbol><pattern id="pk-pat-moisturise" width="38" height="38" patternUnits="userSpaceOnUse"><g fill="#F6BE9A" fill-opacity="0.95"><path d="M11 3.5a6.5 6.5 0 1 0 5 11.2a5.2 5.2 0 1 1 -5 -11.2Z"/><path d="M28 4.6L28.96 6.68L31.23 6.95L29.55 8.5L30 10.75L28 9.63L26 10.75L26.45 8.5L24.77 6.95L27.04 6.68Z"/><circle cx="6" cy="27" r="1.3"/><circle cx="33" cy="22" r="1"/><g transform="translate(21 29) scale(0.55)"><circle cx="-7" cy="1" r="5.5"/><circle cx="0" cy="-3" r="7.5"/><circle cx="8" cy="1" r="5.5"/><rect x="-12" y="0" width="25" height="6.5" rx="3.2"/></g></g></pattern><pattern id="pk-pat-care" width="38" height="38" patternUnits="userSpaceOnUse"><g fill="#BFD6B0" fill-opacity="0.95"><path d="M11 3.5a6.5 6.5 0 1 0 5 11.2a5.2 5.2 0 1 1 -5 -11.2Z"/><path d="M28 4.6L28.96 6.68L31.23 6.95L29.55 8.5L30 10.75L28 9.63L26 10.75L26.45 8.5L24.77 6.95L27.04 6.68Z"/><circle cx="6" cy="27" r="1.3"/><circle cx="33" cy="22" r="1"/><g transform="translate(21 29) scale(0.55)"><circle cx="-7" cy="1" r="5.5"/><circle cx="0" cy="-3" r="7.5"/><circle cx="8" cy="1" r="5.5"/><rect x="-12" y="0" width="25" height="6.5" rx="3.2"/></g></g></pattern><pattern id="pk-pat-hygiene" width="38" height="38" patternUnits="userSpaceOnUse"><g fill="#BFDCEC" fill-opacity="0.95"><path d="M11 3.5a6.5 6.5 0 1 0 5 11.2a5.2 5.2 0 1 1 -5 -11.2Z"/><path d="M28 4.6L28.96 6.68L31.23 6.95L29.55 8.5L30 10.75L28 9.63L26 10.75L26.45 8.5L24.77 6.95L27.04 6.68Z"/><circle cx="6" cy="27" r="1.3"/><circle cx="33" cy="22" r="1"/><g transform="translate(21 29) scale(0.55)"><circle cx="-7" cy="1" r="5.5"/><circle cx="0" cy="-3" r="7.5"/><circle cx="8" cy="1" r="5.5"/><rect x="-12" y="0" width="25" height="6.5" rx="3.2"/></g></g></pattern><pattern id="pk-patw" width="38" height="38" patternUnits="userSpaceOnUse"><g fill="#fff" fill-opacity="0.55"><path d="M11 3.5a6.5 6.5 0 1 0 5 11.2a5.2 5.2 0 1 1 -5 -11.2Z"/><path d="M28 4.6L28.96 6.68L31.23 6.95L29.55 8.5L30 10.75L28 9.63L26 10.75L26.45 8.5L24.77 6.95L27.04 6.68Z"/><circle cx="6" cy="27" r="1.3"/><circle cx="33" cy="22" r="1"/><g transform="translate(21 29) scale(0.55)"><circle cx="-7" cy="1" r="5.5"/><circle cx="0" cy="-3" r="7.5"/><circle cx="8" cy="1" r="5.5"/><rect x="-12" y="0" width="25" height="6.5" rx="3.2"/></g></g></pattern></defs></svg>
+
+<section class="lineup-band" id="line">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">The line</span>
+      <h2>Nine products, three colours, one family</h2>
+      <p class="lede">Every pack is matte milk-white with the wordmark in the same place, and each one has its own baby animal. Only the cap, the category text and the animal change, so the line looks calm on a shelf and each product is easy to find, and easy to ask for.</p>
+    </div>
+    <div class="lineup-scroll">
+      <svg viewBox="-40 -470 1738 528" role="img" aria-label="The Nanhe line-up: nine packs in three category groups"><g><path d="M-36 46V-88A264 264 0 0 1 492 -88V46Z" fill="#FCE9DC"/><text x="228" y="32" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="12" fill="#B4592C" font-weight="700" letter-spacing="2.4" text-anchor="middle">MOISTURISE</text><path d="M530 46V-121A231 231 0 0 1 992 -121V46Z" fill="#E7F0E0"/><text x="761" y="32" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="12" fill="#43703C" font-weight="700" letter-spacing="2.4" text-anchor="middle">CARE &amp; PROTECT</text><path d="M1030 46V-20A332 332 0 0 1 1694 -20V46Z" fill="#E4F0F7"/><text x="1362" y="32" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="12" fill="#2F6689" font-weight="700" letter-spacing="2.4" text-anchor="middle">EVERYDAY HYGIENE</text><g transform="translate(90 0)"><ellipse cx="0" cy="2" rx="96.32" ry="10" fill="url(#pk-ground)"/><path d="M-86 -16Q-86 0 -70 0H70Q86 0 86 -16V-104H-86Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-86 -16Q-86 0 -70 0H70Q86 0 86 -16V-104H-86Z" fill="url(#pk-shade)"/><g transform="translate(-76 -97) scale(0.95)"><use href="#pk-wm" x="5" y="5" width="48" height="15.1" style="color:#1F3A2B"/><circle cx="149" cy="14" r="9.5" fill="#EFA43A"/><circle cx="149" cy="14" r="6.46" fill="#FBF7F0"/><use href="#pk-mk" x="143.3" y="8.3" width="11.4" height="11.4" style="color:#1F3A2B"/><text x="6" y="36" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="4.3" fill="#B4592C" font-weight="700" letter-spacing=".5">MOISTURISE · 0+ MONTHS</text><text x="6" y="53" font-family="Fraunces, Georgia, serif" font-size="15" fill="#1F3A2B" font-weight="500" style="font-variation-settings:'SOFT' 100">Rich Cream</text><text x="6" y="65" font-family="'Baloo 2', 'Kohinoor Devanagari', 'Noto Sans Devanagari', sans-serif" font-size="8" fill="#55695C" font-weight="600">पोषक क्रीम</text><use href="#pk-ch-rich-cream" x="106" y="20" width="52" height="52"/><path d="M6 73.5H154" stroke="#1F3A2B" stroke-opacity=".18" stroke-width=".5"/><text x="6" y="83" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="4.3" fill="#1F3A2B" font-weight="700" letter-spacing=".4">95% NATURALLY DERIVED**</text><text x="154" y="84" font-family="Fraunces, Georgia, serif" font-size="9.5" fill="#1F3A2B" font-weight="500" text-anchor="end" style="font-variation-settings:'SOFT' 100">100 g</text></g><rect x="-83" y="-96" width="6" height="82" rx="3" fill="url(#pk-spec)" opacity="0.5"/><path d="M-80 -152H80A10 10 0 0 1 90 -142V-112A10 10 0 0 1 80 -102H-80A10 10 0 0 1 -90 -112V-142A10 10 0 0 1 -80 -152Z" fill="#F6BE9A" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-80 -152H80A10 10 0 0 1 90 -142V-112A10 10 0 0 1 80 -102H-80A10 10 0 0 1 -90 -112V-142A10 10 0 0 1 -80 -152Z" fill="url(#pk-shade)"/><path d="M-84 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-78 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-72 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-66 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-60 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-54 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-48 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-42 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-36 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-30 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-24 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-18 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-12 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-6 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M0 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M6 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M12 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M18 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M24 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M30 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M36 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M42 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M48 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M54 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M60 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M66 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M72 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M78 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M84 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-80 -152H80A10 10 0 0 1 90 -142V-112A10 10 0 0 1 80 -102H-80A10 10 0 0 1 -90 -112V-142A10 10 0 0 1 -80 -152Z" fill="url(#pk-top)"/></g><g transform="translate(270 0)"><ellipse cx="0" cy="2" rx="67.2" ry="10" fill="url(#pk-ground)"/><path d="M-60.0 -18Q-60.0 0 -42.0 0H42.0Q60.0 0 60.0 -18V-178C60.0 -212 30 -222 22 -222H-22C-30 -222 -60.0 -212 -60.0 -178Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-60.0 -18Q-60.0 0 -42.0 0H42.0Q60.0 0 60.0 -18V-178C60.0 -212 30 -222 22 -222H-22C-30 -222 -60.0 -212 -60.0 -178Z" fill="url(#pk-shade)"/><g transform="translate(-48 -188) scale(0.96)"><use href="#pk-wm" x="3" y="3" width="46" height="14.5" style="color:#1F3A2B"/><circle cx="88" cy="12" r="9" fill="#EFA43A"/><circle cx="88" cy="12" r="6.12" fill="#FBF7F0"/><use href="#pk-mk" x="82.6" y="6.6" width="10.8" height="10.8" style="color:#1F3A2B"/><text x="4" y="34" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="4.2" fill="#B4592C" font-weight="700" letter-spacing=".5">MOISTURISE · 0+ MONTHS</text><text x="4" y="50" font-family="Fraunces, Georgia, serif" font-size="13" fill="#1F3A2B" font-weight="500" style="font-variation-settings:'SOFT' 100">Daily Lotion</text><text x="4" y="62" font-family="'Baloo 2', 'Kohinoor Devanagari', 'Noto Sans Devanagari', sans-serif" font-size="7.4" fill="#55695C" font-weight="600">रोज़ाना लोशन</text><use href="#pk-ch-daily-lotion" x="23" y="74" width="54" height="54"/><path d="M4 132.5H96" stroke="#1F3A2B" stroke-opacity=".18" stroke-width=".5"/><text x="4" y="142" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="3.4" fill="#1F3A2B" font-weight="700" letter-spacing=".3">97% NATURALLY DERIVED**</text><text x="96" y="143" font-family="Fraunces, Georgia, serif" font-size="8" fill="#1F3A2B" font-weight="500" text-anchor="end" style="font-variation-settings:'SOFT' 100">200 ml</text></g><rect x="-55" y="-182" width="5" height="152" rx="2.5" fill="url(#pk-spec)" opacity="0.6"/><path d="M-3 -266H3A2 2 0 0 1 5 -264V-246A2 2 0 0 1 3 -244H-3A2 2 0 0 1 -5 -246V-264A2 2 0 0 1 -3 -266Z" fill="#ECE5D8"/><path d="M-3 -266H3A2 2 0 0 1 5 -264V-246A2 2 0 0 1 3 -244H-3A2 2 0 0 1 -5 -246V-264A2 2 0 0 1 -3 -266Z" fill="url(#pk-shade)"/><path d="M23.5 -286H58.5A5.5 5.5 0 0 1 64 -280.5V-280.5A5.5 5.5 0 0 1 58.5 -275H23.5A5.5 5.5 0 0 1 18 -280.5V-280.5A5.5 5.5 0 0 1 23.5 -286Z" fill="#F6BE9A" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M23.5 -286H58.5A5.5 5.5 0 0 1 64 -280.5V-280.5A5.5 5.5 0 0 1 58.5 -275H23.5A5.5 5.5 0 0 1 18 -280.5V-280.5A5.5 5.5 0 0 1 23.5 -286Z" fill="url(#pk-shade)"/><path d="M-19 -290H19A9 9 0 0 1 28 -281V-275A9 9 0 0 1 19 -266H-19A9 9 0 0 1 -28 -275V-281A9 9 0 0 1 -19 -290Z" fill="#F6BE9A" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-19 -290H19A9 9 0 0 1 28 -281V-275A9 9 0 0 1 19 -266H-19A9 9 0 0 1 -28 -275V-281A9 9 0 0 1 -19 -290Z" fill="url(#pk-shade)"/><path d="M-19 -290H19A9 9 0 0 1 28 -281V-275A9 9 0 0 1 19 -266H-19A9 9 0 0 1 -28 -275V-281A9 9 0 0 1 -19 -290Z" fill="url(#pk-top)"/><path d="M-21 -246H21A5 5 0 0 1 26 -241V-224A5 5 0 0 1 21 -219H-21A5 5 0 0 1 -26 -224V-241A5 5 0 0 1 -21 -246Z" fill="#F6BE9A" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-21 -246H21A5 5 0 0 1 26 -241V-224A5 5 0 0 1 21 -219H-21A5 5 0 0 1 -26 -224V-241A5 5 0 0 1 -21 -246Z" fill="url(#pk-shade)"/><path d="M-26 -236H26" stroke="#000" stroke-opacity=".08"/></g><g transform="translate(410 0)"><ellipse cx="0" cy="2" rx="51.52" ry="10" fill="url(#pk-ground)"/><clipPath id="pk-clip-u3"><path d="M-46 -16Q-46 0 -30 0H30Q46 0 46 -16V-136C46 -164 22 -176 15 -176V-188H-15V-176C-22 -176 -46 -164 -46 -136Z"/></clipPath><path d="M-46 -16Q-46 0 -30 0H30Q46 0 46 -16V-136C46 -164 22 -176 15 -176V-188H-15V-176C-22 -176 -46 -164 -46 -136Z" fill="#FFFFFF" fill-opacity=".55" stroke="#1F3A2B" stroke-opacity=".2" stroke-width=".8"/><g clip-path="url(#pk-clip-u3)"><rect x="-46" y="-152" width="92" height="152" fill="url(#pk-oil)" opacity=".92"/><path d="M-46 -152H46" stroke="#fff" stroke-opacity=".7" stroke-width="1.2"/><rect x="-46" y="-138" width="92" height="120" fill="#F8F3EA"/></g><g transform="translate(-37 -136) scale(0.74)"><use href="#pk-wm" x="3" y="3" width="46" height="14.5" style="color:#1F3A2B"/><circle cx="88" cy="12" r="9" fill="#EFA43A"/><circle cx="88" cy="12" r="6.12" fill="#FBF7F0"/><use href="#pk-mk" x="82.6" y="6.6" width="10.8" height="10.8" style="color:#1F3A2B"/><text x="4" y="34" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="4.2" fill="#B4592C" font-weight="700" letter-spacing=".5">MOISTURISE · 0+ MONTHS</text><text x="4" y="50" font-family="Fraunces, Georgia, serif" font-size="13" fill="#1F3A2B" font-weight="500" style="font-variation-settings:'SOFT' 100">Massage Oil</text><text x="4" y="62" font-family="'Baloo 2', 'Kohinoor Devanagari', 'Noto Sans Devanagari', sans-serif" font-size="7.4" fill="#55695C" font-weight="600">मालिश तेल</text><use href="#pk-ch-massage-oil" x="23" y="74" width="54" height="54"/><path d="M4 132.5H96" stroke="#1F3A2B" stroke-opacity=".18" stroke-width=".5"/><text x="4" y="142" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="3.4" fill="#1F3A2B" font-weight="700" letter-spacing=".3">99% NATURALLY DERIVED**</text><text x="96" y="143" font-family="Fraunces, Georgia, serif" font-size="8" fill="#1F3A2B" font-weight="500" text-anchor="end" style="font-variation-settings:'SOFT' 100">100 ml</text></g><path d="M-46 -16Q-46 0 -30 0H30Q46 0 46 -16V-136C46 -164 22 -176 15 -176V-188H-15V-176C-22 -176 -46 -164 -46 -136Z" fill="url(#pk-shade)"/><rect x="-43" y="-170" width="5" height="156" rx="2.5" fill="url(#pk-spec)" opacity="0.7"/><path d="M-14 -224H14A7 7 0 0 1 21 -217V-193A7 7 0 0 1 14 -186H-14A7 7 0 0 1 -21 -193V-217A7 7 0 0 1 -14 -224Z" fill="#F6BE9A" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-14 -224H14A7 7 0 0 1 21 -217V-193A7 7 0 0 1 14 -186H-14A7 7 0 0 1 -21 -193V-217A7 7 0 0 1 -14 -224Z" fill="url(#pk-shade)"/><path d="M-15 -230H15A3 3 0 0 1 18 -227V-225A3 3 0 0 1 15 -222H-15A3 3 0 0 1 -18 -225V-227A3 3 0 0 1 -15 -230Z" fill="#F6BE9A" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-15 -230H15A3 3 0 0 1 18 -227V-225A3 3 0 0 1 15 -222H-15A3 3 0 0 1 -18 -225V-227A3 3 0 0 1 -15 -230Z" fill="url(#pk-shade)"/><path d="M-14 -224H14A7 7 0 0 1 21 -217V-193A7 7 0 0 1 14 -186H-14A7 7 0 0 1 -21 -193V-217A7 7 0 0 1 -14 -224Z" fill="url(#pk-top)"/></g><use href="#pk-ch-daily-lotion" x="162" y="-438" width="132" height="132"/><g transform="translate(620 0)"><ellipse cx="0" cy="2" rx="35.84" ry="10" fill="url(#pk-ground)"/><path d="M-21 -44H21A9 9 0 0 1 30 -35V-9A9 9 0 0 1 21 0H-21A9 9 0 0 1 -30 -9V-35A9 9 0 0 1 -21 -44Z" fill="#BFD6B0" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-21 -44H21A9 9 0 0 1 30 -35V-9A9 9 0 0 1 21 0H-21A9 9 0 0 1 -30 -9V-35A9 9 0 0 1 -21 -44Z" fill="url(#pk-shade)"/><path d="M-21 -44H21A9 9 0 0 1 30 -35V-9A9 9 0 0 1 21 0H-21A9 9 0 0 1 -30 -9V-35A9 9 0 0 1 -21 -44Z" fill="url(#pk-top)"/><path d="M-31 -40C-33 -90 -52 -150 -52 -208V-222H52V-208C52 -150 33 -90 31 -40Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-31 -40C-33 -90 -52 -150 -52 -208V-222H52V-208C52 -150 33 -90 31 -40Z" fill="url(#pk-shade)"/><g transform="translate(-39 -212) scale(0.78)"><use href="#pk-wm" x="3" y="3" width="46" height="14.5" style="color:#1F3A2B"/><circle cx="88" cy="12" r="9" fill="#EFA43A"/><circle cx="88" cy="12" r="6.12" fill="#FBF7F0"/><use href="#pk-mk" x="82.6" y="6.6" width="10.8" height="10.8" style="color:#1F3A2B"/><text x="4" y="34" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="4.2" fill="#43703C" font-weight="700" letter-spacing=".5">CARE &amp; PROTECT · 0+ MONTHS</text><text x="4" y="50" font-family="Fraunces, Georgia, serif" font-size="13" fill="#1F3A2B" font-weight="500" style="font-variation-settings:'SOFT' 100">Diaper Rash</text><text x="4" y="63.5" font-family="Fraunces, Georgia, serif" font-size="13" fill="#1F3A2B" font-weight="500" style="font-variation-settings:'SOFT' 100">Cream</text><text x="4" y="75.5" font-family="'Baloo 2', 'Kohinoor Devanagari', 'Noto Sans Devanagari', sans-serif" font-size="7.4" fill="#55695C" font-weight="600">डायपर रैश क्रीम</text><use href="#pk-ch-diaper-rash-cream" x="23" y="74" width="54" height="54"/><path d="M4 132.5H96" stroke="#1F3A2B" stroke-opacity=".18" stroke-width=".5"/><text x="4" y="142" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="3.4" fill="#1F3A2B" font-weight="700" letter-spacing=".3">96% NATURALLY DERIVED**</text><text x="96" y="143" font-family="Fraunces, Georgia, serif" font-size="8" fill="#1F3A2B" font-weight="500" text-anchor="end" style="font-variation-settings:'SOFT' 100">50 g</text></g><rect x="-48" y="-204" width="5" height="80" rx="2.5" fill="url(#pk-spec)" opacity="0.55"/><path d="M-52 -236H52A2 2 0 0 1 54 -234V-222A2 2 0 0 1 52 -220H-52A2 2 0 0 1 -54 -222V-234A2 2 0 0 1 -52 -236Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-52 -236H52A2 2 0 0 1 54 -234V-222A2 2 0 0 1 52 -220H-52A2 2 0 0 1 -54 -222V-234A2 2 0 0 1 -52 -236Z" fill="url(#pk-shade)"/><path d="M-52 -232H52" stroke="#000" stroke-opacity=".07"/><path d="M-52 -228H52" stroke="#000" stroke-opacity=".07"/><path d="M-52 -224H52" stroke="#000" stroke-opacity=".07"/></g><g transform="translate(761 0)"><ellipse cx="0" cy="2" rx="63.84" ry="10" fill="url(#pk-ground)"/><path d="M-56 -35V-17A56 17 0 0 0 56 -17V-35Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-56 -35V-17A56 17 0 0 0 56 -17V-35Z" fill="url(#pk-shade)"/><text x="0" y="-23" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="4.6" fill="#1F3A2B" font-weight="700" letter-spacing=".4" text-anchor="middle">100% NATURALLY DERIVED**  ·  25 G</text><path d="M-57 -53V-35A57 17 0 0 0 57 -35V-53Z" fill="#BFD6B0" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-57 -53V-35A57 17 0 0 0 57 -35V-53Z" fill="url(#pk-shade)"/><ellipse cx="0" cy="-53" rx="57" ry="17" fill="#BFD6B0"/><ellipse cx="0" cy="-53" rx="57" ry="17" fill="#fff" fill-opacity=".28"/><g transform="translate(0 -53) scale(1 0.3)"><circle r="52" fill="none" stroke="#1F3A2B" stroke-opacity=".12"/><use href="#pk-wm" x="-23" y="-27" width="46" height="14.5" style="color:#1F3A2B"/><text x="0" y="6" font-family="Fraunces, Georgia, serif" font-size="11" fill="#1F3A2B" font-weight="500" text-anchor="middle" style="font-variation-settings:'SOFT' 100">All-Purpose Balm</text><text x="0" y="19" font-family="'Baloo 2', 'Kohinoor Devanagari', 'Noto Sans Devanagari', sans-serif" font-size="8" fill="#55695C" font-weight="600" text-anchor="middle">हर काम का बाम</text><text x="0" y="33" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="7" fill="#1F3A2B" font-weight="700" text-anchor="middle">25 g</text></g><ellipse cx="0" cy="-53" rx="57" ry="17" fill="none" stroke="#000" stroke-opacity=".08"/></g><g transform="translate(902 0)"><ellipse cx="0" cy="2" rx="35.84" ry="10" fill="url(#pk-ground)"/><path d="M-21 -44H21A9 9 0 0 1 30 -35V-9A9 9 0 0 1 21 0H-21A9 9 0 0 1 -30 -9V-35A9 9 0 0 1 -21 -44Z" fill="#BFD6B0" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-21 -44H21A9 9 0 0 1 30 -35V-9A9 9 0 0 1 21 0H-21A9 9 0 0 1 -30 -9V-35A9 9 0 0 1 -21 -44Z" fill="url(#pk-shade)"/><path d="M-21 -44H21A9 9 0 0 1 30 -35V-9A9 9 0 0 1 21 0H-21A9 9 0 0 1 -30 -9V-35A9 9 0 0 1 -21 -44Z" fill="url(#pk-top)"/><path d="M-31 -40C-33 -90 -52 -150 -52 -208V-222H52V-208C52 -150 33 -90 31 -40Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-31 -40C-33 -90 -52 -150 -52 -208V-222H52V-208C52 -150 33 -90 31 -40Z" fill="url(#pk-shade)"/><g transform="translate(-39 -212) scale(0.78)"><use href="#pk-wm" x="3" y="3" width="46" height="14.5" style="color:#1F3A2B"/><circle cx="88" cy="12" r="9" fill="#EFA43A"/><circle cx="88" cy="12" r="6.12" fill="#FBF7F0"/><use href="#pk-mk" x="82.6" y="6.6" width="10.8" height="10.8" style="color:#1F3A2B"/><text x="4" y="34" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="4.2" fill="#43703C" font-weight="700" letter-spacing=".5">CARE &amp; PROTECT · 6+ MONTHS</text><text x="4" y="50" font-family="Fraunces, Georgia, serif" font-size="13" fill="#1F3A2B" font-weight="500" style="font-variation-settings:'SOFT' 100">Mineral</text><text x="4" y="63.5" font-family="Fraunces, Georgia, serif" font-size="13" fill="#1F3A2B" font-weight="500" style="font-variation-settings:'SOFT' 100">Sunscreen</text><text x="4" y="75.5" font-family="'Baloo 2', 'Kohinoor Devanagari', 'Noto Sans Devanagari', sans-serif" font-size="7.4" fill="#55695C" font-weight="600">मिनरल सनस्क्रीन</text><use href="#pk-ch-mineral-sunscreen" x="23" y="74" width="54" height="54"/><path d="M4 132.5H96" stroke="#1F3A2B" stroke-opacity=".18" stroke-width=".5"/><text x="4" y="142" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="3.4" fill="#1F3A2B" font-weight="700" letter-spacing=".3">SPF 50 · PA+++</text><text x="96" y="143" font-family="Fraunces, Georgia, serif" font-size="8" fill="#1F3A2B" font-weight="500" text-anchor="end" style="font-variation-settings:'SOFT' 100">50 g</text></g><rect x="-48" y="-204" width="5" height="80" rx="2.5" fill="url(#pk-spec)" opacity="0.55"/><path d="M-52 -236H52A2 2 0 0 1 54 -234V-222A2 2 0 0 1 52 -220H-52A2 2 0 0 1 -54 -222V-234A2 2 0 0 1 -52 -236Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-52 -236H52A2 2 0 0 1 54 -234V-222A2 2 0 0 1 52 -220H-52A2 2 0 0 1 -54 -222V-234A2 2 0 0 1 -52 -236Z" fill="url(#pk-shade)"/><path d="M-52 -232H52" stroke="#000" stroke-opacity=".07"/><path d="M-52 -228H52" stroke="#000" stroke-opacity=".07"/><path d="M-52 -224H52" stroke="#000" stroke-opacity=".07"/></g><use href="#pk-ch-diaper-rash-cream" x="695" y="-438" width="132" height="132"/><g transform="translate(1114 0)"><ellipse cx="0" cy="2" rx="53.76" ry="10" fill="url(#pk-ground)"/><path d="M-48 -12Q-48 0 -36 0H36Q48 0 48 -12V-150C48 -168 30 -172 26 -172H-26C-30 -172 -48 -168 -48 -150Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-48 -12Q-48 0 -36 0H36Q48 0 48 -12V-150C48 -168 30 -172 26 -172H-26C-30 -172 -48 -168 -48 -150Z" fill="url(#pk-shade)"/><g transform="translate(-39 -152) scale(0.78)"><use href="#pk-wm" x="3" y="3" width="46" height="14.5" style="color:#1F3A2B"/><circle cx="88" cy="12" r="9" fill="#EFA43A"/><circle cx="88" cy="12" r="6.12" fill="#FBF7F0"/><use href="#pk-mk" x="82.6" y="6.6" width="10.8" height="10.8" style="color:#1F3A2B"/><text x="4" y="34" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="4.2" fill="#2F6689" font-weight="700" letter-spacing=".5">HYGIENE · 0+ MONTHS</text><text x="4" y="50" font-family="Fraunces, Georgia, serif" font-size="13" fill="#1F3A2B" font-weight="500" style="font-variation-settings:'SOFT' 100">Talc-Free</text><text x="4" y="63.5" font-family="Fraunces, Georgia, serif" font-size="13" fill="#1F3A2B" font-weight="500" style="font-variation-settings:'SOFT' 100">Powder</text><text x="4" y="75.5" font-family="'Baloo 2', 'Kohinoor Devanagari', 'Noto Sans Devanagari', sans-serif" font-size="7.4" fill="#55695C" font-weight="600">टैल्क-फ्री पाउडर</text><use href="#pk-ch-talc-free-powder" x="23" y="74" width="54" height="54"/><path d="M4 132.5H96" stroke="#1F3A2B" stroke-opacity=".18" stroke-width=".5"/><text x="4" y="142" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="3.4" fill="#1F3A2B" font-weight="700" letter-spacing=".3">99% NATURALLY DERIVED**</text><text x="96" y="143" font-family="Fraunces, Georgia, serif" font-size="8" fill="#1F3A2B" font-weight="500" text-anchor="end" style="font-variation-settings:'SOFT' 100">100 g</text></g><rect x="-45" y="-150" width="5" height="130" rx="2.5" fill="url(#pk-spec)" opacity="0.55"/><path d="M-34 -198Q0 -220 34 -198Z" fill="#BFDCEC" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-34 -198Q0 -220 34 -198Z" fill="url(#pk-shade)"/><path d="M-26 -202H26A8 8 0 0 1 34 -194V-176A8 8 0 0 1 26 -168H-26A8 8 0 0 1 -34 -176V-194A8 8 0 0 1 -26 -202Z" fill="#BFDCEC" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-26 -202H26A8 8 0 0 1 34 -194V-176A8 8 0 0 1 26 -168H-26A8 8 0 0 1 -34 -176V-194A8 8 0 0 1 -26 -202Z" fill="url(#pk-shade)"/><path d="M-26 -202H26A8 8 0 0 1 34 -194V-176A8 8 0 0 1 26 -168H-26A8 8 0 0 1 -34 -176V-194A8 8 0 0 1 -26 -202Z" fill="url(#pk-top)"/><circle cx="-14" cy="-203.88" r="1.7" fill="#000" fill-opacity=".25"/><circle cx="-7" cy="-204.44" r="1.7" fill="#000" fill-opacity=".25"/><circle cx="0" cy="-205.0" r="1.7" fill="#000" fill-opacity=".25"/><circle cx="7" cy="-204.44" r="1.7" fill="#000" fill-opacity=".25"/><circle cx="14" cy="-203.88" r="1.7" fill="#000" fill-opacity=".25"/></g><g transform="translate(1257 0)"><ellipse cx="0" cy="2" rx="72.8" ry="10" fill="url(#pk-ground)"/><path d="M-65.0 -18Q-65.0 0 -47.0 0H47.0Q65.0 0 65.0 -18V-190C65.0 -224 30 -234 22 -234H-22C-30 -234 -65.0 -224 -65.0 -190Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-65.0 -18Q-65.0 0 -47.0 0H47.0Q65.0 0 65.0 -18V-190C65.0 -224 30 -234 22 -234H-22C-30 -234 -65.0 -224 -65.0 -190Z" fill="url(#pk-shade)"/><g transform="translate(-53 -200) scale(1.06)"><use href="#pk-wm" x="3" y="3" width="46" height="14.5" style="color:#1F3A2B"/><circle cx="88" cy="12" r="9" fill="#EFA43A"/><circle cx="88" cy="12" r="6.12" fill="#FBF7F0"/><use href="#pk-mk" x="82.6" y="6.6" width="10.8" height="10.8" style="color:#1F3A2B"/><text x="4" y="34" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="4.2" fill="#2F6689" font-weight="700" letter-spacing=".5">HYGIENE · BOTTLES, TEATS, TOYS</text><text x="4" y="50" font-family="Fraunces, Georgia, serif" font-size="13" fill="#1F3A2B" font-weight="500" style="font-variation-settings:'SOFT' 100">Bottle Wash</text><text x="4" y="62" font-family="'Baloo 2', 'Kohinoor Devanagari', 'Noto Sans Devanagari', sans-serif" font-size="7.4" fill="#55695C" font-weight="600">बोतल वॉश</text><use href="#pk-ch-bottle-wash" x="23" y="74" width="54" height="54"/><path d="M4 132.5H96" stroke="#1F3A2B" stroke-opacity=".18" stroke-width=".5"/><text x="4" y="142" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="3.4" fill="#1F3A2B" font-weight="700" letter-spacing=".3">98% NATURALLY DERIVED**</text><text x="96" y="143" font-family="Fraunces, Georgia, serif" font-size="8" fill="#1F3A2B" font-weight="500" text-anchor="end" style="font-variation-settings:'SOFT' 100">300 ml</text></g><rect x="-60" y="-194" width="5" height="164" rx="2.5" fill="url(#pk-spec)" opacity="0.6"/><path d="M-4 -274H4A2 2 0 0 1 6 -272V-258A2 2 0 0 1 4 -256H-4A2 2 0 0 1 -6 -258V-272A2 2 0 0 1 -4 -274Z" fill="#ECE5D8"/><path d="M-4 -274H4A2 2 0 0 1 6 -272V-258A2 2 0 0 1 4 -256H-4A2 2 0 0 1 -6 -258V-272A2 2 0 0 1 -4 -274Z" fill="url(#pk-shade)"/><path d="M30 -302H50A6 6 0 0 1 56 -296V-296A6 6 0 0 1 50 -290H30A6 6 0 0 1 24 -296V-296A6 6 0 0 1 30 -302Z" fill="#BFDCEC" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M30 -302H50A6 6 0 0 1 56 -296V-296A6 6 0 0 1 50 -290H30A6 6 0 0 1 24 -296V-296A6 6 0 0 1 30 -302Z" fill="url(#pk-shade)"/><path d="M-17 -310H17A15 15 0 0 1 32 -295V-287A15 15 0 0 1 17 -272H-17A15 15 0 0 1 -32 -287V-295A15 15 0 0 1 -17 -310Z" fill="#BFDCEC" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-17 -310H17A15 15 0 0 1 32 -295V-287A15 15 0 0 1 17 -272H-17A15 15 0 0 1 -32 -287V-295A15 15 0 0 1 -17 -310Z" fill="url(#pk-shade)"/><path d="M-17 -310H17A15 15 0 0 1 32 -295V-287A15 15 0 0 1 17 -272H-17A15 15 0 0 1 -32 -287V-295A15 15 0 0 1 -17 -310Z" fill="url(#pk-top)"/><path d="M-21 -258H21A5 5 0 0 1 26 -253V-236A5 5 0 0 1 21 -231H-21A5 5 0 0 1 -26 -236V-253A5 5 0 0 1 -21 -258Z" fill="#BFDCEC" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-21 -258H21A5 5 0 0 1 26 -253V-236A5 5 0 0 1 21 -231H-21A5 5 0 0 1 -26 -236V-253A5 5 0 0 1 -21 -258Z" fill="url(#pk-shade)"/><path d="M-26 -248H26" stroke="#000" stroke-opacity=".08"/></g><g transform="translate(1505 0)"><ellipse cx="0" cy="2" rx="168" ry="10" fill="url(#pk-ground)"/><path d="M-138 -166L-153 -166L-147 -160L-153 -154L-147 -148L-153 -142L-147 -136L-153 -130L-147 -124L-153 -118L-147 -112L-153 -106L-147 -100L-153 -94L-147 -88L-153 -82L-147 -76L-153 -70L-147 -64L-153 -58L-147 -52L-153 -46L-147 -40L-153 -34L-147 -28L-153 -22L-147 -16L-153 -10L-138 -10Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-138 -166L-153 -166L-147 -160L-153 -154L-147 -148L-153 -142L-147 -136L-153 -130L-147 -124L-153 -118L-147 -112L-153 -106L-147 -100L-153 -94L-147 -88L-153 -82L-147 -76L-153 -70L-147 -64L-153 -58L-147 -52L-153 -46L-147 -40L-153 -34L-147 -28L-153 -22L-147 -16L-153 -10L-138 -10Z" fill="url(#pk-shade)"/><path d="M138 -166L153 -166L147 -160L153 -154L147 -148L153 -142L147 -136L153 -130L147 -124L153 -118L147 -112L153 -106L147 -100L153 -94L147 -88L153 -82L147 -76L153 -70L147 -64L153 -58L147 -52L153 -46L147 -40L153 -34L147 -28L153 -22L147 -16L153 -10L138 -10Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M138 -166L153 -166L147 -160L153 -154L147 -148L153 -142L147 -136L153 -130L147 -124L153 -118L147 -112L153 -106L147 -100L153 -94L147 -88L153 -82L147 -76L153 -70L147 -64L153 -58L147 -52L153 -46L147 -40L153 -34L147 -28L153 -22L147 -16L153 -10L138 -10Z" fill="url(#pk-shade)"/><path d="M-140 -8C-149 -60 -149 -118 -140 -168H140C149 -118 149 -60 140 -8Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-140 -8C-149 -60 -149 -118 -140 -168H140C149 -118 149 -60 140 -8Z" fill="url(#pk-shade)"/><path d="M-140 -168H140" stroke="#000" stroke-opacity=".06"/><g transform="translate(-132 -128) scale(0.86)"><use href="#pk-wm" x="5" y="5" width="48" height="15.1" style="color:#1F3A2B"/><circle cx="149" cy="14" r="9.5" fill="#EFA43A"/><circle cx="149" cy="14" r="6.46" fill="#FBF7F0"/><use href="#pk-mk" x="143.3" y="8.3" width="11.4" height="11.4" style="color:#1F3A2B"/><text x="6" y="36" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="4.3" fill="#2F6689" font-weight="700" letter-spacing=".5">HYGIENE · 0+ MONTHS</text><text x="6" y="53" font-family="Fraunces, Georgia, serif" font-size="15" fill="#1F3A2B" font-weight="500" style="font-variation-settings:'SOFT' 100">Water Wipes</text><text x="6" y="65" font-family="'Baloo 2', 'Kohinoor Devanagari', 'Noto Sans Devanagari', sans-serif" font-size="8" fill="#55695C" font-weight="600">वॉटर वाइप्स</text><use href="#pk-ic-drop" x="114" y="27" width="38" height="38" style="color:#2F6689"/><path d="M6 73.5H154" stroke="#1F3A2B" stroke-opacity=".18" stroke-width=".5"/><text x="6" y="83" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="4.3" fill="#1F3A2B" font-weight="700" letter-spacing=".4">99% NATURALLY DERIVED**</text><text x="154" y="84" font-family="Fraunces, Georgia, serif" font-size="9.5" fill="#1F3A2B" font-weight="500" text-anchor="end" style="font-variation-settings:'SOFT' 100">72 wipes</text></g><path d="M44 -142H96A28 28 0 0 1 124 -114V-62A28 28 0 0 1 96 -34H44A28 28 0 0 1 16 -62V-114A28 28 0 0 1 44 -142Z" fill="#BFDCEC" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M44 -142H96A28 28 0 0 1 124 -114V-62A28 28 0 0 1 96 -34H44A28 28 0 0 1 16 -62V-114A28 28 0 0 1 44 -142Z" fill="url(#pk-shade)"/><path d="M44 -142H96A28 28 0 0 1 124 -114V-62A28 28 0 0 1 96 -34H44A28 28 0 0 1 16 -62V-114A28 28 0 0 1 44 -142Z" fill="url(#pk-top)"/><path d="M46 -133H94A21 21 0 0 1 115 -112V-64A21 21 0 0 1 94 -43H46A21 21 0 0 1 25 -64V-112A21 21 0 0 1 46 -133Z" fill="none" stroke="#000" stroke-opacity=".08"/><use href="#pk-ch-water-wipes" x="34" y="-124" width="72" height="72"/><rect x="-139" y="-150" width="5" height="120" rx="2.5" fill="url(#pk-spec)" opacity="0.45"/></g><use href="#pk-ch-bottle-wash" x="1296" y="-438" width="132" height="132"/></g></svg>
+    </div>
+    <div class="lineup-notes">
+      <div style="--c:#F6BE9A"><b>Moisturise</b>Lotion in a 200 ml pump, massage oil in a clear bottle that shows the oil, and a rich cream in a 100 g jar.</div>
+      <div style="--c:#BFD6B0"><b>Care &amp; Protect</b>Rash cream and sunscreen in 50 g tubes that stand on their caps, and a 25 g balm tin for the changing bag.</div>
+      <div style="--c:#BFDCEC"><b>Everyday Hygiene</b>Talc-free powder in a sifter shaker, bottle wash in a 300 ml foam pump, and 72 wipes in a soft pack with a rigid lid.</div>
+    </div>
+  </div>
+</section>
+
+
+<section id="friends">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Little friends</span>
+      <h2>Nine Indian baby animals, one on every pack</h2>
+      <p class="lede">Each product has a character, and each character is there for a reason. They sit where the ingredient drawing would be, on the wipes lid, and on top of the category arches. Their Hindi pet names give parents and children a way to ask for "the Haathi one".</p>
+    </div>
+    <div class="fgrid"><div class="friend"><div class="face" style="background:#FCE9DC"><svg viewBox="0 0 60 60"><use href="#pk-ch-daily-lotion"/></svg></div><div><small>Elephant calf · Daily Lotion</small><b>Haathi</b><p>Gentle giant with famously soft skin</p></div></div><div class="friend"><div class="face" style="background:#FCE9DC"><svg viewBox="0 0 60 60"><use href="#pk-ch-massage-oil"/></svg></div><div><small>Palm squirrel · Massage Oil</small><b>Gilu</b><p>Lives in the coconut trees the oil comes from</p></div></div><div class="friend"><div class="face" style="background:#FCE9DC"><svg viewBox="0 0 60 60"><use href="#pk-ch-rich-cream"/></svg></div><div><small>Himalayan bear cub · Rich Cream</small><b>Bhalu</b><p>Made for cold, dry winter cheeks</p></div></div><div class="friend"><div class="face" style="background:#E7F0E0"><svg viewBox="0 0 60 60"><use href="#pk-ch-diaper-rash-cream"/></svg></div><div><small>Tortoise · Diaper Rash Cream</small><b>Kachhu</b><p>Its shell is a barrier, like the cream</p></div></div><div class="friend"><div class="face" style="background:#E7F0E0"><svg viewBox="0 0 60 60"><use href="#pk-ch-all-purpose-balm"/></svg></div><div><small>Indian hedgehog · All-Purpose Balm</small><b>Kaantu</b><p>Small, tough and handy for every prickly patch</p></div></div><div class="friend"><div class="face" style="background:#E7F0E0"><svg viewBox="0 0 60 60"><use href="#pk-ch-mineral-sunscreen"/></svg></div><div><small>Peacock chick · Mineral Sunscreen</small><b>Moru</b><p>Loves the sun, dances in the rain</p></div></div><div class="friend"><div class="face" style="background:#E4F0F7"><svg viewBox="0 0 60 60"><use href="#pk-ch-talc-free-powder"/></svg></div><div><small>Hare · Talc-Free Powder</small><b>Khargu</b><p>Soft as a powder-puff tail</p></div></div><div class="friend"><div class="face" style="background:#E4F0F7"><svg viewBox="0 0 60 60"><use href="#pk-ch-bottle-wash"/></svg></div><div><small>Duckling · Bottle Wash</small><b>Batku</b><p>Happiest around water and bubbles</p></div></div><div class="friend"><div class="face" style="background:#E4F0F7"><svg viewBox="0 0 60 60"><use href="#pk-ch-water-wipes"/></svg></div><div><small>Ganges river dolphin · Water Wipes</small><b>Susu</b><p>Called susu along the Ganga, a creature of pure water</p></div></div></div>
+    <div class="frules">
+      <div><b>How they're drawn</b>Head and shoulders, facing forward (Susu swims side-on). A moss outline at a constant weight, filled with the category colour and its wash. Dot eyes with a white glint, and blush on the cheeks.</div>
+      <div><b>Where they go</b>On front labels, the wipes lid, gift boxes, social media, stickers and the website. Never inside the clinical seal, and never in place of the wordmark.</div>
+      <div><b>What they never do</b>Speak, hold products, or appear in claims or safety text. The characters are there for warmth. The proof stays on the back label.</div>
+    </div>
+    <p class="fnote">These drawings are concept art. An illustrator redraws the set in this style before print.</p>
+  </div>
+</section>
+
+<section id="products">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Products</span>
+      <h2>What's in each one, and who it's for</h2>
+      <p class="lede">Hero ingredients, age range and directions for every product. Formulas and percentages are placeholders until the formulator and lab confirm them.</p>
+    </div>
+    
+  <div class="cat-block">
+    <div class="cat-head"><span class="sw-dot" style="background:#F6BE9A"></span><h3>Moisturise</h3><p>Daily softness, from the first massage to bedtime.</p></div>
+    <div class="pgrid">
+<article class="pcard">
+  <div class="pc-stage" style="background:#FCE9DC">
+    <svg viewBox="-116 -178 232 194" role="img" aria-label="Rich Cream pack render"><ellipse cx="0" cy="2" rx="96.32" ry="10" fill="url(#pk-ground)"/><path d="M-86 -16Q-86 0 -70 0H70Q86 0 86 -16V-104H-86Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-86 -16Q-86 0 -70 0H70Q86 0 86 -16V-104H-86Z" fill="url(#pk-shade)"/><g transform="translate(-76 -97) scale(0.95)"><use href="#pk-wm" x="5" y="5" width="48" height="15.1" style="color:#1F3A2B"/><circle cx="149" cy="14" r="9.5" fill="#EFA43A"/><circle cx="149" cy="14" r="6.46" fill="#FBF7F0"/><use href="#pk-mk" x="143.3" y="8.3" width="11.4" height="11.4" style="color:#1F3A2B"/><text x="6" y="36" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="4.3" fill="#B4592C" font-weight="700" letter-spacing=".5">MOISTURISE · 0+ MONTHS</text><text x="6" y="53" font-family="Fraunces, Georgia, serif" font-size="15" fill="#1F3A2B" font-weight="500" style="font-variation-settings:'SOFT' 100">Rich Cream</text><text x="6" y="65" font-family="'Baloo 2', 'Kohinoor Devanagari', 'Noto Sans Devanagari', sans-serif" font-size="8" fill="#55695C" font-weight="600">पोषक क्रीम</text><use href="#pk-ch-rich-cream" x="106" y="20" width="52" height="52"/><path d="M6 73.5H154" stroke="#1F3A2B" stroke-opacity=".18" stroke-width=".5"/><text x="6" y="83" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="4.3" fill="#1F3A2B" font-weight="700" letter-spacing=".4">95% NATURALLY DERIVED**</text><text x="154" y="84" font-family="Fraunces, Georgia, serif" font-size="9.5" fill="#1F3A2B" font-weight="500" text-anchor="end" style="font-variation-settings:'SOFT' 100">100 g</text></g><rect x="-83" y="-96" width="6" height="82" rx="3" fill="url(#pk-spec)" opacity="0.5"/><path d="M-80 -152H80A10 10 0 0 1 90 -142V-112A10 10 0 0 1 80 -102H-80A10 10 0 0 1 -90 -112V-142A10 10 0 0 1 -80 -152Z" fill="#F6BE9A" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-80 -152H80A10 10 0 0 1 90 -142V-112A10 10 0 0 1 80 -102H-80A10 10 0 0 1 -90 -112V-142A10 10 0 0 1 -80 -152Z" fill="url(#pk-shade)"/><path d="M-84 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-78 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-72 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-66 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-60 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-54 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-48 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-42 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-36 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-30 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-24 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-18 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-12 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-6 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M0 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M6 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M12 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M18 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M24 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M30 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M36 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M42 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M48 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M54 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M60 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M66 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M72 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M78 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M84 -148V-106" stroke="#000" stroke-opacity=".05"/><path d="M-80 -152H80A10 10 0 0 1 90 -142V-112A10 10 0 0 1 80 -102H-80A10 10 0 0 1 -90 -112V-142A10 10 0 0 1 -80 -152Z" fill="url(#pk-top)"/></svg>
+  </div>
+  <div class="pc-body">
+    <span class="pc-eyebrow" style="color:#B4592C">0+ months · 100 g</span>
+    <h3>Rich Cream</h3>
+    <span class="pc-deva">पोषक क्रीम</span>
+    <p class="pc-line">Shea, oat and ceramides for dry patches and winter cheeks.</p>
+    <ul class="pc-chips" style="--chip:#FCE9DC"><li>Shea butter</li><li>Ceramides</li><li>Colloidal oat</li></ul>
+    <p class="pc-use"><b>How to use.</b> Apply a little to dry patches, cheeks and elbows, two or three times a day.</p>
+    
+  </div>
+</article>
+<article class="pcard">
+  <div class="pc-stage" style="background:#FCE9DC">
+    <svg viewBox="-86 -316 176 332" role="img" aria-label="Daily Lotion pack render"><ellipse cx="0" cy="2" rx="67.2" ry="10" fill="url(#pk-ground)"/><path d="M-60.0 -18Q-60.0 0 -42.0 0H42.0Q60.0 0 60.0 -18V-178C60.0 -212 30 -222 22 -222H-22C-30 -222 -60.0 -212 -60.0 -178Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-60.0 -18Q-60.0 0 -42.0 0H42.0Q60.0 0 60.0 -18V-178C60.0 -212 30 -222 22 -222H-22C-30 -222 -60.0 -212 -60.0 -178Z" fill="url(#pk-shade)"/><g transform="translate(-48 -188) scale(0.96)"><use href="#pk-wm" x="3" y="3" width="46" height="14.5" style="color:#1F3A2B"/><circle cx="88" cy="12" r="9" fill="#EFA43A"/><circle cx="88" cy="12" r="6.12" fill="#FBF7F0"/><use href="#pk-mk" x="82.6" y="6.6" width="10.8" height="10.8" style="color:#1F3A2B"/><text x="4" y="34" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="4.2" fill="#B4592C" font-weight="700" letter-spacing=".5">MOISTURISE · 0+ MONTHS</text><text x="4" y="50" font-family="Fraunces, Georgia, serif" font-size="13" fill="#1F3A2B" font-weight="500" style="font-variation-settings:'SOFT' 100">Daily Lotion</text><text x="4" y="62" font-family="'Baloo 2', 'Kohinoor Devanagari', 'Noto Sans Devanagari', sans-serif" font-size="7.4" fill="#55695C" font-weight="600">रोज़ाना लोशन</text><use href="#pk-ch-daily-lotion" x="23" y="74" width="54" height="54"/><path d="M4 132.5H96" stroke="#1F3A2B" stroke-opacity=".18" stroke-width=".5"/><text x="4" y="142" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="3.4" fill="#1F3A2B" font-weight="700" letter-spacing=".3">97% NATURALLY DERIVED**</text><text x="96" y="143" font-family="Fraunces, Georgia, serif" font-size="8" fill="#1F3A2B" font-weight="500" text-anchor="end" style="font-variation-settings:'SOFT' 100">200 ml</text></g><rect x="-55" y="-182" width="5" height="152" rx="2.5" fill="url(#pk-spec)" opacity="0.6"/><path d="M-3 -266H3A2 2 0 0 1 5 -264V-246A2 2 0 0 1 3 -244H-3A2 2 0 0 1 -5 -246V-264A2 2 0 0 1 -3 -266Z" fill="#ECE5D8"/><path d="M-3 -266H3A2 2 0 0 1 5 -264V-246A2 2 0 0 1 3 -244H-3A2 2 0 0 1 -5 -246V-264A2 2 0 0 1 -3 -266Z" fill="url(#pk-shade)"/><path d="M23.5 -286H58.5A5.5 5.5 0 0 1 64 -280.5V-280.5A5.5 5.5 0 0 1 58.5 -275H23.5A5.5 5.5 0 0 1 18 -280.5V-280.5A5.5 5.5 0 0 1 23.5 -286Z" fill="#F6BE9A" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M23.5 -286H58.5A5.5 5.5 0 0 1 64 -280.5V-280.5A5.5 5.5 0 0 1 58.5 -275H23.5A5.5 5.5 0 0 1 18 -280.5V-280.5A5.5 5.5 0 0 1 23.5 -286Z" fill="url(#pk-shade)"/><path d="M-19 -290H19A9 9 0 0 1 28 -281V-275A9 9 0 0 1 19 -266H-19A9 9 0 0 1 -28 -275V-281A9 9 0 0 1 -19 -290Z" fill="#F6BE9A" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-19 -290H19A9 9 0 0 1 28 -281V-275A9 9 0 0 1 19 -266H-19A9 9 0 0 1 -28 -275V-281A9 9 0 0 1 -19 -290Z" fill="url(#pk-shade)"/><path d="M-19 -290H19A9 9 0 0 1 28 -281V-275A9 9 0 0 1 19 -266H-19A9 9 0 0 1 -28 -275V-281A9 9 0 0 1 -19 -290Z" fill="url(#pk-top)"/><path d="M-21 -246H21A5 5 0 0 1 26 -241V-224A5 5 0 0 1 21 -219H-21A5 5 0 0 1 -26 -224V-241A5 5 0 0 1 -21 -246Z" fill="#F6BE9A" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-21 -246H21A5 5 0 0 1 26 -241V-224A5 5 0 0 1 21 -219H-21A5 5 0 0 1 -26 -224V-241A5 5 0 0 1 -21 -246Z" fill="url(#pk-shade)"/><path d="M-26 -236H26" stroke="#000" stroke-opacity=".08"/></svg>
+  </div>
+  <div class="pc-body">
+    <span class="pc-eyebrow" style="color:#B4592C">0+ months · 200 ml</span>
+    <h3>Daily Lotion</h3>
+    <span class="pc-deva">रोज़ाना लोशन</span>
+    <p class="pc-line">Oat and shea butter, for skin that stays soft till bedtime.</p>
+    <ul class="pc-chips" style="--chip:#FCE9DC"><li>Colloidal oat</li><li>Shea butter</li><li>Coconut oil</li></ul>
+    <p class="pc-use"><b>How to use.</b> Smooth onto clean skin after the bath and whenever skin feels dry.</p>
+    
+  </div>
+</article>
+<article class="pcard">
+  <div class="pc-stage" style="background:#FCE9DC">
+    <svg viewBox="-72 -256 144 272" role="img" aria-label="Massage Oil pack render"><ellipse cx="0" cy="2" rx="51.52" ry="10" fill="url(#pk-ground)"/><clipPath id="pk-clip-u4"><path d="M-46 -16Q-46 0 -30 0H30Q46 0 46 -16V-136C46 -164 22 -176 15 -176V-188H-15V-176C-22 -176 -46 -164 -46 -136Z"/></clipPath><path d="M-46 -16Q-46 0 -30 0H30Q46 0 46 -16V-136C46 -164 22 -176 15 -176V-188H-15V-176C-22 -176 -46 -164 -46 -136Z" fill="#FFFFFF" fill-opacity=".55" stroke="#1F3A2B" stroke-opacity=".2" stroke-width=".8"/><g clip-path="url(#pk-clip-u4)"><rect x="-46" y="-152" width="92" height="152" fill="url(#pk-oil)" opacity=".92"/><path d="M-46 -152H46" stroke="#fff" stroke-opacity=".7" stroke-width="1.2"/><rect x="-46" y="-138" width="92" height="120" fill="#F8F3EA"/></g><g transform="translate(-37 -136) scale(0.74)"><use href="#pk-wm" x="3" y="3" width="46" height="14.5" style="color:#1F3A2B"/><circle cx="88" cy="12" r="9" fill="#EFA43A"/><circle cx="88" cy="12" r="6.12" fill="#FBF7F0"/><use href="#pk-mk" x="82.6" y="6.6" width="10.8" height="10.8" style="color:#1F3A2B"/><text x="4" y="34" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="4.2" fill="#B4592C" font-weight="700" letter-spacing=".5">MOISTURISE · 0+ MONTHS</text><text x="4" y="50" font-family="Fraunces, Georgia, serif" font-size="13" fill="#1F3A2B" font-weight="500" style="font-variation-settings:'SOFT' 100">Massage Oil</text><text x="4" y="62" font-family="'Baloo 2', 'Kohinoor Devanagari', 'Noto Sans Devanagari', sans-serif" font-size="7.4" fill="#55695C" font-weight="600">मालिश तेल</text><use href="#pk-ch-massage-oil" x="23" y="74" width="54" height="54"/><path d="M4 132.5H96" stroke="#1F3A2B" stroke-opacity=".18" stroke-width=".5"/><text x="4" y="142" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="3.4" fill="#1F3A2B" font-weight="700" letter-spacing=".3">99% NATURALLY DERIVED**</text><text x="96" y="143" font-family="Fraunces, Georgia, serif" font-size="8" fill="#1F3A2B" font-weight="500" text-anchor="end" style="font-variation-settings:'SOFT' 100">100 ml</text></g><path d="M-46 -16Q-46 0 -30 0H30Q46 0 46 -16V-136C46 -164 22 -176 15 -176V-188H-15V-176C-22 -176 -46 -164 -46 -136Z" fill="url(#pk-shade)"/><rect x="-43" y="-170" width="5" height="156" rx="2.5" fill="url(#pk-spec)" opacity="0.7"/><path d="M-14 -224H14A7 7 0 0 1 21 -217V-193A7 7 0 0 1 14 -186H-14A7 7 0 0 1 -21 -193V-217A7 7 0 0 1 -14 -224Z" fill="#F6BE9A" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-14 -224H14A7 7 0 0 1 21 -217V-193A7 7 0 0 1 14 -186H-14A7 7 0 0 1 -21 -193V-217A7 7 0 0 1 -14 -224Z" fill="url(#pk-shade)"/><path d="M-15 -230H15A3 3 0 0 1 18 -227V-225A3 3 0 0 1 15 -222H-15A3 3 0 0 1 -18 -225V-227A3 3 0 0 1 -15 -230Z" fill="#F6BE9A" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-15 -230H15A3 3 0 0 1 18 -227V-225A3 3 0 0 1 15 -222H-15A3 3 0 0 1 -18 -225V-227A3 3 0 0 1 -15 -230Z" fill="url(#pk-shade)"/><path d="M-14 -224H14A7 7 0 0 1 21 -217V-193A7 7 0 0 1 14 -186H-14A7 7 0 0 1 -21 -193V-217A7 7 0 0 1 -14 -224Z" fill="url(#pk-top)"/></svg>
+  </div>
+  <div class="pc-body">
+    <span class="pc-eyebrow" style="color:#B4592C">0+ months · 100 ml</span>
+    <h3>Massage Oil</h3>
+    <span class="pc-deva">मालिश तेल</span>
+    <p class="pc-line">Cold-pressed coconut and almond oil for the daily maalish.</p>
+    <ul class="pc-chips" style="--chip:#FCE9DC"><li>Cold-pressed coconut</li><li>Sweet almond</li><li>Ashwagandha</li></ul>
+    <p class="pc-use"><b>How to use.</b> Warm a few drops between your palms. Massage in long, gentle strokes before the bath.</p>
+    <p class="pc-caution">Contains almond oil. Do not use if your baby has a nut allergy.</p>
+  </div>
+</article></div>
+  </div>
+  <div class="cat-block">
+    <div class="cat-head"><span class="sw-dot" style="background:#BFD6B0"></span><h3>Care &amp; Protect</h3><p>For when skin needs fixing or protecting.</p></div>
+    <div class="pgrid">
+<article class="pcard">
+  <div class="pc-stage" style="background:#E7F0E0">
+    <svg viewBox="-80 -262 160 278" role="img" aria-label="Diaper Rash Cream pack render"><ellipse cx="0" cy="2" rx="35.84" ry="10" fill="url(#pk-ground)"/><path d="M-21 -44H21A9 9 0 0 1 30 -35V-9A9 9 0 0 1 21 0H-21A9 9 0 0 1 -30 -9V-35A9 9 0 0 1 -21 -44Z" fill="#BFD6B0" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-21 -44H21A9 9 0 0 1 30 -35V-9A9 9 0 0 1 21 0H-21A9 9 0 0 1 -30 -9V-35A9 9 0 0 1 -21 -44Z" fill="url(#pk-shade)"/><path d="M-21 -44H21A9 9 0 0 1 30 -35V-9A9 9 0 0 1 21 0H-21A9 9 0 0 1 -30 -9V-35A9 9 0 0 1 -21 -44Z" fill="url(#pk-top)"/><path d="M-31 -40C-33 -90 -52 -150 -52 -208V-222H52V-208C52 -150 33 -90 31 -40Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-31 -40C-33 -90 -52 -150 -52 -208V-222H52V-208C52 -150 33 -90 31 -40Z" fill="url(#pk-shade)"/><g transform="translate(-39 -212) scale(0.78)"><use href="#pk-wm" x="3" y="3" width="46" height="14.5" style="color:#1F3A2B"/><circle cx="88" cy="12" r="9" fill="#EFA43A"/><circle cx="88" cy="12" r="6.12" fill="#FBF7F0"/><use href="#pk-mk" x="82.6" y="6.6" width="10.8" height="10.8" style="color:#1F3A2B"/><text x="4" y="34" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="4.2" fill="#43703C" font-weight="700" letter-spacing=".5">CARE &amp; PROTECT · 0+ MONTHS</text><text x="4" y="50" font-family="Fraunces, Georgia, serif" font-size="13" fill="#1F3A2B" font-weight="500" style="font-variation-settings:'SOFT' 100">Diaper Rash</text><text x="4" y="63.5" font-family="Fraunces, Georgia, serif" font-size="13" fill="#1F3A2B" font-weight="500" style="font-variation-settings:'SOFT' 100">Cream</text><text x="4" y="75.5" font-family="'Baloo 2', 'Kohinoor Devanagari', 'Noto Sans Devanagari', sans-serif" font-size="7.4" fill="#55695C" font-weight="600">डायपर रैश क्रीम</text><use href="#pk-ch-diaper-rash-cream" x="23" y="74" width="54" height="54"/><path d="M4 132.5H96" stroke="#1F3A2B" stroke-opacity=".18" stroke-width=".5"/><text x="4" y="142" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="3.4" fill="#1F3A2B" font-weight="700" letter-spacing=".3">96% NATURALLY DERIVED**</text><text x="96" y="143" font-family="Fraunces, Georgia, serif" font-size="8" fill="#1F3A2B" font-weight="500" text-anchor="end" style="font-variation-settings:'SOFT' 100">50 g</text></g><rect x="-48" y="-204" width="5" height="80" rx="2.5" fill="url(#pk-spec)" opacity="0.55"/><path d="M-52 -236H52A2 2 0 0 1 54 -234V-222A2 2 0 0 1 52 -220H-52A2 2 0 0 1 -54 -222V-234A2 2 0 0 1 -52 -236Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-52 -236H52A2 2 0 0 1 54 -234V-222A2 2 0 0 1 52 -220H-52A2 2 0 0 1 -54 -222V-234A2 2 0 0 1 -52 -236Z" fill="url(#pk-shade)"/><path d="M-52 -232H52" stroke="#000" stroke-opacity=".07"/><path d="M-52 -228H52" stroke="#000" stroke-opacity=".07"/><path d="M-52 -224H52" stroke="#000" stroke-opacity=".07"/></svg>
+  </div>
+  <div class="pc-body">
+    <span class="pc-eyebrow" style="color:#43703C">0+ months · 50 g</span>
+    <h3>Diaper Rash Cream</h3>
+    <span class="pc-deva">डायपर रैश क्रीम</span>
+    <p class="pc-line">Zinc oxide and calendula form a breathable barrier at every change.</p>
+    <ul class="pc-chips" style="--chip:#E7F0E0"><li>Zinc oxide 15%</li><li>Calendula</li><li>Beeswax</li></ul>
+    <p class="pc-use"><b>How to use.</b> Clean and dry the nappy area. Apply a thin layer at every change.</p>
+    
+  </div>
+</article>
+<article class="pcard">
+  <div class="pc-stage" style="background:#E7F0E0">
+    <svg viewBox="-83 -96 166 112" role="img" aria-label="All-Purpose Balm pack render"><ellipse cx="0" cy="2" rx="63.84" ry="10" fill="url(#pk-ground)"/><path d="M-56 -35V-17A56 17 0 0 0 56 -17V-35Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-56 -35V-17A56 17 0 0 0 56 -17V-35Z" fill="url(#pk-shade)"/><text x="0" y="-23" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="4.6" fill="#1F3A2B" font-weight="700" letter-spacing=".4" text-anchor="middle">100% NATURALLY DERIVED**  ·  25 G</text><path d="M-57 -53V-35A57 17 0 0 0 57 -35V-53Z" fill="#BFD6B0" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-57 -53V-35A57 17 0 0 0 57 -35V-53Z" fill="url(#pk-shade)"/><ellipse cx="0" cy="-53" rx="57" ry="17" fill="#BFD6B0"/><ellipse cx="0" cy="-53" rx="57" ry="17" fill="#fff" fill-opacity=".28"/><g transform="translate(0 -53) scale(1 0.3)"><circle r="52" fill="none" stroke="#1F3A2B" stroke-opacity=".12"/><use href="#pk-wm" x="-23" y="-27" width="46" height="14.5" style="color:#1F3A2B"/><text x="0" y="6" font-family="Fraunces, Georgia, serif" font-size="11" fill="#1F3A2B" font-weight="500" text-anchor="middle" style="font-variation-settings:'SOFT' 100">All-Purpose Balm</text><text x="0" y="19" font-family="'Baloo 2', 'Kohinoor Devanagari', 'Noto Sans Devanagari', sans-serif" font-size="8" fill="#55695C" font-weight="600" text-anchor="middle">हर काम का बाम</text><text x="0" y="33" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="7" fill="#1F3A2B" font-weight="700" text-anchor="middle">25 g</text></g><ellipse cx="0" cy="-53" rx="57" ry="17" fill="none" stroke="#000" stroke-opacity=".08"/></svg>
+  </div>
+  <div class="pc-body">
+    <span class="pc-eyebrow" style="color:#43703C">0+ months · 25 g</span>
+    <h3>All-Purpose Balm</h3>
+    <span class="pc-deva">हर काम का बाम</span>
+    <p class="pc-line">Ghee, beeswax and kokum butter for chapped cheeks, lips, knees and cuticles.</p>
+    <ul class="pc-chips" style="--chip:#E7F0E0"><li>Cow ghee</li><li>Beeswax</li><li>Kokum butter</li></ul>
+    <p class="pc-use"><b>How to use.</b> Warm a little on your fingertip and press onto rough or chapped skin.</p>
+    
+  </div>
+</article>
+<article class="pcard">
+  <div class="pc-stage" style="background:#E7F0E0">
+    <svg viewBox="-80 -262 160 278" role="img" aria-label="Mineral Sunscreen pack render"><ellipse cx="0" cy="2" rx="35.84" ry="10" fill="url(#pk-ground)"/><path d="M-21 -44H21A9 9 0 0 1 30 -35V-9A9 9 0 0 1 21 0H-21A9 9 0 0 1 -30 -9V-35A9 9 0 0 1 -21 -44Z" fill="#BFD6B0" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-21 -44H21A9 9 0 0 1 30 -35V-9A9 9 0 0 1 21 0H-21A9 9 0 0 1 -30 -9V-35A9 9 0 0 1 -21 -44Z" fill="url(#pk-shade)"/><path d="M-21 -44H21A9 9 0 0 1 30 -35V-9A9 9 0 0 1 21 0H-21A9 9 0 0 1 -30 -9V-35A9 9 0 0 1 -21 -44Z" fill="url(#pk-top)"/><path d="M-31 -40C-33 -90 -52 -150 -52 -208V-222H52V-208C52 -150 33 -90 31 -40Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-31 -40C-33 -90 -52 -150 -52 -208V-222H52V-208C52 -150 33 -90 31 -40Z" fill="url(#pk-shade)"/><g transform="translate(-39 -212) scale(0.78)"><use href="#pk-wm" x="3" y="3" width="46" height="14.5" style="color:#1F3A2B"/><circle cx="88" cy="12" r="9" fill="#EFA43A"/><circle cx="88" cy="12" r="6.12" fill="#FBF7F0"/><use href="#pk-mk" x="82.6" y="6.6" width="10.8" height="10.8" style="color:#1F3A2B"/><text x="4" y="34" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="4.2" fill="#43703C" font-weight="700" letter-spacing=".5">CARE &amp; PROTECT · 6+ MONTHS</text><text x="4" y="50" font-family="Fraunces, Georgia, serif" font-size="13" fill="#1F3A2B" font-weight="500" style="font-variation-settings:'SOFT' 100">Mineral</text><text x="4" y="63.5" font-family="Fraunces, Georgia, serif" font-size="13" fill="#1F3A2B" font-weight="500" style="font-variation-settings:'SOFT' 100">Sunscreen</text><text x="4" y="75.5" font-family="'Baloo 2', 'Kohinoor Devanagari', 'Noto Sans Devanagari', sans-serif" font-size="7.4" fill="#55695C" font-weight="600">मिनरल सनस्क्रीन</text><use href="#pk-ch-mineral-sunscreen" x="23" y="74" width="54" height="54"/><path d="M4 132.5H96" stroke="#1F3A2B" stroke-opacity=".18" stroke-width=".5"/><text x="4" y="142" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="3.4" fill="#1F3A2B" font-weight="700" letter-spacing=".3">SPF 50 · PA+++</text><text x="96" y="143" font-family="Fraunces, Georgia, serif" font-size="8" fill="#1F3A2B" font-weight="500" text-anchor="end" style="font-variation-settings:'SOFT' 100">50 g</text></g><rect x="-48" y="-204" width="5" height="80" rx="2.5" fill="url(#pk-spec)" opacity="0.55"/><path d="M-52 -236H52A2 2 0 0 1 54 -234V-222A2 2 0 0 1 52 -220H-52A2 2 0 0 1 -54 -222V-234A2 2 0 0 1 -52 -236Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-52 -236H52A2 2 0 0 1 54 -234V-222A2 2 0 0 1 52 -220H-52A2 2 0 0 1 -54 -222V-234A2 2 0 0 1 -52 -236Z" fill="url(#pk-shade)"/><path d="M-52 -232H52" stroke="#000" stroke-opacity=".07"/><path d="M-52 -228H52" stroke="#000" stroke-opacity=".07"/><path d="M-52 -224H52" stroke="#000" stroke-opacity=".07"/></svg>
+  </div>
+  <div class="pc-body">
+    <span class="pc-eyebrow" style="color:#43703C">6+ months · 50 g</span>
+    <h3>Mineral Sunscreen</h3>
+    <span class="pc-deva">मिनरल सनस्क्रीन</span>
+    <p class="pc-line">Zinc oxide sits on the skin and reflects the sun. Broad spectrum.</p>
+    <ul class="pc-chips" style="--chip:#E7F0E0"><li>Zinc oxide (non-nano)</li><li>Sunflower oil</li><li>Aloe</li></ul>
+    <p class="pc-use"><b>How to use.</b> For babies 6 months and older. Apply generously 15 minutes before going out. Reapply every 2 hours and after water play.</p>
+    <p class="pc-caution">Keep babies under 6 months out of direct sun instead of using sunscreen.</p>
+  </div>
+</article></div>
+  </div>
+  <div class="cat-block">
+    <div class="cat-head"><span class="sw-dot" style="background:#BFDCEC"></span><h3>Everyday Hygiene</h3><p>The things parents reach for ten times a day.</p></div>
+    <div class="pgrid">
+<article class="pcard">
+  <div class="pc-stage" style="background:#E4F0F7">
+    <svg viewBox="-74 -238 148 254" role="img" aria-label="Talc-Free Powder pack render"><ellipse cx="0" cy="2" rx="53.76" ry="10" fill="url(#pk-ground)"/><path d="M-48 -12Q-48 0 -36 0H36Q48 0 48 -12V-150C48 -168 30 -172 26 -172H-26C-30 -172 -48 -168 -48 -150Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-48 -12Q-48 0 -36 0H36Q48 0 48 -12V-150C48 -168 30 -172 26 -172H-26C-30 -172 -48 -168 -48 -150Z" fill="url(#pk-shade)"/><g transform="translate(-39 -152) scale(0.78)"><use href="#pk-wm" x="3" y="3" width="46" height="14.5" style="color:#1F3A2B"/><circle cx="88" cy="12" r="9" fill="#EFA43A"/><circle cx="88" cy="12" r="6.12" fill="#FBF7F0"/><use href="#pk-mk" x="82.6" y="6.6" width="10.8" height="10.8" style="color:#1F3A2B"/><text x="4" y="34" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="4.2" fill="#2F6689" font-weight="700" letter-spacing=".5">HYGIENE · 0+ MONTHS</text><text x="4" y="50" font-family="Fraunces, Georgia, serif" font-size="13" fill="#1F3A2B" font-weight="500" style="font-variation-settings:'SOFT' 100">Talc-Free</text><text x="4" y="63.5" font-family="Fraunces, Georgia, serif" font-size="13" fill="#1F3A2B" font-weight="500" style="font-variation-settings:'SOFT' 100">Powder</text><text x="4" y="75.5" font-family="'Baloo 2', 'Kohinoor Devanagari', 'Noto Sans Devanagari', sans-serif" font-size="7.4" fill="#55695C" font-weight="600">टैल्क-फ्री पाउडर</text><use href="#pk-ch-talc-free-powder" x="23" y="74" width="54" height="54"/><path d="M4 132.5H96" stroke="#1F3A2B" stroke-opacity=".18" stroke-width=".5"/><text x="4" y="142" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="3.4" fill="#1F3A2B" font-weight="700" letter-spacing=".3">99% NATURALLY DERIVED**</text><text x="96" y="143" font-family="Fraunces, Georgia, serif" font-size="8" fill="#1F3A2B" font-weight="500" text-anchor="end" style="font-variation-settings:'SOFT' 100">100 g</text></g><rect x="-45" y="-150" width="5" height="130" rx="2.5" fill="url(#pk-spec)" opacity="0.55"/><path d="M-34 -198Q0 -220 34 -198Z" fill="#BFDCEC" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-34 -198Q0 -220 34 -198Z" fill="url(#pk-shade)"/><path d="M-26 -202H26A8 8 0 0 1 34 -194V-176A8 8 0 0 1 26 -168H-26A8 8 0 0 1 -34 -176V-194A8 8 0 0 1 -26 -202Z" fill="#BFDCEC" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-26 -202H26A8 8 0 0 1 34 -194V-176A8 8 0 0 1 26 -168H-26A8 8 0 0 1 -34 -176V-194A8 8 0 0 1 -26 -202Z" fill="url(#pk-shade)"/><path d="M-26 -202H26A8 8 0 0 1 34 -194V-176A8 8 0 0 1 26 -168H-26A8 8 0 0 1 -34 -176V-194A8 8 0 0 1 -26 -202Z" fill="url(#pk-top)"/><circle cx="-14" cy="-203.88" r="1.7" fill="#000" fill-opacity=".25"/><circle cx="-7" cy="-204.44" r="1.7" fill="#000" fill-opacity=".25"/><circle cx="0" cy="-205.0" r="1.7" fill="#000" fill-opacity=".25"/><circle cx="7" cy="-204.44" r="1.7" fill="#000" fill-opacity=".25"/><circle cx="14" cy="-203.88" r="1.7" fill="#000" fill-opacity=".25"/></svg>
+  </div>
+  <div class="pc-body">
+    <span class="pc-eyebrow" style="color:#2F6689">0+ months · 100 g</span>
+    <h3>Talc-Free Powder</h3>
+    <span class="pc-deva">टैल्क-फ्री पाउडर</span>
+    <p class="pc-line">Corn starch and neem keep skin folds dry, with no talc.</p>
+    <ul class="pc-chips" style="--chip:#E4F0F7"><li>Corn starch</li><li>Neem leaf</li><li>Arrowroot</li></ul>
+    <p class="pc-use"><b>How to use.</b> Shake into your palm, away from your baby&#x27;s face, then pat onto skin folds.</p>
+    <p class="pc-caution">Keep away from the baby&#x27;s face. Do not shake directly over the baby.</p>
+  </div>
+</article>
+<article class="pcard">
+  <div class="pc-stage" style="background:#E4F0F7">
+    <svg viewBox="-91 -336 182 352" role="img" aria-label="Bottle Wash pack render"><ellipse cx="0" cy="2" rx="72.8" ry="10" fill="url(#pk-ground)"/><path d="M-65.0 -18Q-65.0 0 -47.0 0H47.0Q65.0 0 65.0 -18V-190C65.0 -224 30 -234 22 -234H-22C-30 -234 -65.0 -224 -65.0 -190Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-65.0 -18Q-65.0 0 -47.0 0H47.0Q65.0 0 65.0 -18V-190C65.0 -224 30 -234 22 -234H-22C-30 -234 -65.0 -224 -65.0 -190Z" fill="url(#pk-shade)"/><g transform="translate(-53 -200) scale(1.06)"><use href="#pk-wm" x="3" y="3" width="46" height="14.5" style="color:#1F3A2B"/><circle cx="88" cy="12" r="9" fill="#EFA43A"/><circle cx="88" cy="12" r="6.12" fill="#FBF7F0"/><use href="#pk-mk" x="82.6" y="6.6" width="10.8" height="10.8" style="color:#1F3A2B"/><text x="4" y="34" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="4.2" fill="#2F6689" font-weight="700" letter-spacing=".5">HYGIENE · BOTTLES, TEATS, TOYS</text><text x="4" y="50" font-family="Fraunces, Georgia, serif" font-size="13" fill="#1F3A2B" font-weight="500" style="font-variation-settings:'SOFT' 100">Bottle Wash</text><text x="4" y="62" font-family="'Baloo 2', 'Kohinoor Devanagari', 'Noto Sans Devanagari', sans-serif" font-size="7.4" fill="#55695C" font-weight="600">बोतल वॉश</text><use href="#pk-ch-bottle-wash" x="23" y="74" width="54" height="54"/><path d="M4 132.5H96" stroke="#1F3A2B" stroke-opacity=".18" stroke-width=".5"/><text x="4" y="142" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="3.4" fill="#1F3A2B" font-weight="700" letter-spacing=".3">98% NATURALLY DERIVED**</text><text x="96" y="143" font-family="Fraunces, Georgia, serif" font-size="8" fill="#1F3A2B" font-weight="500" text-anchor="end" style="font-variation-settings:'SOFT' 100">300 ml</text></g><rect x="-60" y="-194" width="5" height="164" rx="2.5" fill="url(#pk-spec)" opacity="0.6"/><path d="M-4 -274H4A2 2 0 0 1 6 -272V-258A2 2 0 0 1 4 -256H-4A2 2 0 0 1 -6 -258V-272A2 2 0 0 1 -4 -274Z" fill="#ECE5D8"/><path d="M-4 -274H4A2 2 0 0 1 6 -272V-258A2 2 0 0 1 4 -256H-4A2 2 0 0 1 -6 -258V-272A2 2 0 0 1 -4 -274Z" fill="url(#pk-shade)"/><path d="M30 -302H50A6 6 0 0 1 56 -296V-296A6 6 0 0 1 50 -290H30A6 6 0 0 1 24 -296V-296A6 6 0 0 1 30 -302Z" fill="#BFDCEC" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M30 -302H50A6 6 0 0 1 56 -296V-296A6 6 0 0 1 50 -290H30A6 6 0 0 1 24 -296V-296A6 6 0 0 1 30 -302Z" fill="url(#pk-shade)"/><path d="M-17 -310H17A15 15 0 0 1 32 -295V-287A15 15 0 0 1 17 -272H-17A15 15 0 0 1 -32 -287V-295A15 15 0 0 1 -17 -310Z" fill="#BFDCEC" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-17 -310H17A15 15 0 0 1 32 -295V-287A15 15 0 0 1 17 -272H-17A15 15 0 0 1 -32 -287V-295A15 15 0 0 1 -17 -310Z" fill="url(#pk-shade)"/><path d="M-17 -310H17A15 15 0 0 1 32 -295V-287A15 15 0 0 1 17 -272H-17A15 15 0 0 1 -32 -287V-295A15 15 0 0 1 -17 -310Z" fill="url(#pk-top)"/><path d="M-21 -258H21A5 5 0 0 1 26 -253V-236A5 5 0 0 1 21 -231H-21A5 5 0 0 1 -26 -236V-253A5 5 0 0 1 -21 -258Z" fill="#BFDCEC" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-21 -258H21A5 5 0 0 1 26 -253V-236A5 5 0 0 1 21 -231H-21A5 5 0 0 1 -26 -236V-253A5 5 0 0 1 -21 -258Z" fill="url(#pk-shade)"/><path d="M-26 -248H26" stroke="#000" stroke-opacity=".08"/></svg>
+  </div>
+  <div class="pc-body">
+    <span class="pc-eyebrow" style="color:#2F6689">For feeding gear · 300 ml</span>
+    <h3>Bottle Wash</h3>
+    <span class="pc-deva">बोतल वॉश</span>
+    <p class="pc-line">Soapnut and plant enzymes lift milk residue and rinse clean.</p>
+    <ul class="pc-chips" style="--chip:#E4F0F7"><li>Soapnut (reetha)</li><li>Plant enzymes</li><li>Coconut surfactant</li></ul>
+    <p class="pc-use"><b>How to use.</b> Pump foam onto a brush or sponge. Scrub, then rinse well under running water.</p>
+    
+  </div>
+</article>
+<article class="pcard">
+  <div class="pc-stage" style="background:#E4F0F7">
+    <svg viewBox="-179 -194 358 210" role="img" aria-label="Water Wipes pack render"><ellipse cx="0" cy="2" rx="168" ry="10" fill="url(#pk-ground)"/><path d="M-138 -166L-153 -166L-147 -160L-153 -154L-147 -148L-153 -142L-147 -136L-153 -130L-147 -124L-153 -118L-147 -112L-153 -106L-147 -100L-153 -94L-147 -88L-153 -82L-147 -76L-153 -70L-147 -64L-153 -58L-147 -52L-153 -46L-147 -40L-153 -34L-147 -28L-153 -22L-147 -16L-153 -10L-138 -10Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-138 -166L-153 -166L-147 -160L-153 -154L-147 -148L-153 -142L-147 -136L-153 -130L-147 -124L-153 -118L-147 -112L-153 -106L-147 -100L-153 -94L-147 -88L-153 -82L-147 -76L-153 -70L-147 -64L-153 -58L-147 -52L-153 -46L-147 -40L-153 -34L-147 -28L-153 -22L-147 -16L-153 -10L-138 -10Z" fill="url(#pk-shade)"/><path d="M138 -166L153 -166L147 -160L153 -154L147 -148L153 -142L147 -136L153 -130L147 -124L153 -118L147 -112L153 -106L147 -100L153 -94L147 -88L153 -82L147 -76L153 -70L147 -64L153 -58L147 -52L153 -46L147 -40L153 -34L147 -28L153 -22L147 -16L153 -10L138 -10Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M138 -166L153 -166L147 -160L153 -154L147 -148L153 -142L147 -136L153 -130L147 -124L153 -118L147 -112L153 -106L147 -100L153 -94L147 -88L153 -82L147 -76L153 -70L147 -64L153 -58L147 -52L153 -46L147 -40L153 -34L147 -28L153 -22L147 -16L153 -10L138 -10Z" fill="url(#pk-shade)"/><path d="M-140 -8C-149 -60 -149 -118 -140 -168H140C149 -118 149 -60 140 -8Z" fill="#F8F3EA" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M-140 -8C-149 -60 -149 -118 -140 -168H140C149 -118 149 -60 140 -8Z" fill="url(#pk-shade)"/><path d="M-140 -168H140" stroke="#000" stroke-opacity=".06"/><g transform="translate(-132 -128) scale(0.86)"><use href="#pk-wm" x="5" y="5" width="48" height="15.1" style="color:#1F3A2B"/><circle cx="149" cy="14" r="9.5" fill="#EFA43A"/><circle cx="149" cy="14" r="6.46" fill="#FBF7F0"/><use href="#pk-mk" x="143.3" y="8.3" width="11.4" height="11.4" style="color:#1F3A2B"/><text x="6" y="36" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="4.3" fill="#2F6689" font-weight="700" letter-spacing=".5">HYGIENE · 0+ MONTHS</text><text x="6" y="53" font-family="Fraunces, Georgia, serif" font-size="15" fill="#1F3A2B" font-weight="500" style="font-variation-settings:'SOFT' 100">Water Wipes</text><text x="6" y="65" font-family="'Baloo 2', 'Kohinoor Devanagari', 'Noto Sans Devanagari', sans-serif" font-size="8" fill="#55695C" font-weight="600">वॉटर वाइप्स</text><use href="#pk-ic-drop" x="114" y="27" width="38" height="38" style="color:#2F6689"/><path d="M6 73.5H154" stroke="#1F3A2B" stroke-opacity=".18" stroke-width=".5"/><text x="6" y="83" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="4.3" fill="#1F3A2B" font-weight="700" letter-spacing=".4">99% NATURALLY DERIVED**</text><text x="154" y="84" font-family="Fraunces, Georgia, serif" font-size="9.5" fill="#1F3A2B" font-weight="500" text-anchor="end" style="font-variation-settings:'SOFT' 100">72 wipes</text></g><path d="M44 -142H96A28 28 0 0 1 124 -114V-62A28 28 0 0 1 96 -34H44A28 28 0 0 1 16 -62V-114A28 28 0 0 1 44 -142Z" fill="#BFDCEC" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/><path d="M44 -142H96A28 28 0 0 1 124 -114V-62A28 28 0 0 1 96 -34H44A28 28 0 0 1 16 -62V-114A28 28 0 0 1 44 -142Z" fill="url(#pk-shade)"/><path d="M44 -142H96A28 28 0 0 1 124 -114V-62A28 28 0 0 1 96 -34H44A28 28 0 0 1 16 -62V-114A28 28 0 0 1 44 -142Z" fill="url(#pk-top)"/><path d="M46 -133H94A21 21 0 0 1 115 -112V-64A21 21 0 0 1 94 -43H46A21 21 0 0 1 25 -64V-112A21 21 0 0 1 46 -133Z" fill="none" stroke="#000" stroke-opacity=".08"/><use href="#pk-ch-water-wipes" x="34" y="-124" width="72" height="72"/><rect x="-139" y="-150" width="5" height="120" rx="2.5" fill="url(#pk-spec)" opacity="0.45"/></svg>
+  </div>
+  <div class="pc-body">
+    <span class="pc-eyebrow" style="color:#2F6689">0+ months · 72 wipes</span>
+    <h3>Water Wipes</h3>
+    <span class="pc-deva">वॉटर वाइप्स</span>
+    <p class="pc-line">99% purified water on a plant-fibre cloth. Gentle enough for newborn faces.</p>
+    <ul class="pc-chips" style="--chip:#E4F0F7"><li>99% purified water</li><li>Aloe</li><li>Plant-based fibre</li></ul>
+    <p class="pc-use"><b>How to use.</b> Peel back the lid and pull one wipe. Close the lid firmly to keep the rest moist.</p>
+    <p class="pc-caution">Do not flush.</p>
+  </div>
+</article></div>
+  </div>
+  </div>
+</section>
+
+<section class="band-paper" id="labels">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Labels</span>
+      <h2>The front makes the promise. The back proves it.</h2>
+      <p class="lede">The Daily Lotion labels show the template every product follows. The back label explains every front claim and carries all the details Indian law requires on a cosmetics pack.</p>
+    </div>
+    <div class="label-pair">
+      <div class="front-flat">
+        <svg viewBox="-6 -6 112 162" role="img" aria-label="Daily Lotion front label, flat">
+          <rect x="-4" y="-4" width="108" height="158" rx="8" fill="#F8F3EA"/><use href="#pk-wm" x="3" y="3" width="46" height="14.5" style="color:#1F3A2B"/><circle cx="88" cy="12" r="9" fill="#EFA43A"/><circle cx="88" cy="12" r="6.12" fill="#FBF7F0"/><use href="#pk-mk" x="82.6" y="6.6" width="10.8" height="10.8" style="color:#1F3A2B"/><text x="4" y="34" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="4.2" fill="#B4592C" font-weight="700" letter-spacing=".5">MOISTURISE · 0+ MONTHS</text><text x="4" y="50" font-family="Fraunces, Georgia, serif" font-size="13" fill="#1F3A2B" font-weight="500" style="font-variation-settings:'SOFT' 100">Daily Lotion</text><text x="4" y="62" font-family="'Baloo 2', 'Kohinoor Devanagari', 'Noto Sans Devanagari', sans-serif" font-size="7.4" fill="#55695C" font-weight="600">रोज़ाना लोशन</text><use href="#pk-ch-daily-lotion" x="23" y="74" width="54" height="54"/><path d="M4 132.5H96" stroke="#1F3A2B" stroke-opacity=".18" stroke-width=".5"/><text x="4" y="142" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="3.4" fill="#1F3A2B" font-weight="700" letter-spacing=".3">97% NATURALLY DERIVED**</text><text x="96" y="143" font-family="Fraunces, Georgia, serif" font-size="8" fill="#1F3A2B" font-weight="500" text-anchor="end" style="font-variation-settings:'SOFT' 100">200 ml</text>
+        </svg>
+        <p>Front label, flat · 96 × 144 mm on the 200 ml bottle</p>
+      </div>
+      
+<div class="backlabel" style="--cat:#F6BE9A;--deep:#B4592C">
+  <div class="bl-head">
+    <svg viewBox="0 0 426 134" class="bl-wm" aria-label="nanhe"><use href="#wordmark"/></svg>
+    <span>Daily Lotion · <span class="deva">रोज़ाना लोशन</span></span>
+  </div>
+  <div class="bl-grid">
+    <div class="bl-col">
+      <h4>What's inside, and why</h4>
+      <ul class="bl-why"><li><b>Colloidal oat</b> calms and protects dry, itchy skin</li><li><b>Shea butter</b> locks in moisture</li><li><b>Coconut oil</b> softens and smooths</li></ul>
+      <h4>Ingredients</h4>
+      <p class="bl-inci">Aqua, Avena Sativa (Oat) Kernel Flour, Butyrospermum Parkii (Shea) Butter, Glycerin, Caprylic/Capric Triglyceride, Cetearyl Alcohol, Glyceryl Stearate, Cocos Nucifera (Coconut) Oil, Sodium Stearoyl Glutamate, Xanthan Gum, Tocopherol, Sodium Benzoate, Potassium Sorbate, Citric Acid.</p>
+      <p class="bl-note">Formula shown is indicative until the formulator confirms it.</p>
+    </div>
+    <div class="bl-col">
+      <h4>How to use</h4>
+      <p>Smooth onto clean skin after the bath and whenever skin feels dry.</p>
+      <h4>Caution</h4>
+      <p>For external use only. Avoid contact with eyes. Stop use if irritation occurs. Keep out of reach of children. Store below 30°C, away from direct sunlight.</p>
+      <h4>Our claims, explained</h4>
+      <p class="bl-foot">*Clinically tested under dermatological supervision on [n] infants aged [x–y] months, [lab name], [year]. **97% naturally derived content, calculated per ISO 16128. Free from parabens, SLS/SLES, mineral oil, synthetic fragrance, phthalates and artificial dyes.</p>
+    </div>
+  </div>
+  <dl class="bl-meta"><div><dt>Net quantity</dt><dd>200 ml</dd></div><div><dt>MRP</dt><dd>₹ [—] incl. of all taxes</dd></div><div><dt>Unit sale price</dt><dd>₹ [—] per ml</dd></div><div><dt>Mfg. date</dt><dd>MM/YYYY</dd></div><div><dt>Use before</dt><dd>MM/YYYY</dd></div><div><dt>Batch no.</dt><dd>[—]</dd></div><div><dt>Mfg. licence no.</dt><dd>[State licence no.]</dd></div><div><dt>Country of origin</dt><dd>India</dd></div></dl>
+  <div class="bl-bottom">
+    <div class="bl-who">
+      <p><b>Manufactured by:</b> [Manufacturer name], [full address, PIN].</p>
+      <p><b>Marketed by:</b> [Nanhe legal entity], [full address, PIN].</p>
+      <p><b>Customer care:</b> [phone] · [email] · [address]. Mon–Sat, 10am–6pm.</p>
+    </div>
+    <div class="bl-marks"><svg class="recycle" viewBox="0 0 48 52" role="img" aria-label="Recycling code 5, PP"><path d="M24 5L42 37H6Z" fill="none" stroke="#1F3A2B" stroke-width="2.4" stroke-linejoin="round"/><path d="M30 15l2-5 4 3M38 37l3 4-5 1M10 37l-5 1 2-5" fill="none" stroke="#1F3A2B" stroke-width="2"/><text x="24" y="32" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-weight="700" font-size="13" text-anchor="middle" fill="#1F3A2B">5</text><text x="24" y="50" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-weight="700" font-size="8" text-anchor="middle" fill="#1F3A2B">PP</text></svg><svg class="barcode" viewBox="-4 -4 94 60" role="img" aria-label="Barcode placeholder"><rect x="0" y="0" width="1" height="46" fill="#1F3A2B"/><rect x="2.5" y="0" width="1.5" height="46" fill="#1F3A2B"/><rect x="5.5" y="0" width="1" height="40" fill="#1F3A2B"/><rect x="8.5" y="0" width="1" height="40" fill="#1F3A2B"/><rect x="11" y="0" width="1.5" height="40" fill="#1F3A2B"/><rect x="14.5" y="0" width="1" height="40" fill="#1F3A2B"/><rect x="16.5" y="0" width="1.5" height="40" fill="#1F3A2B"/><rect x="19.5" y="0" width="1" height="40" fill="#1F3A2B"/><rect x="22.5" y="0" width="1" height="40" fill="#1F3A2B"/><rect x="25" y="0" width="2" height="40" fill="#1F3A2B"/><rect x="29" y="0" width="1" height="40" fill="#1F3A2B"/><rect x="32" y="0" width="1.5" height="40" fill="#1F3A2B"/><rect x="34.5" y="0" width="1.5" height="40" fill="#1F3A2B"/><rect x="38" y="0" width="1" height="40" fill="#1F3A2B"/><rect x="40" y="0" width="2" height="46" fill="#1F3A2B"/><rect x="43" y="0" width="2" height="46" fill="#1F3A2B"/><rect x="46" y="0" width="1" height="40" fill="#1F3A2B"/><rect x="48.5" y="0" width="2" height="40" fill="#1F3A2B"/><rect x="52.5" y="0" width="2" height="40" fill="#1F3A2B"/><rect x="55.5" y="0" width="2" height="40" fill="#1F3A2B"/><rect x="59" y="0" width="1" height="40" fill="#1F3A2B"/><rect x="62" y="0" width="1.5" height="40" fill="#1F3A2B"/><rect x="65.5" y="0" width="1" height="40" fill="#1F3A2B"/><rect x="68.5" y="0" width="2" height="40" fill="#1F3A2B"/><rect x="72.5" y="0" width="2" height="40" fill="#1F3A2B"/><rect x="75.5" y="0" width="2" height="40" fill="#1F3A2B"/><rect x="79" y="0" width="1" height="40" fill="#1F3A2B"/><rect x="81.5" y="0" width="1" height="40" fill="#1F3A2B"/><rect x="83.5" y="0" width="1" height="46" fill="#1F3A2B"/><text x="43" y="54" font-family="Figtree, 'Avenir Next', 'Segoe UI', sans-serif" font-size="7" text-anchor="middle" fill="#1F3A2B">890 · placeholder</text></svg></div>
+  </div>
+</div>
+    </div>
+    <div class="mandatory">
+      <div><b>Legal Metrology</b>Net quantity, MRP including all taxes, unit sale price, month and year of manufacture, and the manufacturer or marketer's name, address and customer care details.</div>
+      <div><b>Cosmetics Rules, 2020</b>Manufacturing licence number, batch number, use-before date, full ingredient list, directions and warnings.</div>
+      <div><b>Placeholders</b>Everything in [brackets] is filled in from the real licence, lab reports and pricing before print. A regulatory consultant signs off the final artwork.</div>
+    </div>
+  </div>
+</section>
+<!-- END:packaging -->
+
+<!-- ============ PHOTOGRAPHY ============ -->
+<style>
+.ph-hero{margin:0;border-radius:var(--r);overflow:hidden;position:relative}
+.ph-hero{aspect-ratio:3/2;max-width:100%}
+.ph-hero img,.ph-grid img,.ph-products img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
+.ph-cap{position:absolute;left:14px;bottom:12px;background:rgba(251,247,240,.88);backdrop-filter:blur(6px);border-radius:999px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--moss)}
+.ph-grid{display:grid;grid-template-columns:1.5fr 1fr;grid-template-rows:auto auto;gap:16px;margin-top:16px}
+.ph-grid figure,.ph-products figure{margin:0;border-radius:var(--r);overflow:hidden;position:relative;min-width:0}
+.ph-grid .tall{grid-row:span 2}
+.ph-grid .wide{aspect-ratio:3/2}
+.ph-grid .sq{aspect-ratio:1/1}
+.ph-products{display:grid;grid-template-columns:1fr 1fr 1.5fr;gap:16px;margin-top:16px;align-items:stretch}
+.ph-products figure{aspect-ratio:2/3}
+.ph-products figure.land{aspect-ratio:auto}
+.ph-rules{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}
+.ph-rules div{border-top:2px solid var(--moss);padding-top:12px;font-size:.95rem;color:var(--moss-2)}
+.ph-rules b{display:block;color:var(--moss);margin-bottom:4px}
+.ph-note{margin-top:20px;padding:16px 20px;border-radius:16px;background:var(--marigold-wash);font-size:.92rem;color:var(--moss)}
+@media (max-width:900px){.ph-grid{grid-template-columns:1fr}.ph-grid .tall{grid-row:auto;aspect-ratio:2/3}.ph-products{grid-template-columns:1fr 1fr}.ph-products figure.land{grid-column:1/-1;aspect-ratio:3/2}.ph-rules{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.ph-products{grid-template-columns:1fr}.ph-rules{grid-template-columns:1fr}}
+</style>
+<section id="photography">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Photography</span>
+      <h2>Soft daylight, real Indian homes, no baby faces</h2>
+      <p class="lede">Nanhe photography looks like a calm morning: window light, cotton, brass and real ingredients. We show hands, backs and tiny feet, never a baby's face. That keeps the focus on care, and protects the children we photograph.</p>
+    </div>
+    <figure class="ph-hero"><img src="renders/ai-01-hero-range.jpg" alt="The Nanhe range on a milk-white surface in front of apricot, sage and sky arches" width="1536" height="1024"><figcaption class="ph-cap">Hero · the full range · AI concept</figcaption></figure>
+    <div class="ph-grid">
+      <figure class="wide"><img src="renders/ai-02-maalish.jpg" alt="Hands massaging a baby's back with oil, a bottle of golden oil beside them" loading="lazy"><figcaption class="ph-cap">Maalish · Massage Oil · AI concept</figcaption></figure>
+      <figure class="tall"><img src="renders/ai-04-bath-shelf.jpg" alt="Lotion and powder on a bathroom shelf with a towel, a rubber duck and a baby's foot" loading="lazy"><figcaption class="ph-cap">Bath-time · AI concept</figcaption></figure>
+      <figure class="wide"><img src="renders/ai-05-ingredients.jpg" alt="Coconut, oats, calendula, neem, almonds, shea butter and ghee on a pale surface" loading="lazy"><figcaption class="ph-cap">Ingredients · AI concept</figcaption></figure>
+    </div>
+    <div class="ph-products">
+      <figure><img src="renders/ai-06-lotion-labelled.jpg" alt="Daily Lotion pump bottle with the Nanhe label and Haathi the elephant, on apricot" loading="lazy"><figcaption class="ph-cap">Daily Lotion · real label on AI photo</figcaption></figure>
+      <figure><img src="renders/ai-07-rash-cream-labelled.jpg" alt="Diaper Rash Cream tube with the Nanhe label and Kachhu the tortoise, between calendula flowers" loading="lazy"><figcaption class="ph-cap">Diaper Rash Cream · real label</figcaption></figure>
+      <figure class="land"><img src="renders/ai-03-changing-kit.jpg" alt="Flat lay of a changing kit: tube, tin, wipes, muslin and a baby sock on sage linen" loading="lazy"><figcaption class="ph-cap">Changing kit · AI concept</figcaption></figure>
+    </div>
+    <figure class="ph-hero" style="margin-top:16px"><img src="renders/ai-08-wipes-labelled.jpg" alt="Water Wipes pack from above with the Nanhe label and Susu the dolphin on the lid" loading="lazy" width="1536" height="1024"><figcaption class="ph-cap">Water Wipes · real label and Susu on AI photo</figcaption></figure>
+    <div class="ph-rules">
+      <div><b>Light</b>Soft morning daylight from one side, with long gentle shadows. No flash and no hard studio glare.</div>
+      <div><b>Sets</b>Milk-white surfaces against the three category pastels. Cotton, muslin, brass and wood, the materials of an Indian home.</div>
+      <div><b>People</b>Hands, backs and feet only. Show grandparents and fathers as often as mothers.</div>
+      <div><b>Ingredients</b>Real and fresh, shown as food: a halved coconut, oat stalks, calendula from the garden.</div>
+    </div>
+    <p class="ph-note"><b>About these images.</b> Every photo here is an AI-generated concept made in Figma. On the three product shots, the label and character are the real vector artwork laid on top of the photo. The lifestyle shots use blank packs. Before launch, commission a real shoot with real packs, following these rules.</p>
+  </div>
+</section>
+
+<!-- ============ VOICE ============ -->
+<section class="band-moss" id="voice">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Voice</span>
+      <h2>Like a calm paediatric nurse, not a cheerleader</h2>
+      <p class="lede">Warm, plain and specific. We talk to parents as capable adults who are short on sleep.</p>
+    </div>
+    <div class="voice">
+      <div class="vrow"><div class="say"><small>Say</small>Oat and shea butter, for skin that stays soft till bedtime.</div><div class="not"><small>Not</small>A miracle formula for flawless, glowing baby skin!</div></div>
+      <div class="vrow"><div class="say"><small>Say</small>Tested on infant skin under a dermatologist. Here's the study.</div><div class="not"><small>Not</small>100% safe. Trusted by millions of mums.</div></div>
+      <div class="vrow"><div class="say"><small>Say</small>97% naturally derived. Here's what the other 3% does.</div><div class="not"><small>Not</small>Totally chemical-free and toxin-free.</div></div>
+      <div class="vrow"><div class="say"><small>Say</small>For parents, grandparents and anyone on night duty.</div><div class="not"><small>Not</small>For every super-mom out there.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Nanhe brand book · Edition 4: foundations, packaging, Little friends and photography. All photos are AI concepts.</span>
+    <span>Claim figures are placeholders until lab reports are in.</span>
+  </div>
+</footer>

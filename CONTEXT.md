@@ -12,8 +12,30 @@ Co., or slightly above.
 **Done.**
 - Name chosen: Nanhe (over Kopal, Mridu, Sprig).
 - Project skeleton created and pushed.
+- Brand foundations (PR on `brand-foundations-2026-11-17`): wordmark and mark
+  SVGs in `assets/logo/`, brand book edition 1 in `brand-book/index.html`
+  (published privately at https://claude.ai/artifact/SUywwYqP1KskvkSx4AqhVo),
+  decisions in `docs/design/brand-foundations.md`. Approved by founder.
+- Packaging (same branch / PR 1): `docs/product/products.json` is the single
+  source for the line; `scripts/build_packaging.py` renders
+  `assets/packaging/*.svg` (9 packs + `lineup.svg`),
+  `docs/product/product-line.md`, and the generated block between
+  `<!-- BEGIN:packaging -->` / `<!-- END:packaging -->` in the brand book
+  (line-up, product pages, front + back label). Brand book is now edition 2.
+  To change a product, edit the JSON and re-run the script; never hand-edit
+  the generated block.
+- Little friends (direction A) is the approved look: nine baby animal
+  characters on labels, wipes lid and line-up arches. `STYLE` in the script
+  defaults to it. Brand book is edition 3. Exploration page kept at
+  `docs/design/explorations/baby-directions.html`.
+- Photography: 8 AI concept renders in `assets/renders/` (Figma file
+  https://www.figma.com/design/tLnDO6jOWOoKlgg7wpCIbg). Three product shots
+  have the real label composited by `scripts/composite_renders.py`. Prompts
+  in `docs/design/render-prompts.md`. Brand book is edition 4 with a
+  photography section; `brand-book/renders` is a symlink to
+  `../assets/renders` so the page works locally and when published.
 
-**Agreed direction (not yet built).**
+**Agreed direction.**
 - Look: modern botanical. Soft matte packs tinted by hero ingredient; rounded
   lowercase wordmark with a leaf-shaped letterform; Devanagari secondary
   lockup; fine-line ingredient illustrations; verification-seal style
@@ -62,3 +84,79 @@ brand book plus AI photo renders. Layout adapts the standard one: no
 `brand-book/` in place of `src/`. Claims like "clinically tested" carry
 placeholders until real lab data exists.
 **Next:** Build brand foundations on a dated branch and show for feedback.
+
+### 2026-11-17 18:40 IST — Claude Code (Opus 5.5) · Shivank’s MacBook Air
+**Changed:** Added `assets/logo/nanhe-wordmark.svg`, `assets/logo/nanhe-mark.svg`,
+`brand-book/index.html` (edition 1: cover, story, logo, colour, type, label
+anatomy, claims and icons, voice) and `docs/design/brand-foundations.md`.
+Published the brand book as a private artifact.
+**Decided:** Monoline rounded wordmark with a leaf sprouting from the h. Mark
+is a seedling n with the leaf on the arch crown (the first try, with the leaf
+on the stem, read as "h"). Tagline "Made gentle. Tested gentle." Brand book is
+light-theme only because it shows print colours. Claim figures (97%, study
+details) are placeholders. Devanagari lockup is live type for now and needs
+outlining before print.
+**Next:** Founder feedback on foundations, then packaging line-up (9 SVG
+renders + front/back labels) on this same branch if the PR is still open.
+
+### 2026-11-17 19:10 IST — Claude Code (Opus 5.5) · Shivank’s MacBook Air
+**Changed:** Added `docs/product/products.json`, `scripts/build_packaging.py`,
+`assets/packaging/` (9 pack SVGs + `lineup.svg`), `docs/product/product-line.md`,
+and the generated packaging block in `brand-book/index.html` (line-up, product
+pages, flat front label, full back label for Daily Lotion). Republished the
+brand book as edition 2.
+**Decided:** Packs are generated from one JSON file so names, sizes and claims
+stay consistent across renders, brand book and docs. Pack formats: 200 ml
+pump (lotion), clear 100 ml bottle showing the oil, 100 g jar, 50 g
+stand-on-cap tubes (rash cream, sunscreen), 25 g tin (balm), sifter shaker
+(powder), 300 ml foam pump (bottle wash), 72-wipe soft pack with rigid lid.
+Footnotes: `*` = clinical testing, `**` = % naturally derived (ISO 16128).
+Sunscreen is labelled 6+ months, and massage oil carries a nut-allergy warning.
+Formulas (INCI) are indicative only. Back label covers Legal Metrology and
+Cosmetics Rules 2020 fields as placeholders. Only Daily Lotion has a full
+back label; the others follow the same template.
+**Next:** Founder review of packaging, then AI photo renders (step 3).
+
+### 2026-11-17 20:05 IST — Claude Code (Opus 5.5) · Shivank’s MacBook Air
+**Changed:** Founder asked for more "baby-like" visuals and wanted to compare
+animal characters against nursery motifs. Added style switches to
+`scripts/build_packaging.py` (`STYLE["chars"]`, `STYLE["motif"]`, both off by
+default so the approved edition-2 output is unchanged), nine character
+drawings, three category pattern tiles, rainbow-arch line-up decorations, and
+a generated comparison page `docs/design/explorations/baby-directions.html`
+(published at https://claude.ai/artifact/LE7WAksDssKTU9pTRA5YNe).
+**Decided:** Scope is packs and page graphics only; logo, colour and type
+stay. Characters: Haathi (elephant calf, Daily Lotion), Gilu (palm squirrel,
+Massage Oil), Bhalu (bear cub, Rich Cream), Kachhu (tortoise, Diaper Rash
+Cream), Kaantu (hedgehog, Balm), Moru (peacock chick, Sunscreen), Khargu
+(hare, Powder), Batku (duckling, Bottle Wash), Susu (Ganges river dolphin,
+Wipes). Recommended direction A; B is pleasant but generic in the category.
+Character drawings are concept art and need an illustrator before print.
+**Next:** Founder picks A, B or a middle path; then flip the switch for the
+brand book and standalone pack files, then AI photo renders.
+
+### 2026-11-17 20:20 IST — Claude Code (Opus 5.5) · Shivank’s MacBook Air
+**Changed:** Made direction A the default (`STYLE["chars"] = True`), regenerated
+pack SVGs, line-up and brand book. Added a "Little friends" section to the
+brand book (character sheet and drawing rules) and recorded the characters in
+`docs/design/brand-foundations.md`. Brand book is now edition 3.
+**Decided:** Founder chose A, Little friends. Direction B (nursery motifs)
+stays available in the script but is unused.
+**Next:** AI photo renders (step 3), then final brand book assembly and
+mockups.
+
+### 2026-11-17 20:55 IST — Claude Code (Opus 5.5) · Shivank’s MacBook Air
+**Changed:** Generated 8 AI renders in a new Figma file "Nanhe — Photo
+Renders" (founder approved the Figma AI credit spend), saved as JPEG in
+`assets/renders/`. Added `scripts/composite_renders.py`, which overlays the
+real labels on the lotion, rash cream and wipes shots. Added a photography
+section to the brand book (edition 4), `docs/design/render-prompts.md`, and a
+`brand-book/renders` symlink. Wipes label now keeps the water-drop drawing
+because Susu is on the lid.
+**Decided:** Packs were generated with blank labels and the real labels
+composited on top, because AI garbles text. No baby faces in any photography,
+only hands, backs and feet. All photos are labelled as AI concepts, and a
+real shoot is needed before launch.
+**Next:** Founder review of edition 4. Open items: illustrator to redraw the
+characters, outline the Devanagari lockup, real lab data for the claims,
+trademark check for "Nanhe", real photo shoot, and merging PR 1.
