@@ -24,6 +24,10 @@ Co., or slightly above.
   (line-up, product pages, front + back label). Brand book is now edition 2.
   To change a product, edit the JSON and re-run the script; never hand-edit
   the generated block.
+- Little friends (direction A) is the approved look: nine baby animal
+  characters on labels, wipes lid and line-up arches. `STYLE` in the script
+  defaults to it. Brand book is edition 3. Exploration page kept at
+  `docs/design/explorations/baby-directions.html`.
 
 **Agreed direction.**
 - Look: modern botanical. Soft matte packs tinted by hero ingredient; rounded
@@ -124,3 +128,13 @@ Wipes). Recommended direction A; B is pleasant but generic in the category.
 Character drawings are concept art and need an illustrator before print.
 **Next:** Founder picks A, B or a middle path; then flip the switch for the
 brand book and standalone pack files, then AI photo renders.
+
+### 2026-11-17 20:20 IST — Claude Code (Opus 5.5) · Shivank’s MacBook Air
+**Changed:** Made direction A the default (`STYLE["chars"] = True`), regenerated
+pack SVGs, line-up and brand book. Added a "Little friends" section to the
+brand book (character sheet and drawing rules) and recorded the characters in
+`docs/design/brand-foundations.md`. Brand book is now edition 3.
+**Decided:** Founder chose A, Little friends. Direction B (nursery motifs)
+stays available in the script but is unused.
+**Next:** AI photo renders (step 3), then final brand book assembly and
+mockups.

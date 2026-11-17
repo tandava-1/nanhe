@@ -70,3 +70,32 @@ grandparents and anyone on night duty"), not only mothers.
 
 "Made gentle. Tested gentle." This puts the two brand promises, natural
 formulation and clinical testing, side by side.
+
+## Little friends (direction A, chosen 2026-11-17)
+
+Each product has a baby Indian animal, and each animal has a reason for being
+on that product. The full comparison with the nursery-motif direction is in
+`docs/design/explorations/baby-directions.html`.
+
+| Product | Character | Animal | Why |
+|---|---|---|---|
+| Daily Lotion | Haathi | Elephant calf | Gentle giant with famously soft skin |
+| Massage Oil | Gilu | Palm squirrel | Lives in the coconut trees the oil comes from |
+| Rich Cream | Bhalu | Himalayan bear cub | Cold, dry winter cheeks |
+| Diaper Rash Cream | Kachhu | Tortoise | Its shell is a barrier, like the cream |
+| All-Purpose Balm | Kaantu | Indian hedgehog | Small, tough, handy |
+| Mineral Sunscreen | Moru | Peacock chick | Loves the sun |
+| Talc-Free Powder | Khargu | Hare | Powder-puff tail |
+| Bottle Wash | Batku | Duckling | Water and bubbles |
+| Water Wipes | Susu | Ganges river dolphin | Local name along the Ganga; pure water |
+
+- **Drawing rules:** head and shoulders, facing forward (Susu swims side-on).
+  Moss outline at a constant weight, filled with the category colour and wash.
+  Dot eyes with a white glint, blush on the cheeks.
+- **Where they appear:** front labels (in place of the ingredient drawing),
+  the wipes lid, the tops of the line-up arches, gift boxes, social media and
+  the website.
+- **What they never do:** speak, hold products, sit inside the clinical seal,
+  replace the wordmark, or appear in claims or safety text.
+- **Status:** concept art drawn in `scripts/build_packaging.py`. An
+  illustrator redraws the set before print.
