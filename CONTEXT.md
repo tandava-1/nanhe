@@ -106,3 +106,21 @@ Formulas (INCI) are indicative only. Back label covers Legal Metrology and
 Cosmetics Rules 2020 fields as placeholders. Only Daily Lotion has a full
 back label; the others follow the same template.
 **Next:** Founder review of packaging, then AI photo renders (step 3).
+
+### 2026-11-17 20:05 IST — Claude Code (Opus 5.5) · Shivank’s MacBook Air
+**Changed:** Founder asked for more "baby-like" visuals and wanted to compare
+animal characters against nursery motifs. Added style switches to
+`scripts/build_packaging.py` (`STYLE["chars"]`, `STYLE["motif"]`, both off by
+default so the approved edition-2 output is unchanged), nine character
+drawings, three category pattern tiles, rainbow-arch line-up decorations, and
+a generated comparison page `docs/design/explorations/baby-directions.html`
+(published at https://claude.ai/artifact/LE7WAksDssKTU9pTRA5YNe).
+**Decided:** Scope is packs and page graphics only; logo, colour and type
+stay. Characters: Haathi (elephant calf, Daily Lotion), Gilu (palm squirrel,
+Massage Oil), Bhalu (bear cub, Rich Cream), Kachhu (tortoise, Diaper Rash
+Cream), Kaantu (hedgehog, Balm), Moru (peacock chick, Sunscreen), Khargu
+(hare, Powder), Batku (duckling, Bottle Wash), Susu (Ganges river dolphin,
+Wipes). Recommended direction A; B is pleasant but generic in the category.
+Character drawings are concept art and need an illustrator before print.
+**Next:** Founder picks A, B or a middle path; then flip the switch for the
+brand book and standalone pack files, then AI photo renders.
