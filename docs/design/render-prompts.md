@@ -38,3 +38,13 @@ photo is regenerated, re-measure the placement.
 
 These are concepts. Commission a real shoot with production packs, following
 the photography rules in the brand book.
+
+## Added 2026-11-17 (range extension)
+
+| File | Figma node | Prompt summary |
+|---|---|---|
+| `ai-09-diapers-plain.jpg` | 3:2 | Two blank pillow-shaped diaper bags with handle cut-outs, straight-on, lavender backdrop, muslin and a knitted bootie |
+| `ai-10-bath-shampoo.jpg` | 3:3 | An adult pours water from a brass lota over a baby's foamy hair, seen from behind, with blank butter-cap shampoo and wash bottles on the tub edge |
+
+`ai-09-diapers-labelled.jpg` has the real bag artwork (Gendu NB, Pandu M) composited
+by `scripts/composite_renders.py`.
