@@ -46,5 +46,5 @@ the photography rules in the brand book.
 | `ai-09-diapers-plain.jpg` | 3:2 | Two blank pillow-shaped diaper bags with handle cut-outs, straight-on, lavender backdrop, muslin and a knitted bootie |
 | `ai-10-bath-shampoo.jpg` | 3:3 | An adult pours water from a brass lota over a baby's foamy hair, seen from behind, with blank butter-cap shampoo and wash bottles on the tub edge |
 
-`ai-09-diapers-labelled.jpg` has the real bag artwork (Gendu NB, Pandu M) composited
+`ai-09-diapers-labelled.jpg` has the real bag artwork (Chitku NB, Pandu M) composited
 by `scripts/composite_renders.py`.

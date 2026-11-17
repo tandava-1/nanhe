@@ -40,7 +40,7 @@ Co., or slightly above.
   fluoride), finger toothbrush, grooming kit; Diapering (lavender #CFC3E8) —
   taped diapers NB, diaper pants M, hand & face wipes, Water Wipes (moved from
   Hygiene), value 3-pack. Eight new characters (Udu, Sheru, Mendu, Magru,
-  Mainu, Gendu, Pandu, Nevu). New pack shapes, diaper prints, a two-row
+  Mainu, Chitku, Pandu, Nevu). New pack shapes, diaper prints, a two-row
   line-up, and two more AI renders (diapers composited, bath lifestyle).
   Brand book is edition 5.
 
@@ -186,3 +186,12 @@ guidance (founder agreed). All wipes sit under Diapering. Very wide line-up
 groups get a rounded-top panel instead of a semicircle.
 **Next:** Founder review of edition 5. Merge PR 1, then this PR. Same open
 items as before, plus diaper and toothpaste formulation partners.
+
+### 2026-11-17 22:40 IST — Claude Code (Opus 5.5) · Shivank’s MacBook Air
+**Changed:** Replaced Gendu (rhino calf) on the Newborn taped diapers with
+Chitku, a chital fawn, in `scripts/build_packaging.py`. Regenerated the packs,
+the diaper print, the line-up, the brand book and the composited diaper
+photo. Removed the unused rhino drawing.
+**Decided:** Founder asked to change the newborn animal and chose the chital
+fawn. Its white spots carry into the all-over diaper print.
+**Next:** Founder review; merge PR 1, then PR 2.

@@ -311,15 +311,19 @@ def ch_myna(B, W):
             + f'<path d="M26.6 35.6H33.4L30 41Z" fill="{MARIGOLD}"/>' + _blush(37, 11))
 
 
-def ch_rhino(B, W):
-    return (f'<ellipse cx="17" cy="21" rx="3.4" ry="4.4" transform="rotate(-30 17 21)" fill="{B}"/>'
-            f'<ellipse cx="43" cy="21" rx="3.4" ry="4.4" transform="rotate(30 43 21)" fill="{B}"/>'
-            f'<path d="M14 30C14 22 21 18 30 18C39 18 46 22 46 30C46 35 44 38 42 40H18C16 38 14 35 14 30Z" fill="{B}"/>'
-            f'<ellipse cx="30" cy="43" rx="13" ry="9" fill="{B}"/>'
-            f'<path d="M26 37C26.5 31 28.5 26.5 32.5 23.5C32 28.5 33.5 33 35 37Z" fill="{W}"/>'
-            '<path d="M18.5 31q2 1.6 4 1M41.5 31q-2 1.6 -4 1" fill="none" stroke-opacity=".45"/>'
-            f'<ellipse cx="25.5" cy="45" rx="1.2" ry=".9" fill="{MOSS}" stroke="none"/><ellipse cx="34.5" cy="45" rx="1.2" ry=".9" fill="{MOSS}" stroke="none"/>'
-            + _smile(48.5, w=2) + _eyes(29.5, 9, r=1.8) + _blush(36.5, 12.5))
+
+
+def ch_fawn(B, W):
+    spots = "".join(f'<circle cx="{x}" cy="{y}" r="{r}" fill="{W}" stroke="none"/>'
+                    for x, y, r in ((24.5, 20.5, 1.4), (35.5, 20.5, 1.4), (30, 18.5, 1.1), (21.5, 26, 1.2), (38.5, 26, 1.2)))
+    return (f'<ellipse cx="13.5" cy="24" rx="8.5" ry="4.6" transform="rotate(-22 13.5 24)" fill="{B}"/>'
+            f'<ellipse cx="46.5" cy="24" rx="8.5" ry="4.6" transform="rotate(22 46.5 24)" fill="{B}"/>'
+            f'<ellipse cx="14" cy="24" rx="5" ry="2.2" transform="rotate(-22 14 24)" fill="{W}" stroke="none"/>'
+            f'<ellipse cx="46" cy="24" rx="5" ry="2.2" transform="rotate(22 46 24)" fill="{W}" stroke="none"/>'
+            f'<path d="M17 28C17 19 23 15 30 15C37 15 43 19 43 28C43 37 37 46 30 51C23 46 17 37 17 28Z" fill="{B}"/>'
+            + spots + f'<ellipse cx="30" cy="44.5" rx="6.2" ry="5" fill="{W}"/>'
+            f'<ellipse cx="30" cy="42.6" rx="2.4" ry="1.7" fill="{MOSS}" stroke="none"/>' + _smile(46.4, w=1.6)
+            + _eyes(31, 5.6, r=2.1) + _blush(36.5, 9))
 
 
 def ch_redpanda(B, W):
@@ -356,7 +360,7 @@ CHARACTERS = {  # slug: (name, animal, why it's on this product, drawing)
     "first-toothpaste": ("Magru", "Mugger crocodile cub", "Very proud of two new teeth", ch_croc),
     "finger-toothbrush": ("Magru", "Mugger crocodile cub", "Very proud of two new teeth", ch_croc),
     "grooming-kit": ("Mainu", "Common myna", "Never seen with a feather out of place", ch_myna),
-    "taped-diapers-nb": ("Gendu", "One-horned rhino calf", "The newborn size. Sturdy, and loves a long nap", ch_rhino),
+    "taped-diapers-nb": ("Chitku", "Chital fawn", "The newborn size. Wobbly on new legs, and covered in soft spots", ch_fawn),
     "diaper-pants-m": ("Pandu", "Red panda", "The medium size. Always climbing something", ch_redpanda),
     "hand-face-wipes": ("Nevu", "Mongoose", "Quick, curious, and tidies up after every meal", ch_mongoose),
     "water-wipes-value": ("Susu", "Ganges river dolphin", "Called susu along the Ganga, a creature of pure water", ch_dolphin),
@@ -1178,7 +1182,7 @@ def fragment():
     <div class="sec-head">
       <span class="eyebrow">Diaper prints</span>
       <h2>Every size has its own animal</h2>
-      <p class="lede">The character is printed across the diaper itself, and the size is printed on the waistband. A parent grabbing a diaper in the dark can tell Gendu's newborn size from Pandu's medium by the print alone. As sizes are added, each one gets a new animal.</p>
+      <p class="lede">The character is printed across the diaper itself, and the size is printed on the waistband. A parent grabbing a diaper in the dark can tell Chitku's newborn size from Pandu's medium by the print alone. As sizes are added, each one gets a new animal.</p>
     </div>
     <div class="dgrid">{prints}</div>
     <p class="fnote">The yellow stripe is the wetness indicator, which turns blue when wet. Prints use water-based, skin-safe inks on the outer back sheet only.</p>
