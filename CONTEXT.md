@@ -12,8 +12,12 @@ Co., or slightly above.
 **Done.**
 - Name chosen: Nanhe (over Kopal, Mridu, Sprig).
 - Project skeleton created and pushed.
+- Brand foundations (PR on `brand-foundations-2026-11-17`): wordmark and mark
+  SVGs in `assets/logo/`, brand book edition 1 in `brand-book/index.html`
+  (published privately at https://claude.ai/artifact/SUywwYqP1KskvkSx4AqhVo),
+  decisions in `docs/design/brand-foundations.md`. Awaiting founder feedback.
 
-**Agreed direction (not yet built).**
+**Agreed direction.**
 - Look: modern botanical. Soft matte packs tinted by hero ingredient; rounded
   lowercase wordmark with a leaf-shaped letterform; Devanagari secondary
   lockup; fine-line ingredient illustrations; verification-seal style
@@ -62,3 +66,17 @@ brand book plus AI photo renders. Layout adapts the standard one: no
 `brand-book/` in place of `src/`. Claims like "clinically tested" carry
 placeholders until real lab data exists.
 **Next:** Build brand foundations on a dated branch and show for feedback.
+
+### 2026-11-17 18:40 IST — Claude Code (Opus 5.5) · Shivank’s MacBook Air
+**Changed:** Added `assets/logo/nanhe-wordmark.svg`, `assets/logo/nanhe-mark.svg`,
+`brand-book/index.html` (edition 1: cover, story, logo, colour, type, label
+anatomy, claims and icons, voice) and `docs/design/brand-foundations.md`.
+Published the brand book as a private artifact.
+**Decided:** Monoline rounded wordmark with a leaf sprouting from the h. Mark
+is a seedling n with the leaf on the arch crown (the first try, with the leaf
+on the stem, read as "h"). Tagline "Made gentle. Tested gentle." Brand book is
+light-theme only because it shows print colours. Claim figures (97%, study
+details) are placeholders. Devanagari lockup is live type for now and needs
+outlining before print.
+**Next:** Founder feedback on foundations, then packaging line-up (9 SVG
+renders + front/back labels) on this same branch if the PR is still open.

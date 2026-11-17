@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-6 -20 426 134" width="852" height="268" role="img" aria-label="nanhe">
+  <title>Nanhe wordmark</title>
+  <!-- Monoline rounded wordmark. Stroke 14 on a 60-unit x-height. The leaf sprouting from the h is the brand's signature. -->
+  <g fill="none" stroke="#1F3A2B" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7 40V100M7 68a28 28 0 0 1 56 0V100"/>
+    <circle cx="121" cy="70" r="30"/>
+    <path d="M151 40V100"/>
+    <path d="M181 40V100M181 68a28 28 0 0 1 56 0V100"/>
+    <path d="M267 14V100M267 68a28 28 0 0 1 56 0V100"/>
+    <path d="M351 70H411A30 30 0 1 0 402.2 91.2"/>
+  </g>
+  <path d="M267 12Q295 16 297 -14Q269 -16 267 12Z" fill="#5E8E4E"/>
+</svg>

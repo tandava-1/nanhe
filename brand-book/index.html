@@ -1,0 +1,502 @@
+<title>Nanhe Brand Book</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Figtree:wght@400;500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..700,0..100,0..1&display=swap">
+<style>
+/* Layout: a packaging spec sheet. Wide pastel bands per section, specimen tiles inside,
+   generous milk-white ground the way the bottles themselves are milk-white.
+   Single light theme by choice: this page shows printed brand colours, which must not invert. */
+:root{
+  color-scheme: light;
+  --milk:#FBF7F0;      /* page + pack body */
+  --paper:#F2ECE1;     /* secondary surface */
+  --moss:#1F3A2B;      /* ink */
+  --moss-2:#55695C;    /* secondary text */
+  --line:rgba(31,58,43,.14);
+  --leaf:#5E8E4E;      /* logo leaf */
+  --leaf-lt:#BFD6B0;
+  --apricot:#F6BE9A; --apricot-dp:#B4592C; --apricot-wash:#FCE9DC;
+  --sage:#BFD6B0;    --sage-dp:#43703C;    --sage-wash:#E7F0E0;
+  --sky:#BFDCEC;     --sky-dp:#2F6689;     --sky-wash:#E4F0F7;
+  --marigold:#EFA43A; --marigold-wash:#FCEBCF;
+  --alert:#B3412E;
+
+  --f-display:"Fraunces", "Iowan Old Style", Georgia, serif;
+  --f-body:"Figtree", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-deva:"Baloo 2", "Kohinoor Devanagari", "Noto Sans Devanagari", sans-serif;
+
+  --s-1:.8125rem; --s0:1rem; --s1:1.25rem; --s2:1.625rem; --s3:2.25rem; --s4:3.25rem; --s5:clamp(3.5rem, 9vw, 6.5rem);
+  --r:22px;
+  --wrap:1140px;
+}
+*{box-sizing:border-box}
+body{background:var(--milk);color:var(--moss);font-family:var(--f-body);font-size:var(--s0);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+h1,h2,h3{font-family:var(--f-display);font-variation-settings:"SOFT" 100, "WONK" 0;font-weight:500;line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:var(--s4)}
+h3{font-size:var(--s2)}
+p{margin:0}
+.eyebrow{font-size:var(--s-1);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--moss-2)}
+.lede{font-size:var(--s1);color:var(--moss-2);max-width:60ch}
+.deva{font-family:var(--f-deva)}
+section{padding-block:clamp(56px, 9vw, 112px)}
+.sec-head{display:grid;gap:14px;margin-bottom:44px;max-width:760px}
+.band-paper{background:var(--paper)}
+.band-moss{background:var(--moss);color:var(--milk)}
+.band-moss .eyebrow,.band-moss .lede{color:#C9D6CC}
+svg{display:block}
+.wm{color:var(--moss);--leafc:var(--leaf)}
+
+/* ---------- cover ---------- */
+.cover{position:relative;overflow:hidden;padding-block:clamp(48px,8vw,96px) clamp(56px,9vw,104px)}
+.blobs{position:absolute;inset:0;pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.75}
+.b1{width:44vw;height:44vw;max-width:560px;max-height:560px;background:var(--apricot);right:-8%;top:-18%}
+.b2{width:34vw;height:34vw;max-width:440px;max-height:440px;background:var(--sage);right:22%;bottom:-30%}
+.b3{width:30vw;height:30vw;max-width:380px;max-height:380px;background:var(--sky);right:-6%;bottom:-12%}
+.cover .wrap{position:relative;display:grid;gap:28px}
+.cover-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.edition{font-size:var(--s-1);color:var(--moss-2);font-variant-numeric:tabular-nums}
+.cover-mark{width:min(640px, 100%);margin-top:clamp(24px,6vw,64px)}
+.cover-deva{font-family:var(--f-deva);font-weight:600;font-size:clamp(1.75rem,4vw,2.75rem);line-height:1;color:var(--moss)}
+.cover-deva small{font-family:var(--f-body);font-weight:500;font-size:var(--s0);color:var(--moss-2);margin-left:12px}
+.tagline{font-family:var(--f-display);font-variation-settings:"SOFT" 100, "WONK" 1;font-size:clamp(1.75rem,4.2vw,3rem);line-height:1.1;font-weight:400;max-width:18ch;margin-top:12px}
+.tagline em{font-style:italic;color:var(--leaf)}
+.cover-foot{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(251,247,240,.75);border:1px solid var(--line);font-size:var(--s-1);font-weight:600;backdrop-filter:blur(6px)}
+.dot{width:10px;height:10px;border-radius:50%}
+
+@media (prefers-reduced-motion:no-preference){
+  .grow{transform-box:fill-box;transform-origin:0% 100%;animation:grow 1.4s cubic-bezier(.2,.9,.2,1.2) .25s both}
+  @keyframes grow{from{transform:scale(.15) rotate(-25deg)}to{transform:none}}
+}
+
+/* ---------- story ---------- */
+.story{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,6vw,80px);align-items:start}
+.story-body{display:grid;gap:18px;font-size:var(--s1);line-height:1.6}
+.story-body p:first-child{font-family:var(--f-display);font-variation-settings:"SOFT" 100;font-size:var(--s2);line-height:1.3}
+.pillars{display:grid;gap:14px}
+.pillar{display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:start;padding:20px;border-radius:var(--r);background:var(--milk)}
+.pillar .ic{width:52px;height:52px;border-radius:16px;display:grid;place-items:center}
+.pillar h3{font-size:var(--s1);margin-bottom:4px}
+.pillar p{color:var(--moss-2);font-size:.95rem}
+
+/* ---------- logo ---------- */
+.logo-hero{display:grid;place-items:center;background:var(--milk);border:1px solid var(--line);border-radius:var(--r);padding:clamp(40px,8vw,96px) 24px}
+.clear{position:relative;padding:clamp(18px,4vw,40px);outline:1.5px dashed rgba(180,89,44,.55);outline-offset:0;width:min(520px,100%)}
+.clear-note{position:absolute;top:-12px;left:12px;background:var(--milk);padding:0 8px;font-size:12px;font-weight:600;color:var(--apricot-dp);letter-spacing:.04em}
+.logo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:16px}
+.ltile{border-radius:var(--r);aspect-ratio:4/3;display:grid;place-items:center;padding:24px;position:relative;max-width:100%}
+.ltile svg{width:80%}
+.ltile .cap{position:absolute;left:14px;bottom:10px;font-size:12px;font-weight:600;letter-spacing:.04em;opacity:.8}
+.lockups{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:16px}
+.lock{border:1px solid var(--line);border-radius:var(--r);padding:28px;display:grid;gap:18px;align-content:space-between;background:var(--milk)}
+.lock .cap{font-size:var(--s-1);color:var(--moss-2)}
+.lock-stack{display:grid;gap:6px;justify-items:start}
+.lock-stack svg{width:200px;max-width:100%}
+.lock-deva{font-family:var(--f-deva);font-weight:600;font-size:2.4rem;line-height:1;color:var(--moss)}
+.appicons{display:flex;gap:12px;flex-wrap:wrap}
+.appicon{width:76px;height:76px;border-radius:22px;display:grid;place-items:center}
+.appicon svg{width:58px}
+.donts{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:16px}
+.dont{border-radius:var(--r);background:var(--milk);border:1px solid var(--line);padding:22px 18px 16px;display:grid;gap:14px}
+.dont .stage{height:80px;display:grid;place-items:center;overflow:hidden}
+.dont .stage svg{width:150px}
+.dont p{font-size:var(--s-1);color:var(--moss-2)}
+.dont p b{color:var(--alert);font-weight:700;margin-right:4px}
+
+/* ---------- colour ---------- */
+.base-swatches{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:16px}
+.sw{border-radius:var(--r);min-height:200px;padding:20px;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;border:1px solid var(--line)}
+.sw b{font-family:var(--f-display);font-variation-settings:"SOFT" 100;font-weight:500;font-size:var(--s1)}
+.sw span{font-size:var(--s-1);font-variant-numeric:tabular-nums;opacity:.78}
+.sw small{font-size:12px;opacity:.7;margin-top:6px}
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.cat{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:var(--milk);display:grid;grid-template-rows:auto 1fr}
+.cat-top{padding:22px 22px 18px;display:grid;gap:4px}
+.cat-top h3{font-size:var(--s2)}
+.cat-top p{font-size:.92rem}
+.cat-row{display:grid;grid-template-columns:1fr 1fr 1fr}
+.cat-row div{padding:14px;min-height:92px;display:flex;flex-direction:column;justify-content:flex-end;font-size:12px;font-variant-numeric:tabular-nums}
+.cat-row b{font-size:13px}
+.cat-use{padding:16px 22px 22px;font-size:.92rem;color:var(--moss-2);border-top:1px solid var(--line)}
+.ratio{margin-top:16px;display:flex;height:18px;border-radius:999px;overflow:hidden;border:1px solid var(--line)}
+.ratio-key{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px;font-size:var(--s-1);color:var(--moss-2)}
+
+/* ---------- type ---------- */
+.type-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:16px}
+.spec{border-radius:var(--r);background:var(--milk);border:1px solid var(--line);padding:28px;display:grid;gap:14px;align-content:start;min-width:0}
+.spec .big{font-size:clamp(3.5rem,8vw,6rem);line-height:1}
+.spec .meta{display:flex;justify-content:space-between;gap:12px;font-size:var(--s-1);color:var(--moss-2);flex-wrap:wrap}
+.spec .glyphs{font-size:var(--s1);color:var(--moss-2);word-break:break-word}
+.f-display{font-family:var(--f-display);font-variation-settings:"SOFT" 100, "WONK" 1}
+.f-body{font-family:var(--f-body)}
+.type-side{display:grid;gap:16px}
+.scale{margin-top:16px;border-radius:var(--r);background:var(--milk);border:1px solid var(--line);overflow:hidden}
+.scale-row{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:16px 24px;border-top:1px solid var(--line);align-items:baseline}
+.scale-row:first-child{border-top:0}
+.scale-row .k{font-size:12px;color:var(--moss-2);font-variant-numeric:tabular-nums}
+.scale-row .v{min-width:0;overflow-wrap:anywhere}
+
+/* ---------- label sample ---------- */
+.label-demo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(24px,5vw,56px);align-items:center;margin-top:16px}
+.label{background:var(--milk);border-radius:28px;padding:30px 28px 24px;display:grid;gap:10px;box-shadow:0 1px 0 var(--line),0 24px 60px -28px rgba(31,58,43,.35);max-width:380px;width:100%;justify-self:center;border-top:14px solid var(--apricot)}
+.label .wmx svg{width:118px}
+.label .cat-l{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--apricot-dp);margin-top:18px}
+.label .pname{font-family:var(--f-display);font-variation-settings:"SOFT" 100;font-weight:500;font-size:2.25rem;line-height:1}
+.label .pdeva{font-family:var(--f-deva);font-weight:600;font-size:1.15rem;color:var(--moss-2);line-height:1}
+.label .desc{font-size:.95rem;color:var(--moss-2);max-width:28ch}
+.label .foot{display:flex;justify-content:space-between;align-items:end;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;font-weight:600}
+.label .qty{font-family:var(--f-display);font-size:1.25rem;font-variant-numeric:tabular-nums}
+.anno{display:grid;gap:0;counter-reset:a}
+.anno li{list-style:none;display:grid;grid-template-columns:28px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+.anno li:first-child{border-top:0}
+.anno li::before{counter-increment:a;content:counter(a);width:24px;height:24px;border-radius:50%;background:var(--moss);color:var(--milk);font-size:12px;font-weight:700;display:grid;place-items:center}
+.anno b{display:block}
+.anno span{font-size:.92rem;color:var(--moss-2)}
+ol.anno{padding:0;margin:0}
+
+/* ---------- claims ---------- */
+.claims{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:16px}
+.seal-card{background:var(--marigold-wash);border-radius:var(--r);padding:32px;display:grid;place-items:center;gap:18px;text-align:center}
+.seal{width:min(250px,100%)}
+.seal-card p{font-size:var(--s-1);color:var(--moss-2);max-width:40ch}
+.icons{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.icon{background:var(--milk);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:grid;gap:10px;align-content:start}
+.icon svg{width:40px;height:40px;color:var(--moss)}
+.icon b{font-size:.98rem;line-height:1.25}
+.icon span{font-size:12px;color:var(--moss-2)}
+.freefrom{margin-top:16px;border-radius:var(--r);background:var(--moss);color:var(--milk);padding:22px 24px;display:flex;align-items:center;gap:14px 22px;flex-wrap:wrap}
+.freefrom .lbl{font-family:var(--f-display);font-variation-settings:"SOFT" 100;font-size:var(--s1)}
+.freefrom ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.freefrom li{padding:6px 12px;border-radius:999px;border:1px solid rgba(251,247,240,.28);font-size:var(--s-1);font-weight:500}
+.rule{margin-top:16px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.rule div{border-radius:var(--r);padding:20px 22px;border:1px solid var(--line);background:var(--milk);font-size:.95rem}
+.rule b{display:block;font-size:var(--s-1);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+
+/* ---------- voice ---------- */
+.voice{display:grid;gap:12px}
+.vrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.vrow > div{border-radius:18px;padding:18px 20px;font-size:1.02rem}
+.say{background:rgba(191,214,176,.18);border:1px solid rgba(191,214,176,.35)}
+.not{background:rgba(251,247,240,.04);border:1px solid rgba(251,247,240,.14);color:#AFC0B4;text-decoration:line-through;text-decoration-color:rgba(239,164,58,.7)}
+.vrow small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:6px;text-decoration:none;color:#C9D6CC}
+
+footer{padding-block:40px 56px;font-size:var(--s-1);color:var(--moss-2)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:24px}
+
+@media (max-width:900px){
+  .story,.type-grid,.claims,.label-demo{grid-template-columns:1fr}
+  .logo-grid,.donts{grid-template-columns:repeat(2,1fr)}
+  .lockups{grid-template-columns:1fr}
+  .base-swatches{grid-template-columns:1fr 1fr}
+  .cats{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .icons{grid-template-columns:1fr 1fr}
+  .vrow,.rule{grid-template-columns:1fr}
+  .scale-row{grid-template-columns:1fr;gap:4px}
+  .sw{min-height:140px}
+}
+:focus-visible{outline:2px solid var(--apricot-dp);outline-offset:3px}
+</style>
+
+<!-- Logo symbols, drawn once and reused -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="wordmark" viewBox="-6 -20 426 134">
+      <g fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7 40V100M7 68a28 28 0 0 1 56 0V100"/>
+        <circle cx="121" cy="70" r="30"/>
+        <path d="M151 40V100"/>
+        <path d="M181 40V100M181 68a28 28 0 0 1 56 0V100"/>
+        <path d="M267 14V100M267 68a28 28 0 0 1 56 0V100"/>
+        <path d="M351 70H411A30 30 0 1 0 402.2 91.2"/>
+      </g>
+      <path class="grow" d="M267 12Q295 16 297 -14Q269 -16 267 12Z" style="fill:var(--leafc, #5E8E4E)"/>
+    </symbol>
+    <symbol id="mark" viewBox="0 0 100 100">
+      <g fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M30 41V83M30 61a20 20 0 0 1 40 0V83"/>
+      </g>
+      <path d="M50 36Q74 34 70 10Q46 12 50 36Z" style="fill:var(--leafc, #5E8E4E)"/>
+    </symbol>
+    <symbol id="leaf" viewBox="0 0 24 24"><path d="M12 21C6 17 4.5 12 6 6.5 11 6 16 8 17.5 13 18.5 16.5 16 20 12 21Z M12 21C11.5 16 10 12 7.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<!-- ============ COVER ============ -->
+<header class="cover">
+  <div class="blobs" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+  <div class="wrap">
+    <div class="cover-top">
+      <span class="eyebrow">Brand book</span>
+      <span class="edition">Edition 1 · Foundations · Nov 2026</span>
+    </div>
+    <svg class="cover-mark wm" viewBox="0 0 426 134" role="img" aria-label="nanhe"><use href="#wordmark"/></svg>
+    <div class="cover-deva">नन्हे <small>/ nun-hay / · little ones</small></div>
+    <p class="tagline">Made gentle. <em>Tested gentle.</em></p>
+    <div class="cover-foot">
+      <span class="chip"><span class="dot" style="background:var(--apricot)"></span>Moisturise</span>
+      <span class="chip"><span class="dot" style="background:var(--sage)"></span>Care &amp; Protect</span>
+      <span class="chip"><span class="dot" style="background:var(--sky)"></span>Everyday Hygiene</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ STORY ============ -->
+<section class="band-paper" id="story">
+  <div class="wrap story">
+    <div class="sec-head" style="margin:0">
+      <span class="eyebrow">The brand</span>
+      <h2>Care the way Indian homes have always done it, checked the way science does.</h2>
+      <div class="story-body" style="margin-top:12px">
+        <p>Nanhe (नन्हे) is how Hindi speakers talk about little ones. It is the word a grandmother uses at the first oil massage.</p>
+        <p>The products use the ingredients those homes already trust, like coconut, almond, oat, neem, ghee and calendula. Each formula is clinically tested on infant skin before it goes on sale. Every pack lists everything inside it, and says what percentage of it comes from nature.</p>
+      </div>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="ic" style="background:var(--sage)"><svg width="28" height="28" style="color:var(--moss)"><use href="#leaf"/></svg></div>
+        <div><h3>Natural first</h3><p>Plant oils, butters and extracts lead every formula. We publish the naturally derived percentage on each pack.</p></div>
+      </div>
+      <div class="pillar">
+        <div class="ic" style="background:var(--marigold-wash)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--moss)"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div>
+        <div><h3>Clinically tested</h3><p>Each formula is tested on infant skin under a dermatologist's supervision before launch. The study details are printed on the back.</p></div>
+      </div>
+      <div class="pillar">
+        <div class="ic" style="background:var(--sky)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--moss)"><path d="M4 5h16M4 10h16M4 15h10M4 20h7"/></svg></div>
+        <div><h3>Nothing hidden</h3><p>Full ingredient lists in plain words, with what each ingredient is there to do. We don't use vague claims like "chemical-free".</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOGO ============ -->
+<section id="logo">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Logo</span>
+      <h2>The sprouting h</h2>
+      <p class="lede">The wordmark is a single rounded line, as soft as the products. A new leaf grows from the h. That leaf is the brand's signature, and it always stays leaf green, or pale sage on dark backgrounds.</p>
+    </div>
+
+    <div class="logo-hero">
+      <div class="clear">
+        <span class="clear-note">CLEAR SPACE = HEIGHT OF THE n</span>
+        <svg class="wm" viewBox="0 0 426 134" role="img" aria-label="nanhe wordmark"><use href="#wordmark"/></svg>
+      </div>
+    </div>
+
+    <div class="logo-grid">
+      <div class="ltile" style="background:var(--milk);border:1px solid var(--line)"><svg class="wm" viewBox="0 0 426 134"><use href="#wordmark"/></svg><span class="cap">On milk</span></div>
+      <div class="ltile" style="background:var(--moss);color:var(--milk);--leafc:var(--leaf-lt)"><svg viewBox="0 0 426 134" style="color:var(--milk);--leafc:var(--leaf-lt)"><use href="#wordmark"/></svg><span class="cap" style="color:var(--milk)">On moss · reversed</span></div>
+      <div class="ltile" style="background:var(--apricot)"><svg class="wm" viewBox="0 0 426 134"><use href="#wordmark"/></svg><span class="cap">On apricot</span></div>
+      <div class="ltile" style="background:var(--sky)"><svg class="wm" viewBox="0 0 426 134"><use href="#wordmark"/></svg><span class="cap">On sky</span></div>
+    </div>
+
+    <div class="lockups">
+      <div class="lock">
+        <div class="lock-stack">
+          <svg class="wm" viewBox="0 0 426 134"><use href="#wordmark"/></svg>
+          <span class="lock-deva">नन्हे</span>
+        </div>
+        <span class="cap">Bilingual lockup. Use on the front of packs, in-store and in ads in India.</span>
+      </div>
+      <div class="lock">
+        <div class="appicons">
+          <div class="appicon" style="background:var(--milk);border:1px solid var(--line)"><svg class="wm" viewBox="0 0 100 100"><use href="#mark"/></svg></div>
+          <div class="appicon" style="background:var(--apricot)"><svg class="wm" viewBox="0 0 100 100"><use href="#mark"/></svg></div>
+          <div class="appicon" style="background:var(--moss)"><svg viewBox="0 0 100 100" style="color:var(--milk);--leafc:var(--leaf-lt)"><use href="#mark"/></svg></div>
+        </div>
+        <span class="cap">The mark: a seedling n, with a leaf growing from the top of its arch. Use it for the app icon, avatars, caps, seals and the wipes lid.</span>
+      </div>
+      <div class="lock">
+        <div style="display:flex;align-items:end;gap:18px;flex-wrap:wrap">
+          <svg class="wm" viewBox="0 0 426 134" style="width:140px"><use href="#wordmark"/></svg>
+          <svg class="wm" viewBox="0 0 426 134" style="width:64px"><use href="#wordmark"/></svg>
+          <svg class="wm" viewBox="0 0 100 100" style="width:20px"><use href="#mark"/></svg>
+        </div>
+        <span class="cap">Minimum sizes. The wordmark goes no smaller than 18 mm wide in print or 64 px on screen. The mark goes no smaller than 5 mm or 20 px.</span>
+      </div>
+    </div>
+
+    <div class="donts">
+      <div class="dont"><div class="stage"><svg class="wm" viewBox="0 0 426 134" style="transform:scaleX(1.45)"><use href="#wordmark"/></svg></div><p><b>✕</b>Don't stretch or squash it.</p></div>
+      <div class="dont"><div class="stage"><svg class="wm" viewBox="0 0 426 134" style="--leafc:#D9468F"><use href="#wordmark"/></svg></div><p><b>✕</b>Don't recolour the leaf, even to match a category.</p></div>
+      <div class="dont"><div class="stage"><svg class="wm" viewBox="0 0 426 134" style="filter:drop-shadow(4px 5px 0 #EFA43A)"><use href="#wordmark"/></svg></div><p><b>✕</b>No shadows, outlines or glossy effects.</p></div>
+      <div class="dont"><div class="stage" style="background:linear-gradient(120deg,#F6BE9A,#BFDCEC);border-radius:12px"><svg viewBox="0 0 426 134" style="color:#FBF7F0"><use href="#wordmark"/></svg></div><p><b>✕</b>Don't use the milk-white logo on light pastels. It disappears.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COLOUR ============ -->
+<section class="band-paper" id="colour">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Colour</span>
+      <h2>Milk-white packs, one colour per shelf</h2>
+      <p class="lede">Every bottle, tube and jar is matte milk-white. Each category has its own colour, used for the cap and the label band. A tired parent can find the cream in the dark by colour alone.</p>
+    </div>
+
+    <div class="base-swatches">
+      <div class="sw" style="background:var(--milk)"><b>Milk</b><span>#FBF7F0 · RGB 251 247 240</span><small>Pack body, page ground. About 70% of any layout.</small></div>
+      <div class="sw" style="background:var(--moss);color:var(--milk);border-color:transparent"><b>Moss</b><span>#1F3A2B · 31 58 43</span><small>All type and the logo</small></div>
+      <div class="sw" style="background:var(--leaf);color:var(--milk);border-color:transparent"><b>New leaf</b><span>#5E8E4E · 94 142 78</span><small>Logo leaf only</small></div>
+      <div class="sw" style="background:var(--marigold)"><b>Marigold</b><span>#EFA43A · 239 164 58</span><small>The clinical seal only</small></div>
+    </div>
+
+    <div class="cats">
+      <div class="cat">
+        <div class="cat-top" style="background:var(--apricot)"><span class="eyebrow" style="color:var(--moss)">Category</span><h3>Moisturise</h3><p>Lotion · Massage oil · Rich cream</p></div>
+        <div class="cat-row"><div style="background:var(--apricot-wash)"><b>Wash</b>#FCE9DC</div><div style="background:var(--apricot)"><b>Apricot</b>#F6BE9A</div><div style="background:var(--apricot-dp);color:var(--milk)"><b>Deep</b>#B4592C</div></div>
+        <div class="cat-use">Warm and comforting, the colour of skin after a massage. Deep apricot is for small category text on labels only.</div>
+      </div>
+      <div class="cat">
+        <div class="cat-top" style="background:var(--sage)"><span class="eyebrow" style="color:var(--moss)">Category</span><h3>Care &amp; Protect</h3><p>Diaper rash cream · Balm · Sunscreen</p></div>
+        <div class="cat-row"><div style="background:var(--sage-wash)"><b>Wash</b>#E7F0E0</div><div style="background:var(--sage)"><b>Neem sage</b>#BFD6B0</div><div style="background:var(--sage-dp);color:var(--milk)"><b>Deep</b>#43703C</div></div>
+        <div class="cat-use">Calm and soothing. The green of neem and calendula leaves, for the products that fix and protect.</div>
+      </div>
+      <div class="cat">
+        <div class="cat-top" style="background:var(--sky)"><span class="eyebrow" style="color:var(--moss)">Category</span><h3>Everyday Hygiene</h3><p>Water wipes · Powder · Bottle wash</p></div>
+        <div class="cat-row"><div style="background:var(--sky-wash)"><b>Wash</b>#E4F0F7</div><div style="background:var(--sky)"><b>Monsoon sky</b>#BFDCEC</div><div style="background:var(--sky-dp);color:var(--milk)"><b>Deep</b>#2F6689</div></div>
+        <div class="cat-use">Clean and airy, like water. For the things a parent uses ten times a day.</div>
+      </div>
+    </div>
+
+    <div class="ratio" role="img" aria-label="Colour proportions: milk 70%, category colour 18%, moss 10%, leaf and marigold 2%">
+      <span style="flex:70;background:var(--milk)"></span><span style="flex:18;background:var(--apricot)"></span><span style="flex:10;background:var(--moss)"></span><span style="flex:1;background:var(--leaf)"></span><span style="flex:1;background:var(--marigold)"></span>
+    </div>
+    <div class="ratio-key"><span>Milk 70%</span><span>Category colour 18%</span><span>Moss 10%</span><span>Leaf + marigold 2%</span></div>
+  </div>
+</section>
+
+<!-- ============ TYPE ============ -->
+<section id="type">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Typography</span>
+      <h2>A soft serif, a friendly sans, and Hindi set as carefully as English</h2>
+    </div>
+
+    <div class="type-grid">
+      <div class="spec">
+        <div class="meta"><span>Display · Fraunces, soft</span><span>Product names, headlines</span></div>
+        <div class="big f-display">Aa Gentle</div>
+        <div class="glyphs f-display">Daily Lotion · Rich Cream · Massage Oil · 0123456789</div>
+        <p style="font-size:.92rem;color:var(--moss-2)">Set with the "soft" axis at its maximum so the serifs round off like a bar of soap. Use weight 500 for product names and 400 italic for the tagline.</p>
+      </div>
+      <div class="type-side">
+        <div class="spec">
+          <div class="meta"><span>Text · Figtree</span><span>Labels, body, UI</span></div>
+          <div class="big f-body" style="font-size:clamp(2.75rem,6vw,4rem);font-weight:600">Aa 200 ml</div>
+          <p style="font-size:.92rem;color:var(--moss-2)">Open, round letters with clear numerals for doses, ages and quantities. Use 400 for text, 600 for emphasis and 700 for small capitals.</p>
+        </div>
+        <div class="spec">
+          <div class="meta"><span>Devanagari · Baloo 2</span><span>Hindi names, lockup</span></div>
+          <div class="big deva" style="font-size:clamp(2.75rem,6vw,4rem);font-weight:600">नन्हे लोशन</div>
+          <p style="font-size:.92rem;color:var(--moss-2)">Its rounded strokes match the wordmark. Hindi sits beside English at about 55% of its size, never squeezed in as a translation footnote.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="scale">
+      <div class="scale-row"><span class="k">Hero · 64 / Fraunces 500</span><span class="v f-display" style="font-size:clamp(2.25rem,5vw,4rem);line-height:1.05">Soft by bedtime</span></div>
+      <div class="scale-row"><span class="k">Product · 36 / Fraunces 500</span><span class="v f-display" style="font-size:2.25rem;line-height:1.1">Diaper Rash Cream</span></div>
+      <div class="scale-row"><span class="k">Lead · 20 / Figtree 400</span><span class="v" style="font-size:1.25rem">Zinc oxide and calendula form a breathable barrier.</span></div>
+      <div class="scale-row"><span class="k">Body · 16 / Figtree 400</span><span class="v">Apply a thin layer at every change. Safe from day one. Suitable for sensitive skin.</span></div>
+      <div class="scale-row"><span class="k">Label · 11 / Figtree 700 +16%</span><span class="v" style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase">Care &amp; Protect · 0+ months</span></div>
+    </div>
+
+    <div class="label-demo">
+      <div class="label" aria-label="Sample front label">
+        <div class="wmx"><svg class="wm" viewBox="0 0 426 134"><use href="#wordmark"/></svg></div>
+        <div class="cat-l">Moisturise · 0+ months</div>
+        <div class="pname">Daily Lotion</div>
+        <div class="pdeva">रोज़ाना लोशन</div>
+        <p class="desc">Oat and shea butter, for skin that stays soft till bedtime.</p>
+        <div class="foot"><span>97% naturally derived*</span><span class="qty">200 ml</span></div>
+      </div>
+      <ol class="anno">
+        <li><div><b>Wordmark, top left</b><span>It's always in the same place, so the whole line reads as one family on the shelf.</span></div></li>
+        <li><div><b>Category and age</b><span>In the category's deep colour, in small capitals. The age range is always printed.</span></div></li>
+        <li><div><b>Product name, in English and Hindi</b><span>Fraunces for the English name, Baloo 2 for the Hindi name below it.</span></div></li>
+        <li><div><b>One plain sentence</b><span>Says what's in it and what it does, in fewer than 12 words.</span></div></li>
+        <li><div><b>Proof line and quantity</b><span>The naturally derived percentage goes on the left, the net quantity on the right. Both are footnoted on the back.</span></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLAIMS ============ -->
+<section class="band-paper" id="claims">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Claims &amp; icons</span>
+      <h2>Every promise comes with its proof</h2>
+      <p class="lede">The seal and icons follow one rule: anything we claim on the front is backed up on the back. That means the study, the sample size, the percentage, or the list of what's left out.</p>
+    </div>
+
+    <div class="claims">
+      <div class="seal-card">
+        <svg class="seal" viewBox="0 0 200 200" role="img" aria-label="Clinically tested on infant skin seal">
+          <defs><path id="ring" d="M100 100m-74 0a74 74 0 1 1 148 0a74 74 0 1 1 -148 0"/></defs>
+          <circle cx="100" cy="100" r="96" fill="#EFA43A"/>
+          <circle cx="100" cy="100" r="88" fill="none" stroke="#1F3A2B" stroke-width="1.2" stroke-dasharray="2 4" opacity=".55"/>
+          <circle cx="100" cy="100" r="58" fill="#FBF7F0"/>
+          <text font-family="Figtree, sans-serif" font-weight="700" font-size="13.5" letter-spacing="3.1" fill="#1F3A2B"><textPath href="#ring" startOffset="0">CLINICALLY TESTED · ON INFANT SKIN* · CLINICALLY TESTED · ON INFANT SKIN* ·</textPath></text>
+          <g transform="translate(66 60) scale(.68)" style="color:#1F3A2B;--leafc:#5E8E4E"><use href="#mark" width="100" height="100"/></g>
+          <text x="100" y="140" text-anchor="middle" font-family="Figtree, sans-serif" font-weight="700" font-size="11" letter-spacing="1.5" fill="#1F3A2B">0–36 MONTHS</text>
+        </svg>
+        <p>*The back of every pack explains the claim, for example: "Tested under dermatological supervision on [n] infants aged [x–y] months, [lab name], [year]." The numbers come from our test reports, not from marketing.</p>
+      </div>
+      <div>
+        <div class="icons">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><b>Dermatologically tested</b><span>On the back: the study summary</span></div>
+          <div class="icon"><svg><use href="#leaf"/></svg><b>97% naturally derived</b><span>On the back: the ISO 16128 calculation</span></div>
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3.5 4.5 6 7.6 6 11a6 6 0 0 1-12 0c0-3.4 2.5-6.5 6-11z"/><path d="M9.5 15.5h5"/></svg><b>pH 5.5, skin-balanced</b><span>Measured on every batch</span></div>
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.2"/><circle cx="12" cy="7" r="2.6"/><circle cx="17" cy="12" r="2.6"/><circle cx="12" cy="17" r="2.6"/><circle cx="7" cy="12" r="2.6"/><path d="M4 20L20 4"/></svg><b>No added fragrance</b><span>Massage oil uses only the ingredients' own scent</span></div>
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><b>Hypoallergenic</b><span>Tested with repeated patch tests (HRIPT)</span></div>
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10l-1 4H8z"/><path d="M8 8c-1.5 1.5-2 3.5-2 6v4a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-4c0-2.5-.5-4.5-2-6"/><path d="M10 14h4"/></svg><b>Recyclable pack</b><span>Bottles made of PP 5 or HDPE 2, marked with the code</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="freefrom">
+      <span class="lbl">Made without</span>
+      <ul>
+        <li>Parabens</li><li>Sulphates (SLS/SLES)</li><li>Mineral oil</li><li>Synthetic fragrance</li><li>Talc</li><li>Phthalates</li><li>Artificial dyes</li>
+      </ul>
+    </div>
+
+    <div class="rule">
+      <div><b style="color:var(--sage-dp)">We say</b>The exact claim, a footnote, and the evidence on the back. For example: "97% naturally derived*" or "Clinically tested on infant skin*".</div>
+      <div><b style="color:var(--alert)">We never say</b>"Chemical-free", "100% safe", "Doctor recommended" without a named study, or any seal or certification we don't hold.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VOICE ============ -->
+<section class="band-moss" id="voice">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Voice</span>
+      <h2>Like a calm paediatric nurse, not a cheerleader</h2>
+      <p class="lede">Warm, plain and specific. We talk to parents as capable adults who are short on sleep.</p>
+    </div>
+    <div class="voice">
+      <div class="vrow"><div class="say"><small>Say</small>Oat and shea butter, for skin that stays soft till bedtime.</div><div class="not"><small>Not</small>A miracle formula for flawless, glowing baby skin!</div></div>
+      <div class="vrow"><div class="say"><small>Say</small>Tested on infant skin under a dermatologist. Here's the study.</div><div class="not"><small>Not</small>100% safe. Trusted by millions of mums.</div></div>
+      <div class="vrow"><div class="say"><small>Say</small>97% naturally derived. Here's what the other 3% does.</div><div class="not"><small>Not</small>Totally chemical-free and toxin-free.</div></div>
+      <div class="vrow"><div class="say"><small>Say</small>For parents, grandparents and anyone on night duty.</div><div class="not"><small>Not</small>For every super-mom out there.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Nanhe brand book · Edition 1: Foundations. Packaging, product pages and photography come next.</span>
+    <span>Claim figures are placeholders until lab reports are in.</span>
+  </div>
+</footer>
