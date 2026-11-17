@@ -34,6 +34,15 @@ Co., or slightly above.
   in `docs/design/render-prompts.md`. Brand book is edition 4 with a
   photography section; `brand-book/renders` is a symlink to
   `../assets/renders` so the page works locally and when published.
+- Range extension (branch `product-line-extension-2026-11-17`, stacked on PR 1):
+  19 products in five categories. New: Bath & Toiletries (butter #F5DA8C) —
+  head-to-toe wash, shampoo, bubble bath, first toothpaste (1000 ppm
+  fluoride), finger toothbrush, grooming kit; Diapering (lavender #CFC3E8) —
+  taped diapers NB, diaper pants M, hand & face wipes, Water Wipes (moved from
+  Hygiene), value 3-pack. Eight new characters (Udu, Sheru, Mendu, Magru,
+  Mainu, Chitku, Pandu, Nevu). New pack shapes, diaper prints, a two-row
+  line-up, and two more AI renders (diapers composited, bath lifestyle).
+  Brand book is edition 5.
 
 **Agreed direction.**
 - Look: modern botanical. Soft matte packs tinted by hero ingredient; rounded
@@ -160,3 +169,29 @@ real shoot is needed before launch.
 **Next:** Founder review of edition 4. Open items: illustrator to redraw the
 characters, outline the Devanagari lockup, real lab data for the claims,
 trademark check for "Nanhe", real photo shoot, and merging PR 1.
+
+### 2026-11-17 22:25 IST — Claude Code (Opus 5.5) · Shivank’s MacBook Air
+**Changed:** Extended the line to toiletries, diapers and wipes on a new
+branch `product-line-extension-2026-11-17`. Ten new products in
+`docs/product/products.json`, two new categories, eight new characters, seven
+new pack shapes (flip-cap, tall bottle, small tube, carton, pouch, diaper bag,
+value bundle), flat diaper prints, a two-row line-up, the brand book's colour
+section and cover updated, and a new diaper-prints section. Generated two
+Figma renders (founder approved the credits) and composited the real bag
+artwork onto the diaper shot.
+**Decided:** One SKU each for taped diapers (NB) and pants (M), as the
+founder asked, with a different animal per diaper size. Toothpaste uses
+1000 ppm fluoride with a rice-grain dose, per current paediatric dental
+guidance (founder agreed). All wipes sit under Diapering. Very wide line-up
+groups get a rounded-top panel instead of a semicircle.
+**Next:** Founder review of edition 5. Merge PR 1, then this PR. Same open
+items as before, plus diaper and toothpaste formulation partners.
+
+### 2026-11-17 22:40 IST — Claude Code (Opus 5.5) · Shivank’s MacBook Air
+**Changed:** Replaced Gendu (rhino calf) on the Newborn taped diapers with
+Chitku, a chital fawn, in `scripts/build_packaging.py`. Regenerated the packs,
+the diaper print, the line-up, the brand book and the composited diaper
+photo. Removed the unused rhino drawing.
+**Decided:** Founder asked to change the newborn animal and chose the chital
+fawn. Its white spots carry into the all-over diaper print.
+**Next:** Founder review; merge PR 1, then PR 2.

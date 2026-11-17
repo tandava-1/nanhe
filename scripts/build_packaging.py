@@ -262,6 +262,88 @@ def ch_dolphin(B, W):
             '<circle cx="40" cy="10" r="1.6" fill="none"/><circle cx="46" cy="6" r="1.2" fill="none"/><circle cx="50" cy="12" r="1" fill="none"/>')
 
 
+def ch_otter(B, W):
+    return (f'<circle cx="16.5" cy="23" r="4.2" fill="{B}"/><circle cx="43.5" cy="23" r="4.2" fill="{B}"/>'
+            f'<circle cx="30" cy="32" r="15" fill="{B}"/><ellipse cx="30" cy="38.5" rx="8.5" ry="6" fill="{W}"/>'
+            f'<ellipse cx="30" cy="35.4" rx="2.7" ry="1.8" fill="{MOSS}" stroke="none"/>'
+            '<circle cx="25" cy="39" r=".6" fill="#1F3A2B" stroke="none"/><circle cx="35" cy="39" r=".6" fill="#1F3A2B" stroke="none"/>'
+            + _smile(39.4, w=2) + _eyes(29.5, 6) + _blush(35, 11))
+
+
+def ch_lion(B, W):
+    mane = []
+    for i in range(16):
+        a = math.radians(i * 22.5)
+        mane.append(f'<circle cx="{f(30 + 17 * math.cos(a))}" cy="{f(32 + 17 * math.sin(a))}" r="6.2" fill="{B}"/>')
+    return ("".join(mane) + f'<circle cx="30" cy="32" r="17" fill="{B}" stroke="none"/>'
+            f'<circle cx="21" cy="20" r="3.4" fill="{W}"/><circle cx="39" cy="20" r="3.4" fill="{W}"/>'
+            f'<circle cx="30" cy="33" r="12.5" fill="{W}"/>'
+            f'<path d="M27.6 35.4H32.4L30 38Z" fill="{MOSS}"/>'
+            '<path d="M30 38V39.6M30 39.6q-1.8 1.4 -3.4 0M30 39.6q1.8 1.4 3.4 0" fill="none" stroke-width="1.4"/>'
+            + _eyes(31, 4.8) + _blush(36.5, 8.6))
+
+
+def ch_frog(B, W):
+    return (f'<circle cx="20" cy="24" r="7.5" fill="{B}"/><circle cx="40" cy="24" r="7.5" fill="{B}"/>'
+            f'<ellipse cx="30" cy="37" rx="19" ry="13" fill="{B}"/>'
+            f'<circle cx="20" cy="24" r="4.4" fill="#fff" stroke="none"/><circle cx="40" cy="24" r="4.4" fill="#fff" stroke="none"/>'
+            + _eyes(24.4, 10, r=2.2) + _blush(38, 12.5)
+            + '<path d="M21 40q9 7 18 0" fill="none"/>'
+            '<circle cx="50" cy="12" r="3.2" fill="none" stroke-width="1.3"/><circle cx="54.5" cy="6" r="1.8" fill="none" stroke-width="1.2"/>')
+
+
+def ch_croc(B, W):
+    return (f'<circle cx="21" cy="22" r="6.5" fill="{B}"/><circle cx="39" cy="22" r="6.5" fill="{B}"/>'
+            f'<path d="M12 34C12 24 20 21 30 21C40 21 48 24 48 34C48 44 41 49 30 49C19 49 12 44 12 34Z" fill="{B}"/>'
+            f'<circle cx="21" cy="22" r="3.6" fill="#fff" stroke="none"/><circle cx="39" cy="22" r="3.6" fill="#fff" stroke="none"/>'
+            + _eyes(22.5, 9, r=1.9)
+            + f'<circle cx="26" cy="31" r=".9" fill="{MOSS}" stroke="none"/><circle cx="34" cy="31" r=".9" fill="{MOSS}" stroke="none"/>'
+            '<path d="M19 39q11 7 22 0" fill="none"/>'
+            '<path d="M26.5 41.2l1.6 3l1.6 -2.6M30.5 41.6l1.6 2.6l1.6 -3" fill="#fff" stroke-width="1.2"/>'
+            + _blush(38, 13.5))
+
+
+def ch_myna(B, W):
+    return (f'<path d="M27 18c-2 -5 1 -9 4 -8c-1.6 1.6 -1.4 4 .2 6" fill="{B}"/>'
+            f'<circle cx="30" cy="32" r="15" fill="{B}"/>'
+            f'<circle cx="24" cy="30" r="3.6" fill="{MARIGOLD}" stroke="none"/><circle cx="36" cy="30" r="3.6" fill="{MARIGOLD}" stroke="none"/>'
+            + _eyes(30, 6, r=1.8)
+            + f'<path d="M26.6 35.6H33.4L30 41Z" fill="{MARIGOLD}"/>' + _blush(37, 11))
+
+
+
+
+def ch_fawn(B, W):
+    spots = "".join(f'<circle cx="{x}" cy="{y}" r="{r}" fill="{W}" stroke="none"/>'
+                    for x, y, r in ((24.5, 20.5, 1.4), (35.5, 20.5, 1.4), (30, 18.5, 1.1), (21.5, 26, 1.2), (38.5, 26, 1.2)))
+    return (f'<ellipse cx="13.5" cy="24" rx="8.5" ry="4.6" transform="rotate(-22 13.5 24)" fill="{B}"/>'
+            f'<ellipse cx="46.5" cy="24" rx="8.5" ry="4.6" transform="rotate(22 46.5 24)" fill="{B}"/>'
+            f'<ellipse cx="14" cy="24" rx="5" ry="2.2" transform="rotate(-22 14 24)" fill="{W}" stroke="none"/>'
+            f'<ellipse cx="46" cy="24" rx="5" ry="2.2" transform="rotate(22 46 24)" fill="{W}" stroke="none"/>'
+            f'<path d="M17 28C17 19 23 15 30 15C37 15 43 19 43 28C43 37 37 46 30 51C23 46 17 37 17 28Z" fill="{B}"/>'
+            + spots + f'<ellipse cx="30" cy="44.5" rx="6.2" ry="5" fill="{W}"/>'
+            f'<ellipse cx="30" cy="42.6" rx="2.4" ry="1.7" fill="{MOSS}" stroke="none"/>' + _smile(46.4, w=1.6)
+            + _eyes(31, 5.6, r=2.1) + _blush(36.5, 9))
+
+
+def ch_redpanda(B, W):
+    return (f'<path d="M12 24C11 15 16 11 22 13Z" fill="{B}"/><path d="M48 24C49 15 44 11 38 13Z" fill="{B}"/>'
+            f'<path d="M14 22C14 15 18 13 21 14Z" fill="{W}" stroke="none"/><path d="M46 22C46 15 42 13 39 14Z" fill="{W}" stroke="none"/>'
+            f'<ellipse cx="30" cy="32" rx="17" ry="15" fill="{B}"/>'
+            f'<ellipse cx="23" cy="25.5" rx="2.6" ry="1.6" fill="{W}" stroke="none"/><ellipse cx="37" cy="25.5" rx="2.6" ry="1.6" fill="{W}" stroke="none"/>'
+            f'<path d="M30 33C24 33 19 36 19 40C19 44 24 46 30 46C36 46 41 44 41 40C41 36 36 33 30 33Z" fill="{W}"/>'
+            f'<ellipse cx="30" cy="37" rx="2.4" ry="1.6" fill="{MOSS}" stroke="none"/>' + _smile(40.5, w=1.8)
+            + '<path d="M23.5 32.5V36M36.5 32.5V36" fill="none" stroke-opacity=".35"/>' + _eyes(30, 6.5))
+
+
+def ch_mongoose(B, W):
+    return (f'<circle cx="17.5" cy="19" r="4.5" fill="{B}"/><circle cx="42.5" cy="19" r="4.5" fill="{B}"/>'
+            f'<path d="M13 28C13 18 21 14 30 14C39 14 47 18 47 28C47 38 37 46 30 51C23 46 13 38 13 28Z" fill="{B}"/>'
+            f'<path d="M24 38C24 34 27 33 30 33C33 33 36 34 36 38C36 43 33 46 30 49C27 46 24 43 24 38Z" fill="{W}" stroke="none"/>'
+            f'<ellipse cx="30" cy="46.5" rx="2.4" ry="1.7" fill="{MOSS}" stroke="none"/>'
+            + _eyes(29, 6.2) + _blush(35, 10.5))
+
+
 CHARACTERS = {  # slug: (name, animal, why it's on this product, drawing)
     "daily-lotion": ("Haathi", "Elephant calf", "Gentle giant with famously soft skin", ch_elephant),
     "massage-oil": ("Gilu", "Palm squirrel", "Lives in the coconut trees the oil comes from", ch_squirrel),
@@ -272,6 +354,16 @@ CHARACTERS = {  # slug: (name, animal, why it's on this product, drawing)
     "talc-free-powder": ("Khargu", "Hare", "Soft as a powder-puff tail", ch_bunny),
     "bottle-wash": ("Batku", "Duckling", "Happiest around water and bubbles", ch_duckling),
     "water-wipes": ("Susu", "Ganges river dolphin", "Called susu along the Ganga, a creature of pure water", ch_dolphin),
+    "head-to-toe-wash": ("Udu", "Smooth-coated otter", "Happiest in water, and very particular about being clean", ch_otter),
+    "tear-free-shampoo": ("Sheru", "Asiatic lion cub", "From Gir, with the best hair in the forest", ch_lion),
+    "bubble-bath": ("Mendu", "Indian bullfrog", "Cannot resist a bubble", ch_frog),
+    "first-toothpaste": ("Magru", "Mugger crocodile cub", "Very proud of two new teeth", ch_croc),
+    "finger-toothbrush": ("Magru", "Mugger crocodile cub", "Very proud of two new teeth", ch_croc),
+    "grooming-kit": ("Mainu", "Common myna", "Never seen with a feather out of place", ch_myna),
+    "taped-diapers-nb": ("Chitku", "Chital fawn", "The newborn size. Wobbly on new legs, and covered in soft spots", ch_fawn),
+    "diaper-pants-m": ("Pandu", "Red panda", "The medium size. Always climbing something", ch_redpanda),
+    "hand-face-wipes": ("Nevu", "Mongoose", "Quick, curious, and tidies up after every meal", ch_mongoose),
+    "water-wipes-value": ("Susu", "Ganges river dolphin", "Called susu along the Ganga, a creature of pure water", ch_dolphin),
 }
 
 
@@ -385,11 +477,11 @@ def label_tall(pr, p):
 def label_wide(pr, p):
     """Front label on a 160 x 90 box."""
     deep = CATS[pr["category"]]["deep"]
-    name = " ".join(pr["name"])
+    name = pr["name"][0] if pr["pack"] == "bundle" else " ".join(pr["name"])
     return "".join([
         f'<use href="#{p}wm" x="5" y="5" width="48" height="15.1" style="color:{MOSS}"/>', seal(p, 149, 14, 9.5),
         text(6, 36, pr["eyebrow"].upper(), 4.3, weight=700, fill=deep, ls=".5"),
-        text(6, 53, name, 15, DISPLAY, 500, style=SOFT),
+        text(6, 53, name, 15 if len(name) <= 12 else 15 * 12 / len(name), DISPLAY, 500, style=SOFT),
         text(6, 65, pr["hindi"], 8, DEVA, 600, fill="#55695C"),
         # wipes carry their character on the lid, so the label keeps the ingredient drawing
         (f'<use href="#{p}ch-{pr["slug"]}" x="106" y="20" width="52" height="52"/>' if STYLE["chars"] and pr["pack"] != "wipes" else
@@ -597,6 +689,138 @@ def pack_shaker(pr, p):
     return {"svg": "".join(o), "l": -W, "r": W, "top": -H - 40}
 
 
+def pack_flip(pr, p):
+    cap = CATS[pr["category"]]["base"]
+    w, H = 108, 200
+    W = w / 2
+    body = (f"M{-W} -16Q{-W} 0 {-W + 16} 0H{W - 16}Q{W} 0 {W} -16V{-(H - 40)}"
+            f"C{W} {-(H - 8)} 34 {-H} 26 {-H}H-26C-34 {-H} {-W} {-(H - 8)} {-W} {-(H - 40)}Z")
+    capd = rect_d(-31, -H - 34, 62, 36, 11)
+    o = [ground(p, -W, W), lit(body, p, PACK), lab(pr, p, "tall", -43, -(H - 32), .86),
+         spec(p, -W + 4, -(H - 36), 5, H - 60), lit(capd, p, cap), f'<path d="{capd}" fill="url(#{p}top)"/>',
+         f'<path d="M-31 {-H - 22}H31" stroke="#000" stroke-opacity=".1"/>',
+         f'<path d="{rect_d(-12, -H - 38, 24, 6, 3)}" fill="{cap}" stroke="#000" stroke-opacity=".08"/>']
+    return {"svg": "".join(o), "l": -W, "r": W, "top": -H - 38}
+
+
+def pack_tall(pr, p):
+    cap = CATS[pr["category"]]["base"]
+    W, H = 46, 236
+    body = (f"M{-W} -16Q{-W} 0 -30 0H30Q{W} 0 {W} -16V{-(H - 36)}C{W} {-(H - 8)} 22 {-H} 16 {-H}"
+            f"V{-(H + 8)}H-16V{-H}C-22 {-H} {-W} {-(H - 8)} {-W} {-(H - 36)}Z")
+    capd = rect_d(-22, -H - 46, 44, 42, 6)
+    ridges = "".join(f'<path d="M{x} {-H - 42}V{-H - 8}" stroke="#000" stroke-opacity=".06"/>' for x in range(-18, 20, 4))
+    o = [ground(p, -W, W), lit(body, p, PACK), lab(pr, p, "tall", -38, -178, .76),
+         spec(p, -W + 3, -(H - 40), 5, H - 60), lit(capd, p, cap), ridges, f'<path d="{capd}" fill="url(#{p}top)"/>']
+    return {"svg": "".join(o), "l": -W, "r": W, "top": -H - 46}
+
+
+def pack_tube_s(pr, p):
+    pk = pack_tube(pr, p)
+    k = .76
+    return {"svg": f'<g transform="scale({k})">{pk["svg"]}</g>', "l": pk["l"] * k, "r": pk["r"] * k, "top": pk["top"] * k}
+
+
+def pack_carton(pr, p):
+    base = CATS[pr["category"]]["base"]
+    front = "M-43 -190H43V0H-43Z"
+    side = "M43 -190L60 -199V-9L43 0Z"
+    top = "M-43 -190L-26 -199H60L43 -190Z"
+    brush = ("M-11 -22V-50a11 11 0 0 1 22 0V-22Z")
+    dots = "".join(f'<circle cx="{x}" cy="{y}" r="1.3" fill="#000" fill-opacity=".18"/>'
+                   for x in (-5, 0, 5) for y in (-52, -47, -42))
+    o = [ground(p, -43, 60), lit(side, p, "#E9E1D2"), f'<path d="{top}" fill="#FDFAF4" stroke="#1F3A2B" stroke-opacity=".1" stroke-width=".8"/>',
+         lit(front, p, PACK), lab(pr, p, "tall", -35, -184, .7),
+         f'<path d="{rect_d(-31, -74, 62, 64, 12)}" fill="#fff" fill-opacity=".6" stroke="{MOSS}" stroke-opacity=".25"/>',
+         f'<path d="{brush}" fill="{base}" stroke="{MOSS}" stroke-opacity=".3"/>', dots,
+         f'<path d="{rect_d(-31, -74, 62, 64, 12)}" fill="url(#{p}spec)" opacity=".25"/>']
+    return {"svg": "".join(o), "l": -43, "r": 60, "top": -199}
+
+
+def pack_pouch(pr, p):
+    base = CATS[pr["category"]]["base"]
+    body = ("M-100 -8C-104 -60 -100 -110 -92 -130H92C100 -110 104 -60 100 -8Q100 0 92 0H-92Q-100 0 -100 -8Z")
+    o = [ground(p, -100, 100), lit(body, p, PACK),
+         f'<path d="{rect_d(-93, -134, 186, 16, 6)}" fill="{base}" stroke="#000" stroke-opacity=".08"/>',
+         '<path d="M-88 -126H88" stroke="#1F3A2B" stroke-opacity=".55" stroke-width="3" stroke-dasharray="1.6 1.6"/>',
+         f'<path d="{rect_d(62, -130, 11, 28, 4)}" fill="{MOSS}"/><circle cx="67.5" cy="-108" r="2" fill="{base}"/>',
+         lab(pr, p, "wide", -76, -106, .95),
+         '<path d="M-96 -20H96" stroke="#000" stroke-opacity=".05" stroke-dasharray="3 3"/>']
+    return {"svg": "".join(o), "l": -100, "r": 100, "top": -134}
+
+
+def label_bag(pr, p):
+    """Front of a diaper bag on a 200 x 250 box: big character, size band at the bottom."""
+    c = CATS[pr["category"]]
+    return "".join([
+        f'<use href="#{p}wm" x="8" y="8" width="64" height="20" style="color:{MOSS}"/>', seal(p, 186, 18, 12),
+        text(10, 48, pr["eyebrow"].upper(), 6, weight=700, fill=c["deep"], ls=".7"),
+        text(10, 70, " ".join(pr["name"]), 21, DISPLAY, 500, style=SOFT),
+        text(10, 85, pr["hindi"], 10, DEVA, 600, fill="#55695C"),
+        f'<use href="#{p}ch-{pr["slug"]}" x="56" y="88" width="100" height="100"/>',
+        f'<path d="{rect_d(0, 194, 200, 56, 14)}" fill="{c["base"]}"/>',
+        f'<circle cx="34" cy="222" r="21" fill="{MILK}"/>',
+        text(34, 229, pr["size_code"], 18 if len(pr["size_code"]) < 3 else 14, DISPLAY, 500, anchor="middle", style=SOFT),
+        text(66, 216, pr["size_text"].upper(), 7.2, weight=700, ls=".5"),
+        text(66, 236, pr["size"], 14, DISPLAY, 500, style=SOFT),
+    ])
+
+
+def pack_bag(pr, p):
+    body = ("M-108 -10C-114 -100 -114 -200 -106 -268L-100 -280H100L106 -268C114 -200 114 -100 108 -10"
+            "Q106 0 96 0H-96Q-106 0 -108 -10Z")
+    seal_strip = rect_d(-101, -294, 202, 22, 3)
+    lines = "".join(f'<path d="M-99 {y}H99" stroke="#000" stroke-opacity=".07"/>' for y in (-290, -286, -282, -278))
+    o = [ground(p, -110, 110), lit(body, p, PACK), lit(seal_strip, p, PACK), lines,
+         f'<path d="{rect_d(-26, -289, 52, 11, 5.5)}" fill="#1F3A2B" fill-opacity=".22"/>',
+         place(label_bag(pr, p), -96, -264, .96),
+         spec(p, -104, -250, 6, 200, .5)]
+    return {"svg": "".join(o), "l": -110, "r": 110, "top": -294}
+
+
+def pack_bundle(pr, p):
+    c = CATS[pr["category"]]
+    pk = pack_wipes(pr, p)
+    o = [f'<g transform="translate(16 -50)">{pk["svg"]}</g>', f'<g transform="translate(8 -25)">{pk["svg"]}</g>', pk["svg"],
+         f'<circle cx="-122" cy="-150" r="32" fill="{c["base"]}" stroke="{MILK}" stroke-width="3"/>',
+         text(-122, -150, "3 × 72", 13, DISPLAY, 500, anchor="middle", style=SOFT),
+         text(-122, -136, "VALUE PACK", 5.6, BODY, 700, anchor="middle", ls=".6")]
+    return {"svg": "".join(o), "l": -155, "r": 169, "top": -218}
+
+
+def diaper_print(pr, p):
+    """Flat view of the diaper or pants itself, with its character as an all-over print."""
+    c = CATS[pr["category"]]
+    pid = f"{p}dp-{uid()}"
+    cid = f"{p}dc-{uid()}"
+    tile = (f'<pattern id="{pid}" width="58" height="58" patternUnits="userSpaceOnUse" patternTransform="rotate(-8)">'
+            f'<use href="#{p}ch-{pr["slug"]}" x="6" y="6" width="34" height="34" opacity=".9"/>'
+            f'<path d="{star(46, 46, 3.2)}" fill="{c["base"]}"/><circle cx="48" cy="14" r="1.6" fill="{c["base"]}"/></pattern>')
+    if pr["pack"] == "bag" and "Taped" in pr["name"][0]:
+        shape = ("M-110 -150Q-110 -160 -100 -160H100Q110 -160 110 -150V-90C110 -60 62 -40 62 0C62 40 100 60 100 100V140"
+                 "Q100 150 90 150H-90Q-100 150 -100 140V100C-100 60 -62 40 -62 0C-62 -40 -110 -60 -110 -90Z")
+        extra = (f'<path d="{rect_d(-132, -152, 30, 34, 8)}" fill="{c["base"]}" stroke="{MOSS}" stroke-opacity=".25"/>'
+                 f'<path d="{rect_d(102, -152, 30, 34, 8)}" fill="{c["base"]}" stroke="{MOSS}" stroke-opacity=".25"/>'
+                 f'<path d="M-24 -160A24 16 0 0 0 24 -160" fill="none" stroke="{MOSS}" stroke-opacity=".4" stroke-dasharray="3 3"/>'
+                 + text(0, -122, "CORD CUT-OUT", 6, BODY, 700, fill=c["deep"], anchor="middle", ls=".8"))
+        band = f'<path d="{rect_d(-100, 118, 200, 26, 8)}" fill="{c["base"]}" fill-opacity=".85"/>'
+        band_y = 135
+    else:
+        shape = ("M-110 -120H110V-20C110 30 70 60 40 110Q20 132 0 132Q-20 132 -40 110C-70 60 -110 30 -110 -20Z")
+        ribs = "".join(f'<path d="M{x} -158V-122" stroke="#000" stroke-opacity=".06"/>' for x in range(-104, 108, 6))
+        extra = f'<path d="{rect_d(-114, -160, 228, 40, 10)}" fill="{c["base"]}"/>{ribs}'
+        band = ""
+        band_y = -136
+    o = [tile, f'<clipPath id="{cid}"><path d="{shape}"/></clipPath>',
+         f'<path d="{shape}" fill="#fff" stroke="{MOSS}" stroke-opacity=".18" stroke-width="1.2"/>',
+         f'<g clip-path="url(#{cid})"><rect x="-130" y="-170" width="260" height="320" fill="url(#{pid})"/>'
+         f'<rect x="-5" y="-90" width="10" height="180" rx="5" fill="{MARIGOLD}" fill-opacity=".55"/></g>',
+         extra, band,
+         f'<use href="#{p}wm" x="-74" y="{band_y - 13}" width="56" height="17.6" style="color:{MOSS}"/>',
+         text(20, band_y, f'{pr["size_code"]} · {CHARACTERS[pr["slug"]][0].upper()}', 11, BODY, 700, ls="1.4")]
+    return "".join(o)
+
+
 def render(pr, p):
     global CUR
     CUR = pr
@@ -604,7 +828,9 @@ def render(pr, p):
     return {"pump": lambda: pack_pump(pr, p), "foam": lambda: pack_pump(pr, p, foam=True),
             "oil": lambda: pack_oil(pr, p), "jar": lambda: pack_jar(pr, p), "tube": lambda: pack_tube(pr, p),
             "tin": lambda: pack_tin(pr, p), "wipes": lambda: pack_wipes(pr, p),
-            "shaker": lambda: pack_shaker(pr, p)}[kind]()
+            "shaker": lambda: pack_shaker(pr, p), "flip": lambda: pack_flip(pr, p), "tall": lambda: pack_tall(pr, p),
+            "tube_s": lambda: pack_tube_s(pr, p), "carton": lambda: pack_carton(pr, p), "pouch": lambda: pack_pouch(pr, p),
+            "bag": lambda: pack_bag(pr, p), "bundle": lambda: pack_bundle(pr, p)}[kind]()
 
 
 def viewbox(pk, pad=26):
@@ -616,12 +842,18 @@ def viewbox(pk, pad=26):
 
 GROUPS = [("moisturise", ["rich-cream", "daily-lotion", "massage-oil"]),
           ("care", ["diaper-rash-cream", "all-purpose-balm", "mineral-sunscreen"]),
-          ("hygiene", ["talc-free-powder", "bottle-wash", "water-wipes"])]
+          ("hygiene", ["talc-free-powder", "bottle-wash"]),
+          ("bath", ["head-to-toe-wash", "tear-free-shampoo", "bubble-bath", "first-toothpaste", "finger-toothbrush",
+                    "grooming-kit"]),
+          ("diapering", ["taped-diapers-nb", "diaper-pants-m", "hand-face-wipes", "water-wipes", "water-wipes-value"])]
+ROWS = [GROUPS[:3], GROUPS[3:]]
+ARCH_HERO = {"moisturise": "daily-lotion", "care": "diaper-rash-cream", "hygiene": "bottle-wash",
+             "bath": "tear-free-shampoo", "diapering": "taped-diapers-nb"}
 
 
-def lineup(p):
+def lineup(p, groups=None):
     x, parts, arches = 0.0, [], []
-    for gi, (cat, slugs) in enumerate(GROUPS):
+    for gi, (cat, slugs) in enumerate(groups or GROUPS[:3]):
         g0 = x
         for si, slug in enumerate(slugs):
             pk = render(BY_SLUG[slug], p)
@@ -635,7 +867,9 @@ def lineup(p):
         x0, x1 = g0 - 36, g1 + 36
         half = (x1 - x0) / 2
         top = -352
-        arches.append(f'<path d="M{f(x0)} 46V{f(top + half)}A{f(half)} {f(half)} 0 0 1 {f(x1)} {f(top + half)}V46Z" fill="{c["wash"]}"/>'
+        r = min(half, 230)  # wide groups get a rounded-top panel instead of a full semicircle
+        arches.append(f'<path d="M{f(x0)} 46V{f(top + r)}A{f(r)} {f(r)} 0 0 1 {f(x0 + r)} {f(top)}H{f(x1 - r)}'
+                      f'A{f(r)} {f(r)} 0 0 1 {f(x1)} {f(top + r)}V46Z" fill="{c["wash"]}"/>'
                       + text((x0 + x1) / 2, 32, c["name"].upper(), 12, BODY, 700, fill=c["deep"], ls="2.4", anchor="middle"))
         cx = (x0 + x1) / 2
         if STYLE["motif"]:
@@ -648,11 +882,23 @@ def lineup(p):
                           f'{star(cx + half * .55, top + 10, 6)}" fill="{c["base"]}"/>')
             arches.append(f'<path d="M{f(x1 + 4)} {f(top + 120)}a10 10 0 1 0 8 17a8 8 0 1 1 -8 -17Z" fill="{c["base"]}"/>')
         if STYLE["chars"]:
-            hero = {"moisturise": "daily-lotion", "care": "diaper-rash-cream", "hygiene": "bottle-wash"}[cat]
+            hero = ARCH_HERO[cat]
             parts.append(f'<use href="#{p}ch-{hero}" x="{f(cx - 66)}" y="{f(top - 86)}" width="132" height="132"/>')
         x += 110
     width = x - 110
     return f'<g>{"".join(arches)}{"".join(parts)}</g>', width
+
+
+def lineup_rows(p):
+    """All rows stacked in one drawing at a shared scale. Returns (svg markup, viewBox string)."""
+    top = lineup_top()
+    rows = [lineup(p, r) for r in ROWS]
+    width = max(w for _, w in rows)
+    row_h = 58 - top
+    body = "".join(f'<g transform="translate({f((width - w) / 2)} {f(i * (row_h + 30))})">{svg}</g>'
+                   for i, (svg, w) in enumerate(rows))
+    vb = f"-40 {top} {f(width + 80)} {f(len(rows) * row_h + (len(rows) - 1) * 30)}"
+    return body, vb
 
 
 # ---------------------------------------------------------------- brand book fragment
@@ -835,18 +1081,26 @@ FRAGMENT_CSS = """
 .fnote{margin-top:18px;font-size:var(--s-1);color:var(--apricot-dp)}
 @media (max-width:900px){.fgrid{grid-template-columns:1fr 1fr}.frules{grid-template-columns:1fr}}
 @media (max-width:560px){.fgrid{grid-template-columns:1fr}}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.dprint{margin:0;border-radius:var(--r);padding:24px 24px 18px;display:grid;gap:12px}
+.dprint svg{width:100%;max-height:420px}
+.dprint figcaption{font-size:.92rem;color:var(--moss-2)}
+.dprint figcaption b{display:block;color:var(--moss);font-family:var(--f-display);font-variation-settings:"SOFT" 100;font-weight:500;font-size:1.2rem}
+@media (max-width:560px){.dgrid{grid-template-columns:1fr}}
 </style>"""
 
 CAT_BLURBS = {
     "moisturise": "Daily softness, from the first massage to bedtime.",
     "care": "For when skin needs fixing or protecting.",
     "hygiene": "The things parents reach for ten times a day.",
+    "bath": "Bath time, first teeth and grooming, all tear-free and gentle.",
+    "diapering": "Diapers and wipes, with a different animal for every size.",
 }
 
 
 def fragment():
     p = "pk-"
-    lu, width = lineup(p)
+    lu, lvb = lineup_rows(p)
     cats_html = []
     for cat, slugs in GROUPS:
         c = CATS[cat]
@@ -862,7 +1116,13 @@ def fragment():
         f'<div class="friend"><div class="face" style="background:{CATS[BY_SLUG[sl]["category"]]["wash"]}">'
         f'<svg viewBox="0 0 60 60"><use href="#{p}ch-{sl}"/></svg></div><div><small>{esc(animal)} · '
         f'{esc(" ".join(BY_SLUG[sl]["name"]))}</small><b>{esc(name)}</b><p>{esc(why)}</p></div></div>'
-        for sl, (name, animal, why, _) in CHARACTERS.items())
+        for sl, (name, animal, why, _) in CHARACTERS.items() if sl not in ("finger-toothbrush", "water-wipes-value"))
+    prints = "".join(
+        f'<figure class="dprint" style="background:{CATS["diapering"]["wash"]}"><svg viewBox="-140 -175 280 338" role="img" '
+        f'aria-label="{esc(" ".join(BY_SLUG[sl]["name"]))} print">{diaper_print(BY_SLUG[sl], p)}</svg>'
+        f'<figcaption><b>{esc(" ".join(BY_SLUG[sl]["name"]))} · {esc(BY_SLUG[sl]["size_text"])}</b>'
+        f'{esc(CHARACTERS[sl][0])} the {esc(CHARACTERS[sl][1].lower())}, printed all over</figcaption></figure>'
+        for sl in ("taped-diapers-nb", "diaper-pants-m"))
     return f"""<!-- BEGIN:packaging -->
 <!-- Generated by scripts/build_packaging.py from docs/product/products.json. Edit those, not this block. -->
 {FRAGMENT_CSS}
@@ -872,16 +1132,18 @@ def fragment():
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow">The line</span>
-      <h2>Nine products, three colours, one family</h2>
+      <h2>{len(PRODUCTS)} products, five colours, one family</h2>
       <p class="lede">Every pack is matte milk-white with the wordmark in the same place, and each one has its own baby animal. Only the cap, the category text and the animal change, so the line looks calm on a shelf and each product is easy to find, and easy to ask for.</p>
     </div>
     <div class="lineup-scroll">
-      <svg viewBox="-40 {lineup_top()} {f(width + 80)} {58 - lineup_top()}" role="img" aria-label="The Nanhe line-up: nine packs in three category groups">{lu}</svg>
+      <svg viewBox="{lvb}" role="img" aria-label="The Nanhe line-up: every pack in five category groups">{lu}</svg>
     </div>
     <div class="lineup-notes">
       <div style="--c:{CATS['moisturise']['base']}"><b>Moisturise</b>Lotion in a 200 ml pump, massage oil in a clear bottle that shows the oil, and a rich cream in a 100 g jar.</div>
       <div style="--c:{CATS['care']['base']}"><b>Care &amp; Protect</b>Rash cream and sunscreen in 50 g tubes that stand on their caps, and a 25 g balm tin for the changing bag.</div>
-      <div style="--c:{CATS['hygiene']['base']}"><b>Everyday Hygiene</b>Talc-free powder in a sifter shaker, bottle wash in a 300 ml foam pump, and 72 wipes in a soft pack with a rigid lid.</div>
+      <div style="--c:{CATS['hygiene']['base']}"><b>Everyday Hygiene</b>Talc-free powder in a sifter shaker and bottle wash in a 300 ml foam pump.</div>
+      <div style="--c:{CATS['bath']['base']}"><b>Bath &amp; Toiletries</b>Wash and shampoo in pump and flip-cap bottles, a tall bubble bath, a small toothpaste tube, a finger brush in a windowed carton, and a cotton grooming pouch.</div>
+      <div style="--c:{CATS['diapering']['base']}"><b>Diapering</b>Soft diaper bags with a carry handle and a big size badge, wipes in soft packs with rigid lids, and a banded value pack.</div>
     </div>
   </div>
 </section>
@@ -912,6 +1174,18 @@ def fragment():
       <p class="lede">Hero ingredients, age range and directions for every product. Formulas and percentages are placeholders until the formulator and lab confirm them.</p>
     </div>
     {''.join(cats_html)}
+  </div>
+</section>
+
+<section class="band-paper" id="diaper-prints">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Diaper prints</span>
+      <h2>Every size has its own animal</h2>
+      <p class="lede">The character is printed across the diaper itself, and the size is printed on the waistband. A parent grabbing a diaper in the dark can tell Chitku's newborn size from Pandu's medium by the print alone. As sizes are added, each one gets a new animal.</p>
+    </div>
+    <div class="dgrid">{prints}</div>
+    <p class="fnote">The yellow stripe is the wetness indicator, which turns blue when wet. Prints use water-based, skin-safe inks on the outer back sheet only.</p>
   </div>
 </section>
 
@@ -954,11 +1228,12 @@ def write_standalone():
             f'<title>Nanhe {esc(" ".join(pr["name"]))}</title><style><![CDATA[{FONT_IMPORT}]]></style>'
             f'<rect x="{vb.split()[0]}" y="{vb.split()[1]}" width="100%" height="100%" fill="{CATS[pr["category"]]["wash"]}"/>'
             f'<defs>{defs("")}</defs>{pk["svg"]}</svg>\n')
-    lu, width = lineup("")
+    lu, vb = lineup_rows("")
+    x0, y0, vw, vh = vb.split()
     (out / "lineup.svg").write_text(
-        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 {lineup_top()} {f(width + 80)} {58 - lineup_top()}" role="img" aria-label="Nanhe line-up">'
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vb}" role="img" aria-label="Nanhe line-up">'
         f'<title>Nanhe line-up</title><style><![CDATA[{FONT_IMPORT}]]></style>'
-        f'<rect x="-40" y="{lineup_top()}" width="{f(width + 80)}" height="{58 - lineup_top()}" fill="{MILK}"/>'
+        f'<rect x="{x0}" y="{y0}" width="{vw}" height="{vh}" fill="{MILK}"/>'
         f'<defs>{defs("")}</defs>{lu}</svg>\n')
 
 
@@ -975,11 +1250,13 @@ def write_product_md():
                       f"- **Age:** {pr['age']}",
                       f"- **Promise:** {pr['line']}",
                       f"- **Hero ingredients:** {', '.join(pr['hero'])}",
-                      f"- **Naturally derived:** {pr['natural']}% (placeholder)",
+                      (f"- **Naturally derived:** {pr['natural']}% (placeholder)" if "natural" in pr
+                       else f"- **Pack claim:** {pr.get('footer', '')}"),
                       f"- **How to use:** {pr['use']}"]
             if pr.get("caution"):
                 lines.append(f"- **Caution:** {pr['caution']}")
-            lines += [f"- **Ingredients (indicative):** {pr['inci']}", ""]
+            lines += [f"- **Ingredients (indicative):** {pr['inci']}" if "inci" in pr
+                      else f"- **Contents:** {pr['contents']}", ""]
     (ROOT / "docs/product/product-line.md").write_text("\n".join(lines))
 
 
@@ -1017,7 +1294,7 @@ def pack_figure(slug, p):
 
 
 def lineup_svg(p, top):
-    lu, width = lineup(p)
+    lu, width = lineup(p, GROUPS[:3])
     return (f'<div class="lineup"><svg viewBox="-60 {top} {f(width + 120)} {f(-top + 60)}" role="img" '
             f'aria-label="Line-up">{lu}</svg></div>')
 

@@ -37,15 +37,26 @@ SHOTS = [
      "w": 1536, "h": 1024, "kind": "wide", "x": 345, "y": 372, "s": 2.4,
      # Susu goes on the lid, centred on it
      "extra": {"cx": 942, "cy": 488, "size": 250}},
+    {"base": "ai-09-diapers-plain.jpg", "out": "ai-09-diapers-labelled.jpg", "slug": "taped-diapers-nb",
+     "w": 1536, "h": 1024, "kind": "bag", "x": 385, "y": 300, "s": 1.65,
+     "more": [{"slug": "diaper-pants-m", "kind": "bag", "x": 830, "y": 300, "s": 1.65}]},
 ]
+
+SIZES = {"tall": (100, 150), "wide": (160, 90), "bag": (200, 250)}
+
+
+def overlay(pr, p, kind, x, y, s):
+    label = {"tall": bp.label_tall, "wide": bp.label_wide, "bag": bp.label_bag}[kind](pr, p)
+    lw, lh = SIZES[kind]
+    return (f'<svg class="ov" style="left:{x}px;top:{y}px;width:{lw * s}px;height:{lh * s}px" '
+            f'viewBox="0 0 {lw} {lh}">{label}</svg>')
 
 
 def page(shot):
     pr = bp.BY_SLUG[shot["slug"]]
     p = "c-"
-    label = bp.label_tall(pr, p) if shot["kind"] == "tall" else bp.label_wide(pr, p)
-    lw, lh = (100, 150) if shot["kind"] == "tall" else (160, 90)
-    s = shot["s"]
+    labels = overlay(pr, p, shot["kind"], shot["x"], shot["y"], shot["s"]) + "".join(
+        overlay(bp.BY_SLUG[m["slug"]], p, m["kind"], m["x"], m["y"], m["s"]) for m in shot.get("more", []))
     extra = ""
     if "extra" in shot:
         e = shot["extra"]
@@ -60,7 +71,7 @@ def page(shot):
 .ov{{position:absolute;mix-blend-mode:multiply;opacity:.96}}</style></head>
 <body><div class="wrap"><img src="{base}">
 <svg width="0" height="0" style="position:absolute"><defs>{bp.defs(p)}</defs></svg>
-<svg class="ov" style="left:{shot['x']}px;top:{shot['y']}px;width:{lw * s}px;height:{lh * s}px" viewBox="0 0 {lw} {lh}">{label}</svg>
+{labels}
 {extra}</div></body></html>"""
 
 
