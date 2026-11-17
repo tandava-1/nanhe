@@ -7,7 +7,7 @@ Generated from `docs/product/products.json` by `scripts/build_packaging.py`. For
 ### Rich Cream (पोषक क्रीम)
 
 - **Pack:** 100 g, jar · `assets/packaging/rich-cream.svg`
-- **Age:** 0+ months
+- **Age:** 0–36 months
 - **Promise:** Shea, oat and ceramides for dry patches and winter cheeks.
 - **Hero ingredients:** Shea butter, Ceramides, Colloidal oat
 - **Naturally derived:** 95% (placeholder)
@@ -17,7 +17,7 @@ Generated from `docs/product/products.json` by `scripts/build_packaging.py`. For
 ### Daily Lotion (रोज़ाना लोशन)
 
 - **Pack:** 200 ml, pump · `assets/packaging/daily-lotion.svg`
-- **Age:** 0+ months
+- **Age:** 0–36 months
 - **Promise:** Oat and shea butter, for skin that stays soft till bedtime.
 - **Hero ingredients:** Colloidal oat, Shea butter, Coconut oil
 - **Naturally derived:** 97% (placeholder)
@@ -27,7 +27,7 @@ Generated from `docs/product/products.json` by `scripts/build_packaging.py`. For
 ### Massage Oil (मालिश तेल)
 
 - **Pack:** 100 ml, oil · `assets/packaging/massage-oil.svg`
-- **Age:** 0+ months
+- **Age:** 0–36 months
 - **Promise:** Cold-pressed coconut and almond oil for the daily maalish.
 - **Hero ingredients:** Cold-pressed coconut, Sweet almond, Ashwagandha
 - **Naturally derived:** 99% (placeholder)
@@ -40,7 +40,7 @@ Generated from `docs/product/products.json` by `scripts/build_packaging.py`. For
 ### Diaper Rash Cream (डायपर रैश क्रीम)
 
 - **Pack:** 50 g, tube · `assets/packaging/diaper-rash-cream.svg`
-- **Age:** 0+ months
+- **Age:** 0–36 months
 - **Promise:** Zinc oxide and calendula form a breathable barrier at every change.
 - **Hero ingredients:** Zinc oxide 15%, Calendula, Beeswax
 - **Naturally derived:** 96% (placeholder)
@@ -50,7 +50,7 @@ Generated from `docs/product/products.json` by `scripts/build_packaging.py`. For
 ### All-Purpose Balm (हर काम का बाम)
 
 - **Pack:** 25 g, tin · `assets/packaging/all-purpose-balm.svg`
-- **Age:** 0+ months
+- **Age:** 0–36 months
 - **Promise:** Ghee, beeswax and kokum butter for chapped cheeks, lips, knees and cuticles.
 - **Hero ingredients:** Cow ghee, Beeswax, Kokum butter
 - **Naturally derived:** 100% (placeholder)
@@ -60,7 +60,7 @@ Generated from `docs/product/products.json` by `scripts/build_packaging.py`. For
 ### Mineral Sunscreen (मिनरल सनस्क्रीन)
 
 - **Pack:** 50 g, tube · `assets/packaging/mineral-sunscreen.svg`
-- **Age:** 6+ months
+- **Age:** 6–36 months
 - **Promise:** Zinc oxide sits on the skin and reflects the sun. Broad spectrum.
 - **Hero ingredients:** Zinc oxide (non-nano), Sunflower oil, Aloe
 - **Naturally derived:** 96% (placeholder)
@@ -73,7 +73,7 @@ Generated from `docs/product/products.json` by `scripts/build_packaging.py`. For
 ### Talc-Free Powder (टैल्क-फ्री पाउडर)
 
 - **Pack:** 100 g, shaker · `assets/packaging/talc-free-powder.svg`
-- **Age:** 0+ months
+- **Age:** 0–36 months
 - **Promise:** Corn starch and neem keep skin folds dry, with no talc.
 - **Hero ingredients:** Corn starch, Neem leaf, Arrowroot
 - **Naturally derived:** 99% (placeholder)
@@ -96,7 +96,7 @@ Generated from `docs/product/products.json` by `scripts/build_packaging.py`. For
 ### Head-to-Toe Wash (हेड-टू-टो वॉश)
 
 - **Pack:** 200 ml, pump · `assets/packaging/head-to-toe-wash.svg`
-- **Age:** 0+ months
+- **Age:** 0–36 months
 - **Promise:** One gentle, tear-free wash for hair and body, from the first bath.
 - **Hero ingredients:** Coconut-derived cleansers, Aloe, Glycerin
 - **Naturally derived:** 96% (placeholder)
@@ -107,7 +107,7 @@ Generated from `docs/product/products.json` by `scripts/build_packaging.py`. For
 ### Tear-Free Shampoo (टियर-फ्री शैम्पू)
 
 - **Pack:** 200 ml, flip · `assets/packaging/tear-free-shampoo.svg`
-- **Age:** 0+ months
+- **Age:** 0–36 months
 - **Promise:** Shikakai and hibiscus for soft, tangle-free hair.
 - **Hero ingredients:** Shikakai, Hibiscus, Rice protein
 - **Naturally derived:** 95% (placeholder)
@@ -117,7 +117,7 @@ Generated from `docs/product/products.json` by `scripts/build_packaging.py`. For
 ### Bubble Bath (बबल बाथ)
 
 - **Pack:** 300 ml, tall · `assets/packaging/bubble-bath.svg`
-- **Age:** 12+ months
+- **Age:** 12–36 months
 - **Promise:** Soft, long-lasting bubbles with rice water and oat.
 - **Hero ingredients:** Rice water, Oat, Plant-based foam
 - **Naturally derived:** 95% (placeholder)
@@ -128,10 +128,10 @@ Generated from `docs/product/products.json` by `scripts/build_packaging.py`. For
 ### First Toothpaste (पहला टूथपेस्ट)
 
 - **Pack:** 50 g, tube_s · `assets/packaging/first-toothpaste.svg`
-- **Age:** From the first tooth
+- **Age:** First tooth to 3 years
 - **Promise:** Low-dose fluoride and a mild mango taste, for the first teeth.
 - **Hero ingredients:** Fluoride 1000 ppm, Xylitol, Mango flavour
-- **Pack claim:** 1000 PPM FLUORIDE · RICE-GRAIN DOSE
+- **Pack claim:** 1000 PPM FLUORIDE
 - **How to use:** Brush twice a day with a smear the size of a grain of rice. An adult should do the brushing. Wipe away the excess; no need to rinse.
 - **Caution:** Contains sodium fluoride. Use only a rice-grain amount for children under 3, and supervise brushing. If your child swallows a large amount, see a doctor.
 - **Ingredients (indicative):** Sorbitol, Hydrated Silica, Aqua, Glycerin, Xylitol, Cellulose Gum, Decyl Glucoside, Sodium Fluoride (1000 ppm F), Mangifera Indica (Mango) Fruit Flavour (natural).
@@ -139,7 +139,7 @@ Generated from `docs/product/products.json` by `scripts/build_packaging.py`. For
 ### Finger Toothbrush (फ़िंगर टूथब्रश)
 
 - **Pack:** 1 brush, carton · `assets/packaging/finger-toothbrush.svg`
-- **Age:** 4+ months
+- **Age:** 4–24 months
 - **Promise:** A soft silicone brush that slips over your finger to clean gums and first teeth.
 - **Hero ingredients:** Food-grade silicone, BPA-free, Travel case
 - **Pack claim:** BPA-FREE SILICONE
@@ -150,7 +150,7 @@ Generated from `docs/product/products.json` by `scripts/build_packaging.py`. For
 ### Grooming Kit (ग्रूमिंग किट)
 
 - **Pack:** 4 pieces, pouch · `assets/packaging/grooming-kit.svg`
-- **Age:** 0+ months
+- **Age:** 0–36 months
 - **Promise:** A soft brush, comb, nail clipper and file in a washable cotton pouch.
 - **Hero ingredients:** Soft plant-fibre brush, Round-tip comb, Clipper with magnifier
 - **Pack claim:** 4-PIECE KIT
@@ -182,7 +182,7 @@ Generated from `docs/product/products.json` by `scripts/build_packaging.py`. For
 ### Hand & Face Wipes (हाथ-मुँह वाइप्स)
 
 - **Pack:** 60 wipes, wipes · `assets/packaging/hand-face-wipes.svg`
-- **Age:** 0+ months
+- **Age:** 6–36 months
 - **Promise:** A thicker cloth with aloe and cucumber, for meals and sticky hands.
 - **Hero ingredients:** Aloe, Cucumber, Thick plant-fibre cloth
 - **Naturally derived:** 99% (placeholder)
@@ -193,7 +193,7 @@ Generated from `docs/product/products.json` by `scripts/build_packaging.py`. For
 ### Water Wipes (वॉटर वाइप्स)
 
 - **Pack:** 72 wipes, wipes · `assets/packaging/water-wipes.svg`
-- **Age:** 0+ months
+- **Age:** 0–36 months
 - **Promise:** 99% purified water on a plant-fibre cloth. Gentle enough for newborn faces.
 - **Hero ingredients:** 99% purified water, Aloe, Plant-based fibre
 - **Naturally derived:** 99% (placeholder)
@@ -204,7 +204,7 @@ Generated from `docs/product/products.json` by `scripts/build_packaging.py`. For
 ### Water Wipes Value Pack (वॉटर वाइप्स, 3 का पैक)
 
 - **Pack:** 3 × 72 wipes, bundle · `assets/packaging/water-wipes-value.svg`
-- **Age:** 0+ months
+- **Age:** 0–36 months
 - **Promise:** Three packs of 72 Water Wipes, for the price of two and a half.
 - **Hero ingredients:** 99% purified water, Aloe, Plant-based fibre
 - **Naturally derived:** 99% (placeholder)

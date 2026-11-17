@@ -195,3 +195,16 @@ photo. Removed the unused rhino drawing.
 **Decided:** Founder asked to change the newborn animal and chose the chital
 fawn. Its white spots carry into the all-over diaper print.
 **Next:** Founder review; merge PR 1, then PR 2.
+
+### 2026-11-18 00:10 IST — Claude Code (Opus 5.5) · Shivank’s MacBook Air
+**Changed:** Replaced open-ended ages ("0+ months") with full ranges on every
+pack, product page, label sample and composited photo: most products 0–36
+months, sunscreen and hand & face wipes 6–36, bubble bath 12–36, finger
+toothbrush 4–24, toothpaste first tooth to 3 years. Diapers keep their weight
+ranges; bottle wash has no age because it's for feeding gear. Shortened the
+toothpaste footer to "1000 PPM FLUORIDE" so it doesn't collide with the
+quantity.
+**Decided:** Founder wanted ranges instead of "+". Chose ranges per product
+with an upper limit, not stage bands or narrow per-stage products, because
+narrow ranges would wrongly tell parents to stop using a product early.
+**Next:** Founder review; merge PR 1, then PR 2.

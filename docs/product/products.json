@@ -41,8 +41,8 @@
         "Daily Lotion"
       ],
       "hindi": "रोज़ाना लोशन",
-      "eyebrow": "Moisturise · 0+ months",
-      "age": "0+ months",
+      "eyebrow": "Moisturise · 0–36 months",
+      "age": "0–36 months",
       "line": "Oat and shea butter, for skin that stays soft till bedtime.",
       "hero": [
         "Colloidal oat",
@@ -63,8 +63,8 @@
         "Massage Oil"
       ],
       "hindi": "मालिश तेल",
-      "eyebrow": "Moisturise · 0+ months",
-      "age": "0+ months",
+      "eyebrow": "Moisturise · 0–36 months",
+      "age": "0–36 months",
       "line": "Cold-pressed coconut and almond oil for the daily maalish.",
       "hero": [
         "Cold-pressed coconut",
@@ -86,8 +86,8 @@
         "Rich Cream"
       ],
       "hindi": "पोषक क्रीम",
-      "eyebrow": "Moisturise · 0+ months",
-      "age": "0+ months",
+      "eyebrow": "Moisturise · 0–36 months",
+      "age": "0–36 months",
       "line": "Shea, oat and ceramides for dry patches and winter cheeks.",
       "hero": [
         "Shea butter",
@@ -109,8 +109,8 @@
         "Cream"
       ],
       "hindi": "डायपर रैश क्रीम",
-      "eyebrow": "Care & Protect · 0+ months",
-      "age": "0+ months",
+      "eyebrow": "Care & Protect · 0–36 months",
+      "age": "0–36 months",
       "line": "Zinc oxide and calendula form a breathable barrier at every change.",
       "hero": [
         "Zinc oxide 15%",
@@ -132,8 +132,8 @@
         "Balm"
       ],
       "hindi": "हर काम का बाम",
-      "eyebrow": "Care & Protect · 0+ months",
-      "age": "0+ months",
+      "eyebrow": "Care & Protect · 0–36 months",
+      "age": "0–36 months",
       "line": "Ghee, beeswax and kokum butter for chapped cheeks, lips, knees and cuticles.",
       "hero": [
         "Cow ghee",
@@ -155,8 +155,8 @@
         "Sunscreen"
       ],
       "hindi": "मिनरल सनस्क्रीन",
-      "eyebrow": "Care & Protect · 6+ months",
-      "age": "6+ months",
+      "eyebrow": "Care & Protect · 6–36 months",
+      "age": "6–36 months",
       "line": "Zinc oxide sits on the skin and reflects the sun. Broad spectrum.",
       "hero": [
         "Zinc oxide (non-nano)",
@@ -180,8 +180,8 @@
         "Powder"
       ],
       "hindi": "टैल्क-फ्री पाउडर",
-      "eyebrow": "Hygiene · 0+ months",
-      "age": "0+ months",
+      "eyebrow": "Hygiene · 0–36 months",
+      "age": "0–36 months",
       "line": "Corn starch and neem keep skin folds dry, with no talc.",
       "hero": [
         "Corn starch",
@@ -225,8 +225,8 @@
         "Water Wipes"
       ],
       "hindi": "वॉटर वाइप्स",
-      "eyebrow": "Diapering · 0+ months",
-      "age": "0+ months",
+      "eyebrow": "Diapering · 0–36 months",
+      "age": "0–36 months",
       "line": "99% purified water on a plant-fibre cloth. Gentle enough for newborn faces.",
       "hero": [
         "99% purified water",
@@ -249,8 +249,8 @@
         "Wash"
       ],
       "hindi": "हेड-टू-टो वॉश",
-      "eyebrow": "Bath · 0+ months · tear-free",
-      "age": "0+ months",
+      "eyebrow": "Bath · 0–36 months · tear-free",
+      "age": "0–36 months",
       "line": "One gentle, tear-free wash for hair and body, from the first bath.",
       "hero": [
         "Coconut-derived cleansers",
@@ -273,8 +273,8 @@
         "Shampoo"
       ],
       "hindi": "टियर-फ्री शैम्पू",
-      "eyebrow": "Bath · 0+ months · tear-free",
-      "age": "0+ months",
+      "eyebrow": "Bath · 0–36 months · tear-free",
+      "age": "0–36 months",
       "line": "Shikakai and hibiscus for soft, tangle-free hair.",
       "hero": [
         "Shikakai",
@@ -295,8 +295,8 @@
         "Bubble Bath"
       ],
       "hindi": "बबल बाथ",
-      "eyebrow": "Bath · 12+ months",
-      "age": "12+ months",
+      "eyebrow": "Bath · 12–36 months",
+      "age": "12–36 months",
       "line": "Soft, long-lasting bubbles with rice water and oat.",
       "hero": [
         "Rice water",
@@ -319,8 +319,8 @@
         "Toothpaste"
       ],
       "hindi": "पहला टूथपेस्ट",
-      "eyebrow": "Oral care · first tooth+",
-      "age": "From the first tooth",
+      "eyebrow": "Oral care · 1st tooth–3 yrs",
+      "age": "First tooth to 3 years",
       "line": "Low-dose fluoride and a mild mango taste, for the first teeth.",
       "hero": [
         "Fluoride 1000 ppm",
@@ -329,7 +329,7 @@
       ],
       "icon": "drop",
       "size": "50 g",
-      "footer": "1000 PPM FLUORIDE · RICE-GRAIN DOSE",
+      "footer": "1000 PPM FLUORIDE",
       "use": "Brush twice a day with a smear the size of a grain of rice. An adult should do the brushing. Wipe away the excess; no need to rinse.",
       "inci": "Sorbitol, Hydrated Silica, Aqua, Glycerin, Xylitol, Cellulose Gum, Decyl Glucoside, Sodium Fluoride (1000 ppm F), Mangifera Indica (Mango) Fruit Flavour (natural).",
       "caution": "Contains sodium fluoride. Use only a rice-grain amount for children under 3, and supervise brushing. If your child swallows a large amount, see a doctor."
@@ -343,8 +343,8 @@
         "Toothbrush"
       ],
       "hindi": "फ़िंगर टूथब्रश",
-      "eyebrow": "Oral care · 4+ months",
-      "age": "4+ months",
+      "eyebrow": "Oral care · 4–24 months",
+      "age": "4–24 months",
       "line": "A soft silicone brush that slips over your finger to clean gums and first teeth.",
       "hero": [
         "Food-grade silicone",
@@ -366,8 +366,8 @@
         "Grooming Kit"
       ],
       "hindi": "ग्रूमिंग किट",
-      "eyebrow": "Grooming · 0+ months",
-      "age": "0+ months",
+      "eyebrow": "Grooming · 0–36 months",
+      "age": "0–36 months",
       "line": "A soft brush, comb, nail clipper and file in a washable cotton pouch.",
       "hero": [
         "Soft plant-fibre brush",
@@ -436,8 +436,8 @@
         "Hand & Face Wipes"
       ],
       "hindi": "हाथ-मुँह वाइप्स",
-      "eyebrow": "Diapering · 0+ months",
-      "age": "0+ months",
+      "eyebrow": "Diapering · 6–36 months",
+      "age": "6–36 months",
       "line": "A thicker cloth with aloe and cucumber, for meals and sticky hands.",
       "hero": [
         "Aloe",
@@ -460,8 +460,8 @@
         "Value Pack"
       ],
       "hindi": "वॉटर वाइप्स, 3 का पैक",
-      "eyebrow": "Diapering · 0+ months",
-      "age": "0+ months",
+      "eyebrow": "Diapering · 0–36 months",
+      "age": "0–36 months",
       "line": "Three packs of 72 Water Wipes, for the price of two and a half.",
       "hero": [
         "99% purified water",
