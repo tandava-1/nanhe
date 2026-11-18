@@ -1,0 +1,211 @@
+---
+import Base from '../layouts/Base.astro';
+import CatalogData from '../components/CatalogData.astro';
+---
+<Base title="Checkout · Nanhe">
+  <CatalogData />
+  <section class="wrap co-wrap">
+    <p class="xs mu"><a href="/cart">← Back to cart</a></p>
+    <h1 class="f h2">Checkout</h1>
+    <div class="note demo"><b>Prototype checkout.</b> Nothing you type here is saved or sent anywhere, and no payment is taken. Any 6 digits work as the one-time code.</div>
+
+    <div class="co-grid" data-form-wrap>
+      <form class="co-main" data-form novalidate>
+        <fieldset class="card step">
+          <legend class="f step-h"><span class="num">1</span>Contact</legend>
+          <label class="fl" for="phone">Mobile number</label>
+          <div class="row"><span class="input pre">+91</span><input id="phone" class="input" inputmode="numeric" maxlength="10" placeholder="98XXX XXXXX" autocomplete="tel-national" data-phone /><button type="button" class="btn2 nowrap" data-sendcode>Send code</button></div>
+          <div class="otp" data-otp hidden>
+            <label class="fl" for="otp">One-time code</label>
+            <div class="row"><input id="otp" class="input" inputmode="numeric" maxlength="6" placeholder="6 digits" autocomplete="one-time-code" /><button type="button" class="btn2 nowrap" data-verify>Verify</button></div>
+          </div>
+          <p class="xs" data-phonemsg aria-live="polite">We'll send a one-time code. No password needed.</p>
+          <label class="check sm"><input type="checkbox" checked /> Send order updates on WhatsApp</label>
+          <label class="fl" for="email">Email <span class="mu">(optional, for the invoice)</span></label>
+          <input id="email" class="input" type="email" autocomplete="email" />
+        </fieldset>
+
+        <fieldset class="card step">
+          <legend class="f step-h"><span class="num">2</span>Delivery address</legend>
+          <div class="two">
+            <div><label class="fl" for="pc">Pincode</label><input id="pc" class="input" inputmode="numeric" maxlength="6" autocomplete="postal-code" data-pc /></div>
+            <div><label class="fl" for="city">City</label><input id="city" class="input" autocomplete="address-level2" data-city /></div>
+          </div>
+          <label class="fl" for="state">State</label><input id="state" class="input" autocomplete="address-level1" data-state />
+          <label class="fl" for="name">Full name</label><input id="name" class="input" autocomplete="name" data-req />
+          <label class="fl" for="house">Flat / house no., building</label><input id="house" class="input" autocomplete="address-line1" data-req />
+          <label class="fl" for="area">Area, street</label><input id="area" class="input" autocomplete="address-line2" data-req />
+          <label class="fl" for="landmark">Landmark <span class="mu">(optional)</span></label><input id="landmark" class="input" />
+          <div class="row wrap-row" role="radiogroup" aria-label="Address type" style="gap:8px">
+            <button type="button" class="chip" aria-pressed="true" data-atype>Home</button><button type="button" class="chip" aria-pressed="false" data-atype>Work</button><button type="button" class="chip" aria-pressed="false" data-atype>Other</button>
+          </div>
+          <div class="note eta" data-eta>Enter your pincode to see the delivery date.</div>
+        </fieldset>
+
+        <fieldset class="card step">
+          <legend class="f step-h"><span class="num">3</span>Payment</legend>
+          <label class="pay"><input type="radio" name="pay" value="upi" checked /><span><b>UPI</b><span class="sm mu block">Any UPI app or UPI ID</span></span></label>
+          <label class="pay"><input type="radio" name="pay" value="card" /><span><b>Credit or debit card</b></span></label>
+          <label class="pay"><input type="radio" name="pay" value="netbanking" /><span><b>Netbanking</b></span></label>
+          <label class="pay" data-codrow><input type="radio" name="pay" value="cod" data-cod /><span><b>Cash on delivery</b><span class="sm mu block" data-codtext></span></span></label>
+          <div class="tip" data-subnote hidden><span class="tl">About your subscription</span>Subscriptions renew through UPI AutoPay or a saved card, so cash on delivery isn't available for this order. We'll message you 24 hours before each delivery, and you can skip or cancel in one tap.</div>
+        </fieldset>
+
+        <p class="sm err" data-err aria-live="assertive"></p>
+        <button class="btn btn-block place" type="submit" data-place>Place order</button>
+        <p class="xs mu" style="text-align:center">By placing the order you agree to the [terms] and [subscription terms].</p>
+      </form>
+
+      <aside class="co-side">
+        <div class="card side-card">
+          <h2 class="f h3">Order summary</h2>
+          <ul class="mini" data-mini></ul>
+          <div class="note" data-giftsum hidden></div>
+          <dl class="sum" data-sum></dl>
+        </div>
+      </aside>
+    </div>
+
+    <div class="done card" data-done hidden>
+      <img src="/brand/characters/haathi.svg" alt="" width="96" height="96" />
+      <h2 class="f h2">Order placed <span class="smp">demo</span></h2>
+      <p class="lead" data-donetext></p>
+      <p class="sm mu">This is the prototype: no payment was taken and nothing was sent. In the real store you'd get a WhatsApp confirmation now, and a short review request a few days after delivery, once you've had time to try things.</p>
+      <div class="row wrap-row" style="gap:12px;justify-content:center"><a class="btn" href="/shop">Keep shopping</a><a class="btn2" href="/profile">Add your baby</a></div>
+    </div>
+
+    <div class="empty" data-empty hidden>
+      <p class="f h3">Your cart is empty</p>
+      <a class="btn" href="/shop">Shop the range</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .co-wrap { padding-top: 20px; padding-bottom: 64px; display: flex; flex-direction: column; gap: 16px; }
+  .co-wrap > p a { text-decoration: none; }
+  .demo { background: var(--oat); }
+  .co-grid { display: flex; flex-direction: column; gap: 20px; }
+  .co-main { display: flex; flex-direction: column; gap: 14px; flex: 1 1 560px; min-width: 0; }
+  .co-side { flex: 0 1 380px; }
+  @media (min-width: 960px) { .co-grid { flex-direction: row; align-items: flex-start; gap: 32px; } .co-side { position: sticky; top: 100px; } }
+  .step { padding: 18px; margin: 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .step-h { font-size: 22px; display: flex; align-items: center; gap: 10px; margin-bottom: 6px; padding: 0; }
+  .num { width: 28px; height: 28px; border-radius: 14px; background: var(--moss); color: var(--milk); font-family: var(--sans); font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+  .fl { font-size: 13px; font-weight: 600; margin-top: 4px; }
+  .pre { width: 64px; flex: none; display: inline-flex; align-items: center; }
+  .nowrap { white-space: nowrap; flex: none; min-height: 48px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .check { display: flex; gap: 10px; align-items: center; min-height: 40px; }
+  .check input { width: 18px; height: 18px; accent-color: var(--moss); }
+  .eta { margin-top: 6px; }
+  .pay { display: flex; gap: 12px; align-items: center; min-height: 56px; padding: 0 14px; border: 1px solid rgba(31, 58, 43, .16); border-radius: 16px; cursor: pointer; }
+  .pay:has(input:checked) { border: 2px solid var(--moss); }
+  .pay:has(input:disabled) { opacity: .5; cursor: not-allowed; }
+  .pay input { width: 18px; height: 18px; accent-color: var(--moss); flex: none; }
+  .block { display: block; }
+  .err { color: #9B2C1F; min-height: 1em; font-weight: 600; }
+  .place { min-height: 54px; font-size: 16px; }
+  .side-card { padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+  .mini { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+  .sum { margin: 0; display: grid; grid-template-columns: 1fr auto; gap: 8px 12px; font-size: 15px; border-top: 1px solid var(--line); padding-top: 12px; }
+  .sum dd { margin: 0; text-align: right; }
+  .done { padding: 32px 24px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; max-width: 680px; margin: 0 auto; }
+  .lead { font-size: 18px; }
+  .empty { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 32px 0; }
+  .invalid { border-color: #9B2C1F !important; }
+</style>
+
+<style is:global>
+  .mini li { display: flex; justify-content: space-between; gap: 10px; }
+  .mini li span:first-child { min-width: 0; }
+</style>
+
+<script>
+  import { catalog, inr, esc } from '../scripts/data';
+  import { readCart, totals, unitPrice, clearCart, readGift, writeCoupon, writeGift } from '../scripts/cart';
+
+  const c = catalog();
+  const $ = <T extends HTMLElement>(s: string) => document.querySelector<T>(s)!;
+  const lines = readCart();
+  const hasSub = lines.some((l) => l.subscribe);
+  let verified = false;
+
+  if (!lines.length) { $('[data-form-wrap]').hidden = true; $('[data-empty]').hidden = false; }
+
+  // Cash on delivery: not for subscriptions (they renew by UPI AutoPay or card).
+  const cod = $<HTMLInputElement>('[data-cod]');
+  $('[data-codtext]').textContent = hasSub ? 'Not available with a subscription in your order' : `+${inr(c.rules.codFee)} handling (sample)`;
+  cod.disabled = hasSub; $('[data-subnote]').hidden = !hasSub;
+
+  function renderSummary() {
+    const t = totals(lines, { cod: cod.checked });
+    $('[data-mini]').innerHTML = lines.map((l) => {
+      const name = l.kind === 'product' ? c.products[l.slug]?.name : l.kind === 'kit' ? c.kits[l.slug]?.name : `Your own box (${l.items?.length ?? 0})`;
+      return `<li><span>${esc(name ?? '')} × ${l.qty}${l.subscribe ? ` <span class="xs mu">· every ${esc(l.every ?? '6 weeks')}</span>` : ''}</span><span>${inr(unitPrice(l, c) * l.qty)}</span></li>`;
+    }).join('');
+    const rows: [string, string][] = [[`Items (${t.items})`, inr(t.subtotal)]];
+    if (t.subSave) rows.push(['Subscription savings', `−${inr(t.subSave)}`]);
+    if (t.couponSave) rows.push([`Coupon ${t.code}`, `−${inr(t.couponSave)}`]);
+    rows.push(['Delivery', t.delivery ? inr(t.delivery) : 'Free']);
+    if (t.cod) rows.push(['Cash on delivery', inr(t.cod)]);
+    $('[data-sum]').innerHTML = rows.map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('') + `<dt style="font-weight:700;font-size:17px">Total</dt><dd style="font-weight:700;font-size:17px">${inr(t.total)}</dd><dt class="xs mu" style="grid-column:1/-1">Incl. of all taxes · sample prices</dt>`;
+    const g = readGift();
+    $('[data-giftsum]').hidden = !g.on;
+    if (g.on) $('[data-giftsum]').innerHTML = `<b>Gift order.</b> ${g.hidePrices ? 'No prices on the invoice. ' : ''}${g.note ? `Note: “${esc(g.note)}”` : ''}`;
+    return t;
+  }
+  document.querySelectorAll('input[name="pay"]').forEach((r) => r.addEventListener('change', renderSummary));
+  renderSummary();
+
+  // Contact: demo one-time code.
+  const phone = $<HTMLInputElement>('[data-phone]'), msg = $('[data-phonemsg]');
+  $('[data-sendcode]').addEventListener('click', () => {
+    if (!/^[6-9]\d{9}$/.test(phone.value.trim())) { msg.textContent = 'Please enter a 10-digit mobile number.'; phone.classList.add('invalid'); return; }
+    phone.classList.remove('invalid'); $('[data-otp]').hidden = false; msg.textContent = 'Code sent (demo). Enter any 6 digits.';
+    $<HTMLInputElement>('#otp').focus();
+  });
+  $('[data-verify]').addEventListener('click', () => {
+    if (!/^\d{6}$/.test($<HTMLInputElement>('#otp').value.trim())) { msg.textContent = 'Enter the 6-digit code.'; return; }
+    verified = true; msg.innerHTML = '<b>✓ Number verified</b>'; $('[data-otp]').hidden = true; phone.readOnly = true;
+  });
+
+  // Address: pincode fills city and state for a few sample pincodes; otherwise type them in.
+  const PINS: Record<string, [string, string]> = {
+    '110001': ['New Delhi', 'Delhi'], '400001': ['Mumbai', 'Maharashtra'], '411001': ['Pune', 'Maharashtra'], '560001': ['Bengaluru', 'Karnataka'],
+    '600001': ['Chennai', 'Tamil Nadu'], '700001': ['Kolkata', 'West Bengal'], '500001': ['Hyderabad', 'Telangana'], '380001': ['Ahmedabad', 'Gujarat'],
+    '302001': ['Jaipur', 'Rajasthan'], '226001': ['Lucknow', 'Uttar Pradesh'], '682001': ['Kochi', 'Kerala'], '160017': ['Chandigarh', 'Chandigarh'],
+  };
+  const pc = $<HTMLInputElement>('[data-pc]');
+  pc.addEventListener('input', () => {
+    const v = pc.value.trim();
+    if (PINS[v]) { $<HTMLInputElement>('[data-city]').value = PINS[v][0]; $<HTMLInputElement>('[data-state]').value = PINS[v][1]; }
+    if (/^[1-8]\d{5}$/.test(v)) {
+      const d = new Date(); let n = 0; while (n < 3) { d.setDate(d.getDate() + 1); if (d.getDay() !== 0) n++; }
+      const t = totals(lines);
+      $('[data-eta]').innerHTML = `<b>Arrives ${d.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' })}</b> · Standard delivery ${t.delivery ? inr(t.delivery) : 'free'}`;
+    }
+  });
+  document.querySelectorAll<HTMLElement>('[data-atype]').forEach((b, _, all) => b.addEventListener('click', () => all.forEach((x) => x.setAttribute('aria-pressed', String(x === b)))));
+
+  // Place order: check the essentials, then show a demo confirmation and empty the cart.
+  $('[data-form]').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const problems: string[] = [];
+    const req = [...document.querySelectorAll<HTMLInputElement>('[data-req]'), pc, $<HTMLInputElement>('[data-city]'), $<HTMLInputElement>('[data-state]')];
+    req.forEach((i) => { const bad = !i.value.trim(); i.classList.toggle('invalid', bad); if (bad) problems.push(i.id); });
+    if (!/^[1-8]\d{5}$/.test(pc.value.trim())) { pc.classList.add('invalid'); problems.push('pincode'); }
+    if (!verified) problems.push('phone');
+    if (problems.length) {
+      $('[data-err]').textContent = !verified ? 'Please verify your mobile number, then fill in the highlighted fields.' : 'Please fill in the highlighted fields.';
+      return;
+    }
+    const t = renderSummary();
+    const pay = (document.querySelector<HTMLInputElement>('input[name="pay"]:checked')?.value ?? 'upi');
+    const id = `NH-${new Date().toISOString().slice(2, 10).replace(/-/g, '')}-${Math.floor(1000 + Math.random() * 9000)}`;
+    $('[data-donetext]').innerHTML = `Order <b>${id}</b> · ${t.items} item${t.items === 1 ? '' : 's'} · <b>${inr(t.total)}</b> · ${({ upi: 'UPI', card: 'Card', netbanking: 'Netbanking', cod: 'Cash on delivery' } as Record<string, string>)[pay]}`;
+    clearCart(); writeCoupon(''); writeGift({ on: false, note: '', hidePrices: true });
+    $('[data-form-wrap]').hidden = true; $('[data-done]').hidden = false;
+    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+  });
+</script>
