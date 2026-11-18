@@ -1,0 +1,155 @@
+---
+import Base from '../layouts/Base.astro';
+import CatalogData from '../components/CatalogData.astro';
+import { products } from '../data/catalog';
+---
+<Base title="Write a review · Nanhe">
+  <CatalogData />
+  <section class="wrap wr-wrap">
+    <h1 class="f h2">Write a review</h1>
+    <div class="note demo"><b>Prototype.</b> Your review is kept only in this browser and shows on the product page for you alone. Nothing is published or sent.</div>
+
+    <form class="card wr-form" data-form novalidate>
+      <label class="q" for="product">Product</label>
+      <select id="product" class="input sel" data-product>
+        {products.map((p) => <option value={p.slug}>{p.name}</option>)}
+      </select>
+      <div class="row prod" data-prod></div>
+      <p class="rv sm">Your answers help other parents find reviews from babies like theirs. Takes about 2 minutes.</p>
+
+      <fieldset class="fs"><legend class="q">Overall</legend>
+        <div class="stars-in" role="radiogroup" aria-label="Overall rating">{[1, 2, 3, 4, 5].map((n) => <button type="button" class="star" role="radio" aria-checked="false" aria-label={`${n} star${n > 1 ? 's' : ''}`} data-star={n}>★</button>)}</div>
+      </fieldset>
+      <fieldset class="fs"><legend class="q">Baby's age when you used it</legend>
+        <p class="xs mu" data-prefill hidden>Filled in from your baby profile. Change it if needed.</p>
+        <div class="row wrap-row" style="gap:8px">{[['0-3', '0–3 m'], ['3-6', '3–6 m'], ['6-12', '6–12 m'], ['12-36', '1–3 y']].map(([k, l]) => <button type="button" class="chip" data-age={k} aria-pressed="false">{l}</button>)}</div>
+      </fieldset>
+      <fieldset class="fs"><legend class="q">Baby's skin type</legend>
+        <div class="row wrap-row" style="gap:8px">{[['normal', 'Normal'], ['dry', 'Dry'], ['sensitive', 'Sensitive'], ['eczema', 'Eczema-prone']].map(([k, l]) => <button type="button" class="chip" data-skin={k} aria-pressed="false">{l}</button>)}</div>
+      </fieldset>
+      <fieldset class="fs"><legend class="q">How long have you used it?</legend>
+        <div class="row wrap-row" style="gap:8px">{['A few days', '2–4 weeks', '1 month or more'].map((l) => <button type="button" class="chip" data-used={l} aria-pressed="false">{l}</button>)}</div>
+      </fieldset>
+      <fieldset class="fs"><legend class="q">Any skin reaction?</legend>
+        <div class="row wrap-row" style="gap:8px">{[['none', 'None'], ['mild', 'Mild redness that went away'], ['stopped', 'Yes, I stopped using it']].map(([k, l]) => <button type="button" class="chip" data-reaction={k} aria-pressed="false">{l}</button>)}</div>
+        <div class="tip" data-reacttip hidden><span class="tl">If there was a reaction</span>Stop using it, and talk to your paediatrician if it doesn't settle. In the real store, our care team would call you within a day and refund you.</div>
+      </fieldset>
+      <fieldset class="fs"><legend class="q">Would you buy it again?</legend>
+        <div class="row" style="gap:8px"><button type="button" class="chip" data-again="yes" aria-pressed="false">Yes</button><button type="button" class="chip" data-again="no" aria-pressed="false">No</button></div>
+      </fieldset>
+
+      <label class="q" for="title">Title</label>
+      <input id="title" class="input" maxlength="80" placeholder="Sum it up in a line" />
+      <label class="q" for="body">Your review</label>
+      <textarea id="body" class="input area" maxlength="1200" placeholder="What did you notice after a week or two? Anything you'd tell a friend?"></textarea>
+
+      <label class="q" for="photos">Add photos <span class="mu opt">(optional)</span></label>
+      <input id="photos" type="file" accept="image/*" multiple data-photos class="file" />
+      <div class="row wrap-row" style="gap:8px" data-thumbs></div>
+      <div class="tip"><span class="tl">Privacy tip</span>Photos of the product, or of skin before and after, help most. You may want to leave your baby's face out.</div>
+
+      <fieldset class="fs"><legend class="q">Show my name as</legend>
+        <div class="row wrap-row" style="gap:8px"><button type="button" class="chip" data-show="initial" aria-pressed="true">First initial and city</button><button type="button" class="chip" data-show="anon" aria-pressed="false">Anonymous parent</button></div>
+      </fieldset>
+
+      <p class="sm err" data-err aria-live="assertive"></p>
+      <button class="btn" type="submit">Post review</button>
+      <p class="xs mu">We publish every review, good or bad, after a check for abuse and personal details. Reviews from free samples are always labelled.</p>
+    </form>
+
+    <div class="card thanks" data-thanks hidden>
+      <img src="/brand/characters/haathi.svg" alt="" width="88" height="88" />
+      <h2 class="f h2">Thank you</h2>
+      <p class="lead">Your review helps parents of babies like yours. In this prototype it shows on the product page for you only.</p>
+      <a class="btn" data-seeit href="/shop">See it on the product page</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .wr-wrap { padding-top: 24px; padding-bottom: 64px; display: flex; flex-direction: column; gap: 16px; max-width: 820px; }
+  .demo { background: var(--oat); }
+  .wr-form { padding: 22px; display: flex; flex-direction: column; gap: 10px; }
+  .q { font-weight: 700; font-size: 16px; margin-top: 10px; padding: 0; }
+  .opt { font-weight: 400; font-size: 14px; }
+  .fs { border: 0; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .sel { appearance: auto; border-radius: 16px; }
+  .prod { gap: 12px; }
+  .rv { background: var(--oat); border-radius: 14px; padding: 10px 14px; }
+  .stars-in { display: flex; gap: 6px; }
+  .star { width: 48px; height: 48px; border-radius: 14px; border: 1px solid var(--line-2); background: var(--white); font-size: 24px; color: #C9C4B8; cursor: pointer; }
+  .star.on { background: var(--moss); color: var(--milk); border-color: var(--moss); }
+  .area { border-radius: 16px; min-height: 130px; padding: 12px 14px; resize: vertical; }
+  .file { font-size: 14px; }
+  .err { color: #9B2C1F; font-weight: 600; min-height: 1em; }
+  .thanks { padding: 32px 24px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; }
+  .lead { font-size: 18px; }
+</style>
+
+<style is:global>
+  .prod-img { width: 64px; height: 64px; border-radius: 14px; background: var(--w); position: relative; overflow: hidden; flex: none; }
+  .prod-img img { position: absolute; inset: 6%; width: 88%; height: 88%; object-fit: contain; }
+  .thumb-prev { width: 72px; height: 72px; border-radius: 12px; object-fit: cover; }
+</style>
+
+<script>
+  import { catalog, esc } from '../scripts/data';
+  import { activeBaby, ageBand, ageMonths } from '../scripts/baby';
+
+  const c = catalog();
+  const $ = <T extends HTMLElement>(s: string) => document.querySelector<T>(s)!;
+  const $$ = <T extends HTMLElement>(s: string) => [...document.querySelectorAll<T>(s)];
+  const state: Record<string, string> = { stars: '', age: '', skin: '', used: '', reaction: '', again: '', show: 'initial' };
+  const sel = $<HTMLSelectElement>('[data-product]');
+
+  const fromUrl = new URLSearchParams(location.search).get('product');
+  if (fromUrl && c.products[fromUrl]) sel.value = fromUrl;
+  const showProd = () => {
+    const p = c.products[sel.value];
+    $('[data-prod]').innerHTML = `<span class="prod-img" data-cat="${p.category}"><img src="${p.pack}" alt=""/></span><span><b>${esc(p.name)}</b><span class="xs mu" style="display:block">${esc(p.catName)} · ${esc(p.size)}</span></span>`;
+  };
+  sel.addEventListener('change', showProd); showProd();
+
+  function group(attr: string, key: string, after?: () => void) {
+    $$(`[data-${attr}]`).forEach((b) => b.addEventListener('click', () => {
+      state[key] = b.dataset[attr]!;
+      $$(`[data-${attr}]`).forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      after?.();
+    }));
+  }
+  group('age', 'age'); group('skin', 'skin'); group('used', 'used'); group('again', 'again'); group('show', 'show');
+  group('reaction', 'reaction', () => { $('[data-reacttip]').hidden = state.reaction === 'none'; });
+  $$('[data-star]').forEach((b) => b.addEventListener('click', () => {
+    state.stars = b.dataset.star!;
+    $$('[data-star]').forEach((x) => { const on = Number(x.dataset.star) <= Number(state.stars); x.classList.toggle('on', on); x.setAttribute('aria-checked', String(x === b)); });
+  }));
+
+  // Prefill from the baby profile.
+  const baby = activeBaby();
+  if (baby) {
+    const band = ageBand(ageMonths(baby));
+    if (band && baby.born) { state.age = band; $$('[data-age]').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.age === band))); $('[data-prefill]').hidden = false; }
+    if (baby.skin && baby.skin !== 'unsure') { state.skin = baby.skin; $$('[data-skin]').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.skin === baby.skin))); }
+  }
+
+  // Photo previews stay on this device and are not saved.
+  $<HTMLInputElement>('[data-photos]').addEventListener('change', (e) => {
+    const files = [...((e.target as HTMLInputElement).files ?? [])].slice(0, 4);
+    $('[data-thumbs]').innerHTML = files.map((f) => `<img class="thumb-prev" src="${URL.createObjectURL(f)}" alt="Your photo"/>`).join('');
+  });
+
+  $('[data-form]').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const title = $<HTMLInputElement>('#title').value.trim(), body = $<HTMLTextAreaElement>('#body').value.trim();
+    const missing = [!state.stars && 'a star rating', !state.age && "your baby's age", !state.skin && 'skin type', !title && 'a title', body.length < 20 && 'a few words about it (20+ characters)'].filter(Boolean);
+    if (missing.length) { $('[data-err]').textContent = `Please add ${missing.join(', ')}.`; return; }
+    const review = { slug: sel.value, stars: Number(state.stars), title, body, ageBand: state.age, skin: state.skin, used: state.used, reaction: state.reaction, again: state.again, anon: state.show === 'anon', when: new Date().toISOString() };
+    try {
+      const all = JSON.parse(localStorage.getItem('nanhe-my-reviews') ?? '[]');
+      all.push(review); localStorage.setItem('nanhe-my-reviews', JSON.stringify(all));
+    } catch { /* private mode */ }
+    $('[data-form]').hidden = true; $('[data-thanks]').hidden = false;
+    $<HTMLAnchorElement>('[data-seeit]').href = `/products/${sel.value}#reviews`;
+    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+  });
+</script>
