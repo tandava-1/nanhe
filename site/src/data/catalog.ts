@@ -127,6 +127,34 @@ export const ROUTINES = [
   { key: 'go', label: 'On the go' },
 ];
 
-export const MADE_WITHOUT = ['Parabens', 'Sulphates (SLS/SLES)', 'Mineral oil', 'Synthetic fragrance', 'Talc', 'Phthalates', 'Artificial dyes'];
+// ---------------------------------------------------------------- shop rules (SAMPLE values for the prototype)
+export const RULES = { freeDelivery: 499, deliveryFee: 49, codFee: 30, subDiscount: 0.10, coupon: { code: 'NANHE10', off: 0.10 } };
+
+// Kits: real products bundled at a sample discount. Prices are derived so they always agree with the items.
+const kitPrice = (slugs: string[], off: number) => {
+  const sum = slugs.reduce((s, x) => s + bySlug[x].price, 0);
+  return { sum, price: Math.round((sum * (1 - off)) / 10) * 10 - 1 };
+};
+export const KITS = [
+  { id: 'newborn-starter', name: 'Newborn starter kit', line: 'The first three months, in one box.', items: ['head-to-toe-wash', 'daily-lotion', 'massage-oil', 'diaper-rash-cream', 'water-wipes'], off: 0.15, photo: 'ai-03-changing-kit.jpg', cat: 'moisturise' },
+  { id: 'gift-box', name: 'Baby shower gift box', line: 'For godh bharai, naamkaran or a first visit. Comes gift-wrapped.', items: ['daily-lotion', 'massage-oil', 'all-purpose-balm', 'grooming-kit'], off: 0.10, cat: 'bath' },
+  { id: 'dry-skin-winter', name: 'Dry-skin winter kit', line: 'For cold months, AC rooms and dry patches.', items: ['rich-cream', 'all-purpose-balm', 'massage-oil'], off: 0.10, cat: 'care' },
+].map((k) => ({ ...k, ...kitPrice(k.items, k.off) }));
+
+// What the browser needs to draw the cart, checkout, profile, compare and kits pages.
+export function clientCatalog() {
+  return {
+    rules: RULES,
+    products: Object.fromEntries(products.map((p) => [p.slug, {
+      slug: p.slug, name: p.name, hindi: p.hindi, category: p.category, catName: p.cat.name, price: p.price, size: p.size,
+      unit: p.unit, pack: p.pack, rating: p.rating, reviewCount: p.reviewCount, buyAgain: p.buyAgain, age: p.age,
+      ageMin: p.ageMin, ageMax: p.ageMax, subscribe: p.subscribe, mentions: p.mentions.slice(0, 3), hero: p.hero,
+      warnShort: p.warnShort ?? null, friend: p.friend?.name ?? null,
+    }])),
+    kits: Object.fromEntries(KITS.map((k) => [k.id, { id: k.id, name: k.name, items: k.items, price: k.price, sum: k.sum, cat: k.cat }])),
+  };
+}
+
+export const MADE_WITHOUT =['Parabens', 'Sulphates (SLS/SLES)', 'Mineral oil', 'Synthetic fragrance', 'Talc', 'Phthalates', 'Artificial dyes'];
 
 export const inr = (n: number) => `₹${n.toLocaleString('en-IN')}`;

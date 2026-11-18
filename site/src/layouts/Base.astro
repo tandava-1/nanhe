@@ -35,8 +35,8 @@ const { title, description = 'Nanhe: gentle baby care the way Indian homes have 
         e.preventDefault();
         const slug = btn.dataset.add!;
         const sub = btn.dataset.subscribe === 'true';
-        addToCart(slug, 1, sub);
-        toast(`Added ${btn.dataset.name ?? 'to cart'}${sub ? ' (subscription)' : ''}. Cart and checkout come in the next build.`);
+        addToCart(slug, 1, sub, btn.dataset.every);
+        toast(`Added ${btn.dataset.name ?? 'to cart'}${sub ? `, delivered every ${btn.dataset.every ?? '6 weeks'}` : ''}.`);
       });
     </script>
     <style>
