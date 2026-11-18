@@ -2,83 +2,60 @@
 
 ## Current state
 
-**What it is.** Brand identity, packaging and brand book for Nanhe (नन्हे,
-"little ones"): a premium, India-first baby skincare and toiletries line.
-Natural ingredients, clinically tested. Price band around Mamaearth / The Moms
-Co., or slightly above.
+**What it is.** Brand identity, packaging, brand book and a clickable website
+prototype for Nanhe (नन्हे, "little ones"): a premium, India-first baby
+skincare, toiletries and diapering line. Natural ingredients, clinically
+tested. Price band around Mamaearth / The Moms Co., or slightly above.
 
 **Folder map.** See the table in `AGENTS.md`.
 
 **Done.**
-- Name chosen: Nanhe (over Kopal, Mridu, Sprig).
-- Project skeleton created and pushed.
-- Brand foundations (PR on `brand-foundations-2026-11-17`): wordmark and mark
-  SVGs in `assets/logo/`, brand book edition 1 in `brand-book/index.html`
-  (published privately at https://claude.ai/artifact/SUywwYqP1KskvkSx4AqhVo),
-  decisions in `docs/design/brand-foundations.md`. Approved by founder.
-- Packaging (same branch / PR 1): `docs/product/products.json` is the single
-  source for the line; `scripts/build_packaging.py` renders
-  `assets/packaging/*.svg` (9 packs + `lineup.svg`),
-  `docs/product/product-line.md`, and the generated block between
-  `<!-- BEGIN:packaging -->` / `<!-- END:packaging -->` in the brand book
-  (line-up, product pages, front + back label). Brand book is now edition 2.
-  To change a product, edit the JSON and re-run the script; never hand-edit
-  the generated block.
-- Little friends (direction A) is the approved look: nine baby animal
-  characters on labels, wipes lid and line-up arches. `STYLE` in the script
-  defaults to it. Brand book is edition 3. Exploration page kept at
-  `docs/design/explorations/baby-directions.html`.
-- Photography: 8 AI concept renders in `assets/renders/` (Figma file
-  https://www.figma.com/design/tLnDO6jOWOoKlgg7wpCIbg). Three product shots
-  have the real label composited by `scripts/composite_renders.py`. Prompts
-  in `docs/design/render-prompts.md`. Brand book is edition 4 with a
-  photography section; `brand-book/renders` is a symlink to
-  `../assets/renders` so the page works locally and when published.
-- Range extension (branch `product-line-extension-2026-11-17`, stacked on PR 1):
-  19 products in five categories. New: Bath & Toiletries (butter #F5DA8C) —
-  head-to-toe wash, shampoo, bubble bath, first toothpaste (1000 ppm
-  fluoride), finger toothbrush, grooming kit; Diapering (lavender #CFC3E8) —
-  taped diapers NB, diaper pants M, hand & face wipes, Water Wipes (moved from
-  Hygiene), value 3-pack. Eight new characters (Udu, Sheru, Mendu, Magru,
-  Mainu, Chitku, Pandu, Nevu). New pack shapes, diaper prints, a two-row
-  line-up, and two more AI renders (diapers composited, bath lifestyle).
-  Brand book is edition 5.
+- Name, brand foundations, logo (`assets/logo/`), colour, type, claims and
+  voice. Brand book in `brand-book/index.html`, now edition 5 (published at
+  https://claude.ai/artifact/SUywwYqP1KskvkSx4AqhVo).
+- Product line: 19 products in five categories, defined once in
+  `docs/product/products.json`. `scripts/build_packaging.py` renders the packs
+  (`assets/packaging/`), the line-up, `docs/product/product-line.md`, the brand
+  book's packaging block and, since 2026-11-18, one SVG per little friend in
+  `assets/characters/` plus `characters.json`.
+- Categories: Moisturise (apricot), Care & Protect (sage), Everyday Hygiene
+  (sky), Bath & Toiletries (butter), Diapering (lavender). All wipes are in
+  Diapering. Ages are full ranges (mostly 0–36 months).
+- Little friends: 17 Indian baby animals, one per product (Magru is on both
+  first-teeth products; Susu on both water-wipes packs). Concept art; an
+  illustrator redraws before print.
+- Photography: 10 AI concept renders in `assets/renders/` (Figma file
+  https://www.figma.com/design/tLnDO6jOWOoKlgg7wpCIbg), real labels
+  composited on the product shots by `scripts/composite_renders.py`.
+- Website prototype, slice 1 (branch `website-2026-11-18`): Astro static site
+  in `site/` with Home, Shop (five shelves, one-line filters for routine and
+  baby's age, sort) and all 19 product pages (gallery, sample reviews with
+  "babies like yours" filters, claims with `[lab data pending]`, subscribe
+  option, pincode check, cart kept in the browser). Other links go to
+  placeholder pages that say which slice builds them. Architecture in
+  `docs/engineering/website.md`. Wireframes and branded mock-ups that led here
+  are on the canvas https://claude.ai/artifact/EUdWmFgK1wvQR6mj2GSBPV.
 
-**Agreed direction.**
-- Look: modern botanical. Soft matte packs tinted by hero ingredient; rounded
-  lowercase wordmark with a leaf-shaped letterform; Devanagari secondary
-  lockup; fine-line ingredient illustrations; verification-seal style
-  "clinically tested" badge.
-- Colour: cream base, deep moss ink; category colours — apricot (Moisturise),
-  sage (Care & Protect), sky (Everyday Hygiene).
-- Type: soft serif for headlines, clean sans for labels (Google Fonts).
+**Open PRs (stacked).** PR 1 brand foundations → PR 2 range extension
+(`product-line-extension-2026-11-17`) → website slice 1 (`website-2026-11-18`,
+based on PR 2's branch). Merge in that order.
 
-**Product line (9).**
-- Moisturise: Daily Lotion (oat + shea, 200 ml pump); Massage Oil (coconut,
-  almond, ashwagandha, 100 ml); Rich Cream (ceramides + oat, 100 g jar).
-- Care & Protect: Diaper Rash Cream (zinc + calendula, 50 g tube); All-Purpose
-  Balm (ghee + beeswax, 25 g tin); Mineral Sunscreen SPF 50, 6 months+ (50 g
-  tube).
-- Everyday Hygiene: Water Wipes (99% water, 72s); Talc-Free Powder (corn starch
-  + neem, 100 g); Bottle & Accessory Wash (soapnut, 300 ml foam pump).
-- Bath category deliberately left out of the first line.
-
-**In scope.** Logo system, colour, type, icons, 9 packaging renders with
-front/back labels, AI photo renders, brand book page, e-com and shelf mockups.
-
-**Out of scope.** Print-ready dielines, formulations, regulatory sign-off,
-trademark clearance.
-
-**Next steps (build in slices, pause after each).**
-1. Brand foundations: logo system, colour, type, claim icons.
-2. Packaging line-up: 9 SVG renders + label layouts.
-3. AI photo renders (plain-label packs; real vector logo composited or used as
-   mood/lifestyle only).
-4. Brand book page + mockups; publish.
+**In progress / next.**
+1. Deploy slice 1 to Vercel (needs the founder's Vercel login or the repo
+   imported in the Vercel dashboard with Root Directory `site`).
+2. Website slice 2: cart, checkout (demo, no payments), baby profile, write a
+   review, compare.
+3. Website slice 3: parent guides, kits & gifts, Ask (assistant demo +
+   experts), search.
 
 **Open questions.**
-- Trademark search (Class 3) and domain availability for "Nanhe".
+- Trademark search (Class 3) and domain for "Nanhe".
 - Real clinical test data to replace claim placeholders.
+- Real prices (the website shows sample prices).
+- A diaper size for 5–7 kg (gap between Newborn and Medium).
+- Customer care hours: the pack says Mon–Sat 10am–6pm; the website's Ask page
+  promises experts anytime.
+- Returns policy for opened products.
 
 ## Log
 
@@ -208,3 +185,26 @@ quantity.
 with an upper limit, not stage bands or narrow per-stage products, because
 narrow ranges would wrongly tell parents to stop using a product early.
 **Next:** Founder review; merge PR 1, then PR 2.
+
+### 2026-11-18 05:45 IST — Claude Code (Opus 5.5) · Shivank’s MacBook Air
+**Changed:** Started the website. Wireframes (low-fi, then Nanhe-branded
+mobile and desktop) were iterated with the founder on the canvas
+https://claude.ai/artifact/EUdWmFgK1wvQR6mj2GSBPV. Built slice 1 on branch
+`website-2026-11-18`: Astro static site in `site/` (Home, Shop, 19 product
+pages, placeholder pages), `docs/engineering/website.md`, `AGENTS.md` and
+`README.md` updated for the website. `scripts/build_packaging.py` now also
+writes `assets/characters/` (17 SVGs + `characters.json`).
+**Decided:** Founder chose a clickable prototype (no real payments), hosted
+on Vercel, with Home, Shop and product pages fully branded and the other
+screens built in later slices. The site lives in this repo so products and
+artwork have one source: it reads `products.json` and `assets/` at build time.
+Astro over a Python generator (about 12 page types share header, footer and
+cards) and over Next.js (no server needs yet). Prices, ratings and reviews are
+labelled samples; the site carries a prototype banner, `noindex` and a
+`robots.txt` that blocks crawlers. Review signals are the founder's priority:
+every product page has "babies like yours" filters by age and skin type, and
+critical reviews are one tap away. Shop filters stay on one line (founder
+feedback from the wireframes). Branched from PR 2's branch because the site
+needs the 19-product data; expect the routine CONTEXT.md conflict on merge.
+**Next:** Founder logs in to Vercel (or imports the repo with Root Directory
+`site`) so slice 1 can deploy; founder sends edits; then slice 2.
