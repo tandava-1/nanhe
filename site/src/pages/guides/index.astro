@@ -1,0 +1,124 @@
+---
+import Base from '../../layouts/Base.astro';
+import AskBand from '../../components/AskBand.astro';
+import { GUIDES, TOPICS, STAGES, QUICK, DOCTOR_ALWAYS, guideBySlug } from '../../data/guides';
+---
+<Base title="Parent guides · Nanhe">
+  <section class="wrap g-top">
+    <h1 class="f h1">Parent guides</h1>
+    <p class="lead mu">Short, practical answers for the first three years. Each guide is reviewed by a paediatrician.</p>
+    <p class="note pending">Sample copy, pending review by Dr [NAME], paediatrician, before launch.</p>
+  </section>
+
+  <section class="wrap stack" style="gap:14px;padding-bottom:28px" data-foryou hidden>
+    <h2 class="f h3" data-foryoutitle></h2>
+    <div class="scroll-x" style="gap:12px" data-foryoulist></div>
+  </section>
+
+  <section class="wrap stack" style="gap:14px">
+    <div class="scroll-x" style="gap:8px" role="group" aria-label="Filter by stage">
+      <button type="button" class="chip" data-stage="" aria-pressed="true">All stages</button>
+      {STAGES.map((s) => <button type="button" class="chip" data-stage={s.key} aria-pressed="false">{s.label}</button>)}
+    </div>
+    <div class="scroll-x" style="gap:8px" role="group" aria-label="Filter by topic">
+      <button type="button" class="chip" data-topic="" aria-pressed="true">All topics</button>
+      {TOPICS.map((t) => <button type="button" class="chip" data-topic={t.key} aria-pressed="false">{t.label}</button>)}
+    </div>
+    <div class="guides" data-list>
+      {GUIDES.map((g) => (
+        <a href={`/guides/${g.slug}`} class="guide" data-stages={g.stages.join(' ')} data-topic={g.topic}>
+          <span class="g-img"><img src={g.image} alt="" loading="lazy" style={g.imagePos && `object-position:${g.imagePos}`} class:list={[{ contain: g.image.endsWith('.svg') }]} /></span>
+          <span class="lbl mu" style="font-size:10px">{TOPICS.find((t) => t.key === g.topic)?.label} · {g.minutes} min</span>
+          <span class="f g-title">{g.title}</span>
+          <span class="sm mu">{g.summary}</span>
+        </a>
+      ))}
+    </div>
+    <p class="sm mu" data-none hidden>No guides for that combination yet.</p>
+  </section>
+
+  <section class="wrap sec stack" style="gap:16px">
+    <h2 class="f h2">Quick answers</h2>
+    <div class="qa">
+      {QUICK.map((q) => (
+        <details class="qa-item">
+          <summary>{q.q}</summary>
+          <p>{q.a}</p>
+          {q.guide && <a href={`/guides/${q.guide}`} class="sm" style="font-weight:600">Read: {guideBySlug[q.guide].title} →</a>}
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="wrap stack" style="gap:20px;padding-bottom:64px">
+    <div class="card doc">
+      <h2 class="f h3">When to see a doctor, not a shop</h2>
+      <ul>{DOCTOR_ALWAYS.map((d) => <li>{d}</li>)}</ul>
+      <p class="xs mu">In an emergency, call your doctor or 112. [Final list to be written by the reviewing paediatrician.]</p>
+    </div>
+    <AskBand title="Still unsure? Ask anytime" body="The assistant answers from these guides, day or night, and tells you when to see a doctor. Prefer a person? Chat with a care expert or book a paediatrician call." />
+  </section>
+</Base>
+
+<style>
+  .g-top { padding-top: 28px; padding-bottom: 24px; display: flex; flex-direction: column; gap: 12px; }
+  .lead { font-size: 18px; max-width: 640px; }
+  .pending { background: var(--oat); align-self: flex-start; }
+  .guides { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  @media (min-width: 720px) { .guides { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; } }
+  .guide { display: flex; flex-direction: column; gap: 8px; text-decoration: none; }
+  .g-img { aspect-ratio: 3 / 2; border-radius: 22px; overflow: hidden; background: var(--oat); position: relative; display: block; }
+  .g-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .g-img img.contain { object-fit: contain; padding: 12px; background: #FCF4D9; }
+  .g-title { font-size: 22px; line-height: 1.2; }
+  .guide:hover .g-title { text-decoration: underline; }
+  .qa { display: grid; gap: 10px; }
+  @media (min-width: 960px) { .qa { grid-template-columns: 1fr 1fr; gap: 12px 24px; } }
+  .qa-item { background: var(--white); border: 1px solid var(--line); border-radius: 18px; padding: 0 18px; }
+  .qa-item summary { cursor: pointer; font-weight: 600; min-height: 56px; display: flex; align-items: center; list-style: none; }
+  .qa-item summary::-webkit-details-marker { display: none; }
+  .qa-item summary::after { content: '+'; margin-left: auto; font-size: 20px; padding-left: 12px; }
+  .qa-item[open] summary::after { content: '−'; }
+  .qa-item p { margin-bottom: 10px; font-size: 15px; }
+  .qa-item a { display: inline-block; margin-bottom: 16px; }
+  .doc { padding: 22px; border: 2px solid var(--moss); display: flex; flex-direction: column; gap: 8px; }
+  .doc ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+</style>
+
+<style is:global>
+  .fy { flex: 0 0 240px; display: flex; flex-direction: column; gap: 8px; text-decoration: none; }
+  .fy-img { aspect-ratio: 3 / 2; border-radius: 18px; overflow: hidden; position: relative; background: var(--oat); }
+  .fy-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+</style>
+
+<script>
+  import { activeBaby, ageBand, ageMonths, describeAge } from '../../scripts/baby';
+  const $$ = <T extends HTMLElement>(s: string) => [...document.querySelectorAll<T>(s)];
+  let stage = '', topic = '';
+  function apply() {
+    let n = 0;
+    $$('[data-list] .guide').forEach((g) => {
+      const ok = (!stage || (g.dataset.stages ?? '').split(' ').includes(stage)) && (!topic || g.dataset.topic === topic);
+      g.hidden = !ok; if (ok) n++;
+    });
+    document.querySelector<HTMLElement>('[data-none]')!.hidden = n > 0;
+  }
+  $$('[data-stage]').forEach((b) => b.addEventListener('click', () => { stage = b.dataset.stage!; $$('[data-stage]').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); apply(); }));
+  $$('[data-topic]').forEach((b) => b.addEventListener('click', () => { topic = b.dataset.topic!; $$('[data-topic]').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); apply(); }));
+
+  // "For your baby": guides that match the saved baby's stage.
+  const baby = activeBaby();
+  if (baby) {
+    const m = ageMonths(baby);
+    const st = !baby.born || (m !== null && m < 0) ? 'expecting' : ageBand(m);
+    const matches = $$('[data-list] .guide').filter((g) => (g.dataset.stages ?? '').split(' ').includes(st));
+    if (matches.length) {
+      document.querySelector<HTMLElement>('[data-foryoutitle]')!.textContent = `For ${baby.name || 'your baby'} · ${describeAge(baby)}`;
+      document.querySelector<HTMLElement>('[data-foryoulist]')!.innerHTML = matches.map((g) => {
+        const img = g.querySelector('img')!.getAttribute('src');
+        return `<a class="fy" href="${g.getAttribute('href')}"><span class="fy-img"><img src="${img}" alt=""/></span><span class="f" style="font-size:18px;line-height:1.25">${g.querySelector('.g-title')!.textContent}</span></a>`;
+      }).join('');
+      document.querySelector<HTMLElement>('[data-foryou]')!.hidden = false;
+    }
+  }
+</script>

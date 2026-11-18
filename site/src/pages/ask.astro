@@ -1,0 +1,200 @@
+---
+import Base from '../layouts/Base.astro';
+import CatalogData from '../components/CatalogData.astro';
+import { GUIDES } from '../data/guides';
+
+const guideIndex = Object.fromEntries(GUIDES.map((g) => [g.slug, g.title]));
+const suggestions = ['My baby has nappy rash', 'Which oil for maalish?', 'Her skin is very dry', 'When do I start brushing?', 'Where is my order?'];
+---
+<Base title="Ask anytime · Nanhe">
+  <CatalogData />
+  <script type="application/json" id="guide-index" set:html={JSON.stringify(guideIndex)} />
+
+  <section class="wrap a-top">
+    <h1 class="f h1">Ask anytime</h1>
+    <p class="lead mu">Quick answers from our assistant, day or night. Or talk to a person: a baby-care expert, or a paediatrician on a video call.</p>
+    <nav class="row wrap-row" style="gap:8px" aria-label="On this page"><a class="chip" href="#assistant">Ask the assistant</a><a class="chip" href="#expert">Talk to an expert</a></nav>
+  </section>
+
+  <section class="wrap a-grid">
+    <div class="card chat" id="assistant">
+      <div class="chat-head">
+        <span class="bot" aria-hidden="true">N</span>
+        <span><b>Nanhe assistant</b><br /><span class="xs mu">Answers from our parent guides</span></span>
+        <span class="smp" style="margin-left:auto">prototype</span>
+      </div>
+      <p class="note xs proto">Prototype: these are scripted replies, not a live AI yet. It is general information, not medical advice. In an emergency, call your doctor or 112.</p>
+      <div class="log" data-log aria-live="polite"></div>
+      <div class="scroll-x sugg" style="gap:8px" data-sugg>
+        {suggestions.map((s) => <button type="button" class="chip chip-sm">{s}</button>)}
+      </div>
+      <form class="ask-form" data-form>
+        <label for="q" class="sr-only">Your question</label>
+        <input id="q" class="input" autocomplete="off" placeholder="Ask about skin, bath time, products…" maxlength="300" />
+        <button class="btn" type="submit">Send</button>
+      </form>
+    </div>
+
+    <div class="stack" style="gap:16px" id="expert">
+      <h2 class="f h2">Talk to a person</h2>
+      <div class="card opt">
+        <div class="row between"><h3 class="f h3">Chat with a care expert</h3><span class="xs mu">24×7 [to be decided]</span></div>
+        <p class="sm mu">Trained baby-care advisors for routines, products, orders and returns. They are not doctors, and will tell you when to see one.</p>
+        <button class="btn2" type="button" data-expertchat>Start a chat</button>
+      </div>
+      <div class="card opt">
+        <div class="row between"><h3 class="f h3">Call us</h3><span class="xs mu">9am to 9pm [to be decided]</span></div>
+        <p class="sm mu">Toll-free, in English and Hindi [more languages to be decided].</p>
+        <p class="f" style="font-size:24px">1800 [XXX XXXX]</p>
+      </div>
+      <div class="card opt" data-book>
+        <div class="row between"><h3 class="f h3">Book a paediatrician video call</h3><span class="smp">demo</span></div>
+        <p class="sm mu">15 minutes with a registered paediatrician [doctors to be confirmed]. ₹[X] per call [pricing to be decided].</p>
+        <div class="stack" style="gap:8px">
+          <span class="sm" style="font-weight:600">Day</span>
+          <div class="row wrap-row" style="gap:8px" data-days role="group" aria-label="Day"></div>
+          <span class="sm" style="font-weight:600">Time</span>
+          <div class="row wrap-row" style="gap:8px" data-slots role="group" aria-label="Time">
+            {['10:00 am', '12:30 pm', '4:00 pm', '7:30 pm'].map((t) => <button type="button" class="chip chip-sm" aria-pressed="false" data-slot={t}>{t}</button>)}
+          </div>
+        </div>
+        <button class="btn" type="button" data-bookbtn disabled>Book this slot</button>
+        <p class="sm" data-booked hidden></p>
+      </div>
+      <div class="tip"><span class="tl">Before you call</span>Have your baby's age, weight if you know it, and a photo of any rash ready. Note when it started and whether anything changed: a new product, food or detergent.</div>
+    </div>
+  </section>
+  <div style="height:64px"></div>
+</Base>
+
+<style>
+  .a-top { padding-top: 28px; padding-bottom: 24px; display: flex; flex-direction: column; gap: 14px; }
+  .lead { font-size: 18px; max-width: 640px; }
+  .a-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  @media (min-width: 960px) { .a-grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; } .chat { position: sticky; top: 96px; } }
+  .chat { padding: 16px; display: flex; flex-direction: column; gap: 12px; scroll-margin-top: 90px; }
+  #expert { scroll-margin-top: 90px; }
+  .chat-head { display: flex; align-items: center; gap: 10px; }
+  .bot { width: 40px; height: 40px; border-radius: 20px; background: var(--moss); color: var(--milk); font-family: var(--serif); font-size: 20px; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+  .proto { background: var(--oat); }
+  .log { display: flex; flex-direction: column; gap: 10px; min-height: 220px; max-height: 460px; overflow-y: auto; padding: 4px 2px; }
+  .ask-form { display: flex; gap: 8px; }
+  .ask-form .btn { flex: none; padding: 0 20px; }
+  .opt { padding: 18px; display: flex; flex-direction: column; gap: 10px; }
+  .btn[disabled] { opacity: .45; cursor: not-allowed; }
+</style>
+
+<style is:global>
+  .msg { max-width: 88%; padding: 10px 14px; border-radius: 18px; font-size: 15px; line-height: 1.5; }
+  .msg.me { align-self: flex-end; background: var(--moss); color: var(--milk); border-bottom-right-radius: 6px; }
+  .msg.bot-m { align-self: flex-start; background: var(--milk); border: 1px solid var(--line); border-bottom-left-radius: 6px; }
+  .msg.urgent { background: #FBE3DC; border-color: #C8553D; }
+  .msg .links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .msg .links a { font-size: 13px; font-weight: 600; background: var(--white); border: 1px solid var(--line-2); border-radius: 999px; padding: 4px 10px; text-decoration: none; }
+  .msg.typing { color: var(--mu, #6b6b6b); font-style: italic; }
+</style>
+
+<script>
+  import { catalog, esc } from '../scripts/data';
+  import { activeBaby, describeAge } from '../scripts/baby';
+
+  const c = catalog();
+  const guides: Record<string, string> = JSON.parse(document.getElementById('guide-index')!.textContent!);
+  const $ = <T extends HTMLElement>(s: string) => document.querySelector<T>(s)!;
+  const log = $('[data-log]');
+
+  type Reply = { text: string; guides?: string[]; products?: string[]; urgent?: boolean; expert?: boolean; kits?: boolean };
+  const g = (s: string) => `<a href="/guides/${s}">Guide: ${esc(guides[s])}</a>`;
+  const p = (s: string) => `<a href="/products/${s}">${esc(c.products[s].name)}</a>`;
+
+  // Order matters: safety first, then the most specific topics.
+  const RULES: [RegExp, Reply][] = [
+    [/not breathing|trouble breathing|can'?t breathe|blue lips|turning blue|seizure|\bfits?\b|unconscious|unresponsive|swallowed|poison|chok|bleeding|\bburn(ed|t|s)?\b|fell (off|from|down)|head injury/i,
+      { urgent: true, text: 'This needs a doctor now, not a shop. Call your doctor or 112, or go to the nearest emergency room. If your baby swallowed something, keep the pack to show the doctor.' }],
+    [/fever|temperature|pus|ooz|blister|crust|spread/i,
+      { urgent: true, text: 'A rash with a fever, blisters, oozing or crusting, or a rash that spreads quickly, needs your doctor first. Please call them today. You can also book a paediatrician video call below.', expert: true }],
+    [/allerg|reaction|hives|swell/i,
+      { text: 'If you see swelling of the lips or face, or trouble breathing, call 112 now. For a mild reaction, stop using the new product, rinse the skin with plain water and show your doctor. Always patch test something new on a small area of the arm first.', expert: true }],
+    [/order|deliver|track|return|refund|cancel|ship/i,
+      { text: 'Order help is coming soon to this prototype. A care expert can check an order, a return or a refund for you.', expert: true }],
+    [/nappy|diaper|rash|bum|bottom/i,
+      { text: 'For nappy rash: change often, clean with water or water wipes, let the skin air-dry for a few minutes, then apply a thin layer of zinc oxide barrier cream at every change. Most rashes improve in 2 to 3 days.', guides: ['nappy-rash'], products: ['diaper-rash-cream', 'water-wipes'] }],
+    [/oil|maalish|massage|mustard|coconut|almond/i,
+      { text: 'A daily maalish is lovely for bonding. Use a light oil, warm your hands, and keep strokes gentle. Many paediatricians now suggest avoiding mustard oil on young babies. Our massage oil contains almond oil, so skip it if there is a nut allergy in the family, and patch test first.', guides: ['daily-maalish'], products: ['massage-oil'] }],
+    [/dry|eczema|flak|itch|patch|winter|rough/i,
+      { text: 'For dry skin: keep baths short and lukewarm, pat dry, and moisturise within a few minutes while skin is still a little damp. A richer cream helps on dry patches. Red, weepy or very itchy patches are worth showing your doctor.', guides: ['dry-skin'], products: ['rich-cream', 'all-purpose-balm'] }],
+    [/teeth|tooth|brush|teething|gum/i,
+      { text: 'Start brushing when the first tooth appears, twice a day, with a rice-grain smear of fluoride toothpaste. Before that, wipe the gums once a day with a clean, damp cloth or a finger brush.', guides: ['first-teeth'], products: ['first-toothpaste', 'finger-toothbrush'] }],
+    [/hair|shampoo|cradle|scalp|tear/i,
+      { text: 'Two or three hair washes a week is plenty for most babies. For cradle cap, massage a little oil into the scalp, leave it for a few minutes, then wash and brush gently with a soft brush. Don\'t pick at the flakes.', guides: ['hair-washing'], products: ['tear-free-shampoo'] }],
+    [/sun|sunscreen|outdoor|beach/i,
+      { text: 'Under 6 months, shade and light, covering clothes are better than any sunscreen. From 6 months, use a mineral (zinc oxide) sunscreen made for babies, and reapply every two hours outdoors.', products: ['mineral-sunscreen'] }],
+    [/bath|wash|soap|cord|newborn|bathe/i,
+      { text: 'Until the cord stump falls off, sponge baths are best. After that, a few baths a week is enough in the early months. Keep the water lukewarm (check with your elbow), keep a hand on your baby at all times, and have everything ready first.', guides: ['first-bath'], products: ['head-to-toe-wash'] }],
+    [/powder|talc/i,
+      { text: 'Many babies don\'t need powder. If you use it, pick a talc-free one, shake it into your palm away from your baby\'s face, and pat it onto skin folds.', products: ['talc-free-powder'] }],
+    [/gift|kit|box|shower/i,
+      { text: 'Our kits bundle the basics at a lower price, and the gift box comes wrapped with a card. You can also build your own box: 10% off for three items, 15% for five.', kits: true }],
+  ];
+
+  function answer(q: string): Reply {
+    for (const [re, r] of RULES) if (re.test(q)) return r;
+    return { text: "I don't have a good answer for that yet. A care expert can help, or browse the parent guides.", expert: true };
+  }
+
+  function add(html: string, cls: string) {
+    const el = document.createElement('div');
+    el.className = `msg ${cls}`; el.innerHTML = html;
+    log.appendChild(el); log.scrollTop = log.scrollHeight;
+    return el;
+  }
+
+  function botSay(r: Reply) {
+    const links = [
+      ...(r.guides ?? []).map(g),
+      ...(r.products ?? []).map(p),
+      ...(r.kits ? ['<a href="/kits">Kits &amp; gifts</a>'] : []),
+      ...(r.expert ? ['<a href="#expert">Talk to an expert</a>'] : []),
+      ...(!r.guides && !r.products && !r.urgent && !r.kits ? ['<a href="/guides">All parent guides</a>'] : []),
+    ];
+    add(`${esc(r.text)}${links.length ? `<div class="links">${links.join('')}</div>` : ''}`, `bot-m${r.urgent ? ' urgent' : ''}`);
+  }
+
+  function ask(q: string) {
+    q = q.trim(); if (!q) return;
+    add(esc(q), 'me');
+    const t = add('typing…', 'bot-m typing');
+    setTimeout(() => { t.remove(); botSay(answer(q)); }, 600);
+  }
+
+  const baby = activeBaby();
+  add(esc(baby ? `Hi! Ask me anything about ${baby.name || 'your baby'} (${describeAge(baby)}): skin, bath time, massage, teeth or products.` : 'Hi! Ask me anything about your baby: skin, bath time, massage, teeth or products.'), 'bot-m');
+
+  $('[data-form]').addEventListener('submit', (e) => { e.preventDefault(); const i = $<HTMLInputElement>('#q'); ask(i.value); i.value = ''; });
+  document.querySelectorAll<HTMLButtonElement>('[data-sugg] button').forEach((b) => b.addEventListener('click', () => ask(b.textContent!)));
+
+  // Expert chat: a demo handover inside the same chat window.
+  $('[data-expertchat]').addEventListener('click', () => {
+    $('#assistant').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    add('Connecting you to a care expert…', 'bot-m');
+    setTimeout(() => add(esc('Demo: in the live site a care expert joins here, usually within [2] minutes. Nobody will join in this prototype.'), 'bot-m'), 900);
+  });
+
+  // Paediatrician booking demo: next three days, one slot, nothing is sent.
+  const days = [...Array(3)].map((_, i) => { const d = new Date(); d.setDate(d.getDate() + i + 1); return d; });
+  const fmt = (d: Date) => d.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' });
+  $('[data-days]').innerHTML = days.map((d, i) => `<button type="button" class="chip chip-sm" aria-pressed="${i === 0}" data-day="${i}">${fmt(d)}</button>`).join('');
+  let day = 0, slot = '';
+  const sync = () => { $<HTMLButtonElement>('[data-bookbtn]').disabled = !slot; };
+  document.querySelectorAll<HTMLButtonElement>('[data-day]').forEach((b) => b.addEventListener('click', () => {
+    day = +b.dataset.day!; document.querySelectorAll('[data-day]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+  }));
+  document.querySelectorAll<HTMLButtonElement>('[data-slot]').forEach((b) => b.addEventListener('click', () => {
+    slot = b.dataset.slot!; document.querySelectorAll('[data-slot]').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); sync();
+  }));
+  $('[data-bookbtn]').addEventListener('click', () => {
+    const el = $('[data-booked]');
+    el.innerHTML = `<b>Booked (demo): ${esc(fmt(days[day]))}, ${esc(slot)}.</b> In the live site you'd get a video link by SMS. Nothing was booked or sent.`;
+    el.hidden = false;
+  });
+</script>

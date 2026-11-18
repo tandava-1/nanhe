@@ -1,0 +1,88 @@
+---
+import Base from '../layouts/Base.astro';
+import CatalogData from '../components/CatalogData.astro';
+import { products, categories } from '../data/catalog';
+---
+<Base title="Compare · Nanhe">
+  <CatalogData />
+  <section class="wrap cmp-wrap">
+    <h1 class="f h2">Compare by what parents say</h1>
+    <p class="mu" data-who>Pick two products. Add your baby to see ratings from babies like yours.</p>
+
+    <div class="pickers">
+      {['a', 'b'].map((k) => (
+        <label class="picker"><span class="sr-only">Product {k === 'a' ? 'one' : 'two'}</span>
+          <select class="input sel" data-pick={k}>
+            {categories.map((c) => (
+              <optgroup label={c.name}>{products.filter((p) => p.category === c.key).map((p) => <option value={p.slug}>{p.name}</option>)}</optgroup>
+            ))}
+          </select>
+        </label>
+      ))}
+    </div>
+
+    <div class="cmp" data-cmp></div>
+    <p class="xs mu">Ratings, review counts and prices are sample data.</p>
+    <div class="tip"><span class="tl">Parent tip</span>Many parents use a lotion and a cream together: the lotion every day, the cream on dry patches or in winter. Apply either within a few minutes of the bath, while skin is still a little damp.</div>
+  </section>
+</Base>
+
+<style>
+  .cmp-wrap { padding-top: 24px; padding-bottom: 64px; display: flex; flex-direction: column; gap: 16px; max-width: 960px; }
+  .pickers { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .sel { appearance: auto; border-radius: 16px; font-weight: 600; }
+</style>
+
+<style is:global>
+  .cmp { display: grid; grid-template-columns: 1fr 1fr; background: var(--white); border-radius: 22px; border: 1px solid var(--line); overflow: hidden; }
+  .cmp-head { padding: 14px; display: flex; flex-direction: column; gap: 6px; border-bottom: 1px solid var(--line); }
+  .cmp-head + .cmp-head { border-left: 1px solid var(--line); }
+  .cmp-img { aspect-ratio: 1; border-radius: 16px; background: var(--w); position: relative; overflow: hidden; display: block; }
+  .cmp-img img { position: absolute; inset: 6%; width: 88%; height: 88%; object-fit: contain; }
+  .cmp-name { font-size: 20px; line-height: 1.2; text-decoration: none; }
+  .cmp-k { grid-column: 1 / -1; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--moss-2); padding: 12px 14px 0; }
+  .cmp-v { padding: 4px 14px 12px; font-size: 14px; border-bottom: 1px solid var(--line); }
+  .cmp-v + .cmp-v { border-left: 1px solid var(--line); }
+  .cmp-v.hl { background: var(--oat); }
+  .cmp-big { font-family: var(--serif); font-variation-settings: 'SOFT' 100; font-size: 22px; }
+  .cmp-btns { padding: 14px; }
+  .cmp-btns + .cmp-btns { border-left: 1px solid var(--line); }
+  @media (min-width: 720px) { .cmp-head, .cmp-v, .cmp-btns, .cmp-k { padding-left: 22px; padding-right: 22px; } .cmp-name { font-size: 24px; } }
+</style>
+
+<script>
+  import { catalog, inr, esc, likeYours, AGE_TXT, SKIN_TXT } from '../scripts/data';
+  import { activeBaby, ageBand, ageMonths, describeAge } from '../scripts/baby';
+
+  const c = catalog();
+  const $ = <T extends HTMLElement>(s: string) => document.querySelector<T>(s)!;
+  const a = $<HTMLSelectElement>('[data-pick="a"]'), b = $<HTMLSelectElement>('[data-pick="b"]');
+  const qs = new URLSearchParams(location.search);
+  a.value = c.products[qs.get('a') ?? ''] ? qs.get('a')! : 'daily-lotion';
+  b.value = c.products[qs.get('b') ?? ''] ? qs.get('b')! : 'rich-cream';
+
+  const baby = activeBaby();
+  const band = baby && baby.born ? ageBand(ageMonths(baby)) : '';
+  const skin = baby && baby.skin !== 'unsure' ? baby.skin : '';
+  if (baby) $('[data-who]').innerHTML = `Side by side, by what parents told us. Highlighted rows are from babies like ${esc(baby.name || 'yours')}: <b>${[describeAge(baby), skin && SKIN_TXT[skin]].filter(Boolean).join(' · ')}</b>. <a href="/profile">Change</a>`;
+
+  function render() {
+    const ps = [c.products[a.value], c.products[b.value]];
+    const rows: [string, (p: typeof ps[0]) => string, boolean?][] = [];
+    if (band || skin) rows.push([`Rating from babies like yours (${[band && AGE_TXT[band], skin && SKIN_TXT[skin]].filter(Boolean).join(' · ')})`, (p) => { const l = likeYours(p.slug, p.rating, p.reviewCount, band, skin); return `<span class="cmp-big">★ ${l.rating.toFixed(1)}</span><br><span class="xs mu">${l.n} parents</span>`; }, true]);
+    rows.push(['Overall rating', (p) => `<span class="cmp-big">★ ${p.rating}</span><br><span class="xs mu">${p.reviewCount} reviews</span>`]);
+    rows.push(['Would buy again', (p) => `${p.buyAgain}%`]);
+    rows.push(['What parents mention most', (p) => p.mentions.map(([m, n]) => `${esc(m)} · ${n}`).join('<br>') || '—']);
+    rows.push(['For ages', (p) => esc(p.age)]);
+    rows.push(['Hero ingredients', (p) => esc(p.hero.join(', '))]);
+    rows.push(['Good to know', (p) => p.warnShort ? `<b>${esc(p.warnShort)}</b>` : '—']);
+    rows.push(['Price', (p) => `${inr(p.price)} · ${esc(p.size)}${p.unit ? `<br><span class="xs mu">${esc(p.unit)}</span>` : ''}`]);
+    $('[data-cmp]').innerHTML =
+      ps.map((p) => `<div class="cmp-head" data-cat="${p.category}"><a class="cmp-img" href="/products/${p.slug}"><img src="${p.pack}" alt=""/></a><span class="lbl deep" style="font-size:10px">${esc(p.catName)}</span><a class="f cmp-name" href="/products/${p.slug}">${esc(p.name)}</a></div>`).join('')
+      + rows.map(([k, f, hl]) => `<div class="cmp-k">${k}</div>` + ps.map((p) => `<div class="cmp-v${hl ? ' hl' : ''}">${f(p)}</div>`).join('')).join('')
+      + ps.map((p) => `<div class="cmp-btns"><button class="btn btn-block" type="button" data-add="${p.slug}" data-name="${esc(p.name)}">Add ${esc(p.name)}</button><a class="sm" style="display:block;margin-top:10px;font-weight:600" href="/products/${p.slug}#reviews">Read the reviews →</a></div>`).join('');
+    const url = new URL(location.href); url.searchParams.set('a', a.value); url.searchParams.set('b', b.value); history.replaceState(null, '', url);
+  }
+  a.addEventListener('change', render); b.addEventListener('change', render);
+  render();
+</script>

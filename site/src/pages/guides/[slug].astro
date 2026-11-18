@@ -1,0 +1,91 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { GUIDES, TOPICS, guideBySlug, type Guide } from '../../data/guides';
+import { bySlug } from '../../data/catalog';
+
+export function getStaticPaths() {
+  return GUIDES.map((g) => ({ params: { slug: g.slug }, props: { g } }));
+}
+const { g } = Astro.props as { g: Guide };
+const topic = TOPICS.find((t) => t.key === g.topic)?.label;
+---
+<Base title={`${g.title} · Nanhe`} description={g.summary}>
+  <article class="wrap art">
+    <nav class="xs mu crumbs" aria-label="Breadcrumb"><a href="/guides">Guides</a> / {topic}</nav>
+    <h1 class="f h1 art-h">{g.title}</h1>
+    <div class="row by"><span class="dr" aria-hidden="true">Dr</span><span class="sm"><b>Reviewed by Dr [NAME]</b>, paediatrician<br /><span class="mu">{g.minutes} min read · Updated [DATE]</span></span></div>
+    <p class="note pending">Sample copy, pending the paediatrician's review before launch.</p>
+    <figure class="hero">
+      <img src={g.image} alt={g.imageAlt} style={g.imagePos && `object-position:${g.imagePos}`} class:list={[{ contain: g.image.endsWith('.svg') }]} />
+      {!g.image.endsWith('.svg') && <figcaption class="xs">AI concept photo</figcaption>}
+    </figure>
+
+    <div class="tip takeaways"><span class="tl">In short</span><ul>{g.takeaways.map((t) => <li>{t}</li>)}</ul></div>
+
+    <h2 class="f h2">What you'll need</h2>
+    <div class="pgrid">{g.need.map((s) => <ProductCard p={bySlug[s]} />)}</div>
+
+    <h2 class="f h2">Step by step</h2>
+    <ol class="steps">
+      {g.steps.map((s, i) => (
+        <li class="step"><span class="num" aria-hidden="true">{i + 1}</span><div><h3 class="f step-t">{s.title}</h3><p>{s.body}</p></div></li>
+      ))}
+    </ol>
+
+    <div class="tips-from card">
+      <div class="row between"><h2 class="f h3">Tips from parents</h2><span class="smp">sample</span></div>
+      {g.parentTips.map((t) => <p><span class="f" style="font-size:19px">“{t.quote}”</span><br /><span class="xs mu">{t.by}</span></p>)}
+    </div>
+
+    <div class="card doc">
+      <h2 class="f h3">Call your doctor if</h2>
+      <ul>{g.doctor.map((d) => <li>{d}</li>)}</ul>
+      <p class="xs mu">In an emergency, call your doctor or 112.</p>
+    </div>
+
+    <div class="row wrap-row helpful" data-helpful><b>Was this helpful?</b><button class="chip" type="button" data-yes>Yes</button><button class="chip" type="button" data-no>No</button></div>
+
+    <h2 class="f h3">Read next</h2>
+    <div class="next">
+      {g.related.map((r) => guideBySlug[r]).map((r) => (
+        <a href={`/guides/${r.slug}`} class="next-item"><span class="next-img"><img src={r.image} alt="" loading="lazy" class:list={[{ contain: r.image.endsWith('.svg') }]} /></span><span class="f" style="font-size:18px;line-height:1.25">{r.title}</span></a>
+      ))}
+    </div>
+    <p class="xs mu">This guide is general information, not medical advice. If you're worried about your baby, talk to your doctor. Questions? <a href="/ask">Ask the assistant or an expert</a>.</p>
+  </article>
+</Base>
+
+<style>
+  .art { max-width: 820px; padding-top: 20px; padding-bottom: 64px; display: flex; flex-direction: column; gap: 18px; }
+  .crumbs a { text-decoration: none; }
+  .art-h { font-size: clamp(32px, 5vw, 48px); }
+  .by { gap: 12px; }
+  .dr { width: 44px; height: 44px; border-radius: 22px; background: var(--oat); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; flex: none; }
+  .pending { background: var(--oat); }
+  .hero { margin: 0; border-radius: 24px; overflow: hidden; position: relative; aspect-ratio: 3 / 2; background: var(--oat); }
+  .hero img { width: 100%; height: 100%; object-fit: cover; }
+  .hero img.contain { object-fit: contain; padding: 24px; background: #FCF4D9; }
+  .hero figcaption { position: absolute; right: 12px; bottom: 10px; background: rgba(251, 247, 240, .9); padding: 2px 8px; border-radius: 999px; }
+  .takeaways ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; font-size: 15px; }
+  .steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+  .step { display: flex; gap: 14px; align-items: flex-start; }
+  .num { width: 34px; height: 34px; border-radius: 17px; background: var(--moss); color: var(--milk); font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+  .step-t { font-size: 20px; margin-bottom: 2px; }
+  .tips-from { padding: 20px; display: flex; flex-direction: column; gap: 12px; background: var(--white); }
+  .doc { padding: 20px; border: 2px solid var(--moss); display: flex; flex-direction: column; gap: 8px; }
+  .doc ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+  .helpful { gap: 10px; }
+  .next { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .next-item { display: flex; flex-direction: column; gap: 8px; text-decoration: none; }
+  .next-img { aspect-ratio: 3 / 2; border-radius: 18px; overflow: hidden; position: relative; background: var(--oat); display: block; }
+  .next-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .next-img img.contain { object-fit: contain; padding: 10px; background: #FCF4D9; }
+</style>
+
+<script>
+  document.querySelector('[data-helpful]')?.addEventListener('click', (e) => {
+    if (!(e.target as HTMLElement).closest('[data-yes],[data-no]')) return;
+    (document.querySelector('[data-helpful]') as HTMLElement).innerHTML = '<span class="sm">Thanks. That helps us decide what to write next.</span>';
+  });
+</script>

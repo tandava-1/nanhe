@@ -1,0 +1,196 @@
+---
+import Base from '../layouts/Base.astro';
+import CatalogData from '../components/CatalogData.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { products } from '../data/catalog';
+
+const CONCERNS = [['rash', 'Nappy rash'], ['dry', 'Dry patches'], ['cradle', 'Cradle cap'], ['heat', 'Prickly heat'], ['acne', 'Baby acne'], ['teeth', 'Teething'], ['none', 'Nothing right now']];
+const SKINS = [['normal', 'Normal'], ['dry', 'Dry'], ['sensitive', 'Sensitive'], ['eczema', 'Eczema-prone'], ['unsure', 'Not sure']];
+const CLIMATES = [['humid', 'Humid'], ['dry', 'Dry or hot'], ['cold', 'Cold winters']];
+---
+<Base title="Your baby · Nanhe">
+  <CatalogData />
+  <section class="wrap pf-wrap">
+    <div class="row wrap-row babies" data-babies hidden></div>
+
+    <form class="card pf-form" data-form>
+      <div class="stack" style="gap:6px">
+        <h1 class="f h2" data-title>Tell us a little about your baby</h1>
+        <p class="mu">Optional, about 30 seconds. We'll show reviews from parents of similar babies, and tips that fit their age.</p>
+      </div>
+
+      <label class="q" for="nick">Name or nickname <span class="mu opt">(optional)</span></label>
+      <input id="nick" class="input" maxlength="30" placeholder="e.g. Chhotu" autocomplete="off" />
+
+      <fieldset class="fs">
+        <legend class="q">Has your baby arrived yet?</legend>
+        <div class="row wrap-row" style="gap:8px">
+          <button type="button" class="chip" data-born="yes" aria-pressed="true">Yes</button>
+          <button type="button" class="chip" data-born="no" aria-pressed="false">Not yet, I'm expecting</button>
+        </div>
+      </fieldset>
+      <label class="q" for="month" data-monthlabel>Month and year of birth</label>
+      <input id="month" class="input" type="month" data-month />
+      <p class="xs mu">We only ask for the month and year, not the exact date.</p>
+
+      <fieldset class="fs">
+        <legend class="q">How is their skin, usually?</legend>
+        <div class="row wrap-row" style="gap:8px">{SKINS.map(([k, l]) => <button type="button" class="chip" data-skin={k} aria-pressed="false">{l}</button>)}</div>
+      </fieldset>
+      <fieldset class="fs">
+        <legend class="q">Anything you're dealing with now? <span class="mu opt">(pick any)</span></legend>
+        <div class="row wrap-row" style="gap:8px">{CONCERNS.map(([k, l]) => <button type="button" class="chip" data-concern={k} aria-pressed="false">{l}</button>)}</div>
+      </fieldset>
+      <fieldset class="fs">
+        <legend class="q">Where do you live? <span class="mu opt">(helps with weather tips)</span></legend>
+        <div class="row wrap-row" style="gap:8px">{CLIMATES.map(([k, l]) => <button type="button" class="chip" data-climate={k} aria-pressed="false">{l}</button>)}</div>
+      </fieldset>
+
+      <div class="tip"><span class="tl">Why we ask</span>So we can show you what worked for babies like yours. It stays in this browser: we don't use it for ads and never share it. Edit or delete it any time on this page.</div>
+      <p class="sm err" data-err aria-live="assertive"></p>
+      <div class="row wrap-row" style="gap:12px">
+        <button class="btn" type="submit" data-save>Save and show my picks</button>
+        <button class="btn2" type="button" data-delete hidden>Delete this baby</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="wrap picks" data-picks hidden>
+    <div class="stack" style="gap:8px">
+      <span class="lbl mu" data-pickslabel></span>
+      <h2 class="f h2" data-pickstitle></h2>
+      <p class="mu" data-pickssub></p>
+    </div>
+    <div class="tip" data-agetip></div>
+    <div class="pgrid" data-pickgrid>{products.map((p) => <ProductCard p={p} />)}</div>
+    <a href="/shop" style="font-weight:600">See the whole range →</a>
+  </section>
+</Base>
+
+<style>
+  .pf-wrap { padding-top: 24px; padding-bottom: 32px; display: flex; flex-direction: column; gap: 16px; max-width: 820px; }
+  .babies { gap: 8px; }
+  .pf-form { padding: 22px; display: flex; flex-direction: column; gap: 12px; }
+  .q { font-weight: 700; font-size: 16px; margin-top: 8px; padding: 0; }
+  .opt { font-weight: 400; font-size: 14px; }
+  .fs { border: 0; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .err { color: #9B2C1F; font-weight: 600; min-height: 1em; }
+  .picks { padding-bottom: 64px; display: flex; flex-direction: column; gap: 20px; }
+</style>
+
+<script>
+  import { catalog, likeYours, AGE_TXT, SKIN_TXT, toast } from '../scripts/data';
+  import { readProfile, writeProfile, ageMonths, ageBand, describeAge, type Baby, type Profile } from '../scripts/baby';
+
+  const c = catalog();
+  const $ = <T extends HTMLElement>(s: string) => document.querySelector<T>(s)!;
+  const $$ = <T extends HTMLElement>(s: string) => [...document.querySelectorAll<T>(s)];
+  let profile: Profile = readProfile() ?? { babies: [], active: 0 };
+  let editing = profile.babies.length ? profile.active : -1;   // -1 = a new baby
+  let form: Baby = { name: '', born: true, month: '', skin: '', concerns: [], climate: '' };
+
+  const press = (sel: string, on: (b: HTMLElement) => boolean) => $$(sel).forEach((b) => b.setAttribute('aria-pressed', String(on(b))));
+
+  function fill(b: Baby) {
+    form = { ...b, concerns: [...b.concerns] };
+    $<HTMLInputElement>('#nick').value = b.name;
+    $<HTMLInputElement>('[data-month]').value = b.month;
+    press('[data-born]', (x) => (x.dataset.born === 'yes') === b.born);
+    press('[data-skin]', (x) => x.dataset.skin === b.skin);
+    press('[data-concern]', (x) => b.concerns.includes(x.dataset.concern!));
+    press('[data-climate]', (x) => x.dataset.climate === b.climate);
+    $('[data-monthlabel]').textContent = b.born ? 'Month and year of birth' : 'Due month';
+  }
+
+  function renderBabies() {
+    const el = $('[data-babies]');
+    el.hidden = profile.babies.length === 0;
+    el.innerHTML = profile.babies.map((b, i) => `<button type="button" class="chip" data-pick="${i}" aria-pressed="${i === editing}">${b.name || `Baby ${i + 1}`} · ${describeAge(b) || 'age not set'}</button>`).join('')
+      + `<button type="button" class="chip" data-pick="new" aria-pressed="${editing === -1}">+ Add another child</button>`;
+    $('[data-title]').textContent = editing === -1 ? (profile.babies.length ? 'Add another child' : 'Tell us a little about your baby') : `About ${profile.babies[editing].name || 'your baby'}`;
+    $('[data-delete]').hidden = editing === -1;
+  }
+
+  // Which products to suggest: everything that fits the baby's age, with their concerns first.
+  const BY_CONCERN: Record<string, string[]> = {
+    rash: ['diaper-rash-cream', 'water-wipes', 'talc-free-powder'], dry: ['rich-cream', 'all-purpose-balm', 'daily-lotion'],
+    cradle: ['tear-free-shampoo', 'massage-oil'], heat: ['talc-free-powder', 'head-to-toe-wash'], acne: ['head-to-toe-wash'],
+    teeth: ['finger-toothbrush', 'first-toothpaste'],
+  };
+  const AGE_TIP: Record<string, string> = {
+    expecting: "Before the birth: a gentle wash, a fragrance-free moisturiser, a barrier cream and water wipes cover the first weeks. You don't need much more.",
+    '0-3': 'Sponge baths until the cord stump falls off, then a few baths a week is plenty. Keep nails short: trim after a bath, when they are soft.',
+    '3-6': 'Babies start grabbing everything around now, including your bottle of lotion. Keep products closed and out of reach.',
+    '6-12': 'Brush as soon as the first tooth appears, with a rice-grain smear of fluoride toothpaste. Over 6 months, a mineral sunscreen is fine; shade is still best.',
+    '12-36': 'Toddlers get messy at every meal: a thicker hand & face wipe helps. Keep baths short so skin doesn’t dry out.',
+  };
+
+  function showPicks(b: Baby) {
+    const m = ageMonths(b);
+    const expecting = !b.born || (m !== null && m < 0);
+    const months = expecting ? 0 : Math.max(0, m ?? 0);
+    const band = expecting ? '0-3' : ageBand(m);
+    const skin = b.skin === 'unsure' ? '' : b.skin;
+    const firstFor = new Set(b.concerns.flatMap((k) => BY_CONCERN[k] ?? []));
+    const grid = $('[data-pickgrid]');
+    const cards = $$('[data-pickgrid] .pcard');
+    const scored = cards.map((card) => {
+      const p = c.products[card.dataset.slug!];
+      const fits = months >= p.ageMin && months <= p.ageMax;
+      const ly = likeYours(p.slug, p.rating, p.reviewCount, band, skin);
+      return { card, fits, score: (firstFor.has(p.slug) ? 10 : 0) + ly.rating };
+    });
+    scored.sort((a, b) => b.score - a.score).forEach(({ card, fits }) => { card.hidden = !fits; grid.appendChild(card); });
+    const shown = scored.filter((s) => s.fits).length;
+    const who = b.name || 'your baby';
+    $('[data-pickslabel]').textContent = `For ${who} · ${expecting ? 'expecting' : describeAge(b)}${skin ? ` · ${SKIN_TXT[skin]}` : ''}`;
+    $('[data-pickstitle]').textContent = expecting ? 'What you’ll need in the first weeks' : `${shown} products that suit ${who} now`;
+    $('[data-pickssub]').textContent = `Sorted by how parents of ${expecting ? 'newborns' : AGE_TXT[band]}${skin ? ` with ${SKIN_TXT[skin]}` : ''} rate them${b.concerns.filter((x) => x !== 'none').length ? ', with what you’re dealing with now first' : ''}. Ratings are sample data.`;
+    $('[data-agetip]').innerHTML = `<span class="tl">At this age</span>${AGE_TIP[expecting ? 'expecting' : band]}`;
+    $('[data-picks]').hidden = false;
+  }
+
+  // Form controls
+  $$('[data-born]').forEach((b) => b.addEventListener('click', () => { form.born = b.dataset.born === 'yes'; press('[data-born]', (x) => x === b); $('[data-monthlabel]').textContent = form.born ? 'Month and year of birth' : 'Due month'; }));
+  $$('[data-skin]').forEach((b) => b.addEventListener('click', () => { form.skin = b.dataset.skin!; press('[data-skin]', (x) => x === b); }));
+  $$('[data-climate]').forEach((b) => b.addEventListener('click', () => { form.climate = b.dataset.climate!; press('[data-climate]', (x) => x === b); }));
+  $$('[data-concern]').forEach((b) => b.addEventListener('click', () => {
+    const k = b.dataset.concern!;
+    if (k === 'none') form.concerns = form.concerns.includes('none') ? [] : ['none'];
+    else form.concerns = form.concerns.includes(k) ? form.concerns.filter((x) => x !== k) : [...form.concerns.filter((x) => x !== 'none'), k];
+    press('[data-concern]', (x) => form.concerns.includes(x.dataset.concern!));
+  }));
+
+  $('[data-babies]').addEventListener('click', (e) => {
+    const b = (e.target as HTMLElement).closest<HTMLElement>('[data-pick]'); if (!b) return;
+    if (b.dataset.pick === 'new') { editing = -1; fill({ name: '', born: true, month: '', skin: '', concerns: [], climate: '' }); $('[data-picks]').hidden = true; }
+    else { editing = Number(b.dataset.pick); profile.active = editing; writeProfile(profile); fill(profile.babies[editing]); showPicks(profile.babies[editing]); }
+    renderBabies();
+  });
+
+  $('[data-form]').addEventListener('submit', (e) => {
+    e.preventDefault();
+    form.name = $<HTMLInputElement>('#nick').value.trim();
+    form.month = $<HTMLInputElement>('[data-month]').value;
+    if (!form.month) { $('[data-err]').textContent = form.born ? 'Please add the month and year of birth.' : 'Please add the due month.'; return; }
+    const m = ageMonths(form);
+    if (form.born && m !== null && (m < 0 || m > 72)) { $('[data-err]').textContent = 'That date looks off. Please check the month and year.'; return; }
+    $('[data-err]').textContent = '';
+    if (editing === -1) { profile.babies.push(form); editing = profile.babies.length - 1; } else profile.babies[editing] = form;
+    profile.active = editing; writeProfile(profile); renderBabies(); showPicks(form);
+    toast('Saved in this browser. Product pages now show ratings from babies like yours.');
+    $('[data-picks]').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  $('[data-delete]').addEventListener('click', () => {
+    if (editing < 0) return;
+    profile.babies.splice(editing, 1); profile.active = 0;
+    editing = profile.babies.length ? 0 : -1;
+    writeProfile(profile.babies.length ? profile : null);
+    if (editing >= 0) { fill(profile.babies[0]); showPicks(profile.babies[0]); } else { fill({ name: '', born: true, month: '', skin: '', concerns: [], climate: '' }); $('[data-picks]').hidden = true; }
+    renderBabies(); toast('Deleted from this browser.');
+  });
+
+  if (editing >= 0) { fill(profile.babies[editing]); showPicks(profile.babies[editing]); }
+  renderBabies();
+</script>

@@ -1,0 +1,5 @@
+---
+// Puts the product data the browser needs into the page as JSON (read by src/scripts/data.ts).
+import { clientCatalog } from '../data/catalog';
+---
+<script type="application/json" id="catalog-data" set:html={JSON.stringify(clientCatalog())} />

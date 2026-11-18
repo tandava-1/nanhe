@@ -334,12 +334,15 @@ const pageData = { slug: p.slug, name: p.name, rating: p.rating, count: p.review
 
   // Purchase option -> what "Add to cart" adds
   const addBtns = document.querySelectorAll<HTMLElement>('[data-addmain]');
+  const freqSel = document.querySelector<HTMLSelectElement>('[data-freq]');
+  const syncFreq = () => addBtns.forEach((b) => { if (freqSel) b.dataset.every = freqSel.value; });
+  freqSel?.addEventListener('change', syncFreq); syncFreq();
   document.querySelectorAll<HTMLInputElement>('[data-buy]').forEach((r) => r.addEventListener('change', () => {
     addBtns.forEach((b) => (b.dataset.subscribe = String(r.value === 'sub' && r.checked)));
   }));
   document.querySelector('[data-buynow]')?.addEventListener('click', () => {
     const sub = (document.querySelector<HTMLInputElement>('[data-buy]:checked')?.value ?? 'one') === 'sub';
-    addToCart(data.slug, 1, sub);
+    addToCart(data.slug, 1, sub, freqSel?.value);
     location.href = '/cart';
   });
 
@@ -402,6 +405,18 @@ const pageData = { slug: p.slug, name: p.name, rating: p.rating, count: p.review
     big.textContent = `★ ${rating} from the ${n} reviews by these parents`;
     small.innerHTML = `The ${data.rating} above is from all ${data.count} reviews. <span class="smp">sample</span>`;
   }
+
+  // Reviews this visitor wrote in the prototype: shown to them only, at the top of the list.
+  try {
+    const mine = (JSON.parse(localStorage.getItem('nanhe-my-reviews') ?? '[]') as any[]).filter((r) => r.slug === data.slug);
+    const head = document.querySelector('[data-showing]');
+    const SK: Record<string, string> = { normal: 'Normal', dry: 'Dry', sensitive: 'Sensitive', eczema: 'Eczema-prone' };
+    const e = (s: string) => String(s).replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]!));
+    mine.reverse().forEach((r) => head?.insertAdjacentHTML('afterend', `<article class="rvc" data-rage="${e(r.ageBand)}" data-rskin="${e(r.skin)}" data-rstars="${Number(r.stars)}">
+      <div class="row between"><span class="stars">${'★'.repeat(r.stars)}${'☆'.repeat(5 - r.stars)}</span><span class="smp">your review · only you see this</span></div>
+      <h3 class="f rvc-t">“${e(r.title)}”</h3><p>${e(r.body)}</p>
+      <div class="row wrap-row" style="gap:6px"><span class="pill">Baby: ${AGE_TXT[r.ageBand] ?? ''}</span><span class="pill">${SK[r.skin] ?? ''} skin</span>${r.used ? `<span class="pill">Used ${e(r.used)}</span>` : ''}</div></article>`));
+  } catch { /* nothing saved */ }
 
   document.querySelectorAll<HTMLElement>('[data-fage]').forEach((b) => b.addEventListener('click', () => { fAge = fAge === b.dataset.fage ? '' : b.dataset.fage!; render(); }));
   document.querySelectorAll<HTMLElement>('[data-fskin]').forEach((b) => b.addEventListener('click', () => { fSkin = fSkin === b.dataset.fskin ? '' : b.dataset.fskin!; render(); }));
