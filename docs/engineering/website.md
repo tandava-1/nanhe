@@ -13,8 +13,16 @@ orders or servers.
 | `site/src/data/catalog.ts` | Joins `docs/product/products.json` (product facts), `assets/characters/characters.json` (little friends), and the website-only sample data below. Every page reads products from here. |
 | `site/src/data/shop.json` | **Sample** prices, ratings, review counts, routines and which render to show. Website only. |
 | `site/src/data/reviews.json` | **Sample** reviews and questions. Website only. Never ship as real reviews. |
-| `site/src/pages/` | `index` (Home), `shop/`, `products/[slug]` (one page per product, 19 in all), `[page]` (placeholder pages for later slices). |
+| `site/src/pages/` | `index` (Home), `shop/`, `search`, `products/[slug]` (one page per product, 19 in all), `[page]` (placeholder pages for later slices). |
 | `site/src/components/` | Header, Footer, Wordmark, ProductCard, AskBand, Icon. |
+
+**Product cards.** Every product card on the site is `ProductCard` inside a
+`.pgrid` (in `global.css`), so cards are the same size everywhere: two equal
+columns on phones, a fixed 254 px column from 720 px up. Inside the card the
+image is a fixed square and each text line has a fixed number of lines.
+Product-specific safety notes show as a badge on the image (short text in
+`WARN_SHORT` in `catalog.ts`); the full caution is on the product page. Keep
+new listings on `.pgrid` + `ProductCard` rather than building another card.
 | `site/src/scripts/cart.ts` | The cart, kept in the visitor's browser (`localStorage`). |
 
 ## How data flows
@@ -82,6 +90,6 @@ preview link.
 
 ## Slices
 
-1. Home, Shop, 19 product pages, placeholders for everything else. (this PR)
+1. Home, Shop, 19 product pages, search, placeholders for everything else. (this PR)
 2. Cart, checkout (demo), baby profile, write a review, compare.
-3. Parent guides, kits & gifts, Ask, search.
+3. Parent guides, kits & gifts, Ask.
