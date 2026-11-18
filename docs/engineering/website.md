@@ -13,8 +13,10 @@ orders or servers.
 | `site/src/data/catalog.ts` | Joins `docs/product/products.json` (product facts), `assets/characters/characters.json` (little friends), and the website-only sample data below. Every page reads products from here. |
 | `site/src/data/shop.json` | **Sample** prices, ratings, review counts, routines and which render to show. Website only. |
 | `site/src/data/reviews.json` | **Sample** reviews and questions. Website only. Never ship as real reviews. |
-| `site/src/pages/` | `index` (Home), `shop/`, `search`, `products/[slug]` (one page per product, 19 in all), `[page]` (placeholder pages for later slices). |
-| `site/src/components/` | Header, Footer, Wordmark, ProductCard, AskBand, Icon. |
+| `site/src/data/guides.ts` | **Sample** parent-guide copy (6 guides, quick answers, doctor list), pending the paediatrician's review. Website only. |
+| `site/src/pages/` | `index` (Home), `shop/`, `search`, `products/[slug]` (19), `cart`, `checkout` (demo), `profile`, `write-review`, `compare`, `guides/` + `guides/[slug]` (6), `kits`, `ask`, and `[page]` (placeholders: track, returns, how-we-test, ingredients, review-policy). |
+| `site/src/scripts/` | `data.ts` (reads CatalogData, shared helpers), `cart.ts` (cart, totals, coupon, gift), `baby.ts` (baby profile). |
+| `site/src/components/` | Header, Footer, Wordmark, ProductCard, AskBand, Icon, CatalogData (puts a small product/kit catalogue in the page as JSON for the browser scripts). |
 
 **Product cards.** Every product card on the site is `ProductCard` inside a
 `.pgrid` (in `global.css`), so cards are the same size everywhere: two equal
@@ -23,7 +25,6 @@ image is a fixed square and each text line has a fixed number of lines.
 Product-specific safety notes show as a badge on the image (short text in
 `WARN_SHORT` in `catalog.ts`); the full caution is on the product page. Keep
 new listings on `.pgrid` + `ProductCard` rather than building another card.
-| `site/src/scripts/cart.ts` | The cart, kept in the visitor's browser (`localStorage`). |
 
 ## How data flows
 
@@ -43,10 +44,32 @@ its own copy of a product name, size, age or ingredient list.
 
 Small scripts only, no framework:
 
-- **Cart** — `localStorage` key `nanhe-cart`: `[{slug, qty, subscribe}]`.
-- **Baby profile** — `localStorage` key `nanhe-baby`: `{ageBand, skin}` (written by the profile page in slice 2; read by product pages now).
-- **Shop filters** — routine, baby's age and sort, all client-side over pre-rendered cards.
-- **"Babies like yours"** — a sample figure derived from the sample rating and fixed share tables, so it is stable but not real.
+Everything a visitor does is kept in their own browser (`localStorage`):
+
+| Key | Holds | Written by |
+|---|---|---|
+| `nanhe-cart` | `[{id, kind: product\|kit\|box, slug, qty, subscribe, every, items}]` | product pages, Shop, kits, compare, cart |
+| `nanhe-coupon` | the applied coupon code (`NANHE10`) | cart; cleared on order |
+| `nanhe-gift` | `{on, note, hidePrices}` | cart; cleared on order |
+| `nanhe-profile` | `{babies: [{name, born, month, skin, concerns, climate}], active}` | profile page |
+| `nanhe-baby` | `{ageBand, skin}` for the active baby, read for "babies like yours" | profile page |
+| `nanhe-my-reviews` | reviews the visitor wrote, shown back on that product page | write-review |
+
+Prices and rules (free delivery over ₹499, ₹49 delivery, ₹30 COD fee, 10% off
+subscriptions, kit and build-your-own-box discounts, the sample coupon) live in
+`RULES` and `KITS` in `catalog.ts`; the browser scripts read them from
+CatalogData, so the cart, checkout and kits page always agree.
+
+- **Checkout** is a demo: the OTP is shown on screen, the pincode fills in a
+  sample city, COD is off for subscriptions, and placing the order only clears
+  the cart. Nothing is sent.
+- **Ask** is scripted keyword matching, labelled "prototype". Safety words
+  (breathing, fever with rash, swallowed, burns, falls and similar) always get
+  "call your doctor or 112" first. Expert chat, phone and paediatrician
+  booking are demos with `[to be decided]` hours, numbers and prices.
+- **Shop filters**, **guide filters** and **"babies like yours"** run in the
+  browser over pre-rendered content; "babies like yours" is a stable sample
+  figure, not real data.
 
 Nothing a visitor types leaves their browser. There is no analytics or tracking.
 
@@ -90,6 +113,10 @@ preview link.
 
 ## Slices
 
-1. Home, Shop, 19 product pages, search, placeholders for everything else. (this PR)
-2. Cart, checkout (demo), baby profile, write a review, compare.
-3. Parent guides, kits & gifts, Ask.
+1. Home, Shop, 19 product pages, search, placeholders for everything else. Built.
+2. Cart, checkout (demo), baby profile, write a review, compare. Built.
+3. Parent guides (hub + 6 articles), kits & gifts with build-your-own box, Ask
+   (assistant demo + experts). Built.
+
+Still placeholders: order tracking, returns, how we test, ingredients
+glossary, review policy.
