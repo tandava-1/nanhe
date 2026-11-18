@@ -1,0 +1,152 @@
+---
+import Base from '../layouts/Base.astro';
+import CatalogData from '../components/CatalogData.astro';
+import { KITS, bySlug, inr, categories, products } from '../data/catalog';
+
+// Build-your-own uses everyday products. Diapers and wipes come in their own packs, so they stay out of the box.
+const boxable = products.filter((p) => p.category !== 'diapering');
+---
+<Base title="Kits & gifts · Nanhe">
+  <CatalogData />
+  <section class="wrap k-top">
+    <h1 class="f h1">Kits &amp; gifts</h1>
+    <p class="lead mu">Ready-made boxes for the first months, the cold months and the baby shower. Or pick your own and save as you add.</p>
+  </section>
+
+  <section class="wrap kits">
+    {KITS.map((k) => (
+      <article class="card kit" id={k.id} data-cat={k.cat}>
+        <div class="k-img">
+          {k.photo
+            ? <><img src={`/brand/renders/${k.photo}`} alt="" loading="lazy" /><span class="xs cap">AI concept photo</span></>
+            : <span class="k-friends">{k.items.map((s) => bySlug[s].friend).filter(Boolean).slice(0, 3).map((f) => <img src={`/brand/characters/${f.file}`} alt="" width="72" height="72" />)}</span>}
+        </div>
+        <div class="k-body">
+          <h2 class="f h2 k-name">{k.name}</h2>
+          <p class="mu">{k.line}</p>
+          <ul class="k-items">
+            {k.items.map((s) => { const p = bySlug[s]; return (
+              <li><a href={`/products/${s}`} class="k-item" data-cat={p.category}><span class="k-thumb"><img src={p.pack} alt="" loading="lazy" /></span><span class="sm"><b>{p.name}</b><br /><span class="mu">{p.size} · ★ {p.rating}</span></span></a></li>
+            ); })}
+          </ul>
+          <div class="k-price"><span class="f" style="font-size:30px">{inr(k.price)}</span><span class="sm mu"><s>{inr(k.sum)}</s> separately · you save {inr(k.sum - k.price)}</span><span class="smp">sample</span></div>
+          <button class="btn btn-block" type="button" data-kit={k.id} data-name={k.name}>Add kit to cart</button>
+          {k.id === 'gift-box' && <p class="xs mu">Gift-wrapped, with a card. Add your note and leave prices off the invoice in your cart.</p>}
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <section class="wrap sec stack" style="gap:16px" id="build">
+    <div class="stack" style="gap:6px">
+      <h2 class="f h2">Build your own box</h2>
+      <p class="mu">Pick any three for 10% off, or five or more for 15% off.</p>
+    </div>
+    <div class="byo">
+      <div class="byo-list">
+        {categories.filter((c) => c.key !== 'diapering').map((c) => (
+          <div class="stack" style="gap:8px" data-cat={c.key}>
+            <span class="lbl deep">{c.name}</span>
+            <div class="byo-grid">
+              {boxable.filter((p) => p.category === c.key).map((p) => (
+                <label class="pick">
+                  <input type="checkbox" value={p.slug} data-pick />
+                  <span class="pick-img"><img src={p.pack} alt="" loading="lazy" /></span>
+                  <span class="sm pick-name"><b>{p.name}</b><br /><span class="mu">{inr(p.price)}</span></span>
+                  <span class="tick" aria-hidden="true"></span>
+                </label>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <aside class="card byo-sum" aria-live="polite">
+        <b data-count>Nothing picked yet</b>
+        <div class="sm" data-lines></div>
+        <div class="row between"><span class="sm mu">Box price</span><span class="f" style="font-size:26px" data-total>₹0</span></div>
+        <span class="sm" data-nudge>Pick 3 to save 10%.</span>
+        <button class="btn btn-block" type="button" data-addbox disabled>Add box to cart</button>
+      </aside>
+    </div>
+  </section>
+
+  <section class="wrap stack" style="gap:16px;padding-bottom:64px">
+    <div class="tip"><span class="tl">Gifting tip</span>Fragrance-free basics like a wash, a lotion and a balm are a safe gift for any newborn. Skip powders and anything with nuts if you don't know the family's preferences. Diapers make a welcome add-on: ask the parents for the size.</div>
+  </section>
+</Base>
+
+<style>
+  .k-top { padding-top: 28px; padding-bottom: 24px; display: flex; flex-direction: column; gap: 12px; }
+  .lead { font-size: 18px; max-width: 640px; }
+  .kits { display: grid; gap: 20px; }
+  @media (min-width: 960px) { .kits { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; } }
+  .kit { overflow: hidden; display: flex; flex-direction: column; scroll-margin-top: 90px; }
+  .kit:target { outline: 3px solid var(--moss); outline-offset: 2px; }
+  .k-img { aspect-ratio: 3 / 2; background: var(--w); position: relative; display: flex; align-items: center; justify-content: center; }
+  .k-img > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .cap { position: absolute; right: 10px; bottom: 8px; background: rgba(251, 247, 240, .9); padding: 2px 8px; border-radius: 999px; }
+  .k-friends { display: flex; gap: 8px; }
+  .k-body { padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+  .k-name { font-size: 26px; }
+  .k-items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .k-item { display: flex; gap: 10px; align-items: center; text-decoration: none; }
+  .k-thumb { width: 48px; height: 48px; border-radius: 12px; background: var(--w); position: relative; flex: none; }
+  .k-thumb img { position: absolute; inset: 8%; width: 84%; height: 84%; object-fit: contain; }
+  .k-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+
+  .byo { display: grid; gap: 20px; }
+  @media (min-width: 960px) { .byo { grid-template-columns: minmax(0, 1fr) 320px; align-items: start; } .byo-sum { position: sticky; top: 96px; } }
+  .byo-list { display: flex; flex-direction: column; gap: 20px; }
+  .byo-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  @media (min-width: 720px) { .byo-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); } }
+  .pick { position: relative; display: flex; flex-direction: column; gap: 8px; padding: 10px; border-radius: 18px; background: var(--white); border: 1.5px solid var(--line); cursor: pointer; }
+  .pick input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .pick-img { aspect-ratio: 1; border-radius: 12px; background: var(--w); position: relative; display: block; }
+  .pick-img img { position: absolute; inset: 8%; width: 84%; height: 84%; object-fit: contain; }
+  .pick-name { min-height: 2.9em; }
+  .tick { position: absolute; top: 16px; right: 16px; width: 26px; height: 26px; border-radius: 13px; border: 1.5px solid var(--moss); background: var(--white); }
+  .pick:has(input:checked) { border-color: var(--moss); box-shadow: inset 0 0 0 1px var(--moss); }
+  .pick:has(input:checked) .tick { background: var(--moss); }
+  .pick:has(input:checked) .tick::after { content: ''; position: absolute; left: 8px; top: 4px; width: 7px; height: 12px; border: solid var(--milk); border-width: 0 2px 2px 0; transform: rotate(45deg); }
+  .pick:has(input:focus-visible) { outline: 3px solid var(--moss); outline-offset: 2px; }
+  .byo-sum { padding: 18px; display: flex; flex-direction: column; gap: 10px; }
+  .byo-sum [data-lines] { display: flex; flex-direction: column; gap: 2px; }
+  .btn[disabled] { opacity: .45; cursor: not-allowed; }
+  @media (max-width: 959px) {
+    .byo-sum { position: sticky; bottom: 12px; box-shadow: 0 8px 28px rgba(31, 58, 43, .18); }
+    .byo-sum [data-lines] { display: none; }
+  }
+</style>
+
+<script>
+  import { catalog, inr, esc } from '../scripts/data';
+  import { addKit, addBox, boxOff, toast } from '../scripts/cart';
+  const c = catalog();
+  const $ = <T extends HTMLElement>(s: string) => document.querySelector<T>(s)!;
+
+  document.querySelectorAll<HTMLButtonElement>('[data-kit]').forEach((b) => b.addEventListener('click', () => {
+    addKit(b.dataset.kit!); toast(`${b.dataset.name} added to your cart`);
+  }));
+
+  const picks = [...document.querySelectorAll<HTMLInputElement>('[data-pick]')];
+  const chosen = () => picks.filter((p) => p.checked).map((p) => p.value);
+  function render() {
+    const items = chosen(), n = items.length;
+    const sum = items.reduce((s, x) => s + c.products[x].price, 0);
+    const off = boxOff(n), total = Math.round(sum * (1 - off));
+    $('[data-count]').textContent = n ? `${n} item${n > 1 ? 's' : ''} in your box` : 'Nothing picked yet';
+    $('[data-lines]').innerHTML = items.map((x) => `<span class="row between"><span>${esc(c.products[x].name)}</span><span class="mu">${inr(c.products[x].price)}</span></span>`).join('');
+    $('[data-total]').innerHTML = off ? `${inr(total)} <s class="sm mu" style="font-family:var(--sans)">${inr(sum)}</s>` : inr(total);
+    $('[data-nudge]').innerHTML = n >= 5 ? `<b>15% off</b>, you save ${inr(sum - total)}.`
+      : n >= 3 ? `<b>10% off</b>, you save ${inr(sum - total)}. Pick ${5 - n} more for 15%.`
+      : `Pick ${3 - n} more to save 10%.`;
+    $<HTMLButtonElement>('[data-addbox]').disabled = n === 0;
+  }
+  picks.forEach((p) => p.addEventListener('change', render));
+  $('[data-addbox]').addEventListener('click', () => {
+    const items = chosen(); if (!items.length) return;
+    addBox(items); toast(`Your box of ${items.length} added to your cart`);
+    picks.forEach((p) => (p.checked = false)); render();
+  });
+  render();
+</script>

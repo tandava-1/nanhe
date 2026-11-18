@@ -2,7 +2,8 @@
 import Base from '../layouts/Base.astro';
 import ProductCard from '../components/ProductCard.astro';
 import AskBand from '../components/AskBand.astro';
-import { categories, products, bySlug, littleFriends } from '../data/catalog';
+import { categories, products, bySlug, littleFriends, KITS, inr } from '../data/catalog';
+import { guideBySlug } from '../data/guides';
 
 const mostLoved = ['daily-lotion', 'diaper-rash-cream', 'water-wipes', 'diaper-pants-m'].map((s) => bySlug[s]);
 const featured = [
@@ -10,6 +11,8 @@ const featured = [
   { p: bySlug['massage-oil'], r: bySlug['massage-oil'].reviews[0] },
   { p: bySlug['diaper-rash-cream'], r: bySlug['diaper-rash-cream'].reviews[0] },
 ];
+const starter = KITS[0];
+const homeGuides = ['first-bath', 'hair-washing', 'daily-maalish'].map((s) => guideBySlug[s]);
 const totalReviews = products.reduce((s, p) => s + p.reviewCount, 0);
 ---
 <Base title="Nanhe · Made gentle. Tested gentle.">
@@ -125,17 +128,17 @@ const totalReviews = products.reduce((s, p) => s + p.reviewCount, 0);
   </section>
 
   <section class="wrap" style="padding-bottom:40px">
-    <div class="tip" style="font-size:15px"><span class="tl">Parent tip</span>Newborns don't need a full bath every day. A few times a week is usually enough in the early months. Wipe the face, neck folds and nappy area daily. <a href="/guides">Bathing guide →</a></div>
+    <div class="tip" style="font-size:15px"><span class="tl">Parent tip</span>Newborns don't need a full bath every day. A few times a week is usually enough in the early months. Wipe the face, neck folds and nappy area daily. <a href="/guides/first-bath">Bathing guide →</a></div>
   </section>
 
   <section class="wrap stack" style="gap:24px;padding-bottom:48px">
     <h2 class="f h2">Kits, gifts &amp; diapers</h2>
     <div class="trio">
-      <a href="/kits" class="card media-card">
+      <a href="/kits#newborn-starter" class="card media-card">
         <img src="/brand/renders/ai-03-changing-kit.jpg" alt="A changing kit on sage linen: cream tube, balm tin, wipes, muslin and a baby sock" loading="lazy" width="1024" height="1024" />
-        <span class="mc-body"><span class="f h3">Newborn starter kit</span><span class="sm mu">The first three months, in one box</span><span class="sm"><b>₹1,499</b> · save ₹[X] <span class="smp">sample</span></span></span>
+        <span class="mc-body"><span class="f h3">Newborn starter kit</span><span class="sm mu">The first three months, in one box</span><span class="sm"><b>{inr(starter.price)}</b> · save {inr(starter.sum - starter.price)} <span class="smp">sample</span></span></span>
       </a>
-      <a href="/kits" class="card media-card">
+      <a href="/kits#gift-box" class="card media-card">
         <span class="gift-ph" aria-hidden="true"><img src="/brand/characters/haathi.svg" alt="" width="70" height="70" /><img src="/brand/characters/moru.svg" alt="" width="70" height="70" /><img src="/brand/characters/susu.svg" alt="" width="70" height="70" /></span>
         <span class="mc-body"><span class="f h3">Gift box</span><span class="sm mu">For godh bharai, naamkaran or a first visit. Gift note, no price on the invoice.</span><span class="xs mu">Photo to come</span></span>
       </a>
@@ -151,9 +154,7 @@ const totalReviews = products.reduce((s, p) => s + p.reviewCount, 0);
   <section class="wrap stack" style="gap:24px;padding-bottom:72px">
     <div class="sec-head"><h2 class="f h2">Parent guides</h2><a href="/guides" style="font-weight:600">All guides →</a></div>
     <div class="trio">
-      <a href="/guides" class="guide"><img src="/brand/renders/ai-04-bath-shelf.jpg" alt="Lotion and powder on a bathroom shelf beside a towel, a rubber duck and a baby's foot" loading="lazy" width="1024" height="1536" /><span class="f h3">Baby's first bath, step by step</span><span class="xs mu">4 min · Reviewed by Dr [NAME], paediatrician</span></a>
-      <a href="/guides" class="guide"><img src="/brand/renders/ai-10-bath-shampoo.jpg" alt="An adult pours water from a brass lota over a baby's foamy hair" loading="lazy" width="1536" height="1024" /><span class="f h3">Hair washing without tears</span><span class="xs mu">3 min · Reviewed by Dr [NAME], paediatrician</span></a>
-      <a href="/guides" class="guide"><img src="/brand/renders/ai-02-maalish.jpg" alt="Hands massaging a baby's back with oil, a bottle of golden oil beside them" loading="lazy" width="1536" height="1024" /><span class="f h3">The daily maalish: how-to, and which oils are safe</span><span class="xs mu">6 min · Reviewed by Dr [NAME], paediatrician</span></a>
+      {homeGuides.map((g) => <a href={`/guides/${g.slug}`} class="guide"><img src={g.image} alt={g.imageAlt} loading="lazy" /><span class="f h3">{g.title}</span><span class="xs mu">{g.minutes} min · Reviewed by Dr [NAME], paediatrician</span></a>)}
     </div>
   </section>
 </Base>

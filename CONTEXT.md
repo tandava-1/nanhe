@@ -27,36 +27,47 @@ tested. Price band around Mamaearth / The Moms Co., or slightly above.
 - Photography: 10 AI concept renders in `assets/renders/` (Figma file
   https://www.figma.com/design/tLnDO6jOWOoKlgg7wpCIbg), real labels
   composited on the product shots by `scripts/composite_renders.py`.
-- Website prototype, slice 1 (branch `website-2026-11-18`): Astro static site
-  in `site/` with Home, Shop (five shelves, one-line filters for routine and
-  baby's age, sort) and all 19 product pages (gallery, sample reviews with
-  "babies like yours" filters, claims with `[lab data pending]`, subscribe
-  option, pincode check, cart kept in the browser). Other links go to
-  placeholder pages that say which slice builds them. Architecture in
-  `docs/engineering/website.md`. Wireframes and branded mock-ups that led here
-  are on the canvas https://claude.ai/artifact/EUdWmFgK1wvQR6mj2GSBPV.
+- Website prototype, live at https://nanhe-xi.vercel.app (Astro static site
+  in `site/`, deployed from this Mac to Vercel project `nanhe`). All three
+  slices are built:
+  1. Home, Shop (five colour-coded shelves, one-line filters), search, 19
+     product pages with sample reviews and "babies like yours".
+  2. Cart (subscriptions, coupon `NANHE10`, gift note), demo checkout (OTP on
+     screen, COD off for subscriptions, nothing sent), baby profile, write a
+     review, compare two products.
+  3. Parent guides hub + 6 guide pages (sample copy, pending a paediatrician),
+     kits & gifts with a build-your-own box (10% off 3+, 15% off 5+), Ask page
+     (scripted assistant labelled prototype, plus expert chat, phone and
+     paediatrician booking demos).
+  Every product card is one `ProductCard` in `.pgrid`, same size everywhere.
+  Everything a visitor does stays in their browser. Architecture, storage keys
+  and deploy steps: `docs/engineering/website.md`. Wireframes and mock-ups
+  that led here: https://claude.ai/artifact/EUdWmFgK1wvQR6mj2GSBPV.
 
 **Open PRs (stacked).** PR 1 brand foundations → PR 2 range extension
-(`product-line-extension-2026-11-17`) → website slice 1 (`website-2026-11-18`,
-based on PR 2's branch). Merge in that order.
+(`product-line-extension-2026-11-17`) → website slice 1 (`website-2026-11-18`)
+→ slice 2 (`website-slice-2-2026-11-18`) → slice 3
+(`website-slice-3-2026-11-18`). Merge in that order; expect routine
+CONTEXT.md conflicts. Three early commits on slice 1 lack subject lines, so
+squash-merge it.
 
 **In progress / next.**
-1. Slice 1 is live at https://nanhe-xi.vercel.app (Vercel project `nanhe`,
-   deployed from this Mac; see `docs/engineering/website.md`). Founder is
-   sending edits; optional: connect the GitHub repo in Vercel for deploys on
-   every push.
-2. Website slice 2: cart, checkout (demo, no payments), baby profile, write a
-   review, compare.
-3. Website slice 3: parent guides, kits & gifts, Ask (assistant demo +
-   experts), search.
+1. Founder reviews the full prototype on the live site and sends edits.
+2. Remaining placeholder pages: order tracking, returns, how we test,
+   ingredients glossary, review policy.
+3. A paediatrician reviews the guide copy and the assistant's answers before
+   anything goes to real parents.
+4. Optional: connect the GitHub repo in Vercel for a preview link on every PR.
 
 **Open questions.**
 - Trademark search (Class 3) and domain for "Nanhe".
 - Real clinical test data to replace claim placeholders.
 - Real prices (the website shows sample prices).
 - A diaper size for 5–7 kg (gap between Newborn and Medium).
-- Customer care hours: the pack says Mon–Sat 10am–6pm; the website's Ask page
-  promises experts anytime.
+- Customer care hours: the pack says Mon–Sat 10am–6pm; the Ask page shows
+  care-expert chat "24×7 [to be decided]" and phone "9am to 9pm [to be
+  decided]". Pick one set and use it on both.
+- Paediatrician partner for guide reviews and video calls, and the call price.
 - Returns policy for opened products.
 
 ## Log
@@ -223,3 +234,24 @@ from outside `site/`. Deploys on every push need the GitHub repo connected in
 the Vercel dashboard (Root Directory `site`), which is the founder's step.
 **Next:** Founder sends edits; then slice 2 (cart, checkout demo, baby
 profile, write a review, compare).
+
+### 2026-11-18 07:40 IST — Claude Code (Opus 5.5) · Shivank’s MacBook Air
+**Changed:** Live-site edits from the founder, deployed: the five-shelves
+section now shows each shelf's products in its colour; Most loved images
+match; every product card is one size everywhere, including search (one
+`ProductCard` in `.pgrid`); search matches whole word starts. Built slice 2
+(branch `website-slice-2-2026-11-18`: cart, demo checkout, baby profile,
+write a review, compare) and slice 3 (branch `website-slice-3-2026-11-18`:
+`/guides` + 6 guide pages from `site/src/data/guides.ts`, `/kits` with
+build-your-own box, `/ask`). Home and Shop now link to specific guides, and
+the Home kit price comes from `KITS`. Docs updated in
+`docs/engineering/website.md`.
+**Decided:** Guide copy is general, widely given advice, marked "sample,
+pending paediatrician review" with a Dr [NAME] placeholder. The Ask assistant
+is scripted, not an LLM, and labelled as a prototype; any safety word routes
+to "call your doctor or 112" before anything else. Gift options stay in the
+cart rather than repeated on the kits page. Diapers and wipes are left out of
+build-your-own boxes because they come in their own packs. Expert hours,
+phone number and call price are visible `[to be decided]` placeholders.
+**Next:** Founder walks through the live prototype and sends edits; decide
+customer-care hours and a paediatrician partner.
