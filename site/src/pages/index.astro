@@ -1,0 +1,213 @@
+---
+import Base from '../layouts/Base.astro';
+import ProductCard from '../components/ProductCard.astro';
+import AskBand from '../components/AskBand.astro';
+import { categories, products, bySlug, littleFriends } from '../data/catalog';
+
+const friendsByCat = Object.fromEntries(categories.map((c) => [
+  c.key, littleFriends.filter((p) => p.category === c.key).slice(0, 3),
+]));
+const mostLoved = ['daily-lotion', 'diaper-rash-cream', 'water-wipes', 'diaper-pants-m'].map((s) => bySlug[s]);
+const featured = [
+  { p: bySlug['daily-lotion'], r: bySlug['daily-lotion'].reviews[0] },
+  { p: bySlug['massage-oil'], r: bySlug['massage-oil'].reviews[0] },
+  { p: bySlug['diaper-rash-cream'], r: bySlug['diaper-rash-cream'].reviews[0] },
+];
+const totalReviews = products.reduce((s, p) => s + p.reviewCount, 0);
+---
+<Base title="Nanhe · Made gentle. Tested gentle.">
+  <section class="wrap hero">
+    <div class="hero-text">
+      <div class="row" style="gap:12px"><span class="hi" lang="hi" style="font-size:22px;line-height:1">नन्हे</span><span class="mu sm">nun-hay · little ones</span></div>
+      <h1 class="f h1 hero-h">Made gentle.<br /><i style="font-weight:400">Tested gentle.</i></h1>
+      <p class="lead">Care the way Indian homes have always done it, checked the way science does.</p>
+      <a href="#reviews" class="card rating-pill"><span class="stars">★★★★★</span><span class="sm"><b>4.6</b> from {totalReviews.toLocaleString('en-IN')} parents</span><span class="smp">sample</span></a>
+      <div class="row wrap-row" style="gap:12px">
+        <a class="btn" href="/shop">Shop the range</a>
+        <a class="btn2" href="/profile">Find what suits my baby</a>
+      </div>
+    </div>
+    <figure class="hero-img">
+      <img src="/brand/renders/ai-01-hero-range.jpg" alt="The Nanhe range on a milk-white surface in front of apricot, sage and sky arches" width="1536" height="1024" />
+      <figcaption class="xs">AI concept photo</figcaption>
+    </figure>
+  </section>
+
+  <section class="band-white promises">
+    <div class="wrap promises-in">
+      <span class="lbl mu">What we promise</span>
+      <div class="promise"><span class="pic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M5 19C5 10 10 5 19 5C19 14 14 19 5 19Z"/><path d="M5 19L13 11"/></svg></span><span class="f" style="font-size:18px">Natural first</span><span class="sm mu">· plant ingredients lead</span></div>
+      <div class="promise"><span class="pic seal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12.5l4 4 8-9"/></svg></span><span class="f" style="font-size:18px">Clinically tested*</span><span class="sm mu">· on infant skin</span></div>
+      <div class="promise"><span class="pic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M8 7h11M8 12h11M8 17h11M4.5 7h.01M4.5 12h.01M4.5 17h.01"/></svg></span><span class="f" style="font-size:18px">Nothing hidden</span><span class="sm mu">· every ingredient explained</span></div>
+    </div>
+  </section>
+
+  <section class="wrap sec stack" style="gap:28px">
+    <div class="sec-head">
+      <h2 class="f h2">Five shelves, one colour each</h2>
+      <p class="mu">Every pack is milk-white. The cap tells you what's inside, so you can find the cream in the dark.</p>
+    </div>
+    <div class="shelves">
+      {categories.map((c) => (
+        <a href={`/shop#${c.key}`} class="shelf-tile" data-cat={c.key}>
+          <span class="tile-friends" aria-hidden="true">
+            {friendsByCat[c.key].map((p) => <img src={`/brand/characters/${p.friend.file}`} alt="" width="60" height="60" />)}
+          </span>
+          <span class="tile-text">
+            <span class="lbl">{c.name}</span>
+            <span class="f tile-line">{c.line}</span>
+            <span class="xs">{c.items}</span>
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section id="reviews" class="band-white">
+    <div class="wrap sec stack" style="gap:28px">
+      <div class="sec-head">
+        <div class="stack" style="gap:8px">
+          <h2 class="f h2">What parents are saying <span class="smp">sample</span></h2>
+          <p class="mu">Tell us your baby's age and skin type, and we'll show reviews from babies like yours first. <a href="/profile">Add your baby</a></p>
+        </div>
+      </div>
+      <div class="review-grid">
+        {featured.map(({ p, r }) => (
+          <article class="rev" data-cat={p.category}>
+            <span class="stars" aria-label={`${r.stars} out of 5`}>{'★'.repeat(r.stars)}{'☆'.repeat(5 - r.stars)}</span>
+            <h3 class="f rev-t">“{r.title}”</h3>
+            <p class="sm">{r.body}</p>
+            <div class="row wrap-row" style="gap:6px"><span class="pill">Baby: {r.age}</span><span class="pill">{({ normal: 'Normal', dry: 'Dry', sensitive: 'Sensitive', eczema: 'Eczema-prone' } as Record<string, string>)[r.skin]} skin</span></div>
+            <a class="xs mu rev-p" href={`/products/${p.slug}#reviews`}><span class="lbl deep" style="font-size:10px">{p.cat.name}</span> · {p.name} · Verified buyer</a>
+          </article>
+        ))}
+      </div>
+      <a href="/shop" style="font-weight:600">Read reviews on every product →</a>
+    </div>
+  </section>
+
+  <section class="wrap sec stack" style="gap:24px">
+    <div class="sec-head">
+      <h2 class="f h2">Most loved</h2>
+      <div class="row wrap-row" style="gap:8px"><span class="sm mu">By age</span>
+        <a class="chip" href="/shop?age=expecting">Expecting</a><a class="chip" href="/shop?age=0-3">0–3 months</a><a class="chip" href="/shop?age=3-12">3–12 months</a><a class="chip" href="/shop?age=12-36">1–3 years</a>
+      </div>
+    </div>
+    <div class="loved">
+      {mostLoved.map((p) => <ProductCard p={p} layout="tile" />)}
+    </div>
+  </section>
+
+  <section class="wrap stack" style="gap:24px;padding-bottom:40px">
+    <div class="sec-head">
+      <h2 class="f h2">Meet the little friends</h2>
+      <p class="mu">Every pack has its own baby animal, so it's easy to ask for “the Haathi one”.</p>
+    </div>
+    <div class="friends">
+      {littleFriends.map((p) => (
+        <a href={`/products/${p.slug}`} class="friend" data-cat={p.category}>
+          <span class="friend-ring"><img src={`/brand/characters/${p.friend.file}`} alt="" width="80" height="80" loading="lazy" /></span>
+          <span class="f" style="font-size:18px">{p.friend.name}</span>
+          <span class="xs mu">{p.name}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-bottom:40px">
+    <div class="tip" style="font-size:15px"><span class="tl">Parent tip</span>Newborns don't need a full bath every day. A few times a week is usually enough in the early months. Wipe the face, neck folds and nappy area daily. <a href="/guides">Bathing guide →</a></div>
+  </section>
+
+  <section class="wrap stack" style="gap:24px;padding-bottom:48px">
+    <h2 class="f h2">Kits, gifts &amp; diapers</h2>
+    <div class="trio">
+      <a href="/kits" class="card media-card">
+        <img src="/brand/renders/ai-03-changing-kit.jpg" alt="A changing kit on sage linen: cream tube, balm tin, wipes, muslin and a baby sock" loading="lazy" width="1024" height="1024" />
+        <span class="mc-body"><span class="f h3">Newborn starter kit</span><span class="sm mu">The first three months, in one box</span><span class="sm"><b>₹1,499</b> · save ₹[X] <span class="smp">sample</span></span></span>
+      </a>
+      <a href="/kits" class="card media-card">
+        <span class="gift-ph" aria-hidden="true"><img src="/brand/characters/haathi.svg" alt="" width="70" height="70" /><img src="/brand/characters/moru.svg" alt="" width="70" height="70" /><img src="/brand/characters/susu.svg" alt="" width="70" height="70" /></span>
+        <span class="mc-body"><span class="f h3">Gift box</span><span class="sm mu">For godh bharai, naamkaran or a first visit. Gift note, no price on the invoice.</span><span class="xs mu">Photo to come</span></span>
+      </a>
+      <a href="/shop#diapering" class="card media-card" data-cat="diapering">
+        <img src="/brand/renders/ai-09-diapers-labelled.jpg" alt="Taped Diapers and Diaper Pants bags with Chitku the fawn and Pandu the red panda, on lavender" loading="lazy" width="1536" height="1024" />
+        <span class="mc-body"><span class="lbl deep">Diapering</span><span class="f h3">Every size has its own animal</span><span class="sm mu">Chitku is newborn, Pandu is medium. Tell them apart in the dark by the print. Subscribe and save, so you never run out at 2 a.m.</span></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-bottom:48px"><AskBand /></section>
+
+  <section class="wrap stack" style="gap:24px;padding-bottom:72px">
+    <div class="sec-head"><h2 class="f h2">Parent guides</h2><a href="/guides" style="font-weight:600">All guides →</a></div>
+    <div class="trio">
+      <a href="/guides" class="guide"><img src="/brand/renders/ai-04-bath-shelf.jpg" alt="Lotion and powder on a bathroom shelf beside a towel, a rubber duck and a baby's foot" loading="lazy" width="1024" height="1536" /><span class="f h3">Baby's first bath, step by step</span><span class="xs mu">4 min · Reviewed by Dr [NAME], paediatrician</span></a>
+      <a href="/guides" class="guide"><img src="/brand/renders/ai-10-bath-shampoo.jpg" alt="An adult pours water from a brass lota over a baby's foamy hair" loading="lazy" width="1536" height="1024" /><span class="f h3">Hair washing without tears</span><span class="xs mu">3 min · Reviewed by Dr [NAME], paediatrician</span></a>
+      <a href="/guides" class="guide"><img src="/brand/renders/ai-02-maalish.jpg" alt="Hands massaging a baby's back with oil, a bottle of golden oil beside them" loading="lazy" width="1536" height="1024" /><span class="f h3">The daily maalish: how-to, and which oils are safe</span><span class="xs mu">6 min · Reviewed by Dr [NAME], paediatrician</span></a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { display: flex; flex-direction: column; gap: 24px; padding-top: 0; padding-bottom: 40px; }
+  .hero-img { order: -1; margin: 0 -20px; position: relative; }
+  .hero-img img { width: 100%; height: 300px; object-fit: cover; }
+  .hero-img figcaption { position: absolute; right: 12px; bottom: 10px; background: rgba(251, 247, 240, .9); padding: 2px 8px; border-radius: 999px; }
+  .hero-text { display: flex; flex-direction: column; gap: 18px; }
+  .hero-h { font-size: clamp(44px, 7vw, 80px); line-height: .98; }
+  .lead { font-size: 18px; line-height: 1.45; max-width: 520px; }
+  .rating-pill { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 999px; text-decoration: none; align-self: flex-start; }
+  @media (min-width: 960px) {
+    .hero { flex-direction: row; align-items: center; gap: 56px; padding-top: 56px; padding-bottom: 64px; }
+    .hero-text { flex: 1 1 420px; gap: 24px; }
+    .hero-img { order: 0; margin: 0; flex: 1 1 480px; }
+    .hero-img img { height: 560px; border-radius: 32px; }
+    .lead { font-size: 21px; }
+  }
+  .promises { padding: 22px 0; }
+  .promises-in { display: flex; flex-direction: column; gap: 12px; }
+  .promise { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .pic { width: 36px; height: 36px; border-radius: 18px; background: var(--oat); display: inline-flex; align-items: center; justify-content: center; flex: none; }
+  .pic.seal { background: var(--marigold); }
+  @media (min-width: 960px) { .promises-in { flex-direction: row; align-items: center; justify-content: space-between; } }
+  .sec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px 24px; }
+  .sec-head > p { max-width: 460px; }
+  .shelves { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  .shelf-tile { background: var(--w); border-radius: 20px; padding: 16px 18px; display: flex; align-items: center; gap: 16px; text-decoration: none; }
+  .tile-friends { display: flex; flex: none; width: 112px; justify-content: center; }
+  .tile-friends img { width: 44px; height: 44px; }
+  .tile-friends img + img { margin-left: -10px; }
+  .tile-text { display: flex; flex-direction: column; gap: 2px; }
+  .tile-line { font-size: 19px; line-height: 1.25; }
+  @media (min-width: 960px) {
+    .shelves { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+    .shelf-tile { flex-direction: column; align-items: stretch; padding: 22px; min-height: 300px; border-radius: 24px; }
+    .tile-friends { width: auto; flex: 1; align-items: center; }
+    .tile-friends img { width: 62px; height: 62px; }
+    .tile-line { font-size: 20px; }
+  }
+  .review-grid { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, 85%); gap: 12px; overflow-x: auto; padding-bottom: 6px; }
+  @media (min-width: 960px) { .review-grid { grid-auto-flow: row; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; } }
+  .rev { background: var(--milk); border-radius: 22px; padding: 22px; display: flex; flex-direction: column; gap: 10px; }
+  .rev-t { font-size: 21px; line-height: 1.25; }
+  .rev-p { margin-top: auto; text-decoration: none; }
+  .loved { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(200px, 62%); gap: 12px; overflow-x: auto; padding-bottom: 6px; }
+  @media (min-width: 720px) { .loved { grid-auto-flow: row; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 24px; overflow: visible; } }
+  .friends { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 6px; }
+  .friend { flex: 0 0 104px; display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; text-align: center; }
+  .friend-ring { width: 96px; height: 96px; border-radius: 48px; background: var(--w); display: flex; align-items: center; justify-content: center; margin-bottom: 6px; }
+  .friend-ring img { width: 76px; height: 76px; }
+  @media (min-width: 960px) {
+    .friends { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 24px 12px; overflow: visible; }
+    .friend-ring { width: 112px; height: 112px; border-radius: 56px; }
+    .friend-ring img { width: 88px; height: 88px; }
+  }
+  .trio { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 720px) { .trio { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; } }
+  .media-card { overflow: hidden; display: flex; flex-direction: column; text-decoration: none; }
+  .media-card img { width: 100%; height: 220px; object-fit: cover; }
+  .mc-body { padding: 18px 22px 22px; display: flex; flex-direction: column; gap: 6px; }
+  .gift-ph { height: 220px; background: var(--oat); display: flex; align-items: center; justify-content: center; gap: 4px; }
+  .guide { display: flex; flex-direction: column; gap: 10px; text-decoration: none; }
+  .guide img { width: 100%; height: 220px; object-fit: cover; border-radius: 22px; }
+</style>

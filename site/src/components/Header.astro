@@ -1,0 +1,77 @@
+---
+import Wordmark from './Wordmark.astro';
+import Icon from './Icon.astro';
+import { categories } from '../data/catalog';
+---
+<div class="proto" role="note">Prototype · sample prices, ratings and reviews · not a real store</div>
+<div class="announce">Free delivery above ₹499 · Cash on delivery · Easy returns <span class="smp">sample</span></div>
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <button class="ib menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer" data-menu><Icon name="menu" /></button>
+    <a href="/" class="logo"><Wordmark height={30} label="Nanhe, home" /></a>
+    <nav class="nav-desk" aria-label="Shelves">
+      {categories.map((c) => (
+        <a href={`/shop#${c.key}`} data-cat={c.key}><span class="dot"></span>{c.name}</a>
+      ))}
+      <a href="/guides">Guides</a>
+    </nav>
+    <div class="hdr-icons">
+      <a href="/ask" class="chip ask-chip"><Icon name="chat" size={18} />Ask anytime</a>
+      <a href="/ask" class="ib ask-ic" aria-label="Ask the assistant or an expert"><Icon name="chat" /></a>
+      <a href="/search" class="ib" aria-label="Search"><Icon name="search" /></a>
+      <a href="/profile" class="ib" aria-label="Your baby"><Icon name="user" /></a>
+      <a href="/cart" class="ib" aria-label="Cart"><Icon name="bag" /><span class="cart-count" data-cart-count hidden>0</span></a>
+    </div>
+  </div>
+  <nav id="drawer" class="drawer" aria-label="Menu" hidden>
+    <div class="wrap drawer-in">
+      <a href="/shop">Shop all</a>
+      {categories.map((c) => (
+        <a href={`/shop#${c.key}`} data-cat={c.key}><span class="dot"></span>{c.name}</a>
+      ))}
+      <a href="/kits">Kits &amp; gifts</a>
+      <a href="/guides">Parent guides</a>
+      <a href="/ask">Ask an expert</a>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .proto { background: var(--oat); color: var(--moss); font-size: 12px; font-weight: 600; text-align: center; padding: 6px 16px; }
+  .announce { background: var(--moss); color: var(--milk); font-size: 12px; text-align: center; padding: 9px 16px; }
+  .announce .smp { background: var(--milk); color: var(--moss); margin-left: 4px; }
+  .hdr { position: sticky; top: 0; z-index: 40; background: var(--milk); border-bottom: 1px solid rgba(31, 58, 43, .10); }
+  .hdr-in { display: flex; align-items: center; gap: 12px; min-height: 64px; padding-left: 8px; padding-right: 8px; }
+  .logo { display: flex; align-items: center; padding: 8px 4px; flex: none; }
+  .nav-desk { display: none; }
+  .hdr-icons { display: flex; align-items: center; margin-left: auto; }
+  .ask-chip { display: none; font-weight: 600; margin-right: 4px; }
+  .cart-count { position: absolute; top: 5px; right: 3px; background: var(--moss); color: var(--milk); font-size: 10px; font-weight: 700; border-radius: 999px; min-width: 17px; height: 17px; display: inline-flex; align-items: center; justify-content: center; padding: 0 4px; }
+  .cart-count[hidden] { display: none; }
+  .drawer { border-top: 1px solid var(--line); background: var(--milk); }
+  .drawer-in { display: flex; flex-direction: column; padding-top: 8px; padding-bottom: 16px; }
+  .drawer a { display: flex; align-items: center; gap: 10px; min-height: 48px; font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--line); }
+  @media (min-width: 960px) {
+    .hdr-in { min-height: 84px; gap: 28px; padding-left: 40px; padding-right: 40px; }
+    .menu-btn, .ask-ic { display: none; }
+    .nav-desk { display: flex; gap: 20px; flex-wrap: wrap; font-size: 14px; font-weight: 600; }
+    .nav-desk a { display: inline-flex; align-items: center; gap: 7px; text-decoration: none; min-height: 44px; }
+    .nav-desk a:hover { text-decoration: underline; text-underline-offset: 6px; }
+    .ask-chip { display: inline-flex; }
+    .drawer { display: none; }
+  }
+</style>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('[data-menu]');
+  const drawer = document.getElementById('drawer');
+  btn?.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    btn.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
+    if (drawer) drawer.hidden = open;
+  });
+  drawer?.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('a') && btn) { btn.click(); }
+  });
+</script>

@@ -1,0 +1,42 @@
+---
+// Placeholder pages for links that later slices will build. Each says what it will do and when.
+import Base from '../layouts/Base.astro';
+
+type Info = { title: string; what: string; slice: 2 | 3 | 'later' };
+
+export function getStaticPaths() {
+const PAGES: Record<string, Info> = {
+  cart: { title: 'Your cart', what: "See what you've added, switch items to subscribe & save, and check delivery for your pincode. Anything you add is already being kept in this browser.", slice: 2 },
+  checkout: { title: 'Checkout', what: 'Mobile number with a one-time code, address with pincode lookup, and UPI, card, netbanking or cash on delivery. In the prototype it stops at a demo confirmation, with no payment taken.', slice: 2 },
+  profile: { title: 'Your baby', what: "Tell us your baby's age and skin type once. Product pages then show ratings from babies like yours, and tips that fit their age. It stays in your browser.", slice: 2 },
+  compare: { title: 'Compare by what parents say', what: 'Lotion or cream? Two products side by side: ratings from babies like yours, what parents praise, the most common complaint, texture and price per 10 ml.', slice: 2 },
+  'write-review': { title: 'Write a review', what: "Stars, your baby's age and skin type, any reaction, and would you buy it again. Those answers are what power the 'babies like yours' filters.", slice: 2 },
+  ask: { title: 'Ask anytime', what: 'An assistant that answers from paediatrician-reviewed guides and knows when to send you to a doctor, plus chat, call or a video slot with a real expert.', slice: 3 },
+  guides: { title: 'Parent guides', what: 'Short, practical guides by stage and topic, each reviewed by a paediatrician: first bath, the daily maalish, nappy rash, dry skin, first teeth.', slice: 3 },
+  kits: { title: 'Kits & gifts', what: 'The newborn starter kit, a gift box for godh bharai or naamkaran, and build-your-own boxes, with a gift note and no price on the invoice.', slice: 3 },
+  search: { title: 'Search', what: 'Search by product, ingredient or concern, like "cradle cap" or "fluoride".', slice: 3 },
+  track: { title: 'Track your order', what: 'Order status and delivery updates.', slice: 'later' },
+  returns: { title: 'Returns', what: 'The returns policy, including what happens with opened products. [Policy to be decided.]', slice: 'later' },
+  'how-we-test': { title: 'How we test', what: 'What "clinically tested" means for each product: the study, the number of infants, the lab and the year. [Waiting for lab reports.]', slice: 'later' },
+  ingredients: { title: 'Ingredient glossary', what: 'Every ingredient we use, in plain words, and what it is there to do.', slice: 'later' },
+  'review-policy': { title: 'Review policy', what: 'We publish every review, good or bad, after a check for abuse and personal details. Free-sample reviews are always labelled.', slice: 'later' },
+};
+  return Object.entries(PAGES).map(([page, info]) => ({ params: { page }, props: { info } }));
+}
+const { info } = Astro.props as { info: Info };
+const when = info.slice === 'later' ? 'after launch planning' : `in build ${info.slice}`;
+---
+<Base title={`${info.title} · Nanhe`}>
+  <section class="wrap sec soon">
+    <img src="/brand/characters/haathi.svg" alt="" width="96" height="96" />
+    <h1 class="f h2">{info.title}</h1>
+    <p class="lead">{info.what}</p>
+    <p class="sm mu">This page arrives {when} of the prototype.</p>
+    <div class="row wrap-row" style="gap:12px;justify-content:center"><a class="btn" href="/shop">Back to the shop</a><a class="btn2" href="/">Home</a></div>
+  </section>
+</Base>
+
+<style>
+  .soon { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; max-width: 640px; min-height: 50vh; justify-content: center; }
+  .lead { font-size: 18px; line-height: 1.5; }
+</style>

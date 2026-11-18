@@ -1,0 +1,3 @@
+# Prototype with sample prices and reviews: keep it out of search engines.
+User-agent: *
+Disallow: /

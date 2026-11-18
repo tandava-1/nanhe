@@ -1,0 +1,52 @@
+---
+import Wordmark from './Wordmark.astro';
+import { categories } from '../data/catalog';
+---
+<footer class="ftr">
+  <div class="wrap ftr-in">
+    <div class="ftr-brand">
+      <div class="row" style="gap:14px;align-items:flex-end">
+        <Wordmark reversed height={34} label="Nanhe" />
+        <span class="hi" lang="hi" style="font-size:22px;line-height:1">नन्हे</span>
+      </div>
+      <p class="f" style="font-size:19px">Made gentle. <i style="font-weight:400">Tested gentle.</i></p>
+    </div>
+    <div class="ftr-col">
+      <span class="lbl ftr-h">Shop</span>
+      {categories.map((c) => <a href={`/shop#${c.key}`}>{c.name}</a>)}
+      <a href="/kits">Kits &amp; gifts</a>
+    </div>
+    <div class="ftr-col">
+      <span class="lbl ftr-h">Help</span>
+      <a href="/guides">Parent guides</a>
+      <a href="/ask">Ask an expert</a>
+      <a href="/track">Track order</a>
+      <a href="/returns">Returns</a>
+    </div>
+    <div class="ftr-col">
+      <span class="lbl ftr-h">Trust</span>
+      <a href="/how-we-test">How we test</a>
+      <a href="/ingredients">Ingredient glossary</a>
+      <a href="/review-policy">Review policy</a>
+    </div>
+  </div>
+  <div class="wrap ftr-fine xs">
+    This is a prototype. Prices, ratings and reviews are samples. Claims marked * and ** await lab reports. Product photos are AI concepts. Guides are reviewed by a paediatrician and aren't a substitute for medical advice.
+  </div>
+</footer>
+
+<style>
+  .ftr { background: var(--moss); color: var(--milk); padding: 48px 0 32px; margin-top: auto; }
+  .ftr a { color: var(--milk); text-decoration: none; }
+  .ftr a:hover { text-decoration: underline; color: var(--milk); }
+  .ftr-in { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 20px; }
+  .ftr-brand { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 12px; }
+  .ftr-col { display: flex; flex-direction: column; gap: 10px; font-size: 15px; }
+  .ftr-h { color: var(--on-moss-2); margin-bottom: 2px; }
+  .ftr-fine { color: var(--on-moss-2); border-top: 1px solid rgba(251, 247, 240, .15); margin-top: 32px; padding-top: 20px; line-height: 1.6; }
+  @media (min-width: 960px) {
+    .ftr { padding-top: 64px; }
+    .ftr-in { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
+    .ftr-brand { grid-column: auto; }
+  }
+</style>

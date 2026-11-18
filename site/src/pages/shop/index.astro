@@ -1,0 +1,154 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import AskBand from '../../components/AskBand.astro';
+import { categories, products, ROUTINES } from '../../data/catalog';
+
+const NOTES: Record<string, { label: string; html: string; bg?: string }> = {
+  moisturise: { label: 'Parent tip', html: 'Most babies need only a few products: a gentle wash, a moisturiser, a barrier cream and wipes cover most days. <a href="/guides">A simple newborn routine →</a>', bg: 'var(--oat)' },
+  care: { label: 'When to see a doctor', html: 'A rash that blisters, oozes or comes with a fever needs your doctor first. <a href="/guides">Nappy rash guide →</a>' },
+  hygiene: { label: 'Parent tip', html: "Shake powder into your palm first, away from your baby's face, then pat onto skin folds. Never shake it directly over your baby.", bg: 'var(--oat)' },
+  bath: { label: 'Parent tip', html: 'Trim nails after a bath, when they are soft, and file any rough edges. For first teeth, a rice-grain smear of toothpaste, brushed by an adult.', bg: 'var(--oat)' },
+  diapering: { label: 'Which size?', html: 'Chitku the fawn is newborn (up to 5 kg). Pandu the red panda is medium (7–12 kg). You can tell them apart in the dark by the print. Subscribe and save on diapers and wipes.' },
+};
+const AGES = [
+  { key: 'expecting', label: 'Expecting', range: [0, 3] },
+  { key: '0-3', label: '0–3 months', range: [0, 3] },
+  { key: '3-12', label: '3–12 months', range: [3, 12] },
+  { key: '12-36', label: '1–3 years', range: [12, 36] },
+];
+---
+<Base title="Shop · Nanhe">
+  <section class="wrap shop-top">
+    <p class="xs mu"><a href="/">Home</a> / Shop</p>
+    <h1 class="f h1">Shop <span class="count mu" data-count>· {products.length} products</span></h1>
+    <div class="scroll-x chips" role="group" aria-label="Sort and filter">
+      <label><span class="sr-only">Sort by</span>
+        <select data-sort class="chip sel">
+          <option value="loved">Sort: Most loved</option>
+          <option value="reviews">Sort: Most reviewed</option>
+          <option value="price-asc">Sort: Price, low to high</option>
+          <option value="price-desc">Sort: Price, high to low</option>
+        </select>
+      </label>
+      <label><span class="sr-only">Baby's age</span>
+        <select data-agesel class="chip sel">
+          <option value="">Baby's age: any</option>
+          {AGES.map((a) => <option value={a.key} data-range={a.range.join(',')}>{a.label}</option>)}
+        </select>
+      </label>
+      <button class="chip" type="button" data-routine="" aria-pressed="true">All</button>
+      {ROUTINES.map((r) => <button class="chip" type="button" data-routine={r.key} aria-pressed="false">{r.label}</button>)}
+    </div>
+    <p class="sm" data-empty hidden>Nothing matches those filters. <button type="button" class="linkish" data-clear>Clear filters</button></p>
+  </section>
+
+  <section class="wrap shelves-list">
+    {categories.map((c) => (
+      <section id={c.key} class="shelf" data-cat={c.key} data-shelf>
+        <div class="shelf-head">
+          <div>
+            <span class="lbl">{c.name}</span>
+            <h2 class="f shelf-line">{c.line}</h2>
+          </div>
+          {c.key === 'moisturise' && <a href="/compare" class="sm" style="font-weight:600">Lotion or cream? Compare by what parents say →</a>}
+        </div>
+        <div class="grid" data-grid>
+          {products.filter((p) => p.category === c.key).map((p) => <ProductCard p={p} />)}
+        </div>
+        <div class="note shelf-note" style={NOTES[c.key].bg ? `background:${NOTES[c.key].bg}` : ''}>
+          <span class="tl">{NOTES[c.key].label}</span><span set:html={NOTES[c.key].html} />
+        </div>
+      </section>
+    ))}
+  </section>
+
+  <section class="wrap" style="padding-top:12px;padding-bottom:64px">
+    <AskBand title="Not sure what your baby needs?" body="Ask our assistant anything, day or night. Or talk to a baby-care expert." />
+  </section>
+</Base>
+
+<style>
+  .shop-top { padding-top: 24px; padding-bottom: 8px; display: flex; flex-direction: column; gap: 16px; }
+  .shop-top a { text-decoration: none; }
+  .sec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px; }
+  .count { font-family: var(--sans); font-size: 15px; font-weight: 400; letter-spacing: 0; }
+  .sel { appearance: none; font-weight: 600; padding-right: 30px; background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231F3A2B' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 12px center; }
+  .chips { gap: 8px; }
+  .linkish { background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; font-weight: 600; }
+  .shelves-list { display: flex; flex-direction: column; gap: 16px; padding-top: 16px; padding-bottom: 24px; }
+  .shelf { background: var(--w); border-radius: 24px; padding: 20px 14px 14px; display: flex; flex-direction: column; gap: 12px; scroll-margin-top: 90px; }
+  .shelf[hidden] { display: none; }
+  .shelf-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 8px 16px; padding: 0 4px; }
+  .shelf-line { font-size: 24px; line-height: 1.15; }
+  .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  .shelf-note { background: var(--milk); }
+  @media (min-width: 720px) { .grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; } }
+  @media (min-width: 960px) {
+    .shop-top { padding-top: 40px; }
+    .shelves-list { gap: 28px; }
+    .shelf { padding: 32px; border-radius: 32px; gap: 24px; }
+    .shelf-line { font-size: 34px; }
+  }
+</style>
+
+<script>
+  const cards = [...document.querySelectorAll<HTMLElement>('.pcard')];
+  const shelves = [...document.querySelectorAll<HTMLElement>('[data-shelf]')];
+  const routineBtns = [...document.querySelectorAll<HTMLButtonElement>('[data-routine]')];
+  const ageSel = document.querySelector<HTMLSelectElement>('[data-agesel]')!;
+  const sortSel = document.querySelector<HTMLSelectElement>('[data-sort]')!;
+  const countEl = document.querySelector<HTMLElement>('[data-count]')!;
+  const emptyEl = document.querySelector<HTMLElement>('[data-empty]')!;
+  let routine = '';
+  let age: [number, number] | null = null;
+
+  function apply() {
+    let shown = 0;
+    for (const c of cards) {
+      const okR = !routine || (c.dataset.routines ?? '').split(' ').includes(routine);
+      const lo = Number(c.dataset.agemin), hi = Number(c.dataset.agemax);
+      const okA = !age || (lo <= age[1] && hi >= age[0] && !(age[0] >= 3 && hi <= 3));
+      c.hidden = !(okR && okA);
+      if (!c.hidden) shown++;
+    }
+    for (const s of shelves) s.hidden = !s.querySelector('.pcard:not([hidden])');
+    countEl.textContent = `· ${shown} product${shown === 1 ? '' : 's'}`;
+    emptyEl.hidden = shown > 0;
+  }
+
+  function sort() {
+    const key = sortSel.value;
+    const val = (c: HTMLElement) => key === 'reviews' ? -Number(c.dataset.reviews)
+      : key === 'price-asc' ? Number(c.dataset.price)
+      : key === 'price-desc' ? -Number(c.dataset.price)
+      : -(Number(c.dataset.rating) * 1000 + Number(c.dataset.reviews) / 1000);
+    document.querySelectorAll<HTMLElement>('[data-grid]').forEach((g) => {
+      [...g.children].sort((a, b) => val(a as HTMLElement) - val(b as HTMLElement)).forEach((el) => g.appendChild(el));
+    });
+  }
+
+  routineBtns.forEach((b) => b.addEventListener('click', () => {
+    routine = b.dataset.routine ?? '';
+    routineBtns.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    apply();
+  }));
+
+  function setAge(key: string) {
+    ageSel.value = key;
+    const opt = ageSel.selectedOptions[0];
+    age = key && opt?.dataset.range ? (opt.dataset.range.split(',').map(Number) as [number, number]) : null;
+    apply();
+  }
+  ageSel.addEventListener('change', () => setAge(ageSel.value));
+
+  sortSel.addEventListener('change', sort);
+  document.querySelector('[data-clear]')?.addEventListener('click', () => {
+    routine = ''; routineBtns.forEach((x, i) => x.setAttribute('aria-pressed', String(i === 0)));
+    setAge('');
+  });
+
+  const fromUrl = new URLSearchParams(location.search).get('age');
+  if (fromUrl && [...ageSel.options].some((o) => o.value === fromUrl)) setAge(fromUrl);
+  sort();
+</script>
