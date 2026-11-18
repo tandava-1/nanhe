@@ -1,0 +1,116 @@
+{
+  "daily-lotion": {
+    "name": "Haathi",
+    "animal": "Elephant calf",
+    "why": "Gentle giant with famously soft skin",
+    "file": "haathi.svg"
+  },
+  "massage-oil": {
+    "name": "Gilu",
+    "animal": "Palm squirrel",
+    "why": "Lives in the coconut trees the oil comes from",
+    "file": "gilu.svg"
+  },
+  "rich-cream": {
+    "name": "Bhalu",
+    "animal": "Himalayan bear cub",
+    "why": "Made for cold, dry winter cheeks",
+    "file": "bhalu.svg"
+  },
+  "diaper-rash-cream": {
+    "name": "Kachhu",
+    "animal": "Tortoise",
+    "why": "Its shell is a barrier, like the cream",
+    "file": "kachhu.svg"
+  },
+  "all-purpose-balm": {
+    "name": "Kaantu",
+    "animal": "Indian hedgehog",
+    "why": "Small, tough and handy for every prickly patch",
+    "file": "kaantu.svg"
+  },
+  "mineral-sunscreen": {
+    "name": "Moru",
+    "animal": "Peacock chick",
+    "why": "Loves the sun, dances in the rain",
+    "file": "moru.svg"
+  },
+  "talc-free-powder": {
+    "name": "Khargu",
+    "animal": "Hare",
+    "why": "Soft as a powder-puff tail",
+    "file": "khargu.svg"
+  },
+  "bottle-wash": {
+    "name": "Batku",
+    "animal": "Duckling",
+    "why": "Happiest around water and bubbles",
+    "file": "batku.svg"
+  },
+  "water-wipes": {
+    "name": "Susu",
+    "animal": "Ganges river dolphin",
+    "why": "Called susu along the Ganga, a creature of pure water",
+    "file": "susu.svg"
+  },
+  "head-to-toe-wash": {
+    "name": "Udu",
+    "animal": "Smooth-coated otter",
+    "why": "Happiest in water, and very particular about being clean",
+    "file": "udu.svg"
+  },
+  "tear-free-shampoo": {
+    "name": "Sheru",
+    "animal": "Asiatic lion cub",
+    "why": "From Gir, with the best hair in the forest",
+    "file": "sheru.svg"
+  },
+  "bubble-bath": {
+    "name": "Mendu",
+    "animal": "Indian bullfrog",
+    "why": "Cannot resist a bubble",
+    "file": "mendu.svg"
+  },
+  "first-toothpaste": {
+    "name": "Magru",
+    "animal": "Mugger crocodile cub",
+    "why": "Very proud of two new teeth",
+    "file": "magru.svg"
+  },
+  "finger-toothbrush": {
+    "name": "Magru",
+    "animal": "Mugger crocodile cub",
+    "why": "Very proud of two new teeth",
+    "file": "magru.svg"
+  },
+  "grooming-kit": {
+    "name": "Mainu",
+    "animal": "Common myna",
+    "why": "Never seen with a feather out of place",
+    "file": "mainu.svg"
+  },
+  "taped-diapers-nb": {
+    "name": "Chitku",
+    "animal": "Chital fawn",
+    "why": "The newborn size. Wobbly on new legs, and covered in soft spots",
+    "file": "chitku.svg"
+  },
+  "diaper-pants-m": {
+    "name": "Pandu",
+    "animal": "Red panda",
+    "why": "The medium size. Always climbing something",
+    "file": "pandu.svg"
+  },
+  "hand-face-wipes": {
+    "name": "Nevu",
+    "animal": "Mongoose",
+    "why": "Quick, curious, and tidies up after every meal",
+    "file": "nevu.svg"
+  },
+  "water-wipes-value": {
+    "name": "Susu",
+    "animal": "Ganges river dolphin",
+    "why": "Called susu along the Ganga, a creature of pure water",
+    "file": "susu.svg"
+  }
+}
