@@ -60,9 +60,25 @@ npm run build    # static output in site/dist/
 
 ## Deploy
 
-Vercel, Root Directory `site`, framework Astro, build command `npm run build`.
-The build reads `../docs` and `../assets`, so "Include files outside the root
-directory" must stay on (Vercel's default).
+Live at **https://nanhe-xi.vercel.app** (Vercel project `nanhe`).
+
+Today it deploys from this Mac, building locally because the build reads
+`../docs` and `../assets` from outside `site/`:
+
+```
+cd site
+vercel build --prod --yes
+vercel deploy --prebuilt --prod --yes
+```
+
+Node is pinned to 24.x in `site/package.json` (`engines`), because Vercel
+doesn't accept the Mac's Node 26 yet. `site/.vercel/` and `site/.env*` are
+git-ignored; `vercel link` writes a token into `.env.local`.
+
+To deploy on every push instead, connect the GitHub repo in the Vercel
+dashboard (Project → Settings → Git) and set Root Directory to `site`, keeping
+"Include files outside the root directory" on. Every PR then gets its own
+preview link.
 
 ## Slices
 

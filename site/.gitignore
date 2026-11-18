@@ -4,3 +4,5 @@ dist/
 .vercel/
 public/brand/
 public/favicon.svg
+.vercel
+.env*

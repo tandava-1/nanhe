@@ -2,6 +2,9 @@
   "name": "nanhe-site",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "sync": "node scripts/sync-assets.mjs",
     "dev": "npm run sync && astro dev",

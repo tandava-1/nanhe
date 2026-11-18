@@ -41,8 +41,10 @@ tested. Price band around Mamaearth / The Moms Co., or slightly above.
 based on PR 2's branch). Merge in that order.
 
 **In progress / next.**
-1. Deploy slice 1 to Vercel (needs the founder's Vercel login or the repo
-   imported in the Vercel dashboard with Root Directory `site`).
+1. Slice 1 is live at https://nanhe-xi.vercel.app (Vercel project `nanhe`,
+   deployed from this Mac; see `docs/engineering/website.md`). Founder is
+   sending edits; optional: connect the GitHub repo in Vercel for deploys on
+   every push.
 2. Website slice 2: cart, checkout (demo, no payments), baby profile, write a
    review, compare.
 3. Website slice 3: parent guides, kits & gifts, Ask (assistant demo +
@@ -208,3 +210,16 @@ feedback from the wireframes). Branched from PR 2's branch because the site
 needs the 19-product data; expect the routine CONTEXT.md conflict on merge.
 **Next:** Founder logs in to Vercel (or imports the repo with Root Directory
 `site`) so slice 1 can deploy; founder sends edits; then slice 2.
+
+### 2026-11-18 06:33 IST — Claude Code (Opus 5.5) · Shivank’s MacBook Air
+**Changed:** Founder logged in to Vercel. Created the Vercel project `nanhe`
+and deployed slice 1 to production: https://nanhe-xi.vercel.app. Pinned Node
+24.x in `site/package.json`. The header's shelf menu now switches to the menu
+button below 1200px, where the five shelf names wrapped onto two lines.
+Deploy steps in `docs/engineering/website.md`.
+**Decided:** Build locally and upload the output (`vercel build` +
+`vercel deploy --prebuilt`), because the build reads `docs/` and `assets/`
+from outside `site/`. Deploys on every push need the GitHub repo connected in
+the Vercel dashboard (Root Directory `site`), which is the founder's step.
+**Next:** Founder sends edits; then slice 2 (cart, checkout demo, baby
+profile, write a review, compare).
