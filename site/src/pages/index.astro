@@ -4,9 +4,6 @@ import ProductCard from '../components/ProductCard.astro';
 import AskBand from '../components/AskBand.astro';
 import { categories, products, bySlug, littleFriends } from '../data/catalog';
 
-const friendsByCat = Object.fromEntries(categories.map((c) => [
-  c.key, littleFriends.filter((p) => p.category === c.key).slice(0, 3),
-]));
 const mostLoved = ['daily-lotion', 'diaper-rash-cream', 'water-wipes', 'diaper-pants-m'].map((s) => bySlug[s]);
 const featured = [
   { p: bySlug['daily-lotion'], r: bySlug['daily-lotion'].reviews[0] },
@@ -45,21 +42,34 @@ const totalReviews = products.reduce((s, p) => s + p.reviewCount, 0);
   <section class="wrap sec stack" style="gap:28px">
     <div class="sec-head">
       <h2 class="f h2">Five shelves, one colour each</h2>
-      <p class="mu">Every pack is milk-white. The cap tells you what's inside, so you can find the cream in the dark.</p>
+      <p class="mu">Every pack is milk-white. The cap colour tells you which shelf it's from, so you can find the cream in the dark.</p>
     </div>
     <div class="shelves">
-      {categories.map((c) => (
-        <a href={`/shop#${c.key}`} class="shelf-tile" data-cat={c.key}>
-          <span class="tile-friends" aria-hidden="true">
-            {friendsByCat[c.key].map((p) => <img src={`/brand/characters/${p.friend.file}`} alt="" width="60" height="60" />)}
-          </span>
-          <span class="tile-text">
-            <span class="lbl">{c.name}</span>
-            <span class="f tile-line">{c.line}</span>
-            <span class="xs">{c.items}</span>
-          </span>
-        </a>
-      ))}
+      {categories.map((c) => {
+        const items = products.filter((p) => p.category === c.key);
+        return (
+          <section class="shelf-card" data-cat={c.key} aria-labelledby={`shelf-${c.key}`}>
+            <a href={`/shop#${c.key}`} class="shelf-top">
+              <span class="swatch" aria-hidden="true"></span>
+              <span class="shelf-name">
+                <span class="f shelf-title" id={`shelf-${c.key}`}>{c.name}</span>
+                <span class="xs shelf-count">{items.length} products · {c.line}</span>
+              </span>
+              <span class="shelf-go" aria-hidden="true">→</span>
+            </a>
+            <ul class="shelf-items">
+              {items.map((p) => (
+                <li>
+                  <a href={`/products/${p.slug}`} class="shelf-item">
+                    <span class="item-pack"><img src={p.pack} alt="" width="64" height="64" loading="lazy" /></span>
+                    <span class="item-name">{p.name}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        );
+      })}
     </div>
   </section>
 
@@ -166,25 +176,41 @@ const totalReviews = products.reduce((s, p) => s + p.reviewCount, 0);
   }
   .promises { padding: 22px 0; }
   .promises-in { display: flex; flex-direction: column; gap: 12px; }
-  .promise { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .promise { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+  @media (max-width: 959px) { .promise { gap: 6px; } .promise .pic { width: 30px; height: 30px; } .promise .f { font-size: 16px !important; } .promise .sm { font-size: 13px; } }
   .pic { width: 36px; height: 36px; border-radius: 18px; background: var(--oat); display: inline-flex; align-items: center; justify-content: center; flex: none; }
   .pic.seal { background: var(--marigold); }
   @media (min-width: 960px) { .promises-in { flex-direction: row; align-items: center; justify-content: space-between; } }
   .sec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px 24px; }
   .sec-head > p { max-width: 460px; }
+  /* Each shelf: its colour and name on top, then every product on it, so colour → products reads at a glance. */
   .shelves { display: grid; grid-template-columns: 1fr; gap: 12px; }
-  .shelf-tile { background: var(--w); border-radius: 20px; padding: 16px 18px; display: flex; align-items: center; gap: 16px; text-decoration: none; }
-  .tile-friends { display: flex; flex: none; width: 112px; justify-content: center; }
-  .tile-friends img { width: 44px; height: 44px; }
-  .tile-friends img + img { margin-left: -10px; }
-  .tile-text { display: flex; flex-direction: column; gap: 2px; }
-  .tile-line { font-size: 19px; line-height: 1.25; }
+  .shelf-card { background: var(--w); border-radius: 22px; overflow: hidden; }
+  .shelf-top { display: flex; align-items: center; gap: 12px; padding: 14px 16px; text-decoration: none; border-top: 6px solid var(--b); }
+  .swatch { width: 30px; height: 30px; border-radius: 15px; background: var(--b); flex: none; box-shadow: inset 0 0 0 1px rgba(31, 58, 43, .12); }
+  .shelf-name { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+  .shelf-title { font-size: 21px; line-height: 1.2; }
+  .shelf-count { color: var(--moss-2); }
+  .shelf-go { font-size: 18px; }
+  .shelf-items { list-style: none; margin: 0; padding: 0 16px 16px; display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; }
+  .shelf-items::-webkit-scrollbar { display: none; }
+  .shelf-item { width: 84px; flex: none; display: flex; flex-direction: column; align-items: center; gap: 6px; text-decoration: none; text-align: center; }
+  .item-pack { width: 84px; height: 84px; border-radius: 16px; background: var(--w); border: 2px solid var(--white); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .item-pack img { width: 100%; height: 100%; object-fit: contain; }
+  .item-name { font-size: 12px; line-height: 1.3; font-weight: 600; }
+  .shelf-item:hover .item-name { text-decoration: underline; }
   @media (min-width: 960px) {
-    .shelves { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
-    .shelf-tile { flex-direction: column; align-items: stretch; padding: 22px; min-height: 300px; border-radius: 24px; }
-    .tile-friends { width: auto; flex: 1; align-items: center; }
-    .tile-friends img { width: 62px; height: 62px; }
-    .tile-line { font-size: 20px; }
+    .shelves { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; align-items: start; }
+    .shelf-card { border-radius: 24px; }
+    .shelf-top { flex-wrap: wrap; padding: 18px 18px 14px; }
+    .shelf-go { display: none; }
+    .shelf-title { font-size: 20px; }
+    .shelf-items { flex-direction: column; overflow: visible; padding: 0 12px 14px; gap: 6px; }
+    .shelf-items li { width: 100%; }
+    .shelf-item { width: 100%; flex-direction: row; text-align: left; gap: 10px; padding: 4px; border-radius: 14px; }
+    .shelf-item:hover { background: rgba(255, 255, 255, .6); }
+    .item-pack { width: 52px; height: 52px; border-radius: 12px; flex: none; }
+    .item-name { font-size: 14px; }
   }
   .review-grid { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, 85%); gap: 12px; overflow-x: auto; padding-bottom: 6px; }
   @media (min-width: 960px) { .review-grid { grid-auto-flow: row; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; } }
