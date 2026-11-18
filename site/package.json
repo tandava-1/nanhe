@@ -1,0 +1,17 @@
+{
+  "name": "nanhe-site",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "sync": "node scripts/sync-assets.mjs",
+    "dev": "npm run sync && astro dev",
+    "build": "npm run sync && astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "7.4.12"
+  }
+}

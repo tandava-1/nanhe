@@ -1,0 +1,410 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import Icon from '../../components/Icon.astro';
+import { products, bySlug, inr, MADE_WITHOUT, type Product } from '../../data/catalog';
+
+export function getStaticPaths() {
+  return products.map((p) => ({ params: { slug: p.slug }, props: { p } }));
+}
+
+const { p } = Astro.props as { p: Product };
+
+const RENDER_ALT: Record<string, string> = {
+  'ai-01-hero-range.jpg': 'The Nanhe range in front of apricot, sage and sky arches',
+  'ai-02-maalish.jpg': "Hands massaging a baby's back with oil",
+  'ai-03-changing-kit.jpg': 'A changing kit laid out on sage linen',
+  'ai-04-bath-shelf.jpg': "Lotion and powder on a bathroom shelf beside a baby's foot",
+  'ai-05-ingredients.jpg': 'Coconut, oats, calendula, neem, almonds, shea butter and ghee',
+  'ai-06-lotion-labelled.jpg': 'Daily Lotion pump bottle with Haathi the elephant on the label',
+  'ai-07-rash-cream-labelled.jpg': 'Diaper Rash Cream tube with Kachhu the tortoise, between calendula flowers',
+  'ai-08-wipes-labelled.jpg': 'Water Wipes pack with Susu the dolphin on the lid',
+  'ai-09-diapers-labelled.jpg': 'Taped Diapers and Diaper Pants bags with Chitku and Pandu, on lavender',
+  'ai-10-bath-shampoo.jpg': "An adult rinses a baby's foamy hair with water from a brass lota",
+};
+type Shot = { src: string; alt: string; photo: boolean };
+const shots: Shot[] = [
+  ...(p.photo ? [{ src: `/brand/renders/${p.photo}`, alt: RENDER_ALT[p.photo], photo: true }] : []),
+  { src: p.pack, alt: `${p.name} pack`, photo: false },
+  ...p.gallery.map((g) => ({ src: `/brand/renders/${g}`, alt: RENDER_ALT[g], photo: true })),
+];
+
+// Sample star distribution, derived from the sample rating so the bars agree with it.
+const p5 = Math.min(0.85, Math.max(0.4, (p.rating - 3.6) / 1.6));
+const shares = [p5, (1 - p5) * 0.62, (1 - p5) * 0.22, (1 - p5) * 0.1, (1 - p5) * 0.06];
+const dist = shares.map((s) => Math.round(s * p.reviewCount));
+
+const ROUTINE_PAIRS: Record<string, string[]> = {
+  'daily-lotion': ['head-to-toe-wash', 'massage-oil', 'water-wipes'],
+  'massage-oil': ['daily-lotion', 'head-to-toe-wash', 'rich-cream'],
+  'head-to-toe-wash': ['daily-lotion', 'tear-free-shampoo', 'grooming-kit'],
+  'diaper-rash-cream': ['water-wipes', 'taped-diapers-nb', 'talc-free-powder'],
+  'taped-diapers-nb': ['water-wipes', 'diaper-rash-cream', 'water-wipes-value'],
+  'diaper-pants-m': ['water-wipes-value', 'diaper-rash-cream', 'hand-face-wipes'],
+  'first-toothpaste': ['finger-toothbrush', 'hand-face-wipes', 'grooming-kit'],
+  'finger-toothbrush': ['first-toothpaste', 'grooming-kit', 'hand-face-wipes'],
+};
+const pairs = (ROUTINE_PAIRS[p.slug] ?? products.filter((x) => x.category === p.category && x.slug !== p.slug).map((x) => x.slug))
+  .slice(0, 3).map((s) => bySlug[s]);
+
+const skinOnly = p.isFormula && !['first-toothpaste', 'bottle-wash'].includes(p.slug);
+const freq = p.category === 'diapering' ? ['2 weeks', '4 weeks', '6 weeks'] : ['4 weeks', '6 weeks', '8 weeks'];
+const SKIN_LABEL: Record<string, string> = { normal: 'Normal', dry: 'Dry', sensitive: 'Sensitive', eczema: 'Eczema-prone' };
+const pageData = { slug: p.slug, name: p.name, rating: p.rating, count: p.reviewCount, reviews: p.reviews };
+---
+<Base title={`${p.name} · Nanhe`} description={p.line}>
+  <div data-cat={p.category}>
+    <nav class="wrap crumbs xs mu" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/shop">Shop</a> / <a href={`/shop#${p.category}`}>{p.cat.name}</a></nav>
+
+    <section class="wrap top">
+      <div class="gallery">
+        <figure class="main-shot" data-main>
+          <img src={shots[0].src} alt={shots[0].alt} width="1024" height="1024" data-main-img class:list={[{ contain: !shots[0].photo }]} />
+          <figcaption class="xs" data-main-cap hidden={!shots[0].photo}>AI concept photo</figcaption>
+        </figure>
+        {shots.length > 1 && (
+          <div class="thumbs" role="group" aria-label="Product photos">
+            {shots.map((s, i) => (
+              <button type="button" class="thumb" aria-pressed={i === 0 ? 'true' : 'false'} data-shot={s.src} data-alt={s.alt} data-photo={String(s.photo)} aria-label={`Show ${s.alt}`}>
+                <img src={s.src} alt="" loading="lazy" width="88" height="88" class:list={[{ contain: !s.photo }]} />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div class="info">
+        <span class="lbl deep eyebrow">{p.cat.name} · {p.age}</span>
+        <div>
+          <h1 class="f pdp-name">{p.name}</h1>
+          <p class="hi mu pdp-hindi" lang="hi">{p.hindi}</p>
+          {p.friend && (
+            <p class="row friend-line"><img src={`/brand/characters/${p.friend.file}`} alt="" width="44" height="44" /><span class="sm mu">With {p.friend.name}, the {p.friend.animal.toLowerCase()}: {p.friend.why.charAt(0).toLowerCase() + p.friend.why.slice(1)}</span></p>
+          )}
+        </div>
+        <p class="pdp-line">{p.line}</p>
+        <a href="#reviews" class="row wrap-row rating-row"><span class="stars" aria-hidden="true">★★★★★</span><b>{p.rating}</b><span class="sm mu">{p.reviewCount} reviews · {p.buyAgain}% would buy again</span><span class="smp">sample</span></a>
+
+        <div class="card like-yours" data-likeyours>
+          <span class="lbl mu" data-ly-label>Babies like yours</span>
+          <p class="f ly-big" data-ly-big>Pick your baby's age and skin type in the reviews to see how babies like yours rated it.</p>
+          <p class="xs mu" data-ly-small></p>
+        </div>
+
+        {p.isFormula && (
+          <div class="row wrap-row claims">
+            <span class="seal"><Icon name="check" size={13} />Clinically tested*</span>
+            {p.natural && <span class="claim">{p.natural}% naturally derived**</span>}
+            <a href="#claims" class="xs mu">*, ** Our claims, explained</a>
+          </div>
+        )}
+
+        <div class="price-row"><span class="f price">{inr(p.price)}</span><span class="sm mu">incl. of all taxes{p.unit && ` · ${p.unit}`}</span><span class="smp">sample price</span></div>
+        <div class="row"><span class="chip on">{p.size}</span></div>
+
+        {p.subscribe && (
+          <fieldset class="buy-opts">
+            <legend class="sr-only">Purchase options</legend>
+            <label class="opt"><input type="radio" name="buy" value="sub" checked data-buy /><span><b>Subscribe &amp; save 10%</b> · {inr(Math.round(p.price * 0.9))}<span class="sm mu opt-sub">Every <select data-freq aria-label="Delivery frequency">{freq.map((f, i) => <option selected={i === 1}>{f}</option>)}</select>. Skip, pause or cancel anytime.</span></span></label>
+            <label class="opt"><input type="radio" name="buy" value="one" data-buy /><span><b>One-time purchase</b> · {inr(p.price)}</span></label>
+          </fieldset>
+        )}
+
+        <form class="pin" data-pin>
+          <label for="pin" class="sr-only">Delivery pincode</label>
+          <input id="pin" class="input" inputmode="numeric" maxlength="6" placeholder="Enter pincode for delivery date" autocomplete="postal-code" />
+          <button class="btn2" type="submit">Check</button>
+        </form>
+        <p class="xs mu" data-pin-msg aria-live="polite">Cash on delivery available</p>
+
+        <div class="buy-btns">
+          <button class="btn" type="button" data-add={p.slug} data-name={p.name} data-subscribe={String(p.subscribe)} data-addmain>Add to cart</button>
+          <button class="btn2" type="button" data-buynow>Buy now</button>
+        </div>
+
+        {p.caution && <div class="note caution"><span class="tl">Good to know</span>{p.caution}</div>}
+        {skinOnly && <div class="tip"><span class="tl">Parent tip</span>Trying something new? Patch test first: dab a little on the inner arm, wait 24 hours, and look for redness.</div>}
+      </div>
+    </section>
+
+    <section class="band-white">
+      <div class="wrap sec details">
+        <div class="stack">
+          <h2 class="f h3">What's inside, and why</h2>
+          <div class="row wrap-row" style="gap:8px">{p.hero.map((h) => <span class="claim">{h}</span>)}</div>
+          <p class="xs mu">[What each hero ingredient does, in plain words, goes here once the formulator confirms it.]</p>
+          {p.inci && <p class="xs mu inci"><b>Full ingredient list:</b> {p.inci} <i>Indicative until the formulator confirms.</i></p>}
+          {p.contents && <p class="sm"><b>In the pack:</b> {p.contents}</p>}
+          <h2 class="f h3" style="margin-top:12px">How to use</h2>
+          <p>{p.use}</p>
+          {p.caution && (<><h2 class="f h3" style="margin-top:12px">Caution</h2><p class="sm">{p.caution}</p></>)}
+        </div>
+        <div class="stack">
+          {p.isFormula && (
+            <>
+              <h2 class="f h3">Made without</h2>
+              <div class="row wrap-row" style="gap:8px">{MADE_WITHOUT.map((m) => <span class="claim">{m}</span>)}</div>
+              <div id="claims" class="claims-box">
+                <h2 class="f h3">Our claims, explained</h2>
+                <p class="sm">* Clinically tested under dermatological supervision on [n] infants aged [x–y] months, [lab name], [year]. [lab data pending]</p>
+                {p.natural && <p class="sm">** {p.natural}% naturally derived content, calculated per ISO 16128. [lab data pending]</p>}
+                <p class="xs mu">Every claim on the front of the pack is explained on the back. The figures come from test reports, not marketing.</p>
+              </div>
+            </>
+          )}
+          <p class="sm mu">Shipping &amp; returns: <a href="/returns">[policy]</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews" class="wrap sec reviews">
+      <div class="rev-side stack">
+        <h2 class="f h2">{p.reviewCount} parent reviews <span class="smp">sample</span></h2>
+        <div class="row" style="gap:20px">
+          <div class="big-rating"><span class="f" style="font-size:56px;line-height:1">{p.rating}</span><span class="stars">★★★★★</span><span class="xs mu">{p.buyAgain}% would buy again</span></div>
+          <div class="dist xs">
+            {dist.map((n, i) => (
+              <div class="row"><span style="width:12px">{5 - i}</span><span class="bar"><span style={`width:${Math.round(shares[i] * 100)}%`}></span></span><span style="width:30px;text-align:right">{n}</span></div>
+            ))}
+          </div>
+        </div>
+        {p.mentions.length > 0 && (
+          <>
+            <span class="lbl mu">What parents mention most</span>
+            <div class="row wrap-row" style="gap:8px">{p.mentions.map(([m, n]) => <span class="pill" style="font-size:13px;padding:6px 12px">{m} · {n}</span>)}</div>
+          </>
+        )}
+        <div class="card filter-box">
+          <p style="font-weight:600">Filter to babies like yours</p>
+          <span class="xs mu">Baby's age</span>
+          <div class="row wrap-row" style="gap:6px" role="group" aria-label="Baby's age">
+            {[['0-3', '0–3 m'], ['3-6', '3–6 m'], ['6-12', '6–12 m'], ['12-36', '1–3 y']].map(([k, l]) => <button type="button" class="chip chip-sm" data-fage={k} aria-pressed="false">{l}</button>)}
+          </div>
+          <span class="xs mu">Skin type</span>
+          <div class="row wrap-row" style="gap:6px" role="group" aria-label="Skin type">
+            {Object.entries(SKIN_LABEL).map(([k, l]) => <button type="button" class="chip chip-sm" data-fskin={k} aria-pressed="false">{l}</button>)}
+          </div>
+          <div class="row wrap-row" style="gap:6px"><button type="button" class="chip chip-sm" data-fcrit aria-pressed="false">3★ and below</button></div>
+        </div>
+        <a class="btn" href={`/write-review?product=${p.slug}`}>Write a review</a>
+      </div>
+
+      <div class="rev-list">
+        <p class="sm list-head" data-showing>Showing all {p.reviews.length} sample reviews</p>
+        {p.reviews.map((r) => (
+          <article class="rvc" data-rage={r.ageBand} data-rskin={r.skin} data-rstars={r.stars}>
+            <div class="row between"><span class="stars" aria-label={`${r.stars} out of 5`}>{'★'.repeat(r.stars)}{'☆'.repeat(5 - r.stars)}</span><span class="xs mu">{r.when}</span></div>
+            <h3 class="f rvc-t">“{r.title}”</h3>
+            <p>{r.body}</p>
+            <div class="row wrap-row" style="gap:6px">
+              <span class="pill">Baby: {r.age}</span><span class="pill">{SKIN_LABEL[r.skin]} skin</span><span class="pill">Used {r.used}</span>
+              {r.city && <span class="pill">{r.city}</span>}
+              {r.free && <span class="pill">Received free sample</span>}
+            </div>
+            {r.reply && <div class="reply sm"><b>Nanhe care team:</b> {r.reply}</div>}
+            <div class="row between xs mu"><span>{r.by} · Verified buyer</span><span>Helpful · {r.helpful}</span></div>
+          </article>
+        ))}
+        <p class="sm mu" data-noreviews hidden>No sample reviews match these filters. In the real store, this is where reviews from babies like yours would appear.</p>
+      </div>
+    </section>
+
+    <section class="band-white">
+      <div class="wrap sec stack">
+        <h2 class="f h2">Questions from parents <span class="smp">sample</span></h2>
+        {p.questions.length === 0 && <p class="mu">No questions yet. Ask the first one.</p>}
+        <div class="qa">
+          {p.questions.map((q) => (
+            <div class="qa-item stack" style="gap:6px">
+              <b>{q.q}</b>
+              <p class="sm"><b>{q.by}:</b> {q.a}</p>
+              {q.more > 0 && <p class="xs mu">{q.more} more answer{q.more > 1 ? 's' : ''}</p>}
+            </div>
+          ))}
+        </div>
+        <form class="pin" data-ask style="max-width:720px">
+          <label for="ask" class="sr-only">Your question</label>
+          <input id="ask" class="input" placeholder="Ask other parents or our team" />
+          <button class="btn2" type="submit">Ask</button>
+        </form>
+        <p class="xs mu">Parents and our team usually answer within a day. Need it now? <a href="/ask">Ask the assistant or an expert</a>.</p>
+      </div>
+    </section>
+
+    <section class="wrap sec stack" style="gap:24px">
+      <h2 class="f h2">Complete the routine</h2>
+      <div class="pgrid">{pairs.map((x) => <ProductCard p={x} />)}</div>
+    </section>
+
+    <div class="sticky-buy">
+      <div><b>{inr(p.price)}</b> <span class="xs">★ {p.rating}</span></div>
+      <button class="btn" type="button" data-add={p.slug} data-name={p.name} data-subscribe={String(p.subscribe)} data-addmain>Add to cart</button>
+    </div>
+  </div>
+
+  <script type="application/json" id="pdp-data" set:html={JSON.stringify(pageData)} />
+</Base>
+
+<style>
+  .crumbs { padding-top: 14px; padding-bottom: 12px; }
+  .crumbs a { text-decoration: none; }
+  .top { display: flex; flex-direction: column; gap: 20px; padding-bottom: 40px; }
+  .gallery { display: flex; flex-direction: column; gap: 12px; }
+  .main-shot { margin: 0 -20px; position: relative; background: var(--w); }
+  .main-shot img { width: 100%; height: 440px; object-fit: cover; }
+  .main-shot img.contain { object-fit: contain; padding: 16px; }
+  .main-shot figcaption { position: absolute; right: 12px; bottom: 10px; background: rgba(251, 247, 240, .9); padding: 2px 8px; border-radius: 999px; }
+  .thumbs { display: flex; gap: 10px; overflow-x: auto; }
+  .thumb { width: 72px; height: 72px; padding: 0; border: 2px solid transparent; border-radius: 16px; overflow: hidden; background: var(--w); cursor: pointer; flex: none; }
+  .thumb[aria-pressed="true"] { border-color: var(--moss); }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .thumb img.contain { object-fit: contain; }
+  .info { display: flex; flex-direction: column; gap: 14px; }
+  .eyebrow { align-self: flex-start; background: var(--white); border: 1px solid var(--b); border-radius: 999px; padding: 7px 12px; }
+  .pdp-name { font-size: clamp(34px, 4vw, 52px); line-height: 1.05; }
+  .pdp-hindi { font-size: clamp(19px, 2vw, 26px); margin-top: 2px; }
+  .friend-line { gap: 10px; margin-top: 10px; }
+  .pdp-line { font-size: 18px; line-height: 1.45; }
+  .rating-row { text-decoration: none; gap: 8px; }
+  .like-yours { padding: 18px 20px; display: flex; flex-direction: column; gap: 6px; }
+  .ly-big { font-size: 20px; line-height: 1.3; }
+  .claims { gap: 8px; }
+  .seal { display: inline-flex; align-items: center; gap: 6px; background: var(--marigold); color: var(--moss); border-radius: 999px; min-height: 32px; padding: 0 12px; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+  .claim { display: inline-flex; align-items: center; min-height: 32px; padding: 0 12px; border-radius: 999px; background: var(--white); border: 1px solid rgba(31, 58, 43, .14); font-size: 13px; font-weight: 600; }
+  .price-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+  .price { font-size: 32px; }
+  .buy-opts { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; }
+  @media (min-width: 720px) { .buy-opts { grid-template-columns: 1fr 1fr; } }
+  .opt { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 18px; background: var(--white); border: 1px solid rgba(31, 58, 43, .14); cursor: pointer; }
+  .opt:has(input:checked) { border: 2px solid var(--moss); }
+  .opt input { margin-top: 4px; accent-color: var(--moss); width: 18px; height: 18px; flex: none; }
+  .opt-sub { display: block; margin-top: 2px; }
+  .opt select { border: 0; background: none; text-decoration: underline; font-weight: 600; padding: 0; }
+  .pin { display: flex; gap: 8px; }
+  .pin .btn2 { flex: none; }
+  .buy-btns { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  @media (min-width: 720px) { .buy-btns { grid-template-columns: 1fr 1fr; } }
+  .buy-btns .btn, .buy-btns .btn2 { min-height: 54px; font-size: 16px; }
+  .caution { background: var(--white); border: 1px solid var(--line); }
+  @media (min-width: 960px) {
+    .top { flex-direction: row; align-items: flex-start; gap: 56px; padding-bottom: 72px; }
+    .gallery { flex: 1 1 520px; position: sticky; top: 100px; }
+    .main-shot { margin: 0; border-radius: 32px; overflow: hidden; }
+    .main-shot img { height: 640px; }
+    .thumb { width: 88px; height: 88px; border-radius: 18px; }
+    .info { flex: 1 1 420px; max-width: 560px; gap: 16px; }
+  }
+  .details { display: grid; grid-template-columns: 1fr; gap: 32px; }
+  @media (min-width: 960px) { .details { grid-template-columns: 1fr 1fr; gap: 48px; } }
+  .inci { line-height: 1.6; }
+  .claims-box { background: var(--milk); border-radius: 22px; padding: 22px; display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+  .reviews { display: flex; flex-direction: column; gap: 32px; }
+  @media (min-width: 960px) { .reviews { flex-direction: row; align-items: flex-start; gap: 56px; } .rev-side { flex: 0 1 380px; position: sticky; top: 100px; } .rev-list { flex: 1 1 560px; } }
+  .big-rating { display: flex; flex-direction: column; align-items: center; width: 100px; flex: none; text-align: center; }
+  .dist { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+  .bar { flex: 1; height: 8px; background: var(--oat); border-radius: 4px; overflow: hidden; display: block; }
+  .bar span { display: block; height: 8px; background: var(--moss); border-radius: 4px; }
+  .filter-box { padding: 18px; display: flex; flex-direction: column; gap: 8px; }
+  .list-head { padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .rvc { display: flex; flex-direction: column; gap: 10px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+  .rvc-t { font-size: 22px; line-height: 1.25; }
+  .reply { background: var(--white); border-radius: 14px; padding: 12px 14px; border: 1px solid var(--line); }
+  .qa { display: grid; gap: 16px; }
+  @media (min-width: 720px) { .qa { grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); } }
+  .qa-item { background: var(--milk); border-radius: 22px; padding: 20px 22px; }
+  .sticky-buy { position: sticky; bottom: 0; z-index: 30; display: flex; align-items: center; gap: 12px; justify-content: space-between; background: var(--white); border-top: 1px solid var(--line); padding: 10px 16px; }
+  .sticky-buy .btn { flex: 1; max-width: 220px; }
+  @media (min-width: 960px) { .sticky-buy { display: none; } }
+</style>
+
+<script>
+  import { addToCart } from '../../scripts/cart';
+  type R = { ageBand: string; skin: string; stars: number };
+  const data = JSON.parse(document.getElementById('pdp-data')!.textContent!) as { slug: string; rating: number; count: number; reviews: R[] };
+
+  // Gallery
+  const mainImg = document.querySelector<HTMLImageElement>('[data-main-img]')!;
+  const mainCap = document.querySelector<HTMLElement>('[data-main-cap]')!;
+  document.querySelectorAll<HTMLButtonElement>('[data-shot]').forEach((b, _, all) => b.addEventListener('click', () => {
+    mainImg.src = b.dataset.shot!; mainImg.alt = b.dataset.alt ?? '';
+    const photo = b.dataset.photo === 'true';
+    mainImg.classList.toggle('contain', !photo); mainCap.hidden = !photo;
+    all.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+  }));
+
+  // Purchase option -> what "Add to cart" adds
+  const addBtns = document.querySelectorAll<HTMLElement>('[data-addmain]');
+  document.querySelectorAll<HTMLInputElement>('[data-buy]').forEach((r) => r.addEventListener('change', () => {
+    addBtns.forEach((b) => (b.dataset.subscribe = String(r.value === 'sub' && r.checked)));
+  }));
+  document.querySelector('[data-buynow]')?.addEventListener('click', () => {
+    const sub = (document.querySelector<HTMLInputElement>('[data-buy]:checked')?.value ?? 'one') === 'sub';
+    addToCart(data.slug, 1, sub);
+    location.href = '/cart';
+  });
+
+  // Pincode: prototype only, any valid Indian pincode gets a date three working days out.
+  const pinMsg = document.querySelector<HTMLElement>('[data-pin-msg]')!;
+  document.querySelector<HTMLFormElement>('[data-pin]')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const v = (document.getElementById('pin') as HTMLInputElement).value.trim();
+    if (!/^[1-8]\d{5}$/.test(v)) { pinMsg.textContent = 'Please enter a 6-digit pincode.'; return; }
+    const d = new Date(); let added = 0;
+    while (added < 3) { d.setDate(d.getDate() + 1); if (d.getDay() !== 0) added++; }
+    pinMsg.innerHTML = `Delivery to ${v} by <b>${d.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' })}</b> · Cash on delivery available (sample)`;
+  });
+  document.querySelector<HTMLFormElement>('[data-ask]')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const t = document.querySelector('[data-toast]') as HTMLElement;
+    t.textContent = "Thanks. In this prototype, questions aren't sent anywhere."; t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3200);
+  });
+
+  // Review filters + "babies like yours" (sample figures, derived deterministically from the sample rating)
+  const AGE_SHARE: Record<string, number> = { '0-3': .24, '3-6': .3, '6-12': .28, '12-36': .18 };
+  const SKIN_SHARE: Record<string, number> = { normal: .4, dry: .18, sensitive: .3, eczema: .12 };
+  const AGE_TXT: Record<string, string> = { '0-3': '0–3 months', '3-6': '3–6 months', '6-12': '6–12 months', '12-36': '1–3 years' };
+  const SKIN_TXT: Record<string, string> = { normal: 'normal skin', dry: 'dry skin', sensitive: 'sensitive skin', eczema: 'eczema-prone skin' };
+  let fAge = '', fSkin = '', fCrit = false;
+  try { const b = JSON.parse(localStorage.getItem('nanhe-baby') ?? 'null'); if (b) { fAge = b.ageBand ?? ''; fSkin = b.skin ?? ''; } } catch {}
+
+  function hash(s: string) { let h = 7; for (const c of s) h = (h * 31 + c.charCodeAt(0)) % 997; return h; }
+
+  function render() {
+    document.querySelectorAll<HTMLElement>('[data-fage]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.fage === fAge)));
+    document.querySelectorAll<HTMLElement>('[data-fskin]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.fskin === fSkin)));
+    document.querySelector('[data-fcrit]')?.setAttribute('aria-pressed', String(fCrit));
+    let shown = 0;
+    document.querySelectorAll<HTMLElement>('.rvc').forEach((r) => {
+      const ok = (!fAge || r.dataset.rage === fAge) && (!fSkin || r.dataset.rskin === fSkin) && (!fCrit || Number(r.dataset.rstars) <= 3);
+      r.hidden = !ok; if (ok) shown++;
+    });
+    (document.querySelector('[data-noreviews]') as HTMLElement).hidden = shown > 0;
+    const parts = [fAge && AGE_TXT[fAge], fSkin && SKIN_TXT[fSkin]].filter(Boolean);
+    (document.querySelector('[data-showing]') as HTMLElement).textContent = parts.length || fCrit
+      ? `Showing ${shown} sample review${shown === 1 ? '' : 's'}${parts.length ? ` · ${parts.join(' · ')}` : ''}${fCrit ? ' · 3★ and below' : ''}`
+      : `Showing all ${shown} sample reviews`;
+
+    const big = document.querySelector('[data-ly-big]') as HTMLElement;
+    const small = document.querySelector('[data-ly-small]') as HTMLElement;
+    const label = document.querySelector('[data-ly-label]') as HTMLElement;
+    if (!fAge && !fSkin) {
+      label.textContent = 'Babies like yours';
+      big.textContent = "Pick your baby's age and skin type in the reviews to see how babies like yours rated it.";
+      small.innerHTML = 'Or <a href="/profile">add your baby</a> once and we\'ll remember it.';
+      return;
+    }
+    const share = (fAge ? AGE_SHARE[fAge] : 1) * (fSkin ? SKIN_SHARE[fSkin] : 1);
+    const n = Math.max(3, Math.round(data.count * share));
+    const off = ((hash(data.slug + fAge + fSkin) % 5) - 1) / 10;
+    const rating = Math.min(5, Math.max(3.8, data.rating + off)).toFixed(1);
+    label.textContent = `Babies like yours · ${parts.join(' · ')}`;
+    big.textContent = `★ ${rating} from the ${n} reviews by these parents`;
+    small.innerHTML = `The ${data.rating} above is from all ${data.count} reviews. <span class="smp">sample</span>`;
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-fage]').forEach((b) => b.addEventListener('click', () => { fAge = fAge === b.dataset.fage ? '' : b.dataset.fage!; render(); }));
+  document.querySelectorAll<HTMLElement>('[data-fskin]').forEach((b) => b.addEventListener('click', () => { fSkin = fSkin === b.dataset.fskin ? '' : b.dataset.fskin!; render(); }));
+  document.querySelector('[data-fcrit]')?.addEventListener('click', () => { fCrit = !fCrit; render(); });
+  render();
+</script>

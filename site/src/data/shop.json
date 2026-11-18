@@ -1,0 +1,22 @@
+{
+  "_note": "Website-only data for the clickable prototype. Prices, ratings and review counts are SAMPLE values, shown with a 'sample' label on the site. Product facts come from docs/product/products.json.",
+  "daily-lotion":      { "price": 449, "rating": 4.7, "reviews": 212, "buyAgain": 94, "subscribe": true,  "routines": ["bath"],            "photo": "ai-06-lotion-labelled.jpg", "gallery": ["ai-05-ingredients.jpg", "ai-04-bath-shelf.jpg"] },
+  "massage-oil":       { "price": 399, "rating": 4.6, "reviews": 318, "buyAgain": 91, "subscribe": true,  "routines": ["massage"],         "gallery": ["ai-02-maalish.jpg", "ai-05-ingredients.jpg"] },
+  "rich-cream":        { "price": 499, "rating": 4.6, "reviews": 98,  "buyAgain": 92, "subscribe": true,  "routines": ["bath"],            "gallery": ["ai-05-ingredients.jpg"] },
+  "diaper-rash-cream": { "price": 349, "rating": 4.8, "reviews": 264, "buyAgain": 95, "subscribe": true,  "routines": ["nappy"],           "photo": "ai-07-rash-cream-labelled.jpg", "gallery": ["ai-03-changing-kit.jpg"] },
+  "all-purpose-balm":  { "price": 299, "rating": 4.7, "reviews": 87,  "buyAgain": 93, "subscribe": false, "routines": ["go"],              "gallery": ["ai-03-changing-kit.jpg"] },
+  "mineral-sunscreen": { "price": 549, "rating": 4.5, "reviews": 64,  "buyAgain": 88, "subscribe": false, "routines": ["go"],              "gallery": [] },
+  "talc-free-powder":  { "price": 299, "rating": 4.4, "reviews": 131, "buyAgain": 87, "subscribe": true,  "routines": ["nappy"],           "gallery": ["ai-04-bath-shelf.jpg"] },
+  "bottle-wash":       { "price": 349, "rating": 4.6, "reviews": 152, "buyAgain": 91, "subscribe": true,  "routines": [],                  "gallery": [] },
+  "water-wipes":       { "price": 249, "rating": 4.4, "reviews": 402, "buyAgain": 86, "subscribe": true,  "routines": ["nappy", "go"],     "photo": "ai-08-wipes-labelled.jpg", "gallery": ["ai-03-changing-kit.jpg"] },
+  "head-to-toe-wash":  { "price": 399, "rating": 4.7, "reviews": 156, "buyAgain": 93, "subscribe": true,  "routines": ["bath"],            "gallery": ["ai-10-bath-shampoo.jpg", "ai-04-bath-shelf.jpg"] },
+  "tear-free-shampoo": { "price": 399, "rating": 4.5, "reviews": 97,  "buyAgain": 89, "subscribe": true,  "routines": ["bath"],            "gallery": ["ai-10-bath-shampoo.jpg"] },
+  "bubble-bath":       { "price": 449, "rating": 4.6, "reviews": 58,  "buyAgain": 90, "subscribe": false, "routines": ["bath"],            "gallery": ["ai-10-bath-shampoo.jpg"] },
+  "first-toothpaste":  { "price": 199, "rating": 4.6, "reviews": 73,  "buyAgain": 91, "subscribe": true,  "routines": ["teeth"],           "gallery": [] },
+  "finger-toothbrush": { "price": 249, "rating": 4.4, "reviews": 41,  "buyAgain": 85, "subscribe": false, "routines": ["teeth"],           "gallery": [] },
+  "grooming-kit":      { "price": 899, "rating": 4.7, "reviews": 66,  "buyAgain": 94, "subscribe": false, "routines": ["bath"],            "gallery": [] },
+  "taped-diapers-nb":  { "price": 449, "rating": 4.6, "reviews": 289, "buyAgain": 90, "subscribe": true,  "routines": ["nappy"],           "photo": "ai-09-diapers-labelled.jpg", "gallery": [] },
+  "diaper-pants-m":    { "price": 899, "rating": 4.5, "reviews": 341, "buyAgain": 88, "subscribe": true,  "routines": ["nappy"],           "photo": "ai-09-diapers-labelled.jpg", "gallery": [] },
+  "hand-face-wipes":   { "price": 199, "rating": 4.5, "reviews": 118, "buyAgain": 89, "subscribe": true,  "routines": ["go"],              "gallery": [] },
+  "water-wipes-value": { "price": 599, "rating": 4.6, "reviews": 77,  "buyAgain": 92, "subscribe": true,  "routines": ["nappy", "go"],     "gallery": ["ai-03-changing-kit.jpg"] }
+}

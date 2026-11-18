@@ -1,0 +1,17 @@
+---
+// Small stroke icons, 24-unit grid, drawn in the current text colour.
+interface Props { name: 'menu' | 'close' | 'search' | 'user' | 'bag' | 'chat' | 'check' | 'arrow' | 'back'; size?: number }
+const { name, size = 22 } = Astro.props;
+const paths: Record<Props['name'], string> = {
+  menu: '<path d="M4 7h16M4 12h16M4 17h11"/>',
+  close: '<path d="M6 6l12 12M18 6L6 18"/>',
+  search: '<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/>',
+  user: '<circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/>',
+  bag: '<path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>',
+  chat: '<path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-5 4z"/>',
+  check: '<path d="M5 12.5l4.5 4.5L19 7"/>',
+  arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+  back: '<path d="M15 5l-7 7 7 7"/>',
+};
+---
+<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={paths[name]} />
