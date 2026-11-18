@@ -103,8 +103,8 @@ const totalReviews = products.reduce((s, p) => s + p.reviewCount, 0);
         <a class="chip" href="/shop?age=expecting">Expecting</a><a class="chip" href="/shop?age=0-3">0–3 months</a><a class="chip" href="/shop?age=3-12">3–12 months</a><a class="chip" href="/shop?age=12-36">1–3 years</a>
       </div>
     </div>
-    <div class="loved">
-      {mostLoved.map((p) => <ProductCard p={p} layout="tile" />)}
+    <div class="pgrid">
+      {mostLoved.map((p) => <ProductCard p={p} />)}
     </div>
   </section>
 
@@ -180,7 +180,7 @@ const totalReviews = products.reduce((s, p) => s + p.reviewCount, 0);
   @media (max-width: 959px) { .promise { gap: 6px; } .promise .pic { width: 30px; height: 30px; } .promise .f { font-size: 16px !important; } .promise .sm { font-size: 13px; } }
   .pic { width: 36px; height: 36px; border-radius: 18px; background: var(--oat); display: inline-flex; align-items: center; justify-content: center; flex: none; }
   .pic.seal { background: var(--marigold); }
-  @media (min-width: 960px) { .promises-in { flex-direction: row; align-items: center; justify-content: space-between; } }
+  @media (min-width: 1200px) { .promises-in { flex-direction: row; align-items: center; justify-content: space-between; } }
   .sec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px 24px; }
   .sec-head > p { max-width: 460px; }
   /* Each shelf: its colour and name on top, then every product on it, so colour → products reads at a glance. */
@@ -217,8 +217,6 @@ const totalReviews = products.reduce((s, p) => s + p.reviewCount, 0);
   .rev { background: var(--milk); border-radius: 22px; padding: 22px; display: flex; flex-direction: column; gap: 10px; }
   .rev-t { font-size: 21px; line-height: 1.25; }
   .rev-p { margin-top: auto; text-decoration: none; }
-  .loved { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(200px, 62%); gap: 12px; overflow-x: auto; padding-bottom: 6px; }
-  @media (min-width: 720px) { .loved { grid-auto-flow: row; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 24px; overflow: visible; } }
   .friends { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 6px; }
   .friend { flex: 0 0 104px; display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; text-align: center; }
   .friend-ring { width: 96px; height: 96px; border-radius: 48px; background: var(--w); display: flex; align-items: center; justify-content: center; margin-bottom: 6px; }

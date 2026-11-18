@@ -93,6 +93,10 @@ p { margin: 0; }
 @media (min-width: 960px) { .moss-panel { padding: 44px 48px; border-radius: 32px; } }
 .photo-fill { width: 100%; height: 100%; object-fit: cover; }
 
+/* Product grid: every product card on the site sits in one of these, so cards are the same size everywhere. */
+.pgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; align-items: stretch; }
+@media (min-width: 720px) { .pgrid { grid-template-columns: repeat(auto-fill, 254px); justify-content: start; gap: 20px; } }
+
 /* Stars */
 .stars { letter-spacing: 2px; white-space: nowrap; }
 

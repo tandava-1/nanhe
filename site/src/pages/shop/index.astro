@@ -53,7 +53,7 @@ const AGES = [
           </div>
           {c.key === 'moisturise' && <a href="/compare" class="sm" style="font-weight:600">Lotion or cream? Compare by what parents say →</a>}
         </div>
-        <div class="grid" data-grid>
+        <div class="pgrid" data-grid>
           {products.filter((p) => p.category === c.key).map((p) => <ProductCard p={p} />)}
         </div>
         <div class="note shelf-note" style={NOTES[c.key].bg ? `background:${NOTES[c.key].bg}` : ''}>
@@ -81,9 +81,9 @@ const AGES = [
   .shelf[hidden] { display: none; }
   .shelf-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 8px 16px; padding: 0 4px; }
   .shelf-line { font-size: 24px; line-height: 1.15; }
-  .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
   .shelf-note { background: var(--milk); }
-  @media (min-width: 720px) { .grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; } }
+  /* Phones: shelves run edge to edge so their product grid is exactly as wide as on every other page. */
+  @media (max-width: 959px) { .shelves-list { padding-left: 0; padding-right: 0; } .shelf { border-radius: 0; padding: 24px 20px 20px; } }
   @media (min-width: 960px) {
     .shop-top { padding-top: 40px; }
     .shelves-list { gap: 28px; }

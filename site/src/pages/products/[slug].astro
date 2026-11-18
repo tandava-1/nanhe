@@ -233,7 +233,7 @@ const pageData = { slug: p.slug, name: p.name, rating: p.rating, count: p.review
 
     <section class="wrap sec stack" style="gap:24px">
       <h2 class="f h2">Complete the routine</h2>
-      <div class="pairs">{pairs.map((x) => <ProductCard p={x} layout="tile" />)}</div>
+      <div class="pgrid">{pairs.map((x) => <ProductCard p={x} />)}</div>
     </section>
 
     <div class="sticky-buy">
@@ -312,8 +312,6 @@ const pageData = { slug: p.slug, name: p.name, rating: p.rating, count: p.review
   .qa { display: grid; gap: 16px; }
   @media (min-width: 720px) { .qa { grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); } }
   .qa-item { background: var(--milk); border-radius: 22px; padding: 20px 22px; }
-  .pairs { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
-  @media (min-width: 960px) { .pairs { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; } }
   .sticky-buy { position: sticky; bottom: 0; z-index: 30; display: flex; align-items: center; gap: 12px; justify-content: space-between; background: var(--white); border-top: 1px solid var(--line); padding: 10px 16px; }
   .sticky-buy .btn { flex: 1; max-width: 220px; }
   @media (min-width: 960px) { .sticky-buy { display: none; } }

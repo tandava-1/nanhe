@@ -52,13 +52,13 @@ function unitPrice(price: number, size: string): string | null {
   return null;
 }
 
-// Short safety notes for product cards. The full caution text from products.json shows on the product page.
+// Short safety badges for product cards. The full caution text from products.json shows on the product page.
 const WARN_SHORT: Record<string, string> = {
   'massage-oil': 'Contains almond oil',
-  'mineral-sunscreen': 'For babies 6 months and older',
-  'talc-free-powder': "Keep away from baby's face",
-  'bubble-bath': 'Not for babies under 12 months',
-  'first-toothpaste': 'Fluoride: a rice-grain amount, brushed by an adult',
+  'mineral-sunscreen': '6 months and older',
+  'talc-free-powder': "Keep off baby's face",
+  'bubble-bath': '12 months and older',
+  'first-toothpaste': 'Contains fluoride',
 };
 
 // Age range in months, for the shop's "by age" filter. Diapers go by weight, so these are typical ages.
