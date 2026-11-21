@@ -1,0 +1,28 @@
+---
+interface Props { title?: string; body?: string }
+const {
+  title = 'Questions? Ask anytime.',
+  body = 'Our assistant answers right away, day or night: routines, ingredients, what to buy. Prefer a person? Chat with a baby-care expert or book a paediatrician call.',
+} = Astro.props;
+---
+<div class="moss-panel ask">
+  <div class="ask-text">
+    <h2 class="f h2">{title}</h2>
+    <p style="color:#E6E9E2">{body}</p>
+  </div>
+  <div class="ask-btns">
+    <a class="btn on-moss" href="/ask">Ask the assistant</a>
+    <a class="btn2 on-moss" href="/ask#expert">Talk to an expert</a>
+  </div>
+</div>
+
+<style>
+  .ask { display: flex; flex-direction: column; gap: 20px; }
+  .ask-text { display: flex; flex-direction: column; gap: 8px; max-width: 620px; }
+  .ask-btns { display: flex; flex-wrap: wrap; gap: 12px; }
+  .ask-btns a { flex: 1 1 160px; }
+  @media (min-width: 960px) {
+    .ask { flex-direction: row; align-items: center; justify-content: space-between; }
+    .ask-btns a { flex: none; }
+  }
+</style>

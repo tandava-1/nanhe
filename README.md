@@ -14,4 +14,7 @@ AI photo renders and the brand book.
 The brand book is a single static HTML page with inline SVG and Google Fonts —
 no build step.
 
+- Website prototype: `site/` (Astro). `cd site && npm install && npm run dev`.
+  See `docs/engineering/website.md`.
+
 Agents: read `AGENTS.md`, then `CONTEXT.md`.

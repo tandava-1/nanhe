@@ -1237,6 +1237,26 @@ def write_standalone():
         f'<defs>{defs("")}</defs>{lu}</svg>\n')
 
 
+def write_characters():
+    """One standalone SVG per little friend, for the website and social. Same drawing as on the packs."""
+    out = ROOT / "assets/characters"
+    out.mkdir(parents=True, exist_ok=True)
+    done = set()
+    index = {slug: {"name": name, "animal": animal, "why": why, "file": f"{name.lower()}.svg"}
+             for slug, (name, animal, why, _) in CHARACTERS.items()}
+    (out / "characters.json").write_text(json.dumps(index, ensure_ascii=False, indent=2) + "\n")
+    for slug, (name, animal, _, draw) in CHARACTERS.items():
+        if name in done:
+            continue
+        done.add(name)
+        c = CATS[BY_SLUG[slug]["category"]]
+        (out / f"{name.lower()}.svg").write_text(
+            f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" role="img" aria-label="{esc(name)}, {esc(animal.lower())}">'
+            f'<title>{esc(name)}, {esc(animal.lower())}</title>'
+            f'<g stroke="{MOSS}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'
+            f'{draw(c["base"], c["wash"])}</g></svg>\n')
+
+
 def write_product_md():
     lines = ["# Nanhe product line", "",
              "Generated from `docs/product/products.json` by `scripts/build_packaging.py`. "
@@ -1440,6 +1460,7 @@ def directions_page():
 
 if __name__ == "__main__":
     write_standalone()
+    write_characters()
     write_product_md()
     inject_brand_book()
     directions_page()

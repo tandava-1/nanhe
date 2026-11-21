@@ -1,0 +1,168 @@
+{
+  "_note": "SAMPLE reviews and questions for the clickable prototype, shown with a 'sample' label. Never ship these as real reviews. ageBand is one of 0-3, 3-6, 6-12, 12-36 (months); skin is normal, dry, sensitive or eczema.",
+  "daily-lotion": {
+    "mentions": [["no rash", 48], ["soft till bedtime", 31], ["faint scent", 22], ["lasts long", 17], ["pump sticks", 6]],
+    "reviews": [
+      { "stars": 5, "title": "No redness after bath, finally.", "body": "Tried three before this one. Her cheeks used to go pink after every bath. Two weeks in, no redness.", "age": "4 months", "ageBand": "3-6", "skin": "sensitive", "used": "2 weeks", "city": "Pune", "by": "R.", "when": "2 weeks ago", "helpful": 12 },
+      { "stars": 3, "title": "Gentle, but the pump sticks.", "body": "Works well on his skin. The pump stopped coming back up after a few weeks.", "age": "5 months", "ageBand": "3-6", "skin": "sensitive", "used": "1 month", "by": "S.", "when": "1 month ago", "helpful": 8, "reply": "Thank you for telling us. We've changed the pump supplier for the next batch and sent you a replacement." },
+      { "stars": 5, "title": "Our paediatrician suggested something mild.", "body": "Switched after the doctor said to avoid anything heavily scented. Spreads easily, no stickiness.", "age": "3 months", "ageBand": "3-6", "skin": "sensitive", "used": "1 month", "by": "A.", "when": "1 month ago", "helpful": 5, "free": true },
+      { "stars": 4, "title": "Light enough for Chennai.", "body": "Doesn't feel heavy in the humidity. I use a little more when the AC is on.", "age": "9 months", "ageBand": "6-12", "skin": "normal", "used": "3 months", "city": "Chennai", "by": "K.", "when": "2 months ago", "helpful": 3 }
+    ],
+    "questions": [
+      { "q": "Can I use this on a 2-week-old?", "a": "Yes, it's made for use from birth. In the first weeks, a little goes a long way.", "by": "Nanhe care team", "more": 3 },
+      { "q": "Is it too heavy for Chennai summers?", "a": "It's light. I use less in May and more when the AC is on.", "by": "Parent of a 6-month-old, Chennai", "more": 1 }
+    ]
+  },
+  "massage-oil": {
+    "mentions": [["not sticky", 52], ["light coconut smell", 30], ["good for winter", 14], ["wish it had a pump", 9]],
+    "reviews": [
+      { "stars": 5, "title": "Absorbs well, not sticky.", "body": "Good for the daily maalish. I'd like a pump on the bottle.", "age": "2 months", "ageBand": "0-3", "skin": "normal", "used": "1 month", "city": "Lucknow", "by": "P.", "when": "3 weeks ago", "helpful": 14 },
+      { "stars": 4, "title": "Nani approves.", "body": "My mother-in-law has strong views on massage oil. She likes this one. It smells only of coconut.", "age": "1 month", "ageBand": "0-3", "skin": "normal", "used": "3 weeks", "city": "Jaipur", "by": "M.", "when": "1 month ago", "helpful": 9 }
+    ],
+    "questions": [
+      { "q": "Is this safe if there's a nut allergy in the family?", "a": "It contains sweet almond oil, so please don't use it if your baby has a nut allergy, and check with your paediatrician if there's a family history.", "by": "Nanhe care team", "more": 0 }
+    ]
+  },
+  "rich-cream": {
+    "mentions": [["dry patches", 29], ["winter cheeks", 21], ["thick", 12]],
+    "reviews": [
+      { "stars": 5, "title": "Dry patches gone in a week.", "body": "Delhi winters are rough on her elbows and cheeks. A little twice a day has made a real difference.", "age": "7 months", "ageBand": "6-12", "skin": "eczema", "used": "2 weeks", "city": "Delhi", "by": "N.", "when": "1 week ago", "helpful": 11 },
+      { "stars": 4, "title": "Thick, takes a moment to rub in.", "body": "Works on his dry knees. Warm it in your fingers first and it spreads better.", "age": "14 months", "ageBand": "12-36", "skin": "dry", "used": "1 month", "by": "V.", "when": "1 month ago", "helpful": 4 }
+    ],
+    "questions": []
+  },
+  "diaper-rash-cream": {
+    "mentions": [["redness better by morning", 61], ["easy to wipe off", 33], ["thin layer is enough", 18]],
+    "reviews": [
+      { "stars": 5, "title": "Redness better by morning.", "body": "Put a thin layer on at the night change. By morning the redness had mostly settled.", "age": "5 months", "ageBand": "3-6", "skin": "sensitive", "used": "1 month", "city": "Bengaluru", "by": "D.", "when": "2 weeks ago", "helpful": 19 },
+      { "stars": 5, "title": "Wipes off easily.", "body": "Some zinc creams are like paint. This one comes off with a water wipe.", "age": "11 months", "ageBand": "6-12", "skin": "normal", "used": "3 months", "by": "T.", "when": "1 month ago", "helpful": 7 }
+    ],
+    "questions": [
+      { "q": "Can I use it at every change?", "a": "Yes. Clean and dry the nappy area, then apply a thin layer at every change. If a rash blisters, oozes or comes with a fever, please see your doctor.", "by": "Nanhe care team", "more": 2 }
+    ]
+  },
+  "all-purpose-balm": {
+    "mentions": [["changing bag", 20], ["chapped cheeks", 17], ["smells of ghee", 8]],
+    "reviews": [
+      { "stars": 5, "title": "Lives in the changing bag.", "body": "Chapped cheeks, dry lips, my own cuticles. The tin is tiny and goes everywhere.", "age": "14 months", "ageBand": "12-36", "skin": "dry", "used": "2 months", "by": "J.", "when": "3 weeks ago", "helpful": 6 },
+      { "stars": 4, "title": "Faint ghee smell, works well.", "body": "Smells a little like home. Melts nicely on the fingertip.", "age": "8 months", "ageBand": "6-12", "skin": "normal", "used": "1 month", "city": "Kochi", "by": "L.", "when": "1 month ago", "helpful": 3 }
+    ],
+    "questions": []
+  },
+  "mineral-sunscreen": {
+    "mentions": [["little white cast", 15], ["easy to spread", 11], ["beach trips", 6]],
+    "reviews": [
+      { "stars": 4, "title": "Slight white cast, fades in a minute.", "body": "Expected it to be chalky, but it settles quickly. We reapply after the park.", "age": "8 months", "ageBand": "6-12", "skin": "normal", "used": "1 month", "city": "Goa", "by": "F.", "when": "2 weeks ago", "helpful": 5 },
+      { "stars": 5, "title": "Good for our holiday.", "body": "Used it every two hours on the beach. No redness on his shoulders.", "age": "2 years", "ageBand": "12-36", "skin": "sensitive", "used": "1 week", "by": "H.", "when": "2 months ago", "helpful": 4 }
+    ],
+    "questions": [
+      { "q": "Can I use this on my 4-month-old?", "a": "It's for babies 6 months and older. Before 6 months, please keep your baby out of direct sun instead of using sunscreen.", "by": "Nanhe care team", "more": 0 }
+    ]
+  },
+  "talc-free-powder": {
+    "mentions": [["dry neck folds", 26], ["no talc", 19], ["easy shaker", 10]],
+    "reviews": [
+      { "stars": 4, "title": "Keeps neck folds dry in summer.", "body": "A little in my palm, then onto the folds. Helps in the Mumbai humidity.", "age": "6 months", "ageBand": "6-12", "skin": "normal", "used": "1 month", "city": "Mumbai", "by": "G.", "when": "3 weeks ago", "helpful": 8 },
+      { "stars": 4, "title": "Glad it's talc-free.", "body": "I was avoiding powder entirely until I found a corn starch one. The shaker doesn't puff out too much.", "age": "3 months", "ageBand": "3-6", "skin": "sensitive", "used": "2 weeks", "by": "B.", "when": "1 month ago", "helpful": 5 }
+    ],
+    "questions": []
+  },
+  "bottle-wash": {
+    "mentions": [["no milky smell", 33], ["rinses clean", 24], ["foam pump", 12]],
+    "reviews": [
+      { "stars": 5, "title": "No milky smell left.", "body": "Bottles and pump parts come out clean and don't smell of soap either.", "age": "2 months", "ageBand": "0-3", "skin": "normal", "used": "1 month", "by": "C.", "when": "2 weeks ago", "helpful": 9 },
+      { "stars": 4, "title": "The foam goes a long way.", "body": "One pump does a bottle and teat. Lasting about five weeks for us.", "age": "5 months", "ageBand": "3-6", "skin": "normal", "used": "2 months", "city": "Hyderabad", "by": "I.", "when": "1 month ago", "helpful": 4 }
+    ],
+    "questions": []
+  },
+  "water-wipes": {
+    "mentions": [["gentle on face", 70], ["thick cloth", 41], ["lid could close better", 15]],
+    "reviews": [
+      { "stars": 5, "title": "Gentle on her face.", "body": "We use these for her face and hands too, not just changes. No redness.", "age": "1 month", "ageBand": "0-3", "skin": "sensitive", "used": "3 weeks", "city": "Kolkata", "by": "E.", "when": "1 week ago", "helpful": 21 },
+      { "stars": 3, "title": "Good wipes, lid could close better.", "body": "The wipes are great. The lid doesn't always snap shut, so the last few dry out.", "age": "4 months", "ageBand": "3-6", "skin": "normal", "used": "2 months", "by": "O.", "when": "1 month ago", "helpful": 11, "reply": "Thank you. We're testing a firmer hinge for the next batch. Pressing the centre of the lid until it clicks helps for now." }
+    ],
+    "questions": []
+  },
+  "head-to-toe-wash": {
+    "mentions": [["one bottle for everything", 28], ["no tears", 22], ["mild lather", 13]],
+    "reviews": [
+      { "stars": 5, "title": "One bottle for everything.", "body": "Hair and body in one, which matters when you're holding a slippery baby.", "age": "2 months", "ageBand": "0-3", "skin": "normal", "used": "1 month", "by": "U.", "when": "2 weeks ago", "helpful": 10 },
+      { "stars": 4, "title": "Mild lather, rinses fast.", "body": "Doesn't foam a lot, which I like. Her skin doesn't feel tight after.", "age": "6 months", "ageBand": "6-12", "skin": "sensitive", "used": "1 month", "city": "Ahmedabad", "by": "Y.", "when": "1 month ago", "helpful": 4, "free": true }
+    ],
+    "questions": []
+  },
+  "tear-free-shampoo": {
+    "mentions": [["tangles gone", 19], ["no tears", 16], ["shikakai smell", 7]],
+    "reviews": [
+      { "stars": 4, "title": "Tangles are gone.", "body": "Her curls used to knot after every wash. Much easier to comb now.", "age": "18 months", "ageBand": "12-36", "skin": "normal", "used": "1 month", "by": "Z.", "when": "3 weeks ago", "helpful": 7 },
+      { "stars": 5, "title": "Bath time without crying.", "body": "Some got near his eyes and he didn't fuss. We still keep the water away from his face.", "age": "11 months", "ageBand": "6-12", "skin": "normal", "used": "2 months", "city": "Chandigarh", "by": "W.", "when": "1 month ago", "helpful": 6 }
+    ],
+    "questions": []
+  },
+  "bubble-bath": {
+    "mentions": [["bubbles last", 14], ["bath time fun", 12]],
+    "reviews": [
+      { "stars": 5, "title": "Bath time is easy now.", "body": "He runs to the bathroom when he hears the tap. One capful is plenty.", "age": "2 years", "ageBand": "12-36", "skin": "normal", "used": "1 month", "by": "Q.", "when": "2 weeks ago", "helpful": 5 },
+      { "stars": 4, "title": "Bubbles last the whole bath.", "body": "We keep baths short anyway. No dryness afterwards.", "age": "20 months", "ageBand": "12-36", "skin": "dry", "used": "3 weeks", "by": "X.", "when": "1 month ago", "helpful": 2 }
+    ],
+    "questions": []
+  },
+  "first-toothpaste": {
+    "mentions": [["mango taste", 18], ["rice-grain amount", 12]],
+    "reviews": [
+      { "stars": 5, "title": "The mango won him over.", "body": "He used to clamp his mouth shut. Now he opens wide for the mango one.", "age": "14 months", "ageBand": "12-36", "skin": "normal", "used": "1 month", "by": "R.", "when": "1 week ago", "helpful": 6 },
+      { "stars": 4, "title": "A tube lasts ages.", "body": "With a rice-grain amount twice a day, we're barely a third through.", "age": "10 months", "ageBand": "6-12", "skin": "normal", "used": "2 months", "by": "A.", "when": "1 month ago", "helpful": 3 }
+    ],
+    "questions": []
+  },
+  "finger-toothbrush": {
+    "mentions": [["soft on gums", 11], ["handy case", 6]],
+    "reviews": [
+      { "stars": 4, "title": "Soft on sore gums.", "body": "Teething week was rough. Rubbing her gums with this calmed her down.", "age": "7 months", "ageBand": "6-12", "skin": "normal", "used": "2 weeks", "by": "S.", "when": "2 weeks ago", "helpful": 4 },
+      { "stars": 4, "title": "The case is handy.", "body": "Goes in the travel bag without getting fluff on it.", "age": "9 months", "ageBand": "6-12", "skin": "normal", "used": "1 month", "by": "K.", "when": "1 month ago", "helpful": 1 }
+    ],
+    "questions": []
+  },
+  "grooming-kit": {
+    "mentions": [["clipper with magnifier", 17], ["nice pouch", 9]],
+    "reviews": [
+      { "stars": 5, "title": "The magnifier on the clipper is a lifesaver.", "body": "I was terrified of trimming newborn nails. Doing it after the bath with this helped.", "age": "2 months", "ageBand": "0-3", "skin": "normal", "used": "1 month", "by": "P.", "when": "3 weeks ago", "helpful": 12 },
+      { "stars": 4, "title": "Nice pouch, soft brush.", "body": "Comb and brush are gentle. The pouch washes well.", "age": "6 months", "ageBand": "6-12", "skin": "normal", "used": "2 months", "by": "M.", "when": "1 month ago", "helpful": 3 }
+    ],
+    "questions": []
+  },
+  "taped-diapers-nb": {
+    "mentions": [["cord cut-out", 40], ["wetness line", 34], ["soft tapes", 18]],
+    "reviews": [
+      { "stars": 5, "title": "The cord cut-out actually works.", "body": "Nothing rubbing on the stump in the first week. The fawn print is sweet too.", "age": "1 week", "ageBand": "0-3", "skin": "sensitive", "used": "1 week", "city": "Indore", "by": "N.", "when": "1 week ago", "helpful": 16 },
+      { "stars": 4, "title": "Wetness line helps at night.", "body": "I can check without opening the diaper. We're close to outgrowing the newborn size.", "age": "6 weeks", "ageBand": "0-3", "skin": "normal", "used": "1 month", "by": "D.", "when": "2 weeks ago", "helpful": 9 }
+    ],
+    "questions": [
+      { "q": "What do I use after 5 kg?", "a": "Right now Nanhe makes Newborn (up to 5 kg) and Medium pants (7–12 kg). A size for 5–7 kg is [to be confirmed].", "by": "Nanhe care team", "more": 0 }
+    ]
+  },
+  "diaper-pants-m": {
+    "mentions": [["no leaks overnight", 44], ["easy for crawlers", 37], ["tear sides", 15]],
+    "reviews": [
+      { "stars": 5, "title": "No leaks overnight.", "body": "Twelve hours really does mean twelve hours for us.", "age": "10 months", "ageBand": "6-12", "skin": "normal", "used": "2 months", "by": "T.", "when": "1 week ago", "helpful": 18 },
+      { "stars": 4, "title": "Easy with a wriggly crawler.", "body": "No more chasing her with tapes. Tearing the sides to take them off is so much quicker.", "age": "9 months", "ageBand": "6-12", "skin": "normal", "used": "1 month", "city": "Surat", "by": "J.", "when": "3 weeks ago", "helpful": 7 }
+    ],
+    "questions": []
+  },
+  "hand-face-wipes": {
+    "mentions": [["thick cloth", 21], ["after meals", 19]],
+    "reviews": [
+      { "stars": 5, "title": "Thick enough for dal hands.", "body": "One wipe handles a whole lunch. Smells lightly of cucumber.", "age": "13 months", "ageBand": "12-36", "skin": "normal", "used": "1 month", "by": "L.", "when": "2 weeks ago", "helpful": 8 },
+      { "stars": 4, "title": "Good for the car.", "body": "Lives in the glovebox for sticky moments.", "age": "2 years", "ageBand": "12-36", "skin": "normal", "used": "2 months", "by": "F.", "when": "1 month ago", "helpful": 2 }
+    ],
+    "questions": []
+  },
+  "water-wipes-value": {
+    "mentions": [["better value", 23], ["same gentle wipes", 18]],
+    "reviews": [
+      { "stars": 5, "title": "Better value, same wipes.", "body": "We go through a pack every few days, so the three-pack makes sense.", "age": "3 months", "ageBand": "3-6", "skin": "sensitive", "used": "2 months", "by": "H.", "when": "2 weeks ago", "helpful": 6 },
+      { "stars": 4, "title": "Unopened packs stay fresh.", "body": "Kept two in the cupboard for a month, still moist when we opened them.", "age": "5 months", "ageBand": "3-6", "skin": "normal", "used": "2 months", "by": "G.", "when": "1 month ago", "helpful": 2 }
+    ],
+    "questions": []
+  }
+}

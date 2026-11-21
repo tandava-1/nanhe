@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import ProductCard from '../components/ProductCard.astro';
+import AskBand from '../components/AskBand.astro';
+import { products } from '../data/catalog';
+
+const SUGGEST = ['rash', 'dry skin', 'bath', 'massage', 'first teeth', 'wipes', 'newborn', 'oat', 'fluoride', 'Haathi'];
+---
+<Base title="Search · Nanhe">
+  <section class="wrap search-top">
+    <h1 class="f h1">Search</h1>
+    <form class="search-form" role="search" data-form>
+      <label for="q" class="sr-only">Search products, ingredients or concerns</label>
+      <input id="q" name="q" class="input search-input" type="search" placeholder="Try “rash”, “oat” or “Haathi”" autocomplete="off" data-q />
+      <button class="btn" type="submit">Search</button>
+    </form>
+    <div class="scroll-x" style="gap:8px" role="group" aria-label="Suggestions">
+      {SUGGEST.map((s) => <button type="button" class="chip chip-sm" data-suggest={s}>{s}</button>)}
+    </div>
+    <p class="sm mu" aria-live="polite" data-status>All {products.length} products</p>
+  </section>
+
+  <section class="wrap" style="padding-bottom:40px">
+    <div class="pgrid" data-results>
+      {products.map((p) => <ProductCard p={p} />)}
+    </div>
+    <div class="empty" data-empty hidden>
+      <p class="f h3">Nothing matches that yet.</p>
+      <p class="mu">Try a product, an ingredient or a concern. Or ask our assistant, which can also point you to the right guide.</p>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-bottom:64px"><AskBand title="Can't find it?" body="Ask our assistant anything, day or night. Or talk to a baby-care expert." /></section>
+</Base>
+
+<style>
+  .search-top { padding-top: 28px; padding-bottom: 16px; display: flex; flex-direction: column; gap: 16px; }
+  .search-form { display: flex; gap: 8px; max-width: 720px; }
+  .search-input { font-size: 16px; }
+  .empty { display: flex; flex-direction: column; gap: 8px; padding: 32px 0; }
+</style>
+
+<script>
+  const input = document.querySelector<HTMLInputElement>('[data-q]')!;
+  const cards = [...document.querySelectorAll<HTMLElement>('[data-results] .pcard')];
+  const status = document.querySelector<HTMLElement>('[data-status]')!;
+  const empty = document.querySelector<HTMLElement>('[data-empty]')!;
+
+  // Words must match from the start of a word (so "oat" doesn't hit "coated"), over name, Hindi name, shelf,
+  // description, hero ingredients, age, friend and caution. A trailing "s" is optional ("wipes" ~ "wipe").
+  const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  function run(q: string) {
+    const words = q.toLowerCase().trim().split(/\s+/).filter(Boolean);
+    const tests = words.map((w) => new RegExp(`(^|[^\\p{L}\\p{N}])${esc(w.endsWith('s') && w.length > 3 ? w.slice(0, -1) : w)}`, 'u'));
+    let n = 0;
+    for (const c of cards) {
+      const hay = c.dataset.search ?? '';
+      const ok = tests.every((t) => t.test(hay));
+      c.hidden = !ok; if (ok) n++;
+    }
+    status.textContent = words.length ? `${n} result${n === 1 ? '' : 's'} for “${q.trim()}”` : `All ${cards.length} products`;
+    empty.hidden = n > 0;
+    const url = new URL(location.href);
+    if (words.length) url.searchParams.set('q', q.trim()); else url.searchParams.delete('q');
+    history.replaceState(null, '', url);
+  }
+
+  input.addEventListener('input', () => run(input.value));
+  document.querySelector('[data-form]')?.addEventListener('submit', (e) => { e.preventDefault(); run(input.value); });
+  document.querySelectorAll<HTMLElement>('[data-suggest]').forEach((b) => b.addEventListener('click', () => { input.value = b.dataset.suggest!; run(input.value); }));
+
+  const q = new URLSearchParams(location.search).get('q');
+  if (q) { input.value = q; run(q); }
+</script>
