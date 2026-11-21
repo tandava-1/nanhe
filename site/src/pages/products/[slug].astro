@@ -319,6 +319,7 @@ const pageData = { slug: p.slug, name: p.name, rating: p.rating, count: p.review
 
 <script>
   import { addToCart } from '../../scripts/cart';
+  import { likeYours, AGE_TXT, SKIN_TXT } from '../../scripts/data';
   type R = { ageBand: string; skin: string; stars: number };
   const data = JSON.parse(document.getElementById('pdp-data')!.textContent!) as { slug: string; rating: number; count: number; reviews: R[] };
 
@@ -364,14 +365,8 @@ const pageData = { slug: p.slug, name: p.name, rating: p.rating, count: p.review
   });
 
   // Review filters + "babies like yours" (sample figures, derived deterministically from the sample rating)
-  const AGE_SHARE: Record<string, number> = { '0-3': .24, '3-6': .3, '6-12': .28, '12-36': .18 };
-  const SKIN_SHARE: Record<string, number> = { normal: .4, dry: .18, sensitive: .3, eczema: .12 };
-  const AGE_TXT: Record<string, string> = { '0-3': '0–3 months', '3-6': '3–6 months', '6-12': '6–12 months', '12-36': '1–3 years' };
-  const SKIN_TXT: Record<string, string> = { normal: 'normal skin', dry: 'dry skin', sensitive: 'sensitive skin', eczema: 'eczema-prone skin' };
   let fAge = '', fSkin = '', fCrit = false;
   try { const b = JSON.parse(localStorage.getItem('nanhe-baby') ?? 'null'); if (b) { fAge = b.ageBand ?? ''; fSkin = b.skin ?? ''; } } catch {}
-
-  function hash(s: string) { let h = 7; for (const c of s) h = (h * 31 + c.charCodeAt(0)) % 997; return h; }
 
   function render() {
     document.querySelectorAll<HTMLElement>('[data-fage]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.fage === fAge)));
@@ -397,10 +392,8 @@ const pageData = { slug: p.slug, name: p.name, rating: p.rating, count: p.review
       small.innerHTML = 'Or <a href="/profile">add your baby</a> once and we\'ll remember it.';
       return;
     }
-    const share = (fAge ? AGE_SHARE[fAge] : 1) * (fSkin ? SKIN_SHARE[fSkin] : 1);
-    const n = Math.max(3, Math.round(data.count * share));
-    const off = ((hash(data.slug + fAge + fSkin) % 5) - 1) / 10;
-    const rating = Math.min(5, Math.max(3.8, data.rating + off)).toFixed(1);
+    const ly = likeYours(data.slug, data.rating, data.count, fAge, fSkin);
+    const n = ly.n, rating = ly.rating.toFixed(1);
     label.textContent = `Babies like yours · ${parts.join(' · ')}`;
     big.textContent = `★ ${rating} from the ${n} reviews by these parents`;
     small.innerHTML = `The ${data.rating} above is from all ${data.count} reviews. <span class="smp">sample</span>`;
