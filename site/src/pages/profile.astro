@@ -79,7 +79,7 @@ const CLIMATES = [['humid', 'Humid'], ['dry', 'Dry or hot'], ['cold', 'Cold wint
 </style>
 
 <script>
-  import { catalog, likeYours, AGE_TXT, SKIN_TXT, toast } from '../scripts/data';
+  import { catalog, likeYours, AGE_TXT, SKIN_TXT, toast, esc } from '../scripts/data';
   import { readProfile, writeProfile, ageMonths, ageBand, describeAge, type Baby, type Profile } from '../scripts/baby';
 
   const c = catalog();
@@ -105,7 +105,7 @@ const CLIMATES = [['humid', 'Humid'], ['dry', 'Dry or hot'], ['cold', 'Cold wint
   function renderBabies() {
     const el = $('[data-babies]');
     el.hidden = profile.babies.length === 0;
-    el.innerHTML = profile.babies.map((b, i) => `<button type="button" class="chip" data-pick="${i}" aria-pressed="${i === editing}">${b.name || `Baby ${i + 1}`} · ${describeAge(b) || 'age not set'}</button>`).join('')
+    el.innerHTML = profile.babies.map((b, i) => `<button type="button" class="chip" data-pick="${i}" aria-pressed="${i === editing}">${esc(b.name || `Baby ${i + 1}`)} · ${describeAge(b) || 'age not set'}</button>`).join('')
       + `<button type="button" class="chip" data-pick="new" aria-pressed="${editing === -1}">+ Add another child</button>`;
     $('[data-title]').textContent = editing === -1 ? (profile.babies.length ? 'Add another child' : 'Tell us a little about your baby') : `About ${profile.babies[editing].name || 'your baby'}`;
     $('[data-delete]').hidden = editing === -1;
