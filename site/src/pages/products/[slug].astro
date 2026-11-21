@@ -50,7 +50,7 @@ const pairs = (ROUTINE_PAIRS[p.slug] ?? products.filter((x) => x.category === p.
 const skinOnly = p.isFormula && !['first-toothpaste', 'bottle-wash'].includes(p.slug);
 const freq = p.category === 'diapering' ? ['2 weeks', '4 weeks', '6 weeks'] : ['4 weeks', '6 weeks', '8 weeks'];
 const SKIN_LABEL: Record<string, string> = { normal: 'Normal', dry: 'Dry', sensitive: 'Sensitive', eczema: 'Eczema-prone' };
-const pageData = { slug: p.slug, name: p.name, rating: p.rating, count: p.reviewCount, reviews: p.reviews };
+const pageData = { slug: p.slug, rating: p.rating, count: p.reviewCount };
 ---
 <Base title={`${p.name} · Nanhe`} description={p.line}>
   <div data-cat={p.category}>
@@ -319,8 +319,7 @@ const pageData = { slug: p.slug, name: p.name, rating: p.rating, count: p.review
 
 <script>
   import { addToCart } from '../../scripts/cart';
-  type R = { ageBand: string; skin: string; stars: number };
-  const data = JSON.parse(document.getElementById('pdp-data')!.textContent!) as { slug: string; rating: number; count: number; reviews: R[] };
+  const data = JSON.parse(document.getElementById('pdp-data')!.textContent!) as { slug: string; rating: number; count: number };
 
   // Gallery
   const mainImg = document.querySelector<HTMLImageElement>('[data-main-img]')!;
